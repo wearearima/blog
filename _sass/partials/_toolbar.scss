@@ -1,0 +1,48 @@
+.toolbar {
+    position: fixed;
+    display: block;
+    top: 0;
+    left: 0;
+    background: white;
+    // @extend %cardboard-background;
+    width: 100%;
+    height: 40px;
+    z-index: 10;
+    .body-home & {
+        display: none;
+    }
+    @include media-query($on-laptop) {
+        display: block;
+    }
+    border-bottom: 1px solid #ccc;
+    .toolbar__logo, .toolbar__claim {
+        height: 24px;
+        width: 132px;
+        margin: 8px 0;
+        padding: 0;
+        display: inline-block;
+    }
+    a {
+        color: #333;
+        &:hover {
+            opacity: .6;
+        }
+    }
+    .toolbar__claim {
+        display: inline-block;
+        font-size: 16px;
+        position: relative;
+        vertical-align: top;
+        margin-left: 21px;
+        margin-top: 10px;
+        font-family: gothambook;
+        &::before{
+            content: "";
+            position: absolute;
+            height: 22px;
+            left: -8px;
+            border-right: 1px solid black;
+            transform: skew(-26deg);
+        }
+    }
+}

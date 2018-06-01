@@ -1,0 +1,38 @@
+/**
+ * Site header
+ */
+.site-header {
+  @extend %cardboard-background;
+  border-bottom: 1px solid $grey-color-light;
+  min-height: 40px;
+  position: relative;
+  
+}
+
+.site-title {
+  width: 40px;
+  height: 40px;
+  margin-bottom: 0;
+  float: left;
+
+  &,
+  &:visited {
+    color: $grey-color-dark;
+  }
+}
+
+.site-nav {
+  .menu-icon {
+    display: none;
+  }
+
+  .page-link {
+    color: $text-color;
+    line-height: $base-line-height;
+
+    // Gaps between nav items, but not on the last one
+    &:not(:last-child) {
+      margin-right: 20px;
+    }
+  }
+}

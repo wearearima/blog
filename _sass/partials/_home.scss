@@ -1,0 +1,175 @@
+.home{
+	margin: $spacing-unit 0;
+}
+$logo-color: white;
+.home-cover {
+  background: url('images/header-background.jpg') no-repeat center center;
+  background-size: cover;
+  height: 40vw;
+  max-height: 50vh;
+  @include media-query($on-laptop) {
+    margin-top: 40px;
+  }
+  >.wrapper {
+    height: 100%;
+    >div {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      transform: scale(1.2);
+      @include media-query($on-laptop) {
+        transform: none;
+      }
+    }
+  }
+  .brand__container{
+    color: $logo-color;
+    fill: $logo-color;
+    margin: 0 auto;
+    .brand{
+      margin-bottom: 16px;
+      width: 341px;
+      height: 75px;
+      display: inline-block;
+      @extend %clearfix;
+    }
+    .claim{
+      margin-left: 255px;
+      font-family: $thin-font-family;
+      .claim__text, .claim__description{
+        display: inline-block;
+      }
+      .claim__text{
+        vertical-align: top;
+      }
+      .claim__description{
+        margin-left: 8px;
+        text-align: left;
+        line-height: 34px;
+        font-size: 30px;
+        position: relative;
+        
+        &::before{
+          content: "";
+          position: absolute;
+          height: 40px;
+          left: -8px;
+          border-right: 2px solid $logo-color;
+          transform: skew(-26deg);
+        }
+
+        div:first-child{
+          @extend %clearfix;
+          margin-left: 8px;
+        }
+      }
+    }
+    &.brand__container--mobile {
+      .claim {
+        margin-left: 0;
+        font-family: gothambook,Arial,Helvetica,sans-serif;
+        .claim__description {
+          &::before {
+            content: "";
+            height: 26px;
+            left: -2px;
+            top: 2px;
+            border-right-width: 1px;
+          }
+          font-size: 20px;
+        }
+      }   
+    }
+  }
+}
+
+.home-coverX{
+	@extend %cardboard-background;
+	height: 300px;
+  background: black;
+	@include media-query($on-palm) {
+    padding: 50px 0;
+    height: 100px;
+	}
+
+  .brand__container{
+    text-align: center;
+    margin: auto;
+    color: white;
+    padding-top: 5%;
+    fill: white;
+
+    @include media-query($on-palm) {
+      width: auto;
+    }
+
+    .brand{
+      margin-bottom: 16px;
+      width: 341px;
+      height: 75px;
+      display: inline-block;
+      @extend %clearfix;
+      @include media-query($on-palm) {
+        width: 120px;
+      }
+      @media screen and (min-width: $on-laptop) {
+        width: 450px;
+        height: 100px;
+      }
+    }
+
+    .claim{
+      float:right;
+      font-family: $thin-font-family;
+      margin-right: -18px;
+      @include media-query($on-palm) {
+        float: none;
+      }
+
+      .claim__text, .claim__description{
+        display: inline-block;
+      }
+
+      .claim__text{
+        vertical-align: top;
+        @include media-query($on-palm) {
+          display: none;
+        }
+      }
+
+      .claim__description{
+        margin-left: 8px;
+        text-align: left;
+        line-height: 26px;
+        font-size: 24px;
+        position: relative;
+        
+        &::before{
+          content: "";
+          position: absolute;
+          height: 50px;
+          left: -8px;
+          border-right: 2px solid white;
+          transform: skew(-26deg);
+        }
+
+        div:first-child{
+          @extend %clearfix;
+          margin-left: 8px;
+        }
+      }
+
+    }
+  }
+
+  #post-list-link{
+	position: absolute;
+    bottom: 15%;
+    font-size: 16px;
+    left: 50%;
+    opacity: 0.45;
+    padding: 4px 8px;
+    background-color: rgb(226, 222, 216);
+    @include border-radius(50%);
+  }
+}

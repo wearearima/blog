@@ -1,0 +1,128 @@
+/**
+ * Posts
+ */
+
+$post-header-height: 300px;
+
+.post{
+  position: relative;
+  margin-top: 40px;
+  padding-bottom: 4em;
+
+  .post-header {
+    height: $post-header-height;
+    margin-bottom: $spacing-unit;
+
+    &::before, .post-img {
+      content: "";
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      position: absolute;
+      z-index: -1;
+      height: $post-header-height;
+    }
+
+    &::before{
+      background-color: black;
+    }
+
+    .post-img {
+      background-size: cover;
+      background-position: 0 30%;
+      height: $post-header-height;
+      opacity: 0.4;
+    }
+    
+    @include media-query($on-palm) {
+      background-position: initial;  
+    }
+  }
+}
+
+.post-meta{
+
+  line-height: 16px;
+
+  .author-photo{
+    float: left;
+    margin-right: 8px;
+    img{
+      // border-radius: 50%;
+      @include border-radius (50%);
+      height: 32px;
+    }
+  }
+
+  .post-author{
+    
+  }
+  .post-date{
+    font-family: gothamextra_light;
+    font-size: 12px;
+  }
+}
+
+.post-info__container{
+  height: $post-header-height;
+  position: relative;
+
+  .post-info{
+    position: absolute;
+    bottom: 16px;
+
+    .post-title {
+      font-size: 42px;
+      letter-spacing: -1px;
+      line-height: 1;
+      color: white;
+      font-family: gothambook;
+
+      @include media-query($on-laptop) {
+        font-size: 26px;
+      }
+    }
+
+    .post-meta{
+      color: $grey-color-light;
+      margin: 8px 0;
+    }
+  }
+}
+
+.post-content {
+  margin-bottom: $spacing-unit;
+
+  h1 {
+    font-size: 32px;
+
+    @include media-query($on-laptop) {
+      font-size: 28px;
+    }
+  }
+
+  h2 {
+    font-size: 26px;
+
+    @include media-query($on-laptop) {
+      font-size: 22px;
+    }
+  }
+
+  h3 {
+    font-size: 20px;
+
+    @include media-query($on-laptop) {
+      font-size: 18px;
+    }
+  }
+
+  h4 {
+    font-size: 16px;
+
+    @include media-query($on-laptop) {
+      font-size: 14px;
+    }
+  }
+}

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: site.lang | default: "en" }}">
+
+  {% include head.html %}
+
+  <body class="body-home">
+
+    {% include home-cover.html %}
+    {% include toolbar.html %}
+    <main aria-label="Content">
+      <div class="wrapper">
+        <div class="home">
+
+          {{ content }}
+
+          <ul id="post-list">
+            {% for post in site.posts %}
+              <li>
+                <h2>
+                  <a class="post-link" href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
+                </h2>
+                <p>
+                  {{ post.excerpt | strip_html | truncatewords: 50 }}
+                </p>
+                <div class="post-meta">
+                  {% assign author = site.authors[post.author] %}
+                  <div class="author-photo">
+                    <img src="{{site.baseurl}}/assets/images/authors/{{post.author}}.png" alt="">
+                  </div>
+                  <div>
+                    <span class="post-author">{{ author.display_name }}</span>
+                  </div>
+                  <div>
+                    <span class="post-date">{{ post.date | date_to_string }}</span>
+                  </div>
+                </div>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </main>
+    {% include footer.html %}
+    <script src="{{ "/assets/toolbar-script.min.js" | relative_url }}"></script>
+  </body>
+</html>

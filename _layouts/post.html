@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: site.lang | default: "en" }}">
+
+  {% include head.html %}
+
+  <body>
+    {% include toolbar.html %}
+    <main aria-label="Content">        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+          <header class="post-header">
+            <div class="post-img" style="background-image: url('{{site.baseurl}}/assets/images/{{page.header-image}}');
+      "></div>
+            <div class="wrapper">
+              <div class="post-info__container">
+                <div class="post-info">
+                  <h1 class="post-title" itemprop="name headline">{{ page.title | escape }}</h1>
+                    <div class="post-meta">
+                      {% assign author = site.authors[page.author] %}
+                      <div class="author-photo">
+                        <img src="{{site.baseurl}}/assets/images/authors/{{page.author}}.png" alt="">
+                      </div>
+                      <div>
+                        <span class="post-author">{{ author.display_name }}</span>
+                      </div>
+                      <div>
+                        <span class="post-date">{{ page.date | date_to_string }}</span>
+                      </div>
+                    </div>
+                </div>
+              </div>
+            </div>
+          </header>
+          <div class="wrapper">
+            <div class="post-content" itemprop="articleBody">
+              {{ content | markdownify | hilightify }}
+            </div>
+
+            {% if site.disqus.shortname %}
+              {% include disqus_comments.html %}
+            {% endif %}
+          </div>
+        </article>
+      </div>
+    </main>
+
+    {% include footer.html %}
+
+  </body>
+
+</html>
