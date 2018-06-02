@@ -1,0 +1,38 @@
+.cookies-message {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: #333;
+    color: white;
+    text-align: center;
+    padding: 8px;
+    border-top: 1px solid #fff;
+    @include media-query($on-laptop) {
+        font-size: .6em;
+    }
+    h4 {
+        padding: 0;
+        margin: 0;
+        font-family: gothambook;
+    }
+    p {
+        padding: 8px;
+        margin: 0;
+    }
+    .buttons {
+        margin-top: 6px;
+        .button {
+            border: 1px solid #ccc;
+            background: #333;
+            font-size: 1em;
+            padding: 4px 8px;
+            cursor: pointer;
+            color: white;
+            font-family: gothamthin;
+            &:hover {
+                opacity: .6;
+            }
+        }
+    }
+}
