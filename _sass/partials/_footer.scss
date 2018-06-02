@@ -72,11 +72,17 @@ footer {
               opacity: .8;
             }
           }
+          &.politica-cookies {
+            font-size: 16px;
+            text-transform: uppercase;
+            margin-top: 8px;
+          }
           .social {
             margin: 0 8px 0 0;
             font-size: .8em;
             display: inline-block;
           }
+          
         }
       }
     }
