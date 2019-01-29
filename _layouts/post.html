@@ -1,31 +1,35 @@
 <!DOCTYPE html>
-<html lang="{{ page.lang | default: site.lang | default: "en" }}">
+<html lang="{{ page.lang | default: site.lang | default: "en" }}" itemscope itemtype="http://schema.org/Blog">
 
   {% include head.html %}
 
   <body>
     {% include toolbar.html %}
     <main aria-label="Content">        
-        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting" itemref="publisher_id">
+          <link itemprop="mainEntityOfPage" href="{{page.url}}" />
+
           <header class="post-header">
-            <div class="post-img" style="background-image: url('{{site.baseurl}}/assets/images/{{page.header-image}}');
-      "></div>
+            <div class="post-img" itemprop="image" itemscope itemtype="http://schema.org/ImageObject" style="background-image: url('{{site.baseurl}}/assets/images/{{page.header-image}}');">
+              <meta itemprop="url" content="https://blog.arima.eu{{site.baseurl}}/assets/images/{{page.header-image}}" />
+            </div>
             <div class="wrapper">
               <div class="post-info__container">
                 <div class="post-info">
                   <h1 class="post-title" itemprop="name headline">{{ page.title | escape }}</h1>
-                    <div class="post-meta">
+                    <div class="post-meta" itemscope itemtype="https://schema.org/Person" itemprop="author">
                       {% assign author = site.authors[page.author] %}
                       <div class="author-photo">
-                        <img src="{{site.baseurl}}/assets/images/authors/{{page.author}}.png" alt="">
+                        <img itemprop="image" src="{{site.baseurl}}/assets/images/authors/{{page.author}}.png" alt="">
                       </div>
-                      <div itemscope itemtype="https://schema.org/Person" itemprop="author">
+                      <div>
                         <span class="post-author" itemprop="name">{{ author.display_name }}</span>
                       </div>
                       <div>
-                        <span class="post-date" itemprop="datePublished">{{ page.date | date_to_string }}</span>
+                        <span class="post-date">{{ page.date | date_to_string }}</span>
                       </div>
                     </div>
+                    <meta  itemprop="datePublished dateModified" content="{{ page.date | date_to_string }}" />
                 </div>
               </div>
             </div>
