@@ -57,7 +57,7 @@ La mejora de rendimiento es muy grande en el caso de MySQL al activar este pará
 
 En la siguiente gráfica podemos ver la diferencia en los tiempos obtenidos en todos los casos:
 
-![rendimiento-mysql](/assets/images/2019-09-04-rendimiento-spring-batch/rendimiento.png)
+![rendimiento-mysql](/assets/images/2019-09-03-rendimiento-spring-batch/rendimiento.png)
 
 ## Ejecución en paralelo (multithread)
 
@@ -83,7 +83,7 @@ En las dos bases de datos mantenemos el rewriteBatch activado con el que hemos c
 
 Comparamos los tiempos de ejecución de ejecutar el job en un sólo hilo vs 4 hilos:
 
-![rendimiento-multithread](/assets/images/2019-09-04-rendimiento-spring-batch/rendimiento-multithread.png)
+![rendimiento-multithread](/assets/images/2019-09-03-rendimiento-spring-batch/rendimiento-multithread.png)
 
 La mejora es muy significativa si podemos permitirnos la ejecución de uno de los steps en paralelo utilizando más hilos para ello. El inconveniente de ejecutar así los steps es que perdemos la opción de reiniciar el job desde el punto en el que falló en el caso de haber tenido algún problema.
 
