@@ -15,7 +15,7 @@
         display: block;
     }
     border-bottom: 1px solid #ccc;
-    .toolbar__logo, .toolbar__claim {
+    .toolbar__logo {
         height: 24px;
         width: 132px;
         margin: 8px 0;
@@ -26,23 +26,6 @@
         color: #333;
         &:hover {
             opacity: .6;
-        }
-    }
-    .toolbar__claim {
-        display: inline-block;
-        font-size: 16px;
-        position: relative;
-        vertical-align: top;
-        margin-left: 21px;
-        margin-top: 10px;
-        font-family: gothambook;
-        &::before{
-            content: "";
-            position: absolute;
-            height: 22px;
-            left: -8px;
-            border-right: 1px solid black;
-            transform: skew(-26deg);
         }
     }
 }
