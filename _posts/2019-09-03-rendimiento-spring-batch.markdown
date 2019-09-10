@@ -5,90 +5,75 @@ date:   2019-09-03 10:00:00
 author: arkaitz
 categories: mediator feature
 tags: featured
-header-image:	2017-01-15-view-rendering-performance/post-header2.jpg
+header-image:	2019-09-03-rendimiento-spring-batch/old.jpg
 ---
+
+Los procesos batch han jugado un papel importante en las organizaciones desde hace mucho tiempo. Muchas tareas que no se podían asumir en aplicaciones online por ser muy pesadas, se posponían para se ejecutadas en horarios nocturnos por ejemplo. 
+
+Actualmente, los procesos batch siguen guardando ese protagonismo, incluso puede que esté creciendo ya que también se utilizan 
+
+Sin embargo, en procesos batch muy pesados o en volumenes de datos muy elevados, surge la duda si un proceso batch se va a ejecutar dentro de la ventana de tiempo establecida. Si el proceso batch supera los límites, tal vez se valoren otras soluciones basadas en arquitecturas distribuídas, tales como Map-Reduce o Spark. 
+
+## Descripción de la prueba
 
 Para quitarnos la duda de cuantos datos podemos procesar utilizando Spring Batch y cuánto tiempo tardaríamos hemos hecho unas pruebas de rendimiento utilizando un job muy sencillito que lee líneas de texto de un fichero CSV y los almacena en dos tablas diferentes de una base de datos.
 
-Una de las tablas contiene 53 columnas y tiene índices en 3 de ellas y la otra tiene 12 columnas e índices en 3 de ellas también.
+![csv-to-tables](/assets/images/2019-09-03-rendimiento-spring-batch/csv-to-tables.png)
 
-El proyecto con el job lo podéis encontrar en este repositorio, donde podéis ver también el esquema de la base de datos que hemos utilizado.
+Una de las tablas contiene 53 columnas con 3 índices configurados y la otra tiene 12 columnas con 3 índices también. 
 
-El sistema en el que se han hecho las pruebas ha sido un MacBook Pro de principios de 2015, con un i7 de dos cores a 3,1GHz y 16 GB de RAM DDR3 a 1867 MHz (fácilmente superable con cualquier máquina de hoy en día).
+Asimismo, las pruebas se han repetido con diferentes cantidades de datos para ver el impacto en el tiempo. Empezamos con 50.000 registros en el fichero CSV para ir subiendo de manera progresiva hasta un 1 millón de registros. 
 
-Las bases de datos utilizadas han sido MySQL y Postgresql para así de paso ver la diferencia de rendim201iento entre las dos, si lo hubiera.
+## Tamaño de chunk
 
-Las pruebas se han realizando con diferentes tamaños de chunk, 100 y 500 (hicimos la prueba con 1000 pero no notamos nada de mejoría en nuestra máquina) y aumentando el número de líneas que se leen del fichero CSV en cada ejecución para ver cuántos segundos tarda en almacenar los datos en la base de datos.
+Antes de presentar los resultados obtenidos en nuestras pruebas, vamos a explicar qué el parámetro `tamaño de chunk` y qué valor hemos aplicado. 
 
-## Resultados utilizando Postgresql
+Spring Batch va ejecutando el proceso batcn en grupos de registros y el tamaño de chunk es el tamaño de dicho grupo de registros. En nuestro ejemplo, si el tamaño de chunk es de 10, se van leyendo registros del fichero csv de 10 en 10 para ir guardándolos en base de datos. 
 
-|     | 50K | 100K | 250K | 500K | 1M  |
-|-----|-----|------|------|------|-----|
-| 100 | 19  | 43   | 95   | 198  | 445 |
-| 500 | 17  | 34   | 87   | 174  | 337 |
+En nuestra pruebas hemos probado diferentes tamaños de chunk (100, 500 y 1000) y en este post sólo vamos a recoger los resultados con el chunk de 500 ya que resultó ser la configuración que mejor nos rindió. 
 
-Nos cuesta 337 segundos (5 minutos y medio) en leer 1 millón de registros de un CSV y almacenarlos en dos tablas de la base de datos.
+## Resultados
 
-Viendo este artículo de @jerolba y la mejora de rendimiento que conseguía activando el parámetro reWriteBatchedInserts repetimos la prueba del mejor de los casos anterior con este parámetro a true:
+### Ejecución secuencial
 
-|     | 50K | 100K | 250K | 500K | 1M   |
-|-----|-----|------|------|------|------|
-| 500 | 16  | 31   | 79   | 155  |  322 |
+En la primera prueba programamos el proceso batch para que fuera guardando los registros en base de datos de manera secuencial. Más adelante vamos a repetir la prueba empleando múltiples hilos para valorar cuánto mejoran los tiempo si ejecutamos el proceso en paralelo.
 
-La mejora no es mucha pero algo se nota, 1 millón de registros en 322 segundos.
+En este modo de ejecución los resultados logrados fueron los siguientes:
 
-## Resultados utilizando MySQL
+| Nº de registros   | 50K | 100K | 250K | 500K | 1M  |
+|-------------------|-----|------|------|------|-----|
+| Tiempo total (sg) | 17  | 34   | 87   | 174  | 337 |
 
-Instalamos una base de datos MySQL y repetimos de nuevo el mejor de los casos pero utilizando esta base de datos:
-
-|     | 50K | 100K | 250K | 500K | 1M   |
-|-----|-----|------|------|------|------|
-| 500 | 31  | 60   | 153  | 308  |  704 |
-
-Un millón de registros leídos de un CSV y almacenados en base de datos en 704 segundos. Aquí la diferencia con postgresql es muy grande, el doble de tiempo necesario.
-
-Igual que en el caso de postgres repetimos la prueba con el parámetro rewriteBatchedStatements a true:
-
-|     | 50K | 100K | 250K | 500K | 1M   |
-|-----|-----|------|------|------|------|
-| 500 | 19  | 33   | 88   | 172  |  441 |
-
-La mejora de rendimiento es muy grande en el caso de MySQL al activar este parámetro, 1 millón de líneas almacenadas en 441 segundos. Nos acercamos bastante al rendimiento de Postgres pero sin superarlo.
+La primera conclusión que obtenemos es que el crecimiento en el tiempo es directamente proporcional a la cantidad de datos que vamos procesando. Por ejemplo, el tiempo para procesar un millon de registros es aproximádamente el diez veces el tiempo para procesar 100K de registros. 
 
 En la siguiente gráfica podemos ver la diferencia en los tiempos obtenidos en todos los casos:
 
 ![rendimiento-mysql](/assets/images/2019-09-03-rendimiento-spring-batch/rendimiento.png)
 
-## Ejecución en paralelo (multithread)
+En base a estos datos, podemos estimar que en un hora podemos leer hasta 10 millones de registros desde un fichero CSV y almacenarlos en dos tablas de base de datos. 
 
-Después de estas pruebas, en las que el step del job se ejecutaba en único hilo, hicimos la prueba de configurar el step para que se ejecute utilizando un threadpool de 4 hilos (nuestra máquina sólo tiene 2 cores y 4 threads). 
+### Ejecución en paralelo (multithread)
 
-En las dos bases de datos mantenemos el rewriteBatch activado con el que hemos conseguido los mejores resultados.
+Si ejecutando el proceso batch de manera secuencial el rendimiento que logramos no es suficiente, podemos acelerar el proceso ejecutándolo en paralelo mediante múltiples hilos. 
 
-### Postgresql
+Para valorar la mejora con el multithreading, hemos repetido la prueba configurando el job con un threadpool de 4 hilos (nuestra máquina sólo tiene 2 cores y 4 threads). 
 
-|     | 50K | 100K | 250K | 500K | 1M   |
-|-----|-----|------|------|------|------|
-| 500 | 10  | 17   | 44   | 84   |  178 |
+| Nº de registros   | 50K | 100K | 250K | 500K | 1M   |
+|-------------------|-----|------|------|------|------|
+| Tiempo total (sg) | 10  | 17   | 44   | 84   |  178 |
 
 1 millón de registros leídos del CSV y almacenados en dos tablas (2 millones de inserts) en 178 segundos, apenas 3 minutos. ¡No está nada mal!
 
-### MySQL
-
-|     | 50K | 100K | 250K | 500K | 1M   |
-|-----|-----|------|------|------|------|
-| 500 | 9   | 19   | 50   | 94   |  235 |
-
-1 millón de registros leídos del CSV en 235 segundos, casi 4 minutos.
-
-Comparamos los tiempos de ejecución de ejecutar el job en un sólo hilo vs 4 hilos:
+A continuación actualizamos la gráfica para comparar los tiempos de ejecución de ejecutar el job en un sólo hilo vs 4 hilos:
 
 ![rendimiento-multithread](/assets/images/2019-09-03-rendimiento-spring-batch/rendimiento-multithread.png)
 
-La mejora es muy significativa si podemos permitirnos la ejecución de uno de los steps en paralelo utilizando más hilos para ello. El inconveniente de ejecutar así los steps es que perdemos la opción de reiniciar el job desde el punto en el que falló en el caso de haber tenido algún problema.
+La mejora es muy significativa si podemos permitirnos la ejecución de uno de los steps en paralelo utilizando más hilos. Es importante ser consciente que la ejecución en paralelo supone perder la característica de [restartability de Spring Batch](https://docs.spring.io/spring-batch/3.0.x/reference/html/configureJob.html#restartability). Esta funcionalidad consiste en que cuando falla la ejecución del proceso batch, si reiniciamos el job Spring Batch iniciará el proceso desde el registro que se produjo el error. De lo contrario, si restartability está deshabilitado, el reiniciar el proceso Spring Batch comenzará desde el inicio. 
 
-Resumiendo, en el mejor de los casos, con un tamaño de chunk de 500, base de datos Postgresql y ejecutando el step en 4 hilos somos capaces de leer 1 millón de líneas de un CSV y almacenarlos en base de datos (2 millones de inserts) en 178 segundos.
+## Resumen
 
 No está nada mal tratándose de una máquina modesta y una instalación de base de datos por defecto, sin ningún tipo de optimización.
 
 Un rendimiento más que suficiente para la mayoría de empresas que tengan que ejecutar tareas batch para procesar datos periódicamente y sin tener que montar un sistema basado en Hadoop, Spark o MapReduce.
+
+Cuando se realizan pruebas de rendimiento, los datos pueden variar muchos por múltiple factores (versión de java, prestaciones de hw, etc). En nuestro caso las pruebas se han hecho sobre un MacBook Pro de principios de 2015, con un i7 de dos cores a 3,1GHz y 16 GB de RAM DDR3 a 1867 MHz, y se ha empleado la versión Java 8. Para poder contrastar los resultados obtenidos, hemos publicado el proyecto en [este repositorio](#) de Github con todas las instrucciones necesarias. 
