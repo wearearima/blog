@@ -1,0 +1,23 @@
+I"�<p>Generalmente cuando se quiere empaquetar una aplicación Java en un contenedor Docker, se crea un 
+fichero Dockerfile en el proyecto para especificar las propiedades de la imagen Docker, tales como: 
+en qué imagen se basa, cuál es el ejecutable, qué puerto se expone, etc.</p>
+
+<p>Una alternativa al fichero Dockerfile es definir esa información en el pom.xml mediante el plugin de 
+<a href="https://github.com/GoogleContainerTools/jib">Jib</a>. Las ventajas que nos aporta esta librería son:</p>
+
+<ul>
+  <li>No requiere tener Docker instalado para crear imágenes Docker.</li>
+  <li>Separa el código del proyecto y sus dependencias en diferentes capas. Dado que la capa de dependencias no
+ varía frecuentemente, podemos reutilizarla y sólo hacer el building de la capa de nuestro código.</li>
+</ul>
+
+<p>https://github.com/GoogleContainerTools/jib/blob/master/docs/faq.md#why-is-my-image-created-48-years-ago</p>
+
+<p>https://reproducible-builds.org/</p>
+
+<p>https://github.com/GoogleContainerTools/jib/issues/606</p>
+
+<p>https://cloud.google.com/blog/products/gcp/introducing-jib-build-java-docker-images-better</p>
+
+<p>https://blog.jdriven.com/2018/09/spicy-spring-dockerize-spring-boot-application-with-jib/</p>
+:ET

@@ -1,0 +1,2 @@
+I"�<p>Descripción de la problemática de gestión de procesos batch y streaming. La diferencia entre un proceso batch y un proceso de streaming es que los procesos batch reciben una cantidad finita de datos, mientras que los procesos de streaming reciben datos de manera indefinida. Los procesos batch, llamados Task en el dashboard de SCDF, son tareas que duran poco tiempo (pueden ser minutos o horas). Reciben una cantidad definida de datos, los procesan y acaban.</p>
+:ET
