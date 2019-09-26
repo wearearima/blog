@@ -8,7 +8,6 @@ $post-header-height: 300px;
   position: relative;
   margin-top: 40px;
   padding-bottom: 4em;
-
   .post-header {
     height: $post-header-height;
     margin-bottom: $spacing-unit;
@@ -133,5 +132,9 @@ $post-header-height: 300px;
       margin-left: -10px;
       padding-right: 7px;
     }
+  }
+  a {
+    font-family: gotham_light, Arial, Helvetica, sans-serif;
+    text-decoration: underline;
   }
 }
