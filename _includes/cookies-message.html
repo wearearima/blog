@@ -8,16 +8,15 @@
 </div>
 <script>
     (function() {
-        // TODO Si se han aceptado las cookies, no las vuelvo a mostrar
-        if(sessionStorage) {
-            var cookiesAccepted = sessionStorage.getItem("cookies-accepted");
+        if(localStorage) {
+            var cookiesAccepted = localStorage.getItem("cookies-accepted");
             if(cookiesAccepted) {
                 hideCookiesMessage();
                 
             } else {
                 document.getElementById('accept-cookies').addEventListener("click", function() {
                     hideCookiesMessage();
-                    sessionStorage.setItem("cookies-accepted", true);
+                    localStorage.setItem("cookies-accepted", true);
                 })
             }
         }
