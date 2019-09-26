@@ -13,7 +13,7 @@ fichero Dockerfile en el proyecto para especificar las propiedades de la imagen 
 en qué imagen se basa, cuál es el entrypoint, qué puerto se expone, etc. 
 
 Una alternativa al fichero Dockerfile es definir esa información en el pom.xml mediante el plugin de 
-[Jib](https://github.com/GoogleContainerTools/jib) para Maven o Gradle. Las ventajas que nos aporta este proyecto son:
+[Jib](https://github.com/GoogleContainerTools/jib){:target="_blank"} para Maven o Gradle. Las ventajas que nos aporta este proyecto son:
 
  - No requiere configurar un fichero Dockerfile en el proyecto ni tener Docker instalado en el equipo para crear imágenes Docker. 
  - Logramos que el building de la imagen sea más rápido ya que JIB separa en diferentes capas el código del proyecto y 
@@ -24,7 +24,7 @@ Una alternativa al fichero Dockerfile es definir esa información en el pom.xml 
 
 ![jib-flow](/assets/images/2017-09-11-java-docker-building-with-jib/jib-flow.png)
 
-En [este proyecto de Spring Boot](https://github.com/wearearima/spring-boot-jib-docker) hemos configurado el plugin Jib para Maven de esta manera:
+En [este proyecto de Spring Boot](https://github.com/wearearima/spring-boot-jib-docker){:target="_blank"} hemos configurado el plugin Jib para Maven de esta manera:
 
 ```
 <plugin>
@@ -36,7 +36,7 @@ En [este proyecto de Spring Boot](https://github.com/wearearima/spring-boot-jib-
 
 Sólo con esto y ejecutando el comando `./mvnw compile jib:dockerBuild` ya es suficiente para crear una imagen Docker de nuestra aplicación Java.
 
-Con objeto de reducir configuración de Docker, a partir de la información del proyecto Jib ha inferido la configuración que mejor se ajusta. Por ejemplo, no hemos especificado la imagen base que incluirá la JDK. Jib no lo ha necesitado porque a partir de la configuración del pom, `<java.version>1.8</java.version>`, ha detectado que se necesita Java 8 y para este tipo de proyecto la imagen base que emplea Jib es `gcr.io/distroless/java:8`, una imagen [distroless de Google](https://github.com/GoogleContainerTools/distroless). 
+Con objeto de reducir configuración de Docker, a partir de la información del proyecto Jib ha inferido la configuración que mejor se ajusta. Por ejemplo, no hemos especificado la imagen base que incluirá la JDK. Jib no lo ha necesitado porque a partir de la configuración del pom, `<java.version>1.8</java.version>`, ha detectado que se necesita Java 8 y para este tipo de proyecto la imagen base que emplea Jib es `gcr.io/distroless/java:8`, una imagen [distroless de Google](https://github.com/GoogleContainerTools/distroless){:target="_blank"}. 
 
 Asimismo, aunque carecemos del fichero Dockerfile, seguimos teniendo el control sobre los parámetros de configuración de la imagen Docker. En el siguiente ejemplo veremos cómo podemos configurar algunos de estos parámetros:
 
@@ -73,4 +73,4 @@ $ docker image ls | grep spring-boot-jib-docker
 spring-boot-jib-docker                                           0.0.1-SNAPSHOT          fe30b0d3f8d6        49 years ago        142MB
 ```
 
-No se trata de un bug, no hay que asustarse. Jib por defecto elimina la fecha de creación para mantener la [reproducibilidad](https://reproducible-builds.org/) de la imagen. Un building reproducible es aquel que siempre devuelve el mismo resultado, incluso la misma fecha de creación. Por este motivo Jib lo elimina, aunque se puede [modificar este comportamiento](https://github.com/GoogleContainerTools/jib/blob/master/docs/faq.md#why-is-my-image-created-48-years-ago). 
+No se trata de un bug, no hay que asustarse. Jib por defecto elimina la fecha de creación para mantener la [reproducibilidad](https://reproducible-builds.org/){:target="_blank"} de la imagen. Un building reproducible es aquel que siempre devuelve el mismo resultado, incluso la misma fecha de creación. Por este motivo Jib lo elimina, aunque se puede [modificar este comportamiento](https://github.com/GoogleContainerTools/jib/blob/master/docs/faq.md#why-is-my-image-created-48-years-ago){:target="_blank"}. 
