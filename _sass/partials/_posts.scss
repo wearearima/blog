@@ -38,6 +38,7 @@ $post-header-height: 300px;
     @include media-query($on-palm) {
       background-position: initial;  
     }
+
   }
 }
 
@@ -123,6 +124,14 @@ $post-header-height: 300px;
 
     @include media-query($on-laptop) {
       font-size: 14px;
+    }
+  }
+  li {
+    list-style: none;
+    &::before {
+      content: '/';
+      margin-left: -10px;
+      padding-right: 7px;
     }
   }
 }

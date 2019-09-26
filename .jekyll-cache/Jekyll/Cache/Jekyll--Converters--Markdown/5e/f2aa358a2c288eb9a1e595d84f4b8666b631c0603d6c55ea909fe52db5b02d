@@ -1,0 +1,4 @@
+I"<p>Generalmente cuando se quiere empaquetar una aplicación Java en un contenedor Docker, se crea un 
+fichero Dockerfile en el proyecto para especificar las propiedades de la imagen Docker, tales como: 
+en qué imagen se basa, cuál es el entrypoint, qué puerto se expone, etc.</p>
+:ET

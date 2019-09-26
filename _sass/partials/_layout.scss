@@ -13,18 +13,23 @@ body {
   font-kerning: normal;
 }
 
-
+h3 {
+  color: #6d6c6c;
+}
 
 /**
  * Set `margin-bottom` to maintain vertical rhythm
  */
 h1, h2, h3, h4, h5, h6,
-p, blockquote, pre,
+blockquote, pre,
 ul, ol, dl, figure,
 %vertical-rhythm {
   margin-bottom: $spacing-unit / 2;
 }
 
+p, table {
+  margin-bottom: 20px
+}
 
 
 /**
@@ -119,7 +124,8 @@ code {
   white-space: nowrap;
   background: #F1F1F1;
   border: 1px solid #E1E1E1;
-  border-radius: 4px; }
+  border-radius: 4px; 
+  overflow: auto;}
 pre > code {
   display: block;
   padding: 1rem 1.5rem;
