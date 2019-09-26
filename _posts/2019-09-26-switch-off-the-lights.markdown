@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "[CSS] Switch off the lights"
-date:   2019-09-11 9:00:00
+date:   2019-09-26 9:00:00
 author: alberto
 categories: css
 tags: css, dark, light, claro, oscuro
