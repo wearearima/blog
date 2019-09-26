@@ -37,13 +37,16 @@ authors:
     display_name: Iñigo Telleria
     bio: 
   aritz:
-      display_name: Aritz Berasarte
-      bio: 
+    display_name: Aritz Berasarte
+    bio: 
   ugaitz:
     display_name: Ugaitz Urien
     bio: 
   arkaitz:
     display_name: Arkaitz Osa
     bio: 
+  alberto:
+    display_name: Alberto Calvo
+    bio:
 # Google Analytics
 google_analytics: UA-120217722-1
