@@ -145,4 +145,9 @@ $post-header-height: 300px;
     font-family: gotham_light, Arial, Helvetica, sans-serif;
     text-decoration: underline;
   }
+  img.center {
+    -webkit-box-shadow: -4px 3px 14px 4px rgba(0,0,0,0.41);
+    -moz-box-shadow: -4px 3px 14px 4px rgba(0,0,0,0.41);
+    box-shadow: -4px 3px 14px 4px rgba(0,0,0,0.41);
+  }
 }
