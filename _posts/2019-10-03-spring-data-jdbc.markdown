@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Spring Data, JDBC frente a JPA"
-date: 2019-09-16 5:00:00
+date: 2019-10-03 10:00:00
 author: ugaitz
 categories: base de datos,spring,jdbc
 tags: base de datos,spring,jdbc

@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "[CSS] Switch off the lights"
-date:   2019-09-26 9:00:00
+date:   2019-10-11 9:00:00
 author: alberto
 categories: css
 tags: css, dark, light, claro, oscuro
@@ -34,7 +34,7 @@ Con esto tendríamos un tema oscuro para quien así tenga configurada la prefere
 
 Podéis probarlo con la versión de cualquier navegador de escritorio esta mini demo que he hecho: [https://typescript-rf4g1k.stackblitz.io/](https://typescript-rf4g1k.stackblitz.io/){:target="_blank"}
 
-![demo](/assets/images/2019-09-26-switch-off-the-lights/demo.gif){: .center }
+![demo](/assets/images/2019-10-11-switch-off-the-lights/demo.gif){: .center }
 
 Si jugáis, como en el GIF, con la configuración System Preferences -> General -> Appearance, al cambiar entre el modo Light y Dark cambiará no solo la interfaz de macOS y la UI del navegador, sino también nuestra propia web. Yay!
 

@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Java en contenedores Docker con Jib"
-date:   2019-09-11 9:00:00
+date:   2019-09-26 9:00:00
 author: telle
 categories: mediator feature
 tags: spring-boot, docker, jib, maven
@@ -22,7 +22,7 @@ Una alternativa al fichero Dockerfile es definir esa información en el pom.xml 
  - Simplificamos el flujo de construcción de la imagen y de publicación en un repositorio. Como ilustra la siguiente imagen,
  este flujo antes implicaba varios comandos y con jib lo resolvemos a la ejecución de un único comando. 
 
-![jib-flow](/assets/images/2017-09-11-java-docker-building-with-jib/jib-flow.png)
+![jib-flow](/assets/images/2019-09-26-java-docker-building-with-jib/jib-flow.png)
 
 En [este proyecto de Spring Boot](https://github.com/wearearima/spring-boot-jib-docker){:target="_blank"} hemos configurado el plugin Jib para Maven de esta manera:
 
