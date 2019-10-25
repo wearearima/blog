@@ -3,8 +3,8 @@ layout: post
 title: "Spring Data, JDBC frente a JPA"
 date: 2019-10-03 10:00:00
 author: ugaitz
-categories: base de datos,spring,jdbc
-tags: base de datos,spring,jdbc
+categories: base de datos,spring,jdbc, JPA
+tags: base de datos,spring,jdbc, JPA
 header-image:	post-headers/data.jpg
 ---
 _Spring Data JDBC_ es una librería para facilitar la creación de repositorios que acceden a bases de datos sin tratar con la complejidad que supone utilizar JPA. El hecho de que JPA ofrezca muchas funcionalidades como caché, carga de relaciones bajo demanda _(Lazy)_, etc. supone que el desarrollador tenga que tener en cuenta cierta complejidad.
