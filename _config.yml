@@ -50,3 +50,6 @@ authors:
     bio:
 # Google Analytics
 google_analytics: UA-120217722-1
+plugins:
+  - jekyll-sitemap
+  
