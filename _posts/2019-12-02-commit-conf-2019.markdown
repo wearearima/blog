@@ -38,7 +38,7 @@ JavaScript en su día no se pensó para lo que se está utilizando ahora, es ver
 
 Está más orientado a realidad virtual, herramientas de colaboración, software CAD, simulación científica… Pero al final se puede aplicar a multitud de casos. En la presentación Daniel comentó que las aplicaciones web de Autocad y Lightroom usan esta tecnología.
 
-[Aquí](https://takahirox.github.io/WebAssembly-benchmark/) tenéis algunos ejemplos online comparando lo que tarda Javascript vs WebAssembly, como podéis ver hay algunos casos donde sale más rentable utilizar WebAssembly.
+[Aquí](https://takahirox.github.io/WebAssembly-benchmark/){:target="_blank"} tenéis algunos ejemplos online comparando lo que tarda Javascript vs WebAssembly, como podéis ver hay algunos casos donde sale más rentable utilizar WebAssembly.
 
 Otra charla que me pareció interesante fue la que dieron Manuel Vilachán y Antonio Marin titulada **“WebAuthn: No más passwords por favor!”**.
 
@@ -48,7 +48,7 @@ WebAuthn es un estándar web oficial de la W3C que permite el inicio de sesión 
 
 Con este método, las páginas web que verifican la identidad del usuario recurren a la API de autenticación web en el navegador. El usuario, por su parte, confirma ser quien es en su propio equipo con un escáner de huella dactilar o con un token conectado a su ordenador. Los datos personales de identidad, como la huella digital, no salen fuera del dispositivo. Es el navegador el que envía la verificación de su identidad, cifrada por medio de una clave pública al servicio web.
 
-Como podéis ver en [Can I Use](https://caniuse.com/#search=webauthn) la mayoría de las versiones estables de los principales navegadores lo soportan.
+Como podéis ver en [Can I Use](https://caniuse.com/#search=webauthn){:target="_blank"} la mayoría de las versiones estables de los principales navegadores lo soportan.
 
 WebAuthn ofrece varias ventajas para los usuarios. La comodidad es el factor que debería convencernos a todos, ya no tenemos que memorizar más contraseñas! De aquí también se derivaría una mayor seguridad, porque el uso de claves no es un método seguro al cien por cien, ya que pueden romperse con ataques de fuerza bruta y son fáciles de interceptar con phishing. Tampoco permiten lanzar un ataque de man in the middle, puesto que no se envían datos sensibles que pueden ser interceptados. El método de clave pública protege de forma criptográfica el envío del certificado de autenticación.
 
