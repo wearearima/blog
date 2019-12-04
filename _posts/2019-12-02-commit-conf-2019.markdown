@@ -55,3 +55,10 @@ WebAuthn ofrece varias ventajas para los usuarios. La comodidad es el factor que
 El mayor inconveniente aparece en el momento de intentar loguearte con diferentes dispositivos, es decir, si tú quieres acceder a Twitter, desde el móvil, desde el escritorio, desde cualquier otro dispositivo, debes registrar un nuevo autenticador en la aplicación web por cada dispositivo, por lo que puede ser un poco engorro tener que hacer eso por cada dispositivo nuevo.
 
 Y por último, para mí LA charla, **"Unbiasing teams"** de Félix López. Una charla que recomiendo verla en vídeo cuando lo suban a Youtube. Es una charla bastante densa y poco técnica pero que a mí me encantó. Félix explica los factores psicológicos que nos afectan en el día a día en la toma de decisiones y en el comportamiento personal con el resto del equipo. Con una serie de ejemplos nos explica cómo a veces vemos situaciones como normales que en realidad están fundamentadas en esquemas y estereotipos.
+
+Me ha parecido una conferencia de lo más completa, dos días llenos de charlas variadas e interesantes. Una experiencia enriquecedora y satisfactoria. Quiero dar las gracias a la organización y voluntarios por su excelente trabajo y por su disponibilidad en todo momento.
+
+En el canal de [Youtube](https://www.youtube.com/channel/UCd_1KHg4t2VKGsSDF8OD5Cw){:target="_blank"} de Commit encontrarás las charlas que he mencionado en este post.
+
+¡Hasta el año que viene!
+
