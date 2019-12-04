@@ -49,6 +49,9 @@ authors:
   alberto:
     display_name: Alberto Calvo
     bio:
+  fernando:
+    display_name: Fernando Lozano
+    bio:      
 # Google Analytics
 google_analytics: UA-120217722-1
 plugins:
