@@ -5,7 +5,7 @@ date:   2020-02-11 9:00:00
 author: telle
 categories: docker, containers, java
 tags: docker, containers, java, contenedores
-header-image: 2020-02-11-java-en-contenedores-docker/mike-kenneally-TD4DBagg2wE-unsplash.jpg
+header-image: 2020-02-11-java-en-contenedores-docker/fondo-cafe-min.jpg
 ---
 
 En nuestro alrededor existen muchas empresas que llevan años trabajando sobre Java utilizando un stack tecnológico tradicional (Spring, Tomcat, Weblogic, JPA, etc). Esta infraestructura ha sido bastante estable en el tiempo y ha sufrido pocos cambios.
