@@ -10,7 +10,7 @@ header-image: 2020-02-11-java-en-contenedores-docker/fondo-cafe-min.jpg
 
 En nuestro alrededor existen muchas empresas que llevan años trabajando sobre Java utilizando un stack tecnológico tradicional (Spring, Tomcat, Weblogic, JPA, etc). Esta infraestructura ha sido bastante estable en el tiempo y ha sufrido pocos cambios.
 
-Sin embargo, reciemente han surgido nuevas infraestructuras cloud basadas en Kubernetes ([Azure](https://azure.microsoft.com/en-us/free/kubernetes-service/){:target="_blank"}, [Openshift](https://www.redhat.com/es/technologies/cloud-computing/openshift){:target="_blank"}, [Amazon EKS](https://aws.amazon.com/es/eks/){:target="_blank"}, etc) y estas empresas ahora se encuentran en proceso de evaluación o transición a Kubernetes. En este proceso, surgen dudas y se cuestiona por ejemplo, si el stack tecnológico empleado hasta ahora sigue siendo valido en estos nuevos entorno de cloud. 
+Sin embargo, reciemente han surgido nuevas infraestructuras cloud basadas en Kubernetes ([Azure](https://azure.microsoft.com/en-us/free/kubernetes-service/){:target="_blank"}, [Openshift](https://www.redhat.com/es/technologies/cloud-computing/openshift){:target="_blank"}, [Amazon EKS](https://aws.amazon.com/es/eks/){:target="_blank"}, etc) y estas empresas ahora se encuentran en proceso de evaluación o transición a Kubernetes. En este proceso, surgen dudas y se cuestiona por ejemplo, si el stack tecnológico empleado hasta ahora sigue siendo valido en estos nuevos entornos  cloud. 
 
 En estos casos, como suele ser habitual, solemos echar mano de Google para consultar cómo es la transición de los proyectos Java a Kubernetes. Sorprendentemente nos encontramos artículos y presentaciones que nos pueden asustar a dar el salto a Kubernetes. Por ejemplo, [Nobody puts Java in a container](https://jaxenter.com/nobody-puts-java-container-139373.html){:target="_blank"} o [Nobody puts Java in the container](https://vimeo.com/181900266){:target="_blank"}. 
 
@@ -20,7 +20,7 @@ Visto esto, a todos nos viene la misma pregunta a la cabeza: ¿es viable ejecuta
 
 ## Java Ergonomics
 
-La plataforma Java se creó en el año 1995 y un poco más tarde vinieron los servidores web y servidores de aplicación para desarrollar aplicaciones Web sobre Java. En aquel entonces no existía el concepto de [contenedor](https://www.docker.com/resources/what-container){:target="_blank"} ni tampoco el movimiento [cloud native](https://www.cncf.io/){:target="_blank"}. Lo habitual era que el servidor de aplicaciones Java se ejecutara en un máquina dedicada y en dicho servidor se desplegaban múltiples aplicaciones Web (wars o ears). 
+La plataforma Java se creó en el año 1995 y un poco más tarde vinieron los servidores web y servidores de aplicación para desarrollar aplicaciones Web sobre Java. En aquel entonces no existía el concepto de [contenedor](https://www.docker.com/resources/what-container){:target="_blank"} ni tampoco el movimiento [cloud native](https://www.cncf.io/){:target="_blank"}. Lo habitual era que el servidor de aplicaciones Java se ejecutara en una máquina dedicada y en dicho servidor se desplegaban múltiples aplicaciones Web (wars o ears). 
 
 <p align="center">
     <img src="/assets/images/2020-02-11-java-en-contenedores-docker/servidor-java-ee.png">
@@ -32,7 +32,7 @@ Todo bien hasta ahora. Un servidor para cada JVM y Java Ergonomics configura la 
 
 ## Primeras experiencias de Java en Docker
 
-Cuando ejecutamos una aplicación Java en un contenedor, nos interesa que Java Ergonomics calcule los parámetros de JVM en función de los recursos del propio contenedor. Por ejemplo, si arrancamos un contenedor con un 4GB de memoria, esperamos que Java Ergonomics establezca 1GB de heap máximo. 
+Cuando ejecutamos una aplicación Java en un contenedor, nos interesa que Java Ergonomics calcule los parámetros de JVM en función de los recursos del propio contenedor. Por ejemplo, si arrancamos un contenedor con 4GB de memoria, esperamos que Java Ergonomics establezca 1GB de heap máximo. 
 
 Sin embargo, las primeras experiencias de Java en contenedores demostraron que eso no era así. Java Ergonomics continuaba configurando la JVM en base a los recursos del servidor en lugar de los recursos del contenedor. Es decir, si el servidor tiene 64GB de RAM, se establecía 16 GB de heap máximo, en lugar de 1GB que se esperaba. Esto hacía que al escalar una aplicación, por ejemplo a 5 contenedores, se agotara toda la memoria del servidor porque la suma del heap de todos los containers superaba la memoria del servidor (16GB * 5 > 64GB). 
 
