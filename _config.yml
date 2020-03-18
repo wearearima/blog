@@ -52,6 +52,9 @@ authors:
   fernando:
     display_name: Fernando Lozano
     bio:      
+  urko:
+    display_name: Urko Lekuona
+    bio:
 # Google Analytics
 google_analytics: UA-120217722-1
 plugins:
