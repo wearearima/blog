@@ -7,7 +7,7 @@ categories: AWS
 tags: aws, organizacion, organizaciones, iam, scp, cuenta, cuentas
 header-image: 2020-03-18-aws-cuentas-y-organizaciones/rice-fields.jpg
 ---
-En esta entrada quiero hablar sobre las cuentas de Amazon Web Services y sobre la arquitectura que hay por detrás. Recientemente hemos empezado a trastear con AWS para probar sus servicios y compararlos con otros, y nos hemos dado cuenta de que la gestión de cuentas y del entorno es mucho más liosa de lo que esperábamos (cada vez que pruebo algo nuevo tengo la intención de ir directo al grano, como en este caso crear un cluster de EKS, y siempre me acabo dando de frente con la cruda realidad). Espero que al final de esta entrada seáis capaces de entender un poco mejor todos los conceptos que voy a explicaros y que agilice vuestro proceso de introducción en AWS.
+En esta entrada quiero hablar sobre las cuentas de Amazon Web Services y sobre la arquitectura que hay por detrás. La gestión de cuentas de AWS es un poco compleja y puede ralentizar el tiempo necesario para empezar a usar sus servicios (cada vez que pruebo algo nuevo tengo la intención de ir directo al grano, como en este caso crear un cluster de EKS, y siempre me acabo dando de frente con la cruda realidad). Espero que al final de esta entrada seáis capaces de entender un poco mejor todos los conceptos que voy a explicaros y que agilice vuestro proceso de introducción en AWS.
 
 Bien, lo primero de lo que hay que hablar es sobre las cuentas. ¿Qué es una cuenta de AWS? Pues no es más que eso, una cuenta, con su identificador único y su email, pero en este caso engloba ciertos conceptos propios de AWS. Cuando creas una cuenta, se crea por defecto un **usuario** root de la cuenta. Estos son los elementos que puede contener una cuenta:
 
@@ -27,7 +27,7 @@ Cuando una cuenta crea una organización, esa cuenta pasa a ser la cuenta master
 
 Otro concepto que introducen las organizaciones son los OU (*Organizational Unit*). Estos elementos son agrupaciones lógicas de cuentas y de OUs (un OU puede agrupar a cuentas y OUs, hasta 5 niveles de profundidad). Las diferentes cuentas de nuestra organización se pueden mover entre OUs sin problemas, pero hay que recordar que cada cuenta sigue teniendo sus usuarios, grupos, servicios, etc, y que estos **no se pueden sacar de la cuenta**. ¿Que por qué digo esto? Pues porque quiero introducir el último concepto importante sobre las organizaciones. Los *Service Control Policies*.
 
-Los *Service Control Policies* o SCPs son políticas que se utilizan para gestionar nuestra organización. Son diferentes de las políticas de una cuenta pero asumamos de momento que son iguales. Estas políticas se pueden aplicar a la organización, a un OU, o a una cuenta (o a conjuntos de estos elementos), y cuando se aplica a uno de estos elementos **también se aplican a todos los elementos que contengan**. Es decir, si aplicamos un SCP a un OU *ou1*, y *ou1* contiene un cuenta *c1*, el SCP se aplicará tanto a *ou1* como a *c1*. Si después movemos esta cuenta *c1* a otro OU *ou2*, *ou1* seguirá con el SCP aplicado, pero *c1* ya no. Es decir, si movemos cuentas a nivel jerárquico, tenemos que tener cuidado con los SCPs que haya aplicados en el origen como en el destino.
+Los *Service Control Policies* o SCPs son políticas que se utilizan para gestionar nuestra organización. Son diferentes de las políticas de una cuenta pero asumamos de momento que son iguales. Estas políticas se pueden aplicar a la organización, a un OU, o a una cuenta (o a conjuntos de estos elementos), y cuando se aplica a uno de estos elementos **también se aplican a todos los elementos que contengan**. Es decir, si aplicamos un SCP a un OU *ou1*, y *ou1* contiene un cuenta *c1*, el SCP se aplicará tanto a *ou1* como a *c1*. Si después movemos esta cuenta *c1* a otro OU *ou2*, *ou1* seguirá con el SCP aplicado, pero *c1* ya no. Es decir, si movemos cuentas a nivel jerárquico, tenemos que tener cuidado con los SCPs que haya aplicados tanto en el origen como en el destino.
 
 Hay varias estrategias para estructurar nuestra organización, aquí os dejo algunas que he visto:
 
@@ -39,7 +39,7 @@ Hay varias estrategias para estructurar nuestra organización, aquí os dejo alg
     <img src="/assets/images/2020-03-18-aws-cuentas-y-organizaciones/OrganizationHierarchy.png"/>
 </p>
 
-[Fuente de la imagen](https://es.slideshare.net/AmazonWebServices/wrangling-multiple-aws-accounts-with-aws-organizations-79796025)
+<a href="https://es.slideshare.net/AmazonWebServices/wrangling-multiple-aws-accounts-with-aws-organizations-79796025" target="_blank" style="text-align: center; display: block;">Fuente de la imagen</a>
 
 ## SCPs vs Políticas de IAM
 
@@ -59,4 +59,6 @@ Esto implica que los permisos resultantes que se le aplican a un usuario, por ej
 
 ## Conclusión
 
-Lo más probable es que ninguno de vosotros tengáis que pegaros nunca con esto, pero si sois de los que sí o si simplemente os interesaba el tema, espero que os haya servido de ayuda.
+Como habréis podido ver, el servicio para gestionar una organización en AWS es una herramienta potente para poder agrupar cuentas y administrarlas desde una sola, pero tiene cierta complejidad.
+
+Después de todo lo que he dicho, la recomendación que yo os hago es: Piensa antes de actuar. ¿Que eres un único usuario y quieres utilizar ciertos servicios de manera individual?, pues olvidate de *Organizations* y empieza a trabajar directamente; ¿que tienes que gestionar una pequeña empresa con diferentes proyectos, departamentos o clientes?, párate a plantearte tu escenario y gestiona las diversas cuentas que necesites con la jerarquía adecuada; ¿que eres una gran organización y tienes que administrar una compleja estructura de cuentas con miles de usuarios?, probablemente deberías contactar con Amazon y pedir ayuda de uno de sus arquitectos. El objetivo de *Organizations* es ayudarte y debería acabar evitandonte más problemas de los que te ha causado en un primer momento. 
