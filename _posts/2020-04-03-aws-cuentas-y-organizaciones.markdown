@@ -1,11 +1,11 @@
 ---
 layout: post
 title:  "AWS: Cuentas y Organizaciones"
-date:   2020-03-18 9:00:00
+date:   2020-04-03 9:00:00
 author: urko
 categories: AWS
 tags: aws, organizacion, organizaciones, iam, scp, cuenta, cuentas
-header-image: 2020-03-18-aws-cuentas-y-organizaciones/rice-fields.jpg
+header-image: 2020-04-04-aws-cuentas-y-organizaciones/rice-fields.jpg
 ---
 En esta entrada quiero hablar sobre las cuentas de [Amazon Web Services](https://aws.amazon.com/) y sobre la arquitectura que hay por detrás. La gestión de cuentas de AWS es un poco compleja y puede ralentizar el tiempo necesario para empezar a usar sus servicios (cada vez que pruebo algo nuevo tengo la intención de ir directo al grano, como en este caso crear un cluster de [EKS](https://aws.amazon.com/eks/), y siempre me acabo dando de frente con la cruda realidad). Espero que al final de esta entrada seáis capaces de entender un poco mejor todos los conceptos que voy a explicaros y que agilice vuestro proceso de introducción en AWS.
 
@@ -36,7 +36,7 @@ Hay varias estrategias para estructurar nuestra organización, aquí os dejo alg
 * Por cada entidad a la que tengamos que cobrar (se puede ver el uso de recursos de cada OU).
 
 <p align="center">
-    <img src="/assets/images/2020-03-18-aws-cuentas-y-organizaciones/OrganizationHierarchy.png"/>
+    <img src="/assets/images/2020-04-03-aws-cuentas-y-organizaciones/OrganizationHierarchy.png"/>
 </p>
 
 <a href="https://es.slideshare.net/AmazonWebServices/wrangling-multiple-aws-accounts-with-aws-organizations-79796025" target="_blank" style="text-align: center; display: block;">Fuente de la imagen</a>
@@ -54,7 +54,7 @@ Esto implica que los permisos resultantes que se le aplican a un usuario, por ej
 3. Como la cuenta *a1* no tiene permisos para otorgar el permiso de borrar cubos de S3, a *u1* solo se le aplica el permiso de listar cubos.
 
 <p align="center">
-    <img src="/assets/images/2020-03-18-aws-cuentas-y-organizaciones/SCPvsIAM.png">
+    <img src="/assets/images/2020-04-03-aws-cuentas-y-organizaciones/SCPvsIAM.png">
 </p>
 
 ## Conclusión
