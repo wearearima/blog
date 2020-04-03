@@ -61,4 +61,9 @@ Esto implica que los permisos resultantes que se le aplican a un usuario, por ej
 
 Como habréis podido ver, el servicio para gestionar una organización en AWS es una herramienta potente para poder agrupar cuentas y administrarlas desde una sola, pero tiene cierta complejidad.
 
-Después de todo lo que he dicho, la recomendación que yo os hago es: Piensa antes de actuar. ¿Que eres un único usuario y quieres utilizar ciertos servicios de manera individual?, pues olvidate de *Organizations* y empieza a trabajar directamente; ¿que tienes que gestionar una pequeña empresa con diferentes proyectos, departamentos o clientes?, párate a plantearte tu escenario y gestiona las diversas cuentas que necesites con la jerarquía adecuada; ¿que eres una gran organización y tienes que administrar una compleja estructura de cuentas con miles de usuarios?, probablemente deberías contactar con Amazon y pedir la ayuda de uno de sus arquitectos. El objetivo de *Organizations* es ayudarte y debería acabar evitándote más problemas de los que te ha causado en un primer momento. 
+Después de todo lo que he dicho, la recomendación que yo os hago es: Piensa antes de actuar:
+* ¿Que eres un único usuario y quieres utilizar ciertos servicios de manera individual?, pues olvidate de *Organizations* y empieza a trabajar directamente.
+* ¿Que tienes que gestionar una pequeña empresa con diferentes proyectos, departamentos o clientes?, párate a plantearte tu escenario y gestiona las diversas cuentas que necesites con la jerarquía adecuada.
+* ¿Que eres una gran organización y tienes que administrar una compleja estructura de cuentas con miles de usuarios?, probablemente deberías contactar con Amazon y pedir la ayuda de uno de sus arquitectos. 
+
+El objetivo de *Organizations* es ayudarte y debería acabar evitándote más problemas de los que te ha causado en un primer momento. 
