@@ -5,7 +5,7 @@ date:   2020-04-03 9:00:00
 author: urko
 categories: AWS
 tags: aws, organizacion, organizaciones, iam, scp, cuenta, cuentas
-header-image: 2020-04-03-aws-cuentas-y-organizaciones/rice-fields.jpg
+header-image: 2020-04-04-aws-cuentas-y-organizaciones/rice-fields.jpg
 ---
 En esta entrada quiero hablar sobre las cuentas de [Amazon Web Services](https://aws.amazon.com/) y sobre la arquitectura que hay por detrás. La gestión de cuentas de AWS es un poco compleja y puede ralentizar el tiempo necesario para empezar a usar sus servicios (cada vez que pruebo algo nuevo tengo la intención de ir directo al grano, como en este caso crear un cluster de [EKS](https://aws.amazon.com/eks/), y siempre me acabo dando de frente con la cruda realidad). Espero que al final de esta entrada seáis capaces de entender un poco mejor todos los conceptos que voy a explicaros y que agilice vuestro proceso de introducción en AWS.
 
