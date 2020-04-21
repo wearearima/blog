@@ -1,11 +1,11 @@
 ---
 layout: post
 title:  "Buenas prácticas para escribir un Dockerfile"
-date:   2020-04-16 9:00:00
+date:   2020-04-21 9:00:00
 author: urko
 categories: docker
 tags: docker, dockerfile
-header-image: 2020-04-16-buenas-practicas-para-escribir-un-dockerfile/skyline.jpg
+header-image: 2020-04-21-buenas-practicas-para-escribir-un-dockerfile/skyline.jpg
 ---
 
 A la hora de escribir un Dockerfile, las posibilidades son infinitas. Se pueden crear imágenes con el mismo propósito, que funcionen similar, pero que estén estructuradas de una manera muy diferente. Empezando por elegir una imagen de partida (FROM), pasando por el orden de los comandos que ejecutamos al construir la imagen, o creando imágenes intermedias (*multistage builds*), escribir un Dockerfile es un mundo.
@@ -65,7 +65,7 @@ Este no:
 FROM busybox
 RUN touch a && rm a
 ```
-Si el objetivo reducir el espacio que ocupa la imagen final y no podemos eliminar este tipo de ficheros en el mismo comando en el que lo creamos, podemos utilizar la opción `--squash` a la hora de crear la imagen para juntar todas las capas en una sola, donde sí que eliminaríamos el fichero. Pero, !cuidado! La opción `--squash` tiene más implicaciones, como borrar la historia de la imagen, así que evita usarla en la medida de lo posible.
+Si el objetivo es reducir el espacio que ocupa la imagen final y no podemos eliminar este tipo de ficheros en el mismo comando en el que lo creamos, podemos utilizar la opción `--squash` a la hora de crear la imagen para juntar todas las capas en una sola, donde sí que eliminaríamos el fichero. Pero, !cuidado! La opción `--squash` tiene más implicaciones, como borrar la historia de la imagen, úsala solo cuando sea extrictamente necesario.
 
 ### 4. Elige bien la imagen base
 
@@ -73,7 +73,7 @@ A la hora de elegir una imagen desde la que partir, lo primero que se nos puede 
 
 Por ejemplo, supongamos que necesitamos una imagen con Python 3.6 instalado. Podríamos utilizar `alpine` como base e instalar Python con el gestor de paquetes, o utilizar la imagen `python:3.6-alpine`, que ya trae Python instalado y está mantenido por los desarrolladores de Python (además de otras cosas).
 
-El exponente que mejor cumple con este punto puede que sea [Google Distroless Docker Images](https://github.com/GoogleContainerTools/distroless){:target="_blank"}, que es una imagen base que solo contiene las dependencias necesarias para ejecutar tu aplicación y elimina todo el resto de elementos (como gestores de paquetes, shells, y otros comandos). Estas imagenes son específicas para cada lenguaje y puede que el que necesites no esté soportado, pero si lo está, no encontrarás una imagen más segura desde donde partir.
+El exponente que mejor cumple con este punto puede que sea [Google Distroless Docker Images](https://github.com/GoogleContainerTools/distroless){:target="_blank"}, que es una imagen base que solo contiene las dependencias necesarias para ejecutar tu aplicación y elimina todo el resto de elementos (como gestores de paquetes, shells, y otros comandos) y por lo tanto, reduce la superficie de ataque de nuestros contenedores. Estas imagenes son específicas para cada lenguaje y puede que el que necesites no esté soportado, pero si lo está, no encontrarás una imagen más segura desde donde partir.
 
 ### 5. Especifica la versión de la imagen base
 
@@ -133,7 +133,7 @@ USER user
 
 Es muy habitual que en una imagen necesitemos utilizar credenciales, *token*s de acceso o ficheros con información que no queremos compartir. Si pasamos estos elementos a la imagen mediante comandos como `COPY` o `ADD`, estarán visibles en la imagen y cualquiera que tenga acceso a ella podrá verlos.
 
-Existe una forma de añadir esta información a nuestros contenedores, llamada `docker secret`. La forma de implementarla es un poco compleja como para explicarla en este documento, ya que depende de la manera en la que vayas a desplegar la imagen (`docker-compose`, `kubernetes`, ...). Lo mejor será que utilices recursos *online* que expliquen en detalle la manera de usarlos, como [Introduction to Docker Secrets](https://dzone.com/articles/introduction-to-docker-secrets){:target="_blank"} o [Distribute Credentials Securely Using Secrets](https://kubernetes.io/docs/tasks/inject-data-application/distribute-credentials-secure/){:target="_blank"}.
+Existe una forma de añadir esta información a nuestros contenedores, llamada `docker secret`. La forma de implementarla es un poco compleja como para explicarla en este documento, ya que depende de la manera en la que vayas a desplegar la imagen (`docker-compose`, `kubernetes`, ...). [Introduction to Docker Secrets](https://dzone.com/articles/introduction-to-docker-secrets){:target="_blank"} o [Distribute Credentials Securely Using Secrets](https://kubernetes.io/docs/tasks/inject-data-application/distribute-credentials-secure/){:target="_blank"} pueden ser un buen punto de partida.
 
 ### 9. Copia solo lo que necesites
 
@@ -148,3 +148,9 @@ Hay dos formas de evitar esto:
 Existen dos comandos en Dockerfile muy similares: `COPY` y `ADD`. El primero sirve para copiar una serie de ficheros o directorios desde el *host* a la imagen. El segundo hace lo mismo, pero además es capaz de descargar elementos desde URLs o repositorios y descomprime ficheros comprimidos. Para mas información sobre `ADD`, ver [la documentación](https://docs.docker.com/engine/reference/builder/#add){:target="_blank"}.
 
 Puede que viendo que hacen lo mismo y `ADD` sea más potente, solo quieras usar este, pero deberías evitarlo. Utiliza `COPY` para la mayoría de situaciones, que será copiar desde el *host*, y únicamente utiliza `ADD` cuando necesites algo que no puedas conseguir con `COPY`. Utilizar `ADD` sin tener en cuenta la diferencia puede conllevar riesgos de seguridad como [*zip bomb*s](https://en.wikipedia.org/wiki/Zip_bomb){:target="_blank"}.
+
+## Conclusión
+
+Aunque escribir un Dockerfile pueda parecer algo sencillo, es importante seguir ciertas recomendaciones que harán que nuestro proceso de *building* se ejecute más rápido, y que la imagen resultante sea más pequeña y segura.
+
+En este artículo hemos repasado algunos de los puntos más importantes, que a la vez son muy sencillos de seguir en la mayoría de los casos. Puedes encontrar más consejos de este tipo en la [documentación oficial](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/){:target="_blank"}.
