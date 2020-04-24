@@ -80,14 +80,18 @@ El exponente que mejor cumple con este punto puede que sea [Google Distroless Do
 Si te has fijado, para escoger la imagen de Python hemos utilizado un *tag*. Esto también es importante. Para que una imagen sea reproducible, deberemos elegir un *tag* para esa imagen que sepamos que no va a cambiar en el tiempo (*tag*s como `latest` o `slim` sí lo hacen, ¡ojo!).
 
 {% raw %}
-En realidad, no es posible garantizar que un *tag* que escojamos se vaya a mantener siempre igual, independientemente de si es uno genérico como `latest` o uno específico como `3.6.8-alpine-slim`. La mejor práctica de todas sería escoger la versión concreta de una imagen que queramos utilizar, y utilizar su identificador. Este identificador se puede conseguir con el comando `docker images --format "{{.Repository}}:{{.Tag}} {{.ID}}"`.
+En realidad, no es posible garantizar que un *tag* que escojamos se vaya a mantener siempre igual, independientemente de si es uno genérico como `latest` o uno específico como `3.6.8-alpine-slim`. La mejor práctica de todas sería escoger la versión concreta de una imagen que queramos utilizar, y utilizar su identificador. Este identificador se puede conseguir con el comando:
+```
+docker images --format "{{.Repository}}:{{.Tag}} {{.ID}}"
+```
 
-Por ejemplo, si quisiese el identificador de la imagen `busybox` que acabo de añadir a mi registro local, ejecuto `docker images --format "{{.Repository}}:{{.Tag}} {{.ID}}" |grep busybox` y obtengo:
-{% endraw %}
+Por ejemplo, si quisiese el identificador de la imagen `busybox` que acabo de añadir a mi registro local, ejecuto: 
 
 ```
+$ docker images --format "{{.Repository}}:{{.Tag}} {{.ID}}" |grep busybox
 busybox:latest 83aa35aa1c79
 ```
+{% endraw %}
 Ahora, podría utilizar el identificador como `FROM` de mi Dockerfile:
 
 ```Dockerfile
