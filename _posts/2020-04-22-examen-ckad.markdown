@@ -1,11 +1,11 @@
 ---
 layout: post
 title:  "Cómo preparé y aprobé el Certified Kubernetes Application Developer (CKAD)"
-date:   2020-04-22 9:00:00
+date:   2020-04-28 6:00:00
 author: fernando
 categories: certificaciones
-tags: certificaciones, examenes
-header-image:	2020-04-22-examen-ckad/header-image.jpg
+tags: certificaciones, examenes, Kubernetes, CNCF, CKAD, CKA
+header-image:	2020-04-28-examen-ckad/header-image.jpg
 ---
 
 En este post voy a explicar un poco mi experiencia de cómo preparé y aprobé el Certified Kubernetes Application Developer (CKAD).
@@ -78,11 +78,11 @@ Tienes que sentirte cómodo creando *pods*, *developments*, *jobs*, *cronjobs*, 
 
 Estos son los recursos que la propia CNCF pone a disposición de los estudiantes:
 
-- Certified Kubernetes Application Developer: https://www.cncf.io/certification/ckad/
-- Curriculum Overview: https://github.com/cncf/curriculum
-- Candidate Handbook: https://training.linuxfoundation.org/go/cka-ckad-candidate-handbook
-- Exam Tips: http://training.linuxfoundation.org/go//Important-Tips-CKA-CKAD
-- FAQ: http://training.linuxfoundation.org/go/cka-ckad-faq
+- Certified Kubernetes Application Developer: [https://www.cncf.io/certification/ckad/](https://www.cncf.io/certification/ckad/){:target="_blank"}
+- Curriculum Overview: [https://github.com/cncf/curriculum](https://github.com/cncf/curriculum){:target="_blank"}
+- Candidate Handbook: [https://training.linuxfoundation.org/go/cka-ckad-candidate-handbook)](https://training.linuxfoundation.org/go/cka-ckad-candidate-handbook){:target="_blank"}
+- Exam Tips: [http://training.linuxfoundation.org/go/Important-Tips-CKA-CKAD](http://training.linuxfoundation.org/go/Important-Tips-CKA-CKAD){:target="_blank"}
+- FAQ: [http://training.linuxfoundation.org/go/cka-ckad-faq](http://training.linuxfoundation.org/go/cka-ckad-faq){:target="_blank"}
 
 
 ### Dónde registrarse
@@ -91,7 +91,7 @@ Primero deberás registrarte en **The Linux Foundation** desde [aquí](https://i
 
 ![Checkout](/assets/images/2020-04-22-examen-ckad/checkout.png){: .center }
 
-Una vez que hayas hecho el pago para el examen, recibirás un correo electrónico y podrás iniciar sesión desde [este](https://training.cncf.io/portal) enlace al portal donde debes seguir una serie de pasos antes de programar y hacer el examen, tales  como verificar los requisitos de tu máquina, leer información importante sobre el examen, etc.
+Una vez que hayas hecho el pago para el examen, recibirás un correo electrónico y podrás iniciar sesión desde [este](https://training.cncf.io/portal){:target="_blank"} enlace al portal donde debes seguir una serie de pasos antes de programar y hacer el examen, tales  como verificar los requisitos de tu máquina, leer información importante sobre el examen, etc.
 
 ![Checkout](/assets/images/2020-04-22-examen-ckad/cncf-checklist.png){: .center }
 
@@ -148,7 +148,7 @@ En total, entre realizar los dos cursos, estudiar y hacer los ejercicios prácti
 
 8. **¡Recuerda hacer clic en el botón "Finalizar el examen"!** Estuve durante cinco minutos sin tocar el teclado preguntándome por qué esto no ha terminado todavía hasta que el supervisor del examen me lo recordó. El botón está oculto en el menú de configuración del examen.
 
-9. Antes de que comenzar el examen, debes **quitar todo lo que tengas encima de la mesa: lámpara de escritorio, bebidas, alimentos, etc.**, posteriormente debes mostrar tu DNI o pasaporte, tu habitación y escritorio. Utilicé una portátil con un monitor externo, así que asegúrate de que tus cables sean lo suficientemente largos o desconéctalos por completo.
+9. Antes de comenzar el examen, debes **quitar todo lo que tengas encima de la mesa: lámpara de escritorio, bebidas, alimentos, etc.**, posteriormente debes mostrar tu DNI o pasaporte, tu habitación y escritorio. Utilicé una portátil con un monitor externo, así que asegúrate de que tus cables sean lo suficientemente largos o desconéctalos por completo.
 
 10. No te tapes nunca la boca con la mano o murmures porque el examinador te lo recriminará y al menos a mí me desconcentró. 
 
