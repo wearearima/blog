@@ -1,0 +1,205 @@
+---
+layout: post
+title:  "Mutation testing: en busca de testing de calidad"
+date:   2020-04-28 9:00:00
+author: jessica
+categories: testing, software quality, QA
+tags: testing, mutation testing, pi test, software quality, QA, cobertura, coverage
+header-image:	
+---
+
+Profesionalmente me etiqueto como _desarrolladora_, aunque no me gustan mucho las etiquetas y me gusta más decir que la razón de ser de mi trabajo es: crear software de calidad. Pero ¿qué es **software de calidad**? A mi me gusta definirlo como sigue:
+
+> Software de calidad es aquel que satisface las necesidades del usuario de forma eficiente y sin errores.
+
+Podría añadir más adjetivos, entrar en detalle de por qué necesidades y no requerimientos... pero para mi ese sería el titular. Ahora bien, difícilmente se puede tener un software de calidad si este no está escrito con código de calidad. 
+
+> Software de calidad &rarr; código de calidad
+
+Afortunadamente, los desarrolladores no nos encontramos solos en esta tarea. Existen herramientas para análisis de código de forma estática (Checkstyle, PMD, FindBugs, SonarQube...) y diferentes recomendaciones de buenas prácticas (personalmente destacaría Clean Code y The Pragmatic Programmer). Y ahí entre propuestas, siglas y métricas, no hay desarrollador que no asocie directamente el término _**calidad**_ con el término _**testing**_ (¿verdad?)
+
+> Código de calidad &rarr; tests de calidad
+>>**Tests are as important to the health of a project as the production code is.**
+>><p align="right" markdown="1">**Clean Code.** Chapter 9: Unit Tests</p>  
+
+Hay varios tipos de test (unitarios, de integración, de aceptación...). Los más extendidos son los tests unitarios y los tests de integración. Con ellos se consigue una cierta percepción de seguridad, ya que si bien no sabemos si el código hace lo que debe, al menos hace lo que dice.  
+¿Pero es esto así? Paradójicamente esta práctica consiste en generar más código, es decir, seguimos programando, ¿quién vela porque este código hace lo que dice?, es decir ¿quién vela por la calidad de los tests? De nuevo otra asociación de términos: **tests de calidad** son aquellos que ofrecen un % de **cobertura** del código alto.
+
+> Tests de calidad &rarr; % cobertura elevado de nuestro código
+
+A mayor porcentaje de cobertura de código mejores tests y código más fiable. Esto no es nada nuevo. Si hablo de mi experiencia personal, hace algunos años (allá por inicios del 2000) ya formaba parte de las especificaciones de entrega de algunos proyectos el % de cobertura mínimo que debía tener un proyecto. “_Este entregable debe tener una batería de tests que aseguren un mínimo de 70% de cobertura de código_”, como sinónimo de código libre de errores y calidad probada en un 70% del código al menos.
+
+Tomando como ejemplo una aplicación para controlar los partes de horas trabajados, vamos a imaginar que estamos desarrollando un método que dados un trabajador y un día, comprueba el estado de los partes de horas de ese trabajador en ese día (si ha cumplido o no las horas, si hay partes solapados....).
+
+##### ReportsServiceImpl.java [ver todo](https://github.com/wearearima/time-report-app/blob/feature/01_tests_for_project_requirements/src/main/java/eu/arima/tr/reports/ReportsServiceImpl.java){:target="_blank"}
+
+```java
+@Override
+public DayStatusSummary getDayStatusSummaryForWorkerAndDay(String workerUserName, LocalDate date) {
+  DayStatusSummary status = new DayStatusSummary();
+  status.setDate(date);
+  status.setWorkerUserName(workerUserName);
+
+  List<Worklog> worklogsForDay = parteRepository.findByUsernameAndDate(workerUserName, date);
+  int totalDuration = 0;
+  for (Worklog worklog : worklogsForDay) {
+    totalDuration = totalDuration + worklog.getDuration();
+  }
+  if (totalDuration == 8) {
+    status.getStatusList().add(DayStatus.RIGHT_HOURS);
+  }
+  if (totalDuration > 8) {
+    status.getStatusList().add(DayStatus.EXTRA_HOURS);
+  }
+  if (totalDuration < 8) {
+    status.getStatusList().add(DayStatus.MISSING_HOURS);
+  }
+  return status;
+}
+```
+
+Vamos a ver un ejemplo de tests que entregábamos por aquel entonces:
+
+##### GetDayStatusSummaryForWorkerAndDayTests.java [ver todo](https://github.com/wearearima/time-report-app/blob/92fd1b537de787bc2a5d10dc85c9ee80295350d8/src/test/java/eu/arima/tr/reports/reportsServiceImpl/GetDayStatusSummaryForWorkerAndDayTests.java){:target="_blank"}
+
+```java
+@Test
+public void get_status_summary_for_worker_and_day() {
+  reportsService.getDayStatusSummaryForWorkerAndDay("USU", LocalDate.now());
+  assertTrue(true);
+}
+
+@Test
+public void calculates_the_status_based_on_worker_and_date_worklogs() {
+  List<Worklog> partes = new ArrayList<Worklog>();
+  Worklog wl = new Worklog();
+  wl.setFromTime(LocalTime.of(8,0,0));
+  wl.setToTime(LocalTime.of(19,0,0));
+  partes.add(wl);
+  Mockito.when(worklogRepository.findByUsernameAndDate(ArgumentMatchers.anyString(), ArgumentMatchers.any(LocalDate.class))).thenReturn(partes);
+
+  LocalDate fecha = LocalDate.now();
+  reportsService.getDayStatusSummaryForWorkerAndDay("USU", fecha);
+
+  Mockito.verify(worklogRepository).findByUsernameAndDate("USU", fecha);
+}
+```
+
+Si nos fijamos: el primer test no fallará (casi) nunca porque siempre termina con `assert true`, el segundo es un poco “más completo” porque al menos está verificando que se recuperan los partes... [^1]
+
+[^1]: Si quieres probar todo esto puedes descargarte el código de [aquí](https://github.com/wearearima/time-report-app/tree/feature/01_tests_for_project_requirements){:target="_blank"}
+
+Pues esta es mi realidad, y mucho me temo que LA realidad, de aquella época en muchos proyectos (y quien sabe si en algunos de hoy en día). Los proyectos cumplían los requerimientos de cobertura de código, lo que distaba mucho de tener un software de calidad. 
+Es cierto que el ejemplo que he puesto es extremo pero es real. El problema está en el enfoque: se ha dado la vuelta a la tortilla y en él los tests nacen como una mera herramienta para asegurar uno de los requerimientos del proyecto.
+
+> % cobertura mínimo por requerimiento &rarr; test = "pérdida de tiempo"
+
+ Volvamos al enfoque original. Quedaría:
+
+> Software de calidad &rarr; código de calidad &rarr; tests de calidad &rarr; % cobertura de código
+
+En este escenario, los tests nacen bajo la premisa de tener un código de mayor calidad y el % de cobertura se convierte en un indicador más. Vamos a ver un fragmento de un ejemplo de test mejor, de esos de los que hacemos por convicción y no por cumplir un requerimiento sin más (supongo que más parecidos a los que podemos encontrarnos en los proyectos actuales que los anteriores...).
+
+##### GetDayStatusSummaryForWorkerAndDayTests.java [ver todo](https://github.com/wearearima/time-report-app/blob/feature/02_tests_for_testing_purposes/src/test/java/eu/arima/tr/reports/reportsServiceImpl/GetDayStatusSummaryForWorkerAndDayTests.java){:target="_blank"}
+
+```java
+@Test
+public void if_the_worklog_for_the_resquested_day_is_less_than_8_hours_the_status_is_MISSING_HOURS() {
+  Worklog worklog = Mockito.mock(Worklog.class);
+  Mockito.when(worklog.getDuration()).thenReturn(7);
+  Mockito.when(worklogRepository.findByUsernameAndDate(ArgumentMatchers.anyString(), ArgumentMatchers.any(LocalDate.class))).thenReturn(Arrays.asList(worklog));
+
+  DayStatusSummary resultado = reportsService.getDayStatusSummaryForWorkerAndDay("USU", LocalDate.now());
+
+  assertEquals(DayStatus.MISSING_HOURS, resultado.getStatusList().get(0));
+
+}
+
+@Test
+public void if_the_worklog_for_the_resquested_day_is_equal_to_8_hours_the_status_is_RIGHT_HOURS() {
+  Worklog worklog = Mockito.mock(Worklog.class);
+  Mockito.when(worklog.getDuration()).thenReturn(8);
+  Mockito.when(worklogRepository.findByUsernameAndDate(ArgumentMatchers.anyString(), ArgumentMatchers.any(LocalDate.class))).thenReturn(Arrays.asList(worklog));
+
+  DayStatusSummary resultado = reportsService.getDayStatusSummaryForWorkerAndDay("USU", LocalDate.now());
+
+  assertEquals(DayStatus.RIGHT_HOURS, resultado.getStatusList().get(0));
+
+}
+
+@Test
+public void if_the_worklog_for_the_resquested_day_is_more_than_8_hours_the_status_is_EXTRA_HOURS() {
+  Worklog worklog = Mockito.mock(Worklog.class);
+  Mockito.when(worklog.getDuration()).thenReturn(10);
+  Mockito.when(worklogRepository.findByUsernameAndDate(ArgumentMatchers.anyString(), ArgumentMatchers.any(LocalDate.class))).thenReturn(Arrays.asList(worklog));
+
+  DayStatusSummary resultado = reportsService.getDayStatusSummaryForWorkerAndDay("USU", LocalDate.now());
+
+  assertEquals(DayStatus.EXTRA_HOURS, resultado.getStatusList().get(0));
+
+}
+```
+
+En este caso parece que los tests ya tienen más sentido. Nos sentiríamos más seguros con ellos, ¿verdad?
+
+Si alguien modificase algo del método, por su puesto, antes de comitear y pushear pasaría los tests. Si no hubiese ningún test en rojo, vía libre: no se ha "roto" nada.  
+¿Seguro?
+
+Supongamos que lo que se modifica en el método de ejemplo es:
+
+##### ReportsServiceImpl.java
+
+```java
+  for (Worklog worklog : worklogsForDay) {
+    totalDuration = totalDuration + worklog.getDuration();
+  }
+```
+por
+```java
+  for (Worklog worklog : worklogsForDay) {
+    totalDuration = worklog.getDuration();
+  }
+```
+Nuestros tests seguirán pasando[^2]. Además seguimos con un x% de cobertura alto... ¡Todo perfecto!
+
+[^2]: Pruébalo tu mismo, el código está disponible [aquí](https://github.com/wearearima/time-report-app/tree/feature/02_tests_for_testing_purposes)
+
+> Test &rarr; **sensación** de seguridad
+>>**Because we can’t write perfect software, it follows that we can’t write perfect test software either. We need to test the tests.**
+>><p align="right" markdown="1">The Pragmatic Programmer. Chapter 8: Pragmatic projects</p>
+
+Parece que los tests que hemos creado no son tan buenos como creíamos, no tienen calidad suficiente como para asegurar la calidad (valga la redundancia) de nuestro método. Nos han ofrecido una falsa sensación de seguridad.  
+Está claro que conseguir % altos de cobertura no es sencillo y si escribir tests es costoso, escribir buenos tests lo es aún más y lo que obtenemos es una sensación de seguridad que no es real. ¿No podríamos hacer que esta sensación fuese más cercana a la realidad? ¿No podríamos detectar situaciones, como la que hemos visto, de forma automática?
+
+Pues bien, para abordar este tipo de situaciones surgen los denominados _Mutation Testing Systems_. La idea que hay detrás de ellos no es otra que la que hemos expuesto en el último ejemplo: simular cambios en el código fuente que se está probando y verificar que efectivamente, algún test fallará tras haber realizado la modificación.  
+Los cambios de código son los "mutantes". "Matar" un mutante equivale a que nuestros tests son capaces de detectar el cambio y cuando "sobrevive" indica que nuestros tests no son capaces de detectarlo.
+
+> Software de calidad &rarr; código de calidad &rarr; tests de calidad &rarr; % cobertura mutation tests
+
+En el caso de Java el más extendido es PIT (https://pitest.org/). Si ejecutamos el informe de _pitest_ en el ejemplo anterior, veremos este resultado.
+
+![Informe _Pit test_ general](/assets/images/2020-05-12-mutation-testing/PitTestCoverageReport01.png){: .center }
+
+Aquí se indica el resultado general: por un lado la cobertura de líneas de código y por otro lado la cobertura de mutación.
+
+![Informe _Pit test_ clase](/assets/images/2020-05-12-mutation-testing/PitTestCoverageReportClass01.png){: .center }
+
+Las líneas marcadas en verde, reflejan código en el que PIT ha introducido cambios y los tests han sido capaces de detectarlo. Las líneas marcadas en rojo, reflejan las líneas de código que nuestros tests no han sabido detectar que había habido cambios. Si nos fijamos la línea 27 es la que nosotros habíamos modificado y nuestros tests habían pasado.  
+
+En el siguiente [enlace](https://github.com/wearearima/time-report-app/tree/feature/03_tests_improving_quality) está disponible el código del ejemplo en el que hemos trabajado donde hemos mejorado los tests para conseguir una mayor cobertura de mutantes.
+
+Los mutantes se agrupan en diferentes categorías. 
+
+Hay que valorar el equilibrio entre la cantidad/tipo de mutantes configurados y el tiempo de ejecución. A mayor número de tests, mayor líneas de código y mayor cantidad de mutantes, más tiempo necesitará Pit en generar el informe correspondiente. Puede llegar un momento en el que sea tan costoso pasar el informe que se llegue a no generar. En los ejemplos hemos vistos tests sólo unitarios pero lo mismo aplica a los test de integración, muchos de ellos ya costosos de por sí.
+
+En nuestro caso, solemos configurar los que vienen por defecto (DEFAULTS) y añadiendo los del siguiente grupo (NEW_DEFAULTS). Para más información [aquí](https://pitest.org/quickstart/mutators/) se muestran los "mutadores" (mutators) de Pit.
+
+El debate está servido: ¿son necesarios los tests de integración? ¿No resultan demasiado costosos?¿Podemos elegir cuáles ejecutar y cuándo? 
+
+http://pitest.org/java_mutation_testing_systems/
+
+https://www.geeksforgeeks.org/mutation-testing-java/
+
+Jumble
+Jester
+http://madeyski.e-informatyka.pl/download/Madeyski10b.pdf
