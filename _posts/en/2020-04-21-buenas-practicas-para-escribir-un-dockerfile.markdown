@@ -81,19 +81,23 @@ The exponent that best achieves this may be [Google Distroless Docker Images](ht
 If you have noticed, when choosing the Python image, we have used a *tag*. This is also important. For an image to be reproducible, we must choose a *tag* for that image so that we know it will not change over time (*tag*s like `latest` or` slim` do change, watch out!).
 
 {% raw %}
-Actually, there is no guarantee that a *tag* we choose will always stay the same, regardless of whether it is a generic one like `latest` or a specific one like `3.6.8-alpine-slim`. The best practice of all would be to choose the specific version of an image that we want to use, and use its identifier. This identifier can be obtained with the command `docker images --format "{{.Repository}}:{{.Tag}} {{.ID}}"`.
+Actually, there is no guarantee that a *tag* we choose will always stay the same, regardless of whether it is a generic one like `latest` or a specific one like `3.6.8-alpine-slim`. The best practice of all would be to choose the specific version of an image that we want to use, and use its identifier. This identifier can be obtained with the command:
+```
+docker images --format "{{.Repository}}:{{.Tag}} {{.ID}}"
+```
 
-For example, if I wanted the identifier of the `busybox` image I just added to my local registry, I run `docker images --format "{{.Repository}}:{{.Tag}} {{.ID}}" |grep busybox` and I get:
-{% endraw %}
+For example, if I wanted the identifier of the `busybox` image I just added to my local registry, I run:
 
 ```
+$ docker images --format "{{.Repository}}:{{.Tag}} {{.ID}}" |grep busybox
 busybox:latest 83aa35aa1c79
 ```
+{% endraw %}
 Now, I could use the identifier as `FROM` of my Dockerfile:
 
 ```Dockerfile
 FROM 83aa35aa1c79
-CMD ["echo", "Hola!"]
+CMD ["echo", "Hello!"]
 ```
 
 ### 6. The potential of *multistage build*s

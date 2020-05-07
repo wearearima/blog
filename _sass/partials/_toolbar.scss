@@ -28,4 +28,19 @@
             opacity: .6;
         }
     }
+    /* Language selector */
+    .language-selector {
+        color: black;
+        font-size: 18px;
+        float: right;
+        margin: 1% 0 0 0;
+        .selected {
+          font-family: gothambold,Arial,Helvetica,sans-serif;
+        }
+        .unselected {
+          color: inherit;
+          text-decoration: none;
+          font-family: $thin-font-family;
+        }
+      }
 }
