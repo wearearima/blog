@@ -90,7 +90,7 @@ $logo-color: white;
     color: white;
     font-size: 12px;
     .selected {
-      font-family: gothambold,Arial,Helvetica,sans-serif;
+      font-family: $bold-font-family;
     }
     .unselected {
       color: inherit;
