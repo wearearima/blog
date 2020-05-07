@@ -38,6 +38,7 @@ exclude:
   - Gemfile
   - Gemfile.lock
 sass:
+    # Required for Polyglot
     sourcemap: never
     sass_dir: _sass
     style: compressed
