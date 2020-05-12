@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Mejora la calidad de tus tests: Mutation Testing"
+title:  "Mutation Testing: caminando con firmeza hacia el software de calidad"
 date:   2020-04-28 9:00:00
 author: jessica
 categories: testing, software quality, QA
@@ -20,7 +20,7 @@ Afortunadamente, los desarrolladores no nos encontramos solos en esta tarea. Exi
 
 > Código de calidad &rarr; tests de calidad
 
-## Testing: los anclajes naturales de nuestra escalada hacia la calidad
+## Testing: caminando hacia la calidad
 
 >**Tests are as important to the health of a project as the production code is.**
 ><p align="right" markdown="1">**Clean Code.** Chapter 9: Unit Tests</p>  
@@ -166,7 +166,7 @@ Nuestros tests seguirán pasando[^2]. Además seguimos con un x% de cobertura al
 
 > Test &rarr; **sensación** de seguridad
 
-## Mutation testing: asegurando los anclajes de nuestra escalada
+## Mutation testing: asegurando el camino
 
 >**Because we can’t write perfect software, it follows that we can’t write perfect test software either. We need to test the tests.**
 ><p align="right" markdown="1">The Pragmatic Programmer. Chapter 8: Pragmatic projects</p>
@@ -210,3 +210,5 @@ Los mutantes que se aplican son configurables, y hay que valorar el equilibrio e
 En nuestro caso, solemos configurar los que vienen por defecto (DEFAULTS) y añadiendo los del siguiente grupo (NEW_DEFAULTS). Para más información [aquí](https://pitest.org/quickstart/mutators/) se muestran los "mutadores" (mutators) de Pit.
 
 ## Conclusiones
+
+//TBD
