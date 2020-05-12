@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Mutation Testing: caminando con firmeza hacia el software de calidad"
+title:  "Mutation Testing: caminando con paso firme hacia el software de calidad"
 date:   2020-04-28 9:00:00
 author: jessica
 categories: testing, software quality, QA
