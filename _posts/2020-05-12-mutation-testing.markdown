@@ -20,7 +20,7 @@ Afortunadamente, los desarrolladores no nos encontramos solos en esta tarea. Exi
 
 > Código de calidad &rarr; tests de calidad
 
-## Testing: caminando hacia la calidad
+## Testing: el camino hacia la calidad
 
 >**Tests are as important to the health of a project as the production code is.**
 ><p align="right" markdown="1">**Clean Code.** Chapter 9: Unit Tests</p>  
