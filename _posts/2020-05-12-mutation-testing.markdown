@@ -5,7 +5,7 @@ date:   2020-04-28 9:00:00
 author: jessica
 categories: testing, software quality, QA
 tags: testing, mutation testing, pi test, software quality, QA, cobertura, coverage
-header-image:	
+header-image:	2020-05-12-mutation-testing/header.jpg
 ---
 
 Profesionalmente me etiqueto como _desarrolladora_, aunque no me gustan mucho las etiquetas y me gusta más decir que la razón de ser de mi trabajo es: crear software de calidad. Pero ¿qué es **software de calidad**? A mi me gusta definirlo como sigue:
@@ -19,8 +19,11 @@ Podría añadir más adjetivos, entrar en detalle de por qué necesidades y no r
 Afortunadamente, los desarrolladores no nos encontramos solos en esta tarea. Existen herramientas para análisis de código de forma estática (Checkstyle, PMD, FindBugs, SonarQube...) y diferentes recomendaciones de buenas prácticas (personalmente destacaría Clean Code y The Pragmatic Programmer). Y ahí entre propuestas, siglas y métricas, no hay desarrollador que no asocie directamente el término _**calidad**_ con el término _**testing**_ (¿verdad?)
 
 > Código de calidad &rarr; tests de calidad
->>**Tests are as important to the health of a project as the production code is.**
->><p align="right" markdown="1">**Clean Code.** Chapter 9: Unit Tests</p>  
+
+## Testing: los anclajes naturales de nuestra escalada hacia la calidad
+
+>**Tests are as important to the health of a project as the production code is.**
+><p align="right" markdown="1">**Clean Code.** Chapter 9: Unit Tests</p>  
 
 Hay varios tipos de test (unitarios, de integración, de aceptación...). Los más extendidos son los tests unitarios y los tests de integración. Con ellos se consigue una cierta percepción de seguridad, ya que si bien no sabemos si el código hace lo que debe, al menos hace lo que dice.  
 ¿Pero es esto así? Paradójicamente esta práctica consiste en generar más código, es decir, seguimos programando, ¿quién vela porque este código hace lo que dice?, es decir ¿quién vela por la calidad de los tests? De nuevo otra asociación de términos: **tests de calidad** son aquellos que ofrecen un % de **cobertura** del código alto.
@@ -162,8 +165,11 @@ Nuestros tests seguirán pasando[^2]. Además seguimos con un x% de cobertura al
 [^2]: Pruébalo tu mismo, el código está disponible [aquí](https://github.com/wearearima/time-report-app/tree/feature/02_tests_for_testing_purposes)
 
 > Test &rarr; **sensación** de seguridad
->>**Because we can’t write perfect software, it follows that we can’t write perfect test software either. We need to test the tests.**
->><p align="right" markdown="1">The Pragmatic Programmer. Chapter 8: Pragmatic projects</p>
+
+## Mutation testing: asegurando los anclajes de nuestra escalada
+
+>**Because we can’t write perfect software, it follows that we can’t write perfect test software either. We need to test the tests.**
+><p align="right" markdown="1">The Pragmatic Programmer. Chapter 8: Pragmatic projects</p>
 
 Parece que los tests que hemos creado no son tan buenos como creíamos, no tienen calidad suficiente como para asegurar la calidad (valga la redundancia) de nuestro método. Nos han ofrecido una falsa sensación de seguridad.  
 Está claro que conseguir % altos de cobertura no es sencillo y si escribir tests es costoso, escribir buenos tests lo es aún más y lo que obtenemos es una sensación de seguridad que no es real. ¿No podríamos hacer que esta sensación fuese más cercana a la realidad? ¿No podríamos detectar situaciones, como la que hemos visto, de forma automática?
@@ -202,3 +208,5 @@ En el siguiente [enlace](https://github.com/wearearima/time-report-app/tree/feat
 Los mutantes que se aplican son configurables, y hay que valorar el equilibrio entre la cantidad/tipo de mutantes configurados y el tiempo de ejecución. A mayor número de tests, mayor número de líneas de código y mayor cantidad de mutantes, más tiempo necesitará Pit en generar el informe correspondiente. Puede llegar un momento en el que sea tan costoso pasar el informe que se hagamos skip, y entonces todo el esfuerzo dedicado a testing se desvanecería. En los ejemplos hemos vistos tests sólo unitarios pero lo mismo aplica a los test de integración, muchos de ellos ya costosos de por sí.
 
 En nuestro caso, solemos configurar los que vienen por defecto (DEFAULTS) y añadiendo los del siguiente grupo (NEW_DEFAULTS). Para más información [aquí](https://pitest.org/quickstart/mutators/) se muestran los "mutadores" (mutators) de Pit.
+
+## Conclusiones
