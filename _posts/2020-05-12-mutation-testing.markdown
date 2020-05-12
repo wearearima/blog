@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Mutation testing: en busca de testing de calidad"
+title:  "Mejora la calidad de tus tests: Mutation Testing"
 date:   2020-04-28 9:00:00
 author: jessica
 categories: testing, software quality, QA
@@ -89,12 +89,12 @@ Si nos fijamos: el primer test no fallará (casi) nunca porque siempre termina c
 
 [^1]: Si quieres probar todo esto puedes descargarte el código de [aquí](https://github.com/wearearima/time-report-app/tree/feature/01_tests_for_project_requirements){:target="_blank"}
 
-Pues esta es mi realidad, y mucho me temo que LA realidad, de aquella época en muchos proyectos (y quien sabe si en algunos de hoy en día). Los proyectos cumplían los requerimientos de cobertura de código, lo que distaba mucho de tener un software de calidad. 
-Es cierto que el ejemplo que he puesto es extremo pero es real. El problema está en el enfoque: se ha dado la vuelta a la tortilla y en él los tests nacen como una mera herramienta para asegurar uno de los requerimientos del proyecto.
+Pues esta es mi realidad, y mucho me temo que LA realidad, de aquella época en muchos proyectos (y quien sabe si en algunos de hoy en día). Los proyectos cumplían los requerimientos de cobertura de código, lo que distaba mucho de tener un software de calidad.  
+Es cierto que el ejemplo que he puesto es extremo pero es real. En mi opinión, el problema está en el enfoque: se ha dado la vuelta a la tortilla y en él los tests nacen como una mera herramienta para asegurar uno de los requerimientos del proyecto.
 
 > % cobertura mínimo por requerimiento &rarr; test = "pérdida de tiempo"
 
- Volvamos al enfoque original. Quedaría:
+Volvamos al enfoque original. Quedaría:
 
 > Software de calidad &rarr; código de calidad &rarr; tests de calidad &rarr; % cobertura de código
 
@@ -112,7 +112,6 @@ public void if_the_worklog_for_the_resquested_day_is_less_than_8_hours_the_statu
   DayStatusSummary resultado = reportsService.getDayStatusSummaryForWorkerAndDay("USU", LocalDate.now());
 
   assertEquals(DayStatus.MISSING_HOURS, resultado.getStatusList().get(0));
-
 }
 
 @Test
@@ -124,7 +123,6 @@ public void if_the_worklog_for_the_resquested_day_is_equal_to_8_hours_the_status
   DayStatusSummary resultado = reportsService.getDayStatusSummaryForWorkerAndDay("USU", LocalDate.now());
 
   assertEquals(DayStatus.RIGHT_HOURS, resultado.getStatusList().get(0));
-
 }
 
 @Test
@@ -136,7 +134,6 @@ public void if_the_worklog_for_the_resquested_day_is_more_than_8_hours_the_statu
   DayStatusSummary resultado = reportsService.getDayStatusSummaryForWorkerAndDay("USU", LocalDate.now());
 
   assertEquals(DayStatus.EXTRA_HOURS, resultado.getStatusList().get(0));
-
 }
 ```
 
@@ -172,11 +169,25 @@ Parece que los tests que hemos creado no son tan buenos como creíamos, no tiene
 Está claro que conseguir % altos de cobertura no es sencillo y si escribir tests es costoso, escribir buenos tests lo es aún más y lo que obtenemos es una sensación de seguridad que no es real. ¿No podríamos hacer que esta sensación fuese más cercana a la realidad? ¿No podríamos detectar situaciones, como la que hemos visto, de forma automática?
 
 Pues bien, para abordar este tipo de situaciones surgen los denominados _Mutation Testing Systems_. La idea que hay detrás de ellos no es otra que la que hemos expuesto en el último ejemplo: simular cambios en el código fuente que se está probando y verificar que efectivamente, algún test fallará tras haber realizado la modificación.  
-Los cambios de código son los "mutantes". "Matar" un mutante equivale a que nuestros tests son capaces de detectar el cambio y cuando "sobrevive" indica que nuestros tests no son capaces de detectarlo.
 
 > Software de calidad &rarr; código de calidad &rarr; tests de calidad &rarr; % cobertura mutation tests
 
-En el caso de Java el más extendido es PIT (https://pitest.org/). Si ejecutamos el informe de _pitest_ en el ejemplo anterior, veremos este resultado.
+Los conceptos básicos son los siguientes:
+
+* Cada cambio que se genera en el código es un **mutante** (mutant).
+* Cada cambio (o mutante) que nuestros tests son capaces de detectar se denomina **matar un mutante** (killed mutant).
+* Cada cambio (o muntante) que nuestros tests no son capaces de detectar son **mutantes vivos** (lived)
+* Los cambios en el código se generan mediante **operadores mutantes** (mutators / mutation operators), que se agrupan en diferentes categorias dependiendo del tipo de cambio que realicen en el código.
+
+Personalmente no había oído hablar de este concepto hasta hace relativamente poco sin embargo, la realidad es que ya llevan varios años entre nosotros. Algunos de los sistemas de mutación para Java son (o han sido):
+* [PIT](https://pitest.org/)
+* [Jumble](http://jumble.sourceforge.net/index.html)
+* [Jester](http://jester.sourceforge.net/)
+* [muJava](https://github.com/jeffoffutt/muJava)
+
+Nosotros hemos utilizado PIT  cuyo uso parece ser el más extendido: por ser sencillo de usar, integrarse fácilmente en los proyectos que los hemos usado, ser más eficiente y estar aún activo.  
+
+Si ejecutamos el informe de _pitest_ en nuestro ejemplo, veremos este resultado.
 
 ![Informe _Pit test_ general](/assets/images/2020-05-12-mutation-testing/PitTestCoverageReport01.png){: .center }
 
@@ -184,22 +195,10 @@ Aquí se indica el resultado general: por un lado la cobertura de líneas de có
 
 ![Informe _Pit test_ clase](/assets/images/2020-05-12-mutation-testing/PitTestCoverageReportClass01.png){: .center }
 
-Las líneas marcadas en verde, reflejan código en el que PIT ha introducido cambios y los tests han sido capaces de detectarlo. Las líneas marcadas en rojo, reflejan las líneas de código que nuestros tests no han sabido detectar que había habido cambios. Si nos fijamos la línea 27 es la que nosotros habíamos modificado y nuestros tests habían pasado.  
+Las líneas marcadas en verde, reflejan código en el que PIT ha introducido cambios y los tests han sido capaces de detectarlo. Las líneas marcadas en rojo, reflejan las líneas de código que nuestros tests no han sabido detectar que había habido cambios. Si nos fijamos la línea 27 es la que nosotros habíamos modificado y nuestros tests habían pasado. Ahora tenemos dos opciones: seguir adelante, asumiendo la fragilidad que puede tener nuestro código o lo más acertado (y lógico) añadir/corregir tests que nos aseguren la fiabilidad frente a los cambios detectados.
 
-En el siguiente [enlace](https://github.com/wearearima/time-report-app/tree/feature/03_tests_improving_quality) está disponible el código del ejemplo en el que hemos trabajado donde hemos mejorado los tests para conseguir una mayor cobertura de mutantes.
+En el siguiente [enlace](https://github.com/wearearima/time-report-app/tree/feature/03_tests_improving_quality) está disponible el código del ejemplo en el que hemos trabajado, donde hemos mejorado los tests para conseguir una mayor cobertura de mutantes.
 
-Los mutantes se agrupan en diferentes categorías. 
-
-Hay que valorar el equilibrio entre la cantidad/tipo de mutantes configurados y el tiempo de ejecución. A mayor número de tests, mayor líneas de código y mayor cantidad de mutantes, más tiempo necesitará Pit en generar el informe correspondiente. Puede llegar un momento en el que sea tan costoso pasar el informe que se llegue a no generar. En los ejemplos hemos vistos tests sólo unitarios pero lo mismo aplica a los test de integración, muchos de ellos ya costosos de por sí.
+Los mutantes que se aplican son configurables, y hay que valorar el equilibrio entre la cantidad/tipo de mutantes configurados y el tiempo de ejecución. A mayor número de tests, mayor número de líneas de código y mayor cantidad de mutantes, más tiempo necesitará Pit en generar el informe correspondiente. Puede llegar un momento en el que sea tan costoso pasar el informe que se hagamos skip, y entonces todo el esfuerzo dedicado a testing se desvanecería. En los ejemplos hemos vistos tests sólo unitarios pero lo mismo aplica a los test de integración, muchos de ellos ya costosos de por sí.
 
 En nuestro caso, solemos configurar los que vienen por defecto (DEFAULTS) y añadiendo los del siguiente grupo (NEW_DEFAULTS). Para más información [aquí](https://pitest.org/quickstart/mutators/) se muestran los "mutadores" (mutators) de Pit.
-
-El debate está servido: ¿son necesarios los tests de integración? ¿No resultan demasiado costosos?¿Podemos elegir cuáles ejecutar y cuándo? 
-
-http://pitest.org/java_mutation_testing_systems/
-
-https://www.geeksforgeeks.org/mutation-testing-java/
-
-Jumble
-Jester
-http://madeyski.e-informatyka.pl/download/Madeyski10b.pdf
