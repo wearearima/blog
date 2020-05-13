@@ -88,12 +88,16 @@ public void calculates_the_status_based_on_worker_and_date_worklogs() {
 }
 ```
 
-Si nos fijamos: el primer test no fallará (casi) nunca porque siempre termina con `assert true`, el segundo es un poco “más completo” porque al menos está verificando que se recuperan los partes... [^1]
+Hemos configurado [JaCoCo](https://www.eclemma.org/jacoco/) para obtener el informe de la cobertura de nuestros tests, y el resultado ha sido el siguiente.  
+
+![JaCoCo report general](/assets/images/2020-05-12-mutation-testing/01jacocoreport.png){: .center }
+
+Tenemos una cobertura de un 92% de líneas y 87% de ramas: objetivo cumplido. Pero...si nos fijamos: el primer test no fallará (casi) nunca porque siempre termina con `assert true`, el segundo es un poco “más completo” porque al menos está verificando que se recuperan los partes... [^1]
 
 [^1]: Si quieres probar todo esto puedes descargarte el código de [aquí](https://github.com/wearearima/time-report-app/tree/feature/01_tests_for_project_requirements){:target="_blank"}
 
 Pues esta es mi realidad, y mucho me temo que LA realidad, de aquella época en muchos proyectos (y quien sabe si en algunos de hoy en día). Los proyectos cumplían los requerimientos de cobertura de código, lo que distaba mucho de tener un software de calidad.  
-Es cierto que el ejemplo que he puesto es extremo pero es real. En mi opinión, el problema está en el enfoque: se ha dado la vuelta a la tortilla y en él los tests nacen como una mera herramienta para asegurar uno de los requerimientos del proyecto.
+Es cierto que el ejemplo que he puesto es extremo, pero es real. En mi opinión, el problema está en el enfoque: se ha dado la vuelta a la tortilla y en él los tests nacen como una mera herramienta para asegurar uno de los requerimientos del proyecto.
 
 > % cobertura mínimo por requerimiento &rarr; test = "pérdida de tiempo"
 
@@ -140,7 +144,7 @@ public void if_the_worklog_for_the_resquested_day_is_more_than_8_hours_the_statu
 }
 ```
 
-En este caso parece que los tests ya tienen más sentido. Nos sentiríamos más seguros con ellos, ¿verdad?
+En este caso el porcentaje de cobertura es del 100% de líneas de código y ramas. Y además parece que los tests ya tienen más sentido. Ahora ya sí, nos sentiríamos seguros con ellos, ¿verdad? Es así, o ¿es sólo una percepción?
 
 Si alguien modificase algo del método, por su puesto, antes de comitear y pushear pasaría los tests. Si no hubiese ningún test en rojo, vía libre: no se ha "roto" nada.  
 ¿Seguro?
@@ -213,6 +217,8 @@ En nuestro caso, solemos configurar los que vienen por defecto (DEFAULTS) y aña
 > Software de calidad &rarr; código de calidad &rarr; tests de calidad
 
 Software de calidad require de código calidad que a su vez puede validarse gracias a tests de calidad.  
+
 Generalmente hay más código para testear un método que para implementarlo, lo que conlleva un claro esfuerzo en tiempo: dedicaremos más tiempo al testeo de un método que a su implementación. Necesitamos asegurar que dicho esfuerzo no sea en balde.  
 **Mutation testing** es una herramienta que nos permite evaluar y mejorar la calidad de nuestros tests. El precio a pagar es el aumento de tiempo necesario para pasarlos. Teniendo en cuenta que se basa en mutaciones de código y que aplica no sólo a tests unitarios, también a tests de integración, a medida que el código crezca y el número de tests aumente, mayor será el tiempo necesario para ejecutarlos. Es necesario, por tanto, buscar fórmulas que aseguren que en alguna fase de nuestro desarrollo todos los tests pasan: si dejamos de pasarlos porque es demasiado costoso todo el esfuerzo habrá sido en vano.  
+
 Hemos dado un paso firme, pero nos queda recorrido en nuestro camino hacia la calidad: ¿Qué podemos hacer para buscar este equilibrio? ¿Podemos organizar de alguna forma los tests para facilitarlo? ¿Hay herramientas que nos permitan desarrollar/ejecutar tests de forma más eficiente?
