@@ -195,7 +195,13 @@ Personalmente no había oído hablar de este concepto hasta hace relativamente p
 * [Jester](http://jester.sourceforge.net/)
 * [muJava](https://github.com/jeffoffutt/muJava)
 
-Nosotros hemos utilizado PIT  cuyo uso parece ser el más extendido: por ser sencillo de usar, integrarse fácilmente en los proyectos que los hemos usado, ser más eficiente y estar aún activo.  
+Nosotros hemos utilizado PIT porque:
+
+* Es sencillo de usar
+* Se integra fácilmente en los proyectos que los hemos usado (mediante un plugin de maven) así como en el IDE (en nuestro caso Eclipse)
+* Admite diferentes configuraciones (algunas que permiten mejorar la eficiencia)
+* Aún está activo
+* Parece ser la solución más utilizada en la actualidad
 
 Si ejecutamos el informe de _pitest_ en nuestro ejemplo, veremos este resultado.
 
@@ -210,7 +216,7 @@ Las líneas marcadas en verde, reflejan código en el que PIT ha introducido cam
 En el siguiente [enlace](https://github.com/wearearima/time-report-app/tree/feature/03_tests_improving_quality) está disponible el código del ejemplo en el que hemos trabajado, donde hemos mejorado los tests para conseguir una mayor cobertura de mutantes.
 
 Los mutantes que se aplican son configurables, y hay que valorar el equilibrio entre la cantidad/tipo de mutantes configurados y el tiempo de ejecución. A mayor número de tests, mayor número de líneas de código y mayor cantidad de mutantes, más tiempo necesitará Pit en generar el informe correspondiente. Puede llegar un momento en el que sea tan costoso pasar el informe que se hagamos skip, y entonces todo el esfuerzo dedicado a testing se desvanecería. En los ejemplos hemos visto sólo tests unitarios pero lo mismo aplica a los test de integración (muchos de ellos ya costosos en sí mismos).  
-En nuestro caso, solemos configurar los que vienen por defecto (DEFAULTS) y añadiendo los del siguiente grupo (NEW_DEFAULTS). En el código de ejemplo hay algun más configurado, pero [aquí](https://pitest.org/quickstart/mutators/) se muestran los "mutadores" (mutators) de Pit, así que prueba a cambiar la configuración y a ver los diferentes resultados.
+En nuestro caso, solemos configurar los que vienen por defecto (DEFAULTS) y añadiendo los del siguiente grupo (NEW_DEFAULTS). En el código de ejemplo hay alguno más configurado, pero [aquí](https://pitest.org/quickstart/mutators/) se muestran los "mutadores" (mutators) de Pit, así que prueba a cambiar la configuración y a ver los diferentes resultados.
 
 ## Conclusiones
 
