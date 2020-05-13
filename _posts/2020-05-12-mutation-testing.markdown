@@ -205,10 +205,14 @@ Las líneas marcadas en verde, reflejan código en el que PIT ha introducido cam
 
 En el siguiente [enlace](https://github.com/wearearima/time-report-app/tree/feature/03_tests_improving_quality) está disponible el código del ejemplo en el que hemos trabajado, donde hemos mejorado los tests para conseguir una mayor cobertura de mutantes.
 
-Los mutantes que se aplican son configurables, y hay que valorar el equilibrio entre la cantidad/tipo de mutantes configurados y el tiempo de ejecución. A mayor número de tests, mayor número de líneas de código y mayor cantidad de mutantes, más tiempo necesitará Pit en generar el informe correspondiente. Puede llegar un momento en el que sea tan costoso pasar el informe que se hagamos skip, y entonces todo el esfuerzo dedicado a testing se desvanecería. En los ejemplos hemos vistos tests sólo unitarios pero lo mismo aplica a los test de integración, muchos de ellos ya costosos de por sí.
-
-En nuestro caso, solemos configurar los que vienen por defecto (DEFAULTS) y añadiendo los del siguiente grupo (NEW_DEFAULTS). Para más información [aquí](https://pitest.org/quickstart/mutators/) se muestran los "mutadores" (mutators) de Pit.
+Los mutantes que se aplican son configurables, y hay que valorar el equilibrio entre la cantidad/tipo de mutantes configurados y el tiempo de ejecución. A mayor número de tests, mayor número de líneas de código y mayor cantidad de mutantes, más tiempo necesitará Pit en generar el informe correspondiente. Puede llegar un momento en el que sea tan costoso pasar el informe que se hagamos skip, y entonces todo el esfuerzo dedicado a testing se desvanecería. En los ejemplos hemos visto sólo tests unitarios pero lo mismo aplica a los test de integración (muchos de ellos ya costosos en sí mismos).  
+En nuestro caso, solemos configurar los que vienen por defecto (DEFAULTS) y añadiendo los del siguiente grupo (NEW_DEFAULTS). En el código de ejemplo hay algun más configurado, pero [aquí](https://pitest.org/quickstart/mutators/) se muestran los "mutadores" (mutators) de Pit, así que prueba a cambiar la configuración y a ver los diferentes resultados.
 
 ## Conclusiones
 
-//TBD
+> Software de calidad &rarr; código de calidad &rarr; tests de calidad
+
+Software de calidad require de código calidad que a su vez puede validarse gracias a tests de calidad.  
+Generalmente hay más código para testear un método que para implementarlo, lo que conlleva un claro esfuerzo en tiempo: dedicaremos más tiempo al testeo de un método que a su implementación. Necesitamos asegurar que dicho esfuerzo no sea en balde.  
+**Mutation testing** es una herramienta que nos permite evaluar y mejorar la calidad de nuestros tests. El precio a pagar es el aumento de tiempo necesario para pasarlos. Teniendo en cuenta que se basa en mutaciones de código y que aplica no sólo a tests unitarios, también a tests de integración, a medida que el código crezca y el número de tests aumente, mayor será el tiempo necesario para ejecutarlos. Es necesario, por tanto, buscar fórmulas que aseguren que en alguna fase de nuestro desarrollo todos los tests pasan: si dejamos de pasarlos porque es demasiado costoso todo el esfuerzo habrá sido en vano.  
+Hemos dado un paso firme, pero nos queda recorrido en nuestro camino hacia la calidad: ¿Qué podemos hacer para buscar este equilibrio? ¿Podemos organizar de alguna forma los tests para facilitarlo? ¿Hay herramientas que nos permitan desarrollar/ejecutar tests de forma más eficiente?
