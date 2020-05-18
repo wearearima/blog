@@ -43,7 +43,7 @@ public DayStatusSummary getDayStatusSummaryForWorkerAndDay(String workerUserName
   status.setDate(date);
   status.setWorkerUserName(workerUserName);
 
-  List<Worklog> worklogsForDay = parteRepository.findByUsernameAndDate(workerUserName, date);
+  List<Worklog> worklogsForDay = worklogRepository.findByUsernameAndDate(workerUserName, date);
   int totalDuration = 0;
   for (Worklog worklog : worklogsForDay) {
     totalDuration = totalDuration + worklog.getDuration();
