@@ -21,16 +21,25 @@ url: "https://blog.arima.eu" # the base hostname & protocol for your site, e.g. 
 twitter_username: wearearima
 github_username:  wearearima
 permalink: /:year/:month/:day/:title:output_ext #Remove categories from urls
+# Polyglot
+languages: ["es", "en"]
+default_lang: "_"
+exclude_from_localization: ["_sass", "assets"]
+parallel_localization: true
+lang_from_path: true
 # Build settings
 markdown: kramdown
 theme: minima
 gems:
   - jekyll-feed 
   - jekyll-sitemap
+  - jekyll-polyglot
 exclude:
   - Gemfile
   - Gemfile.lock
 sass:
+    # Required for Polyglot
+    sourcemap: never
     sass_dir: _sass
     style: compressed
 authors:
@@ -59,4 +68,5 @@ authors:
 google_analytics: UA-120217722-1
 plugins:
   - jekyll-sitemap
+  - jekyll-polyglot
   

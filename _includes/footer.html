@@ -7,11 +7,11 @@
             <div class="footer__content">
                 <div class="footer__data">
                     <dl>
-                        <dt>web</dt>
-                        <dd><a itemprop="sameAs" href="https://www.arima.eu/">arima.eu</a></dd>
+                        <dt>{{ site.data[site.active_lang]["footer"].web_text }}</dt>
+                        <dd><a itemprop="sameAs" href="{{ site.data[site.active_lang]['footer'].web_url }}">arima.eu</a></dd>
                     </dl>
                     <dl>
-                        <dt>social</dt>
+                        <dt>{{ site.data[site.active_lang]["footer"].social }}</dt>
                         <dd>
                             <a itemprop="sameAs" href="https://github.com/wearearima" class="social"><span class="icon-github"></span></a>
                             <a itemprop="sameAs" href="https://twitter.com/wearearima" class="social"><span class="icon-twitter"></span></a>
@@ -20,9 +20,9 @@
                         </dd>
                     </dl>
                     <dl>
-                        <dt>Privacidad</dt>
+                        <dt>{{ site.data[site.active_lang]["footer"].privacy_title }}</dt>
                         <dd class="politica-cookies">
-                            <a href="{{ '/cookies.html' | relative_url }}">Política de cookies</a>
+                            <a href="{{ '/cookies.html' | relative_url }}">{{ site.data[site.active_lang]["footer"].cookies_policy }}</a>
                         </dd>
                     </dl>
                 </div>

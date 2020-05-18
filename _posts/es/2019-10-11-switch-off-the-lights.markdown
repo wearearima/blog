@@ -3,6 +3,7 @@ layout: post
 title:  "[CSS] Switch off the lights"
 date:   2019-10-11 9:00:00
 author: alberto
+lang: es
 categories: css
 tags: css, dark, light, claro, oscuro
 header-image:	post-headers/lights-header.jpg

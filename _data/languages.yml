@@ -1,0 +1,9 @@
+en:
+  lang: en
+  label: "EN"
+es:
+  lang: es
+  label: "ES"
+_: # Default lang
+  lang: es
+  label: "ES"

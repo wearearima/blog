@@ -5,6 +5,19 @@
                 {% include arima-logo.html %}
             </div>
         </a>
+        <!-- Language selector -->
+        <div class="language-selector">
+            {% for tongue in site.languages %}
+              {% if site.data.languages[tongue].label == site.data.languages[site.active_lang].label %}
+                <b class="selected">{{ site.data.languages[tongue].label }}</b>
+              {% else %}
+                <a class="unselected" href="{{site.baseurl}}/{{ tongue }}{{page.url}}">{{ site.data.languages[tongue].label }}</a>
+              {% endif %}
+              {% if tongue != site.languages.last %}
+                &nbsp;|&nbsp;
+              {% endif %}
+            {% endfor %}
+         </div>
     </div>
 </nav>
 <div id="publisher_id" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">

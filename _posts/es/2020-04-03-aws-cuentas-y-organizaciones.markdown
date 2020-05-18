@@ -3,6 +3,7 @@ layout: post
 title:  "AWS: Cuentas y Organizaciones"
 date:   2020-04-03 9:00:00
 author: urko
+lang: es
 categories: AWS
 tags: aws, organizacion, organizaciones, iam, scp, cuenta, cuentas
 header-image: 2020-04-03-aws-cuentas-y-organizaciones/rice-fields.jpg
