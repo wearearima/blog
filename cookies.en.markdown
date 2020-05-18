@@ -1,3 +1,8 @@
+---
+layout: default
+lang: en
+permalink: cookies.html
+---
 
 # Cookies Policy
 ## What are cookies?
