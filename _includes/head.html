@@ -34,6 +34,20 @@
   <link rel="canonical" href="{{ page.url | replace:'index.html','' | absolute_url }}">
   <link rel="alternate" type="application/rss+xml" title="{{ site.title | escape }}" href="{{ "/feed.xml" | relative_url }}">
 
+  <!-- SEO Recipes (http://polyglot.untra.io/seo/) -->
+  <meta http-equiv="Content-Language" content="{{site.data.languages[site.active_lang].lang}}">
+  <link rel="alternate"
+      hreflang="{{site.data.languages[site.default_lang].lang}}"
+      href="{{site.url}}{{page.permalink}}" />
+  {% for lang in site.languages %}
+  {% if lang == site.default_lang %}
+    {% continue %}
+  {% endif %}
+  <link rel="alternate"
+      hreflang="{{lang}}"
+      href="{{site.url}}/{{site.data.languages[lang].lang}}{{page.permalink}}" />
+  {% endfor %}
+
   {% if jekyll.environment == 'production' and site.google_analytics %}
   {% include google-analytics.html %}
   {% endif %}
