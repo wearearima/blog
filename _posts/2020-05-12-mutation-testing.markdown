@@ -173,7 +173,7 @@ Nuestros tests seguirán pasando[^2]. Además seguimos con un x% de cobertura al
 ## Mutation testing: asegurando el camino
 
 >**Because we can’t write perfect software, it follows that we can’t write perfect test software either. We need to test the tests.**
-><p align="right" markdown="1">The Pragmatic Programmer. Chapter 8: Pragmatic projects</p>
+><p align="right" markdown="1">**The Pragmatic Programmer.** Chapter 8: Pragmatic projects</p>
 
 Parece que los tests que hemos creado no son tan buenos como creíamos, no tienen calidad suficiente como para asegurar la calidad (valga la redundancia) de nuestro método. Nos han ofrecido una falsa sensación de seguridad.  
 Está claro que conseguir % altos de cobertura no es sencillo y si escribir tests es costoso, escribir buenos tests lo es aún más y lo que obtenemos es una sensación de seguridad que no es real. ¿No podríamos hacer que esta sensación fuese más cercana a la realidad? ¿No podríamos detectar situaciones, como la que hemos visto, de forma automática?
