@@ -3,6 +3,7 @@ layout: post
 title:  "Java en contenedores Docker con Jib"
 date:   2019-09-26 9:00:00
 author: telle
+lang: es
 categories: mediator feature
 tags: spring-boot, docker, jib, maven
 header-image:	2017-01-15-view-rendering-performance/post-header2.jpg
