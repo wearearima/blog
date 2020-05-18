@@ -1,9 +1,9 @@
 <div class="cookies-message" id="cookies-message">
-    <h4>Este sitio web utiliza cookies</h4>
-    <p>Este sitio web utiliza cookies para mejorar la experiencia del usuario. Al utilizar nuestro sitio web, usted acepta todas las cookies de acuerdo con nuestra Política de cookies.</p>
+    <h4>{{ site.data[site.active_lang]["cookies-message"].title }}</h4>
+    <p>{{ site.data[site.active_lang]["cookies-message"].content }}</p>
     <div class="buttons">
-        <a class="button" href="{{ '/cookies.html' | relative_url }}">Leer política de cookies</a>
-        <button class="button" id="accept-cookies">Aceptar</button>
+        <a class="button" href="{{ '/cookies.html' | relative_url }}">{{ site.data[site.active_lang]["cookies-message"].read }}</a>
+        <button class="button" id="accept-cookies">{{ site.data[site.active_lang]["cookies-message"].accept }}</button>
     </div>
 </div>
 <script>
