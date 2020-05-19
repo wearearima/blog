@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="es" itemscope itemtype="http://schema.org/Blog">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>AWS: Cuentas y Organizaciones</title>
+  <meta name="description" content="En esta entrada quiero hablar sobre las cuentas de Amazon Web Services y sobre la arquitectura que hay por detrás. La gestión de cuentas de AWS es un poco co...">
+  
+  <meta name="keywords" content="aws,organizacion,organizaciones,iam,scp,cuenta,cuentas">
+  
+
+  <!-- Twitter cards -->
+  <meta name="twitter:site"    content="@wearearima">
+  <meta name="twitter:creator" content="@urko">
+  <meta name="twitter:title"   content="AWS: Cuentas y Organizaciones">
+
+  
+  <meta name="twitter:description" content="">
+  
+
+  
+  <meta name="twitter:card"  content="summary_large_image">
+  <meta name="twitter:image" content="https://blog.arima.eu/assets/images/2020-04-03-aws-cuentas-y-organizaciones/rice-fields.jpg">
+  
+  <!-- end of Twitter cards -->
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="https://blog.arima.eu/es/2020/04/03/aws-cuentas-y-organizaciones.html">
+  <link rel="alternate" type="application/rss+xml" title="ARIMA" href="/es/feed.xml">
+
+  <!-- SEO Recipes (http://polyglot.untra.io/seo/) -->
+  <meta http-equiv="Content-Language" content="es">
+  <link rel="alternate"
+      hreflang="es"
+      href="https://blog.arima.eu/es/2020/04/03/aws-cuentas-y-organizaciones.html" />
+  
+  
+  <link rel="alternate"
+      hreflang="es"
+      href="https://blog.arima.eu/es/2020/04/03/aws-cuentas-y-organizaciones.html" />
+  
+  
+  <link rel="alternate"
+      hreflang="en"
+      href="https://blog.arima.eu/en/2020/04/03/aws-cuentas-y-organizaciones.html" />
+  
+
+  
+</head>
+
+  <body>
+    <nav class="toolbar">
+    <div class="wrapper">    
+        <a href="/es/">
+            <div class="toolbar__logo">
+                <svg xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" version="1.1" width="100%" height="100%" viewBox="0 0 33 6">
+    <path id="path24" d="m30.346988508615652,-0.000015174522529526127 l-0.6439224998849951,0 l-2.7763635316117727,6.135695064030662 l0.7050150612484405,0 l2.3859233880279893,-5.335002838884215 l2.3660424189063254,5.335002838884215 l0.739668694925785,0 L30.346988508615652,-0.000015174522529526127 zm-8.274141805179609,3.3681675186951847 l-2.2194202716340565,-3.324608867598761 l-0.6962481061149294,0 l0,6.092136412934239 l0.6700853029999622,0 l0,-4.926062349034439 l2.2194202716340565,3.2553706313868567 l0.034929758248478535,0 l2.2192131782057056,-3.2639304930920168 l0,4.934622210739599 l0.6873430886958508,0 l0,-6.092136412934239 l-0.6961100438293623,0 l-2.2192131782057056,3.324608867598761 zm-9.143036799396208,-1.5057072863948877 c0,-1.0964906719739773 -0.8613705996531913,-1.8189015812038738 -2.201748299081466,-1.8189015812038738 l-2.619662837493104,0 l0,6.092136412934239 l0.6876192132669849,0 l0,-5.456842805897188 l1.8799251114245357,0 c0.9833486289517317,0 1.5576187057681203,0.4525681720889824 1.5576187057681203,1.2097017461390067 c0,0.7919252700129356 -0.7831583148794242,1.2620273523689407 -1.6968545207625496,1.2620273523689407 l0,0.6178287279128115 l1.7665759749739396,2.3672849794764295 l0.8442508762428699,0 l-1.8711581562910244,-2.4891249464894027 c0.9571858258367647,-0.17416557324290774 1.6534339319516944,-0.7659695603263191 1.6534339319516944,-1.7841098852409623 m2.7743616284710493,4.273234831730365 l0.6872050264102838,0 l0,-6.0920673817914555 l-0.6872050264102838,0 l0,6.0920673817914555 zM2.7761571742923965,-0.000015174522529526127 l-2.7761564381834223,6.135695064030662 l0.7048769989628736,0 l2.386061450313556,-5.335002838884215 l2.3658353254779745,5.335002838884215 l0.739668694925785,0 l-2.7761564381834223,-6.135695064030662 l-0.6441295933133457,0 z" stroke-width="0"/>
+</svg>
+
+            </div>
+        </a>
+        <!-- Language selector -->
+        <div class="language-selector">
+            
+              
+                <b class="selected">ES</b>
+              
+              
+                &nbsp;|&nbsp;
+              
+            
+              
+                <a class="unselected" href="/en/2020/04/03/aws-cuentas-y-organizaciones.html">EN</a>
+              
+              
+            
+         </div>
+    </div>
+</nav>
+<div id="publisher_id" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Arima 100% Software Design" />
+    <meta itemprop="url" content="https://arima.eu" />
+    <div itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+        <meta itemprop="url" content="https://arima.eu/img/logo.png" />
+    </div>
+</div>
+    <main aria-label="Content">        
+        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting" itemref="publisher_id">
+          <link itemprop="mainEntityOfPage" href="/es/2020/04/03/aws-cuentas-y-organizaciones.html" />
+
+          <header class="post-header">
+            <div class="post-img" itemprop="image" itemscope itemtype="http://schema.org/ImageObject" style="background-image: url('https://blog.arima.eu/assets/images/2020-04-03-aws-cuentas-y-organizaciones/rice-fields.jpg');">
+              <meta itemprop="url" content="https://blog.arima.eu/assets/images/2020-04-03-aws-cuentas-y-organizaciones/rice-fields.jpg" />
+            </div>
+            <div class="wrapper">
+              <div class="post-info__container">
+                <div class="post-info">
+                  <h1 class="post-title" itemprop="name headline">AWS: Cuentas y Organizaciones</h1>
+                    <div class="post-meta" itemscope itemtype="https://schema.org/Person" itemprop="author">
+                      
+                      <div class="author-photo">
+                        <img itemprop="image" src="/assets/images/authors/urko.png" alt="">
+                      </div>
+                      <div>
+                        <span class="post-author" itemprop="name">Urko Lekuona</span>
+                      </div>
+                      <div>
+                        <span class="post-date">03 Apr 2020</span>
+                      </div>
+                    </div>
+                    <meta  itemprop="datePublished dateModified" content="03 Apr 2020" />
+                </div>
+              </div>
+            </div>
+          </header>
+          <div class="wrapper">
+            <div class="post-content" itemprop="articleBody">
+              <p>En esta entrada quiero hablar sobre las cuentas de <a href="https://aws.amazon.com/">Amazon Web Services</a> y sobre la arquitectura que hay por detrás. La gestión de cuentas de AWS es un poco compleja y puede ralentizar el tiempo necesario para empezar a usar sus servicios (cada vez que pruebo algo nuevo tengo la intención de ir directo al grano, como en este caso crear un cluster de <a href="https://aws.amazon.com/eks/">EKS</a>, y siempre me acabo dando de frente con la cruda realidad). Espero que al final de esta entrada seáis capaces de entender un poco mejor todos los conceptos que voy a explicaros y que agilice vuestro proceso de introducción en AWS.</p>
+
+<p>Bien, lo primero de lo que hay que hablar es sobre las cuentas. ¿Qué es una cuenta de AWS? Pues no es más que eso, una cuenta, con su identificador único y su email, pero en este caso engloba ciertos conceptos propios de AWS. Cuando creas una cuenta, se crea por defecto un <strong>usuario</strong> root de la cuenta. Estos son los elementos que puede contener una cuenta:</p>
+
+<ul>
+  <li><strong>Usuario</strong>: Se refiere a cada persona individual que vaya a utilizar los servicios de la cuenta (recomiendan tener uno por cada persona, y no hacer un usuario <em>developer</em> o <em>admin</em>).</li>
+  <li><strong>Grupo</strong>: Un grupo es un conjunto de usuarios.</li>
+  <li><strong>Rol</strong>: Agrupación de políticas que se pueden asignar a usuarios, grupos o servicios.</li>
+  <li><strong>Política</strong>: Las políticas son agrupaciones de permisos que otorgan o deniegan acceso a diferentes acciones sobre los servicios (como ver las instancias de EC2 de la cuenta, crear nuevas, o borrarlas).</li>
+  <li><strong>Servicio</strong>: Un servicio es una funcionalidad de AWS a la que tenemos acceso, como la gestión de clústers de Kubernetes (EKS), repositorios de ficheros (<a href="https://aws.amazon.com/s3/">S3 buckets</a>), … Lo que quiero que quede claro, es que estos servicios son propios de la cuenta en la que estamos, es decir, <strong>no se pueden compartir entre cuentas</strong> (esto no es del todo cierto, se pueden otorgar permisos a otra cuenta para acceder a nuestros servicios, pero esto es rizar el rizo, y, por lo que entiendo, una mala utilización del sistema en la mayoría de los casos).</li>
+</ul>
+
+<p>Esto que he explicado se puede gestionar desde el servicio <a href="https://aws.amazon.com/iam/">IAM</a> (<em>Identity and Access Management</em>).</p>
+
+<h2 id="organizaciones">Organizaciones</h2>
+
+<p>Todo esto probablemente sea todo lo que tenéis que entender para trabajar con AWS a nivel individual, pero cuando trabajas en una empresa las cosas se complican un poco. Para dar mayor poder de gestión, AWS tiene un servicio llamado <em>Organizations</em>. Una organización se puede entender como un conjunto de cuentas.</p>
+
+<p>Cuando una cuenta crea una organización, esa cuenta pasa a ser la cuenta master de la organización y tiene acceso total. Aquí es donde se empieza a complicar un poco el asunto. Desde esta organización se pueden crear nuevas cuentas de la organización, que son prácticamente equivalentes a una cuenta creada de manera “normal”, como la cuenta master. Hay ciertas restricciones para estas cuentas, como que no pueden crear nuevas organizaciones ni salir de la organización actual (aunque he escuchado que en un futuro próximo puede que sí), pero si se les otorgan los permisos necesarios, pueden llegar a tener tanto poder como la cuenta master. Por último, se puede invitar a nuestra organización a cuentas que no lo sean ya, y estas cuentas sí que pueden ir y venir sin restricción.</p>
+
+<p>Otro concepto que introducen las organizaciones son los OU (<em>Organizational Unit</em>). Estos elementos son agrupaciones lógicas de cuentas y de OUs (un OU puede agrupar a cuentas y OUs, hasta 5 niveles de profundidad). Las diferentes cuentas de nuestra organización se pueden mover entre OUs sin problemas, pero hay que recordar que cada cuenta sigue teniendo sus usuarios, grupos, servicios, etc, y que estos <strong>no se pueden sacar de la cuenta</strong>. ¿Que por qué digo esto? Pues porque quiero introducir el último concepto importante sobre las organizaciones. Los <a href="https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_scp.html"><em>Service Control Policies</em></a>.</p>
+
+<p>Los <em>Service Control Policies</em> o SCPs son políticas que se utilizan para gestionar nuestra organización. Son diferentes de las políticas de una cuenta pero asumamos de momento que son iguales. Estas políticas se pueden aplicar a la organización, a un OU, o a una cuenta (o a conjuntos de estos elementos), y cuando se aplica a uno de estos elementos <strong>también se aplican a todos los elementos que contengan</strong>. Es decir, si aplicamos un SCP a un OU <em>ou1</em>, y <em>ou1</em> contiene un cuenta <em>c1</em>, el SCP se aplicará tanto a <em>ou1</em> como a <em>c1</em>. Si después movemos esta cuenta <em>c1</em> a otro OU <em>ou2</em>, <em>ou1</em> seguirá con el SCP aplicado, pero <em>c1</em> ya no. Es decir, si movemos cuentas a nivel jerárquico, tenemos que tener cuidado con los SCPs que haya aplicados tanto en el origen como en el destino.</p>
+
+<p>Hay varias estrategias para estructurar nuestra organización, aquí os dejo algunas que he visto:</p>
+
+<ul>
+  <li>Por entorno de trabajo (<em>development, testing, production</em>).</li>
+  <li>Por cliente o departamento (Y dentro de cada una de ellos podríamos volver a organizarlo por entorno de trabajo, por ejemplo).</li>
+  <li>Por cada entidad a la que tengamos que cobrar (se puede ver el uso de recursos de cada OU).</li>
+</ul>
+
+<p align="center">
+    <img src="/assets/images/2020-04-03-aws-cuentas-y-organizaciones/OrganizationHierarchy.png" />
+</p>
+
+<p><a href="https://es.slideshare.net/AmazonWebServices/wrangling-multiple-aws-accounts-with-aws-organizations-79796025" target="_blank" style="text-align: center; display: block;">Fuente de la imagen</a></p>
+
+<h2 id="scps-vs-políticas-de-iam">SCPs vs Políticas de IAM</h2>
+
+<p>De momento, hemos hablado los SCPs de las organizaciones y de las políticas del IAM como si fuesen lo mismo, pero no lo son. Siguen siendo conjuntos de permisos, de hecho, muchos de los permisos que se utilizan son los mismos en ambos casos, pero <strong>la diferencia está en el propósito</strong> que tienen.</p>
+
+<p>Mientras que una política de IAM sirve para otorgar permisos (a un usuario, grupo, servicio, …) para acceder y utilizar un servicio, un SCP pretende otorgarle a una cuenta la habilidad de dar esos permisos. Es decir, para que dentro de una cuenta se use cierto permiso en concreto, un SCP deberá haber habilitado a esa cuenta ese permiso (o no habérselo denegado, según se utilicen estrategias de <em>whitelist</em> o <em>blacklist</em>).</p>
+
+<p>Esto implica que los permisos resultantes que se le aplican a un usuario, por ejemplo, son <strong>la intersección entre políticas y SCPs</strong>. Un ejemplo práctico de esto sería el siguiente:</p>
+
+<ol>
+  <li>La cuenta <em>c1</em> tiene asignado un SCP que le permite otorgar permisos para listar cubos de S3 y para crear nuevos cubos.</li>
+  <li>Se le aplica a un usuario <em>u1</em> de la cuenta <em>a1</em> una política de IAM que le permite listar los cubos de S3 y borrarlos.</li>
+  <li>Como la cuenta <em>a1</em> no tiene permisos para otorgar el permiso de borrar cubos de S3, a <em>u1</em> solo se le aplica el permiso de listar cubos.</li>
+</ol>
+
+<p align="center">
+    <img src="/assets/images/2020-04-03-aws-cuentas-y-organizaciones/SCPvsIAM.png" />
+</p>
+
+<h2 id="conclusión">Conclusión</h2>
+
+<p>Como habréis podido ver, el servicio para gestionar una organización en AWS es una herramienta potente para poder agrupar cuentas y administrarlas desde una sola, pero tiene cierta complejidad.</p>
+
+<p>Después de todo lo que he dicho, la recomendación que yo os hago es: Piensa antes de actuar:</p>
+<ul>
+  <li>¿Que eres un único usuario y quieres utilizar ciertos servicios de manera individual?, pues olvidate de <em>Organizations</em> y empieza a trabajar directamente.</li>
+  <li>¿Que tienes que gestionar una pequeña empresa con diferentes proyectos, departamentos o clientes?, párate a plantearte tu escenario y gestiona las diversas cuentas que necesites con la jerarquía adecuada.</li>
+  <li>¿Que eres una gran organización y tienes que administrar una compleja estructura de cuentas con miles de usuarios?, probablemente deberías contactar con Amazon y pedir la ayuda de uno de sus arquitectos.</li>
+</ul>
+
+<p>El objetivo de <em>Organizations</em> es ayudarte y debería acabar evitándote más problemas de los que te ha causado en un primer momento.</p>
+
+            </div>
+
+            
+          </div>
+        </article>
+      </div>
+    </main>
+
+    <footer>
+    <div class="wrapper">
+        <div class="footer__container">
+            <div class="footer__sello">
+                <img src="/assets/images/arima_sello_white.png" alt="" />
+            </div>
+            <div class="footer__content">
+                <div class="footer__data">
+                    <dl>
+                        <dt>web</dt>
+                        <dd><a itemprop="sameAs" href="https://www.arima.eu/es/">arima.eu</a></dd>
+                    </dl>
+                    <dl>
+                        <dt>social</dt>
+                        <dd>
+                            <a itemprop="sameAs" href="https://github.com/wearearima" class="social"><span class="icon-github"></span></a>
+                            <a itemprop="sameAs" href="https://twitter.com/wearearima" class="social"><span class="icon-twitter"></span></a>
+                            <a itemprop="sameAs" href="https://www.linkedin.com/company/arima-software-design/" class="social"><span class="icon-linkedin"></span></a>
+                            <a itemprop="sameAs" href="/es/feed.xml" class="social"><span class="icon-feed"></span></a>
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt>Privacidad</dt>
+                        <dd class="politica-cookies">
+                            <a href="/es/cookies.html">Política de cookies</a>
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+    <div class="cookies-message" id="cookies-message">
+    <h4>Este sitio web utiliza cookies</h4>
+    <p>Este sitio web utiliza cookies para mejorar la experiencia del usuario. Al utilizar nuestro sitio web, usted acepta todas las cookies de acuerdo con nuestra Política de cookies.</p>
+    <div class="buttons">
+        <a class="button" href="/es/cookies.html">Leer política de cookies</a>
+        <button class="button" id="accept-cookies">Aceptar</button>
+    </div>
+</div>
+<script>
+    (function() {
+        if(localStorage) {
+            var cookiesAccepted = localStorage.getItem("cookies-accepted");
+            if(cookiesAccepted) {
+                hideCookiesMessage();
+                
+            } else {
+                document.getElementById('accept-cookies').addEventListener("click", function() {
+                    hideCookiesMessage();
+                    localStorage.setItem("cookies-accepted", true);
+                })
+            }
+        }
+        function hideCookiesMessage() {
+            document.getElementById('cookies-message').style.display = "none";
+        }
+    })();
+</script>
+
+  </body>
+
+</html>

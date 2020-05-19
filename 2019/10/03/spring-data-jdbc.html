@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="es" itemscope itemtype="http://schema.org/Blog">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Spring Data, JDBC frente a JPA</title>
+  <meta name="description" content="Spring Data JDBC es una librería para facilitar la creación de repositorios que acceden a bases de datos sin tratar con la complejidad que supone utilizar JP...">
+  
+  <meta name="keywords" content="basededatos,spring,jdbc,JPA">
+  
+
+  <!-- Twitter cards -->
+  <meta name="twitter:site"    content="@wearearima">
+  <meta name="twitter:creator" content="@ugaitz">
+  <meta name="twitter:title"   content="Spring Data, JDBC frente a JPA">
+
+  
+  <meta name="twitter:description" content="">
+  
+
+  
+  <meta name="twitter:card"  content="summary_large_image">
+  <meta name="twitter:image" content="https://blog.arima.eu/assets/images/post-headers/data.jpg">
+  
+  <!-- end of Twitter cards -->
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="https://blog.arima.eu/2019/10/03/spring-data-jdbc.html">
+  <link rel="alternate" type="application/rss+xml" title="ARIMA" href="/feed.xml">
+
+  <!-- SEO Recipes (http://polyglot.untra.io/seo/) -->
+  <meta http-equiv="Content-Language" content="es">
+  <link rel="alternate"
+      hreflang="es"
+      href="https://blog.arima.eu/2019/10/03/spring-data-jdbc.html" />
+  
+  
+  <link rel="alternate"
+      hreflang="es"
+      href="https://blog.arima.eu/es/2019/10/03/spring-data-jdbc.html" />
+  
+  
+  <link rel="alternate"
+      hreflang="en"
+      href="https://blog.arima.eu/en/2019/10/03/spring-data-jdbc.html" />
+  
+
+  
+</head>
+
+  <body>
+    <nav class="toolbar">
+    <div class="wrapper">    
+        <a href="/">
+            <div class="toolbar__logo">
+                <svg xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" version="1.1" width="100%" height="100%" viewBox="0 0 33 6">
+    <path id="path24" d="m30.346988508615652,-0.000015174522529526127 l-0.6439224998849951,0 l-2.7763635316117727,6.135695064030662 l0.7050150612484405,0 l2.3859233880279893,-5.335002838884215 l2.3660424189063254,5.335002838884215 l0.739668694925785,0 L30.346988508615652,-0.000015174522529526127 zm-8.274141805179609,3.3681675186951847 l-2.2194202716340565,-3.324608867598761 l-0.6962481061149294,0 l0,6.092136412934239 l0.6700853029999622,0 l0,-4.926062349034439 l2.2194202716340565,3.2553706313868567 l0.034929758248478535,0 l2.2192131782057056,-3.2639304930920168 l0,4.934622210739599 l0.6873430886958508,0 l0,-6.092136412934239 l-0.6961100438293623,0 l-2.2192131782057056,3.324608867598761 zm-9.143036799396208,-1.5057072863948877 c0,-1.0964906719739773 -0.8613705996531913,-1.8189015812038738 -2.201748299081466,-1.8189015812038738 l-2.619662837493104,0 l0,6.092136412934239 l0.6876192132669849,0 l0,-5.456842805897188 l1.8799251114245357,0 c0.9833486289517317,0 1.5576187057681203,0.4525681720889824 1.5576187057681203,1.2097017461390067 c0,0.7919252700129356 -0.7831583148794242,1.2620273523689407 -1.6968545207625496,1.2620273523689407 l0,0.6178287279128115 l1.7665759749739396,2.3672849794764295 l0.8442508762428699,0 l-1.8711581562910244,-2.4891249464894027 c0.9571858258367647,-0.17416557324290774 1.6534339319516944,-0.7659695603263191 1.6534339319516944,-1.7841098852409623 m2.7743616284710493,4.273234831730365 l0.6872050264102838,0 l0,-6.0920673817914555 l-0.6872050264102838,0 l0,6.0920673817914555 zM2.7761571742923965,-0.000015174522529526127 l-2.7761564381834223,6.135695064030662 l0.7048769989628736,0 l2.386061450313556,-5.335002838884215 l2.3658353254779745,5.335002838884215 l0.739668694925785,0 l-2.7761564381834223,-6.135695064030662 l-0.6441295933133457,0 z" stroke-width="0"/>
+</svg>
+
+            </div>
+        </a>
+        <!-- Language selector -->
+        <div class="language-selector">
+            
+              
+                <b class="selected">ES</b>
+              
+              
+                &nbsp;|&nbsp;
+              
+            
+              
+                <a class="unselected" href="/en/2019/10/03/spring-data-jdbc.html">EN</a>
+              
+              
+            
+         </div>
+    </div>
+</nav>
+<div id="publisher_id" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Arima 100% Software Design" />
+    <meta itemprop="url" content="https://arima.eu" />
+    <div itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+        <meta itemprop="url" content="https://arima.eu/img/logo.png" />
+    </div>
+</div>
+    <main aria-label="Content">        
+        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting" itemref="publisher_id">
+          <link itemprop="mainEntityOfPage" href="/2019/10/03/spring-data-jdbc.html" />
+
+          <header class="post-header">
+            <div class="post-img" itemprop="image" itemscope itemtype="http://schema.org/ImageObject" style="background-image: url('https://blog.arima.eu/assets/images/post-headers/data.jpg');">
+              <meta itemprop="url" content="https://blog.arima.eu/assets/images/post-headers/data.jpg" />
+            </div>
+            <div class="wrapper">
+              <div class="post-info__container">
+                <div class="post-info">
+                  <h1 class="post-title" itemprop="name headline">Spring Data, JDBC frente a JPA</h1>
+                    <div class="post-meta" itemscope itemtype="https://schema.org/Person" itemprop="author">
+                      
+                      <div class="author-photo">
+                        <img itemprop="image" src="/assets/images/authors/ugaitz.png" alt="">
+                      </div>
+                      <div>
+                        <span class="post-author" itemprop="name">Ugaitz Urien</span>
+                      </div>
+                      <div>
+                        <span class="post-date">03 Oct 2019</span>
+                      </div>
+                    </div>
+                    <meta  itemprop="datePublished dateModified" content="03 Oct 2019" />
+                </div>
+              </div>
+            </div>
+          </header>
+          <div class="wrapper">
+            <div class="post-content" itemprop="articleBody">
+              <p><em>Spring Data JDBC</em> es una librería para facilitar la creación de repositorios que acceden a bases de datos sin tratar con la complejidad que supone utilizar JPA. El hecho de que JPA ofrezca muchas funcionalidades como caché, carga de relaciones bajo demanda <em>(Lazy)</em>, etc. supone que el desarrollador tenga que tener en cuenta cierta complejidad.</p>
+
+<p>Hemos creado <a href="https://github.com/wearearima/spring-data-jdbc-demo" target="_blank">este proyecto de github</a> para realizar pruebas con Spring Data JDBC y JPA. En la rama <a href="https://github.com/wearearima/spring-data-jdbc-demo/tree/jpa" target="_blank">jpa</a> se pueden encontrar test de los siguientes casos.</p>
+
+<ul>
+  <li>Si hay un modelo cargado en la aplicación y se vuelve a hacer una búsqueda, la instancia del objeto nuevo y el viejo será misma y no se habrá vuelto a ejecutar una consulta. Para forzar una nueva consulta habrá que hacer un <em>entityManager.clear()</em>. (test <a href="https://github.com/wearearima/spring-data-jdbc-demo/blob/b4224ffb83561e88598c23b5047885cb6ee86369/src/test/java/eu/arima/springdatajdbcdemo/CountryRepositoryTests.java#L43" target="_blank">reloadModel1</a> y <a href="https://github.com/wearearima/spring-data-jdbc-demo/blob/b4224ffb83561e88598c23b5047885cb6ee86369/src/test/java/eu/arima/springdatajdbcdemo/CountryRepositoryTests.java#L51" target="_blank">reloadModel2</a>)</li>
+  <li>Las relaciones de una entidad se cargan bajo demanda, si por alguna razón se cierra la conexión a la base de datos y después se intenta acceder a una relación, este método fallará. (test <a href="https://github.com/wearearima/spring-data-jdbc-demo/blob/b4224ffb83561e88598c23b5047885cb6ee86369/src/test/java/eu/arima/springdatajdbcdemo/CountryRepositoryTests.java#L60" target="_blank">lazyLoad</a>)</li>
+  <li>JPA se encarga de los UPDATE, no solo no es necesario hacer un <em>repositorio.save()</em> para actualizar un modelo, sino que el hacerlo no asegura que se vaya a actualizar en ese momento. Cuando se vaya a cerrar la conexión, JPA hará un <em>flush</em> y será entonces cuando se realizará el guardado. El haber pasado por el setter de la propiedad de un modelo es la razón para actualizarlo, por eso hay que tener mucho cuidado con los cambios que se le hacen a un objeto cargado desde JPA. (test <a href="https://github.com/wearearima/spring-data-jdbc-demo/blob/b4224ffb83561e88598c23b5047885cb6ee86369/src/test/java/eu/arima/springdatajdbcdemo/CountryRepositoryTests.java#L71" target="_blank">update</a> y <a href="https://github.com/wearearima/spring-data-jdbc-demo/blob/b4224ffb83561e88598c23b5047885cb6ee86369/src/test/java/eu/arima/springdatajdbcdemo/CountryRepositoryTests.java#L83" target="_blank">update2</a>)</li>
+</ul>
+
+<p><em>Spring Data JDBC</em> es una solución más simple, sin uso de cachés ni proxys, sin <em>“magia”</em> por detrás con automatizaciones pero que hace lo que se le indica en cada comando.</p>
+
+<p>Hemos creado otros test en la rama <em>master</em> del <a href="https://github.com/wearearima/spring-data-jdbc-demo" target="_blank">mismo proyecto</a> donde se pueden ver los siguientes casos:</p>
+<ul>
+  <li>Cada vez que se realiza una búsqueda, se ejecuta una consulta y la instancia del objeto devuelto es distinta. (test <a href="https://github.com/wearearima/spring-data-jdbc-demo/blob/cf888e3b0ff6fb6a1a08dbddf1ca0722654f0352/src/test/java/eu/arima/springdatajdbcdemo/CountryRepositoryTests.java#L42" target="_blank">reloadModel</a>)</li>
+  <li>Obtiene las relaciones del modelo en el mismo instante en el que se obtiene el propio modelo. (test <a href="https://github.com/wearearima/spring-data-jdbc-demo/blob/cf888e3b0ff6fb6a1a08dbddf1ca0722654f0352/src/test/java/eu/arima/springdatajdbcdemo/CountryRepositoryTests.java#L50" target="_blank">notLazyLoad</a>)</li>
+  <li>La actualización del modelo en la base de datos se realiza explícitamente, cambiar el objeto no implica el cambio en base de datos. (test <a href="https://github.com/wearearima/spring-data-jdbc-demo/blob/cf888e3b0ff6fb6a1a08dbddf1ca0722654f0352/src/test/java/eu/arima/springdatajdbcdemo/CountryRepositoryTests.java#L59" target="_blank">update</a>)</li>
+</ul>
+
+<h2 id="algunas-limitaciones-de-spring-data-jdbc">Algunas limitaciones de Spring Data JDBC</h2>
+<p>Spring Data JDBC simplifica muchas acciones, pero también tiene ciertas limitaciones, sobre todo en acciones con modelos relacionados.</p>
+<ul>
+  <li>Como la instancia de un modelo no tiene ningún proxy, no puede saber que propiedades se han añadido o borrado de un objeto, por lo que al ejecutar un guardado de un modelo con tablas relacionadas, estas siempre se borran y se vuelven a insertar. (test updateWithRelations)</li>
+  <li>Así como JPA acepta relaciones <em>OneToMany</em>, <em>ManyToOne</em> o <em>ManyToMany</em>, Spring Data JDBC acepta solo relaciones <em>OneToMany</em>.</li>
+  <li>Aún no está implementada la interfaz <em>PagingAndSortingRepository</em>, lo que implica que la paginación hay que hacerla de manera manual, como por ejemplo, haciendo uso de <em>@Query</em>. Hay una tarea en el <a href="https://jira.spring.io/browse/DATAJDBC-101" target="_blank">jira de Spring</a>, pero es de prioridad <em>minor</em>.</li>
+</ul>
+
+
+            </div>
+
+            
+          </div>
+        </article>
+      </div>
+    </main>
+
+    <footer>
+    <div class="wrapper">
+        <div class="footer__container">
+            <div class="footer__sello">
+                <img src="/assets/images/arima_sello_white.png" alt="" />
+            </div>
+            <div class="footer__content">
+                <div class="footer__data">
+                    <dl>
+                        <dt>web</dt>
+                        <dd><a itemprop="sameAs" href="https://www.arima.eu/es/">arima.eu</a></dd>
+                    </dl>
+                    <dl>
+                        <dt>social</dt>
+                        <dd>
+                            <a itemprop="sameAs" href="https://github.com/wearearima" class="social"><span class="icon-github"></span></a>
+                            <a itemprop="sameAs" href="https://twitter.com/wearearima" class="social"><span class="icon-twitter"></span></a>
+                            <a itemprop="sameAs" href="https://www.linkedin.com/company/arima-software-design/" class="social"><span class="icon-linkedin"></span></a>
+                            <a itemprop="sameAs" href="/feed.xml" class="social"><span class="icon-feed"></span></a>
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt>Privacidad</dt>
+                        <dd class="politica-cookies">
+                            <a href="/cookies.html">Política de cookies</a>
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+    <div class="cookies-message" id="cookies-message">
+    <h4>Este sitio web utiliza cookies</h4>
+    <p>Este sitio web utiliza cookies para mejorar la experiencia del usuario. Al utilizar nuestro sitio web, usted acepta todas las cookies de acuerdo con nuestra Política de cookies.</p>
+    <div class="buttons">
+        <a class="button" href="/cookies.html">Leer política de cookies</a>
+        <button class="button" id="accept-cookies">Aceptar</button>
+    </div>
+</div>
+<script>
+    (function() {
+        if(localStorage) {
+            var cookiesAccepted = localStorage.getItem("cookies-accepted");
+            if(cookiesAccepted) {
+                hideCookiesMessage();
+                
+            } else {
+                document.getElementById('accept-cookies').addEventListener("click", function() {
+                    hideCookiesMessage();
+                    localStorage.setItem("cookies-accepted", true);
+                })
+            }
+        }
+        function hideCookiesMessage() {
+            document.getElementById('cookies-message').style.display = "none";
+        }
+    })();
+</script>
+
+  </body>
+
+</html>

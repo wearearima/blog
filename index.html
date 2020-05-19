@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en" itemscope itemtype="http://schema.org/Blog">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>ARIMA</title>
+  <meta name="description" content="">
+  
+
+  <!-- Twitter cards -->
+  <meta name="twitter:site"    content="@wearearima">
+  <meta name="twitter:creator" content="@">
+  <meta name="twitter:title"   content="">
+
+  
+  <meta name="twitter:description" content="">
+  
+
+  
+  <meta name="twitter:card"  content="summary">
+  <!-- This line might need a fix too, something like https://blog.arima.eu/assets/images/ -->
+  <meta name="twitter:image" content="">
+  
+  <!-- end of Twitter cards -->
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="https://blog.arima.eu/">
+  <link rel="alternate" type="application/rss+xml" title="ARIMA" href="/feed.xml">
+
+  <!-- SEO Recipes (http://polyglot.untra.io/seo/) -->
+  <meta http-equiv="Content-Language" content="es">
+  <link rel="alternate"
+      hreflang="es"
+      href="https://blog.arima.eu/" />
+  
+  
+  <link rel="alternate"
+      hreflang="es"
+      href="https://blog.arima.eu/es/" />
+  
+  
+  <link rel="alternate"
+      hreflang="en"
+      href="https://blog.arima.eu/en/" />
+  
+
+  
+</head>
+
+  <body class="body-home">
+
+    <header role="banner" class="home-cover">
+  <div class="wrapper">    
+    <div>
+      <div class="brand__container hide-on-laptop">
+        <div class="brand">
+          <svg xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" version="1.1" width="100%" height="100%" viewBox="0 0 33 6">
+    <path id="path24" d="m30.346988508615652,-0.000015174522529526127 l-0.6439224998849951,0 l-2.7763635316117727,6.135695064030662 l0.7050150612484405,0 l2.3859233880279893,-5.335002838884215 l2.3660424189063254,5.335002838884215 l0.739668694925785,0 L30.346988508615652,-0.000015174522529526127 zm-8.274141805179609,3.3681675186951847 l-2.2194202716340565,-3.324608867598761 l-0.6962481061149294,0 l0,6.092136412934239 l0.6700853029999622,0 l0,-4.926062349034439 l2.2194202716340565,3.2553706313868567 l0.034929758248478535,0 l2.2192131782057056,-3.2639304930920168 l0,4.934622210739599 l0.6873430886958508,0 l0,-6.092136412934239 l-0.6961100438293623,0 l-2.2192131782057056,3.324608867598761 zm-9.143036799396208,-1.5057072863948877 c0,-1.0964906719739773 -0.8613705996531913,-1.8189015812038738 -2.201748299081466,-1.8189015812038738 l-2.619662837493104,0 l0,6.092136412934239 l0.6876192132669849,0 l0,-5.456842805897188 l1.8799251114245357,0 c0.9833486289517317,0 1.5576187057681203,0.4525681720889824 1.5576187057681203,1.2097017461390067 c0,0.7919252700129356 -0.7831583148794242,1.2620273523689407 -1.6968545207625496,1.2620273523689407 l0,0.6178287279128115 l1.7665759749739396,2.3672849794764295 l0.8442508762428699,0 l-1.8711581562910244,-2.4891249464894027 c0.9571858258367647,-0.17416557324290774 1.6534339319516944,-0.7659695603263191 1.6534339319516944,-1.7841098852409623 m2.7743616284710493,4.273234831730365 l0.6872050264102838,0 l0,-6.0920673817914555 l-0.6872050264102838,0 l0,6.0920673817914555 zM2.7761571742923965,-0.000015174522529526127 l-2.7761564381834223,6.135695064030662 l0.7048769989628736,0 l2.386061450313556,-5.335002838884215 l2.3658353254779745,5.335002838884215 l0.739668694925785,0 l-2.7761564381834223,-6.135695064030662 l-0.6441295933133457,0 z" stroke-width="0"/>
+</svg>
+
+        </div>
+        <div class="claim">
+          <span class="claim__text"></span>
+          <div class="claim__description">
+            <div>BLOG</div>
+          </div>
+        </div>
+      </div>
+      <div class="brand__container brand__container--mobile show-on-laptop">
+          <div class="claim">
+              <div class="claim__description">
+                <div>BLOG</div>
+              </div>
+            </div>
+        </div>
+    </div>
+  </div>
+  <div class="language-selector hide-on-laptop">
+    
+      
+        <b class="selected">ES</b>
+      
+      
+        &nbsp;|&nbsp;
+      
+    
+      
+        <a class="unselected" href="/en/">EN</a>
+      
+      
+    
+ </div>
+</header>
+    <nav class="toolbar">
+    <div class="wrapper">    
+        <a href="/">
+            <div class="toolbar__logo">
+                <svg xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" version="1.1" width="100%" height="100%" viewBox="0 0 33 6">
+    <path id="path24" d="m30.346988508615652,-0.000015174522529526127 l-0.6439224998849951,0 l-2.7763635316117727,6.135695064030662 l0.7050150612484405,0 l2.3859233880279893,-5.335002838884215 l2.3660424189063254,5.335002838884215 l0.739668694925785,0 L30.346988508615652,-0.000015174522529526127 zm-8.274141805179609,3.3681675186951847 l-2.2194202716340565,-3.324608867598761 l-0.6962481061149294,0 l0,6.092136412934239 l0.6700853029999622,0 l0,-4.926062349034439 l2.2194202716340565,3.2553706313868567 l0.034929758248478535,0 l2.2192131782057056,-3.2639304930920168 l0,4.934622210739599 l0.6873430886958508,0 l0,-6.092136412934239 l-0.6961100438293623,0 l-2.2192131782057056,3.324608867598761 zm-9.143036799396208,-1.5057072863948877 c0,-1.0964906719739773 -0.8613705996531913,-1.8189015812038738 -2.201748299081466,-1.8189015812038738 l-2.619662837493104,0 l0,6.092136412934239 l0.6876192132669849,0 l0,-5.456842805897188 l1.8799251114245357,0 c0.9833486289517317,0 1.5576187057681203,0.4525681720889824 1.5576187057681203,1.2097017461390067 c0,0.7919252700129356 -0.7831583148794242,1.2620273523689407 -1.6968545207625496,1.2620273523689407 l0,0.6178287279128115 l1.7665759749739396,2.3672849794764295 l0.8442508762428699,0 l-1.8711581562910244,-2.4891249464894027 c0.9571858258367647,-0.17416557324290774 1.6534339319516944,-0.7659695603263191 1.6534339319516944,-1.7841098852409623 m2.7743616284710493,4.273234831730365 l0.6872050264102838,0 l0,-6.0920673817914555 l-0.6872050264102838,0 l0,6.0920673817914555 zM2.7761571742923965,-0.000015174522529526127 l-2.7761564381834223,6.135695064030662 l0.7048769989628736,0 l2.386061450313556,-5.335002838884215 l2.3658353254779745,5.335002838884215 l0.739668694925785,0 l-2.7761564381834223,-6.135695064030662 l-0.6441295933133457,0 z" stroke-width="0"/>
+</svg>
+
+            </div>
+        </a>
+        <!-- Language selector -->
+        <div class="language-selector">
+            
+              
+                <b class="selected">ES</b>
+              
+              
+                &nbsp;|&nbsp;
+              
+            
+              
+                <a class="unselected" href="/en/">EN</a>
+              
+              
+            
+         </div>
+    </div>
+</nav>
+<div id="publisher_id" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Arima 100% Software Design" />
+    <meta itemprop="url" content="https://arima.eu" />
+    <div itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+        <meta itemprop="url" content="https://arima.eu/img/logo.png" />
+    </div>
+</div>
+    <main aria-label="Content">
+      <div class="wrapper">
+        <div class="home">
+
+          
+
+
+          <ul id="post-list">
+            
+              <li itemprop="blogPosts" itemscope itemtype="http://schema.org/BlogPosting" itemref="publisher_id">
+                <h2>
+                  <a class="post-link" href="/2020/04/28/examen-ckad.html"><span itemprop="name headline">Cómo preparé y aprobé el Certified Kubernetes Application Developer (CKAD)</span></a>
+                </h2>
+                <div itemprop="image" itemscope itemtype="http://schema.org/ImageObject">
+                  <meta itemprop="url" content="https://blog.arima.eu/assets/images/2020-04-22-examen-ckad/header-image.jpg" />
+                </div>
+
+                <p>
+                  En este post voy a explicar un poco mi experiencia de cómo preparé y aprobé el Certified Kubernetes Application Developer (CKAD).
+
+                </p>
+                <div class="post-meta" itemscope itemtype="https://schema.org/Person" itemprop="author">
+                  
+                  <div class="author-photo">
+                    <img itemprop="image" src="/assets/images/authors/fernando.png" alt="">
+                  </div>
+                  <div>
+                    <span itemprop="name" class="post-author">Fernando Lozano</span>
+                  </div>
+                  <div class="post-meta">
+                    <span class="post-date">28 Apr 2020</span>
+                  </div>
+                </div>
+                <meta  itemprop="datePublished dateModified" content="28 Apr 2020" />
+              </li>
+            
+              <li itemprop="blogPosts" itemscope itemtype="http://schema.org/BlogPosting" itemref="publisher_id">
+                <h2>
+                  <a class="post-link" href="/2020/04/21/buenas-practicas-para-escribir-un-dockerfile.html"><span itemprop="name headline">Buenas prácticas para escribir un Dockerfile</span></a>
+                </h2>
+                <div itemprop="image" itemscope itemtype="http://schema.org/ImageObject">
+                  <meta itemprop="url" content="https://blog.arima.eu/assets/images/2020-04-21-buenas-practicas-para-escribir-un-dockerfile/skyline.jpg" />
+                </div>
+
+                <p>
+                  A la hora de escribir un Dockerfile, las posibilidades son infinitas. Se pueden crear imágenes con el mismo propósito, que funcionen similar, pero que estén estructuradas de una manera muy diferente. Empezando por elegir una imagen de partida (FROM), pasando por el orden de los comandos que ejecutamos al construir...
+                </p>
+                <div class="post-meta" itemscope itemtype="https://schema.org/Person" itemprop="author">
+                  
+                  <div class="author-photo">
+                    <img itemprop="image" src="/assets/images/authors/urko.png" alt="">
+                  </div>
+                  <div>
+                    <span itemprop="name" class="post-author">Urko Lekuona</span>
+                  </div>
+                  <div class="post-meta">
+                    <span class="post-date">21 Apr 2020</span>
+                  </div>
+                </div>
+                <meta  itemprop="datePublished dateModified" content="21 Apr 2020" />
+              </li>
+            
+              <li itemprop="blogPosts" itemscope itemtype="http://schema.org/BlogPosting" itemref="publisher_id">
+                <h2>
+                  <a class="post-link" href="/2020/04/03/aws-cuentas-y-organizaciones.html"><span itemprop="name headline">AWS: Cuentas y Organizaciones</span></a>
+                </h2>
+                <div itemprop="image" itemscope itemtype="http://schema.org/ImageObject">
+                  <meta itemprop="url" content="https://blog.arima.eu/assets/images/2020-04-03-aws-cuentas-y-organizaciones/rice-fields.jpg" />
+                </div>
+
+                <p>
+                  En esta entrada quiero hablar sobre las cuentas de Amazon Web Services y sobre la arquitectura que hay por detrás. La gestión de cuentas de AWS es un poco compleja y puede ralentizar el tiempo necesario para empezar a usar sus servicios (cada vez que pruebo algo nuevo tengo la...
+                </p>
+                <div class="post-meta" itemscope itemtype="https://schema.org/Person" itemprop="author">
+                  
+                  <div class="author-photo">
+                    <img itemprop="image" src="/assets/images/authors/urko.png" alt="">
+                  </div>
+                  <div>
+                    <span itemprop="name" class="post-author">Urko Lekuona</span>
+                  </div>
+                  <div class="post-meta">
+                    <span class="post-date">03 Apr 2020</span>
+                  </div>
+                </div>
+                <meta  itemprop="datePublished dateModified" content="03 Apr 2020" />
+              </li>
+            
+              <li itemprop="blogPosts" itemscope itemtype="http://schema.org/BlogPosting" itemref="publisher_id">
+                <h2>
+                  <a class="post-link" href="/2020/02/11/java-en-contenedores-docker.html"><span itemprop="name headline">¿Es viable ejecutar Java en contenedores Docker?</span></a>
+                </h2>
+                <div itemprop="image" itemscope itemtype="http://schema.org/ImageObject">
+                  <meta itemprop="url" content="https://blog.arima.eu/assets/images/2020-02-11-java-en-contenedores-docker/fondo-cafe-min.jpg" />
+                </div>
+
+                <p>
+                  En nuestro alrededor existen muchas empresas que llevan años trabajando sobre Java utilizando un stack tecnológico tradicional (Spring, Tomcat, Weblogic, JPA, etc). Esta infraestructura ha sido bastante estable en el tiempo y ha sufrido pocos cambios.
+
+                </p>
+                <div class="post-meta" itemscope itemtype="https://schema.org/Person" itemprop="author">
+                  
+                  <div class="author-photo">
+                    <img itemprop="image" src="/assets/images/authors/telle.png" alt="">
+                  </div>
+                  <div>
+                    <span itemprop="name" class="post-author">Iñigo Telleria</span>
+                  </div>
+                  <div class="post-meta">
+                    <span class="post-date">11 Feb 2020</span>
+                  </div>
+                </div>
+                <meta  itemprop="datePublished dateModified" content="11 Feb 2020" />
+              </li>
+            
+              <li itemprop="blogPosts" itemscope itemtype="http://schema.org/BlogPosting" itemref="publisher_id">
+                <h2>
+                  <a class="post-link" href="/2020/01/27/oauth2.html"><span itemprop="name headline">Utilizando el estándar OAuth2 de forma segura</span></a>
+                </h2>
+                <div itemprop="image" itemscope itemtype="http://schema.org/ImageObject">
+                  <meta itemprop="url" content="https://blog.arima.eu/assets/images/2020-01-27-oauth2/kai-pilger-1k3vsv7iIIc-unsplash.png" />
+                </div>
+
+                <p>
+                  El estándar OAuth2 es tan conocido como complejo. El hecho de que sea un estándar en evolución y el exceso de información disponible, hace que sea muy fácil encontrar artículos con información contradictoria o que se recomiende el uso de flujos que actualmente se consideran “legacy” por motivos de seguridad....
+                </p>
+                <div class="post-meta" itemscope itemtype="https://schema.org/Person" itemprop="author">
+                  
+                  <div class="author-photo">
+                    <img itemprop="image" src="/assets/images/authors/aritz.png" alt="">
+                  </div>
+                  <div>
+                    <span itemprop="name" class="post-author">Aritz Berasarte</span>
+                  </div>
+                  <div class="post-meta">
+                    <span class="post-date">27 Jan 2020</span>
+                  </div>
+                </div>
+                <meta  itemprop="datePublished dateModified" content="27 Jan 2020" />
+              </li>
+            
+              <li itemprop="blogPosts" itemscope itemtype="http://schema.org/BlogPosting" itemref="publisher_id">
+                <h2>
+                  <a class="post-link" href="/2019/12/02/commit-conf-2019.html"><span itemprop="name headline">Hemos estado en la Commit Conf 2019</span></a>
+                </h2>
+                <div itemprop="image" itemscope itemtype="http://schema.org/ImageObject">
+                  <meta itemprop="url" content="https://blog.arima.eu/assets/images/2019-12-02-commit-conf-2019/commit.png" />
+                </div>
+
+                <p>
+                  Hace dos semanas asistí a la Commit Conf 2019 en Madrid! en este post os voy a contar un poco mi experiencia allí y qué charlas me llamaron más la atención.
+
+                </p>
+                <div class="post-meta" itemscope itemtype="https://schema.org/Person" itemprop="author">
+                  
+                  <div class="author-photo">
+                    <img itemprop="image" src="/assets/images/authors/fernando.png" alt="">
+                  </div>
+                  <div>
+                    <span itemprop="name" class="post-author">Fernando Lozano</span>
+                  </div>
+                  <div class="post-meta">
+                    <span class="post-date">02 Dec 2019</span>
+                  </div>
+                </div>
+                <meta  itemprop="datePublished dateModified" content="02 Dec 2019" />
+              </li>
+            
+              <li itemprop="blogPosts" itemscope itemtype="http://schema.org/BlogPosting" itemref="publisher_id">
+                <h2>
+                  <a class="post-link" href="/2019/10/24/arima-proceso-seleccion.html"><span itemprop="name headline">Nuestro proceso de selección</span></a>
+                </h2>
+                <div itemprop="image" itemscope itemtype="http://schema.org/ImageObject">
+                  <meta itemprop="url" content="https://blog.arima.eu/assets/images/post-headers/hiring-process.jpg" />
+                </div>
+
+                <p>
+                  Por lo general, los procesos de selección suelen convertirse en situaciones incómodas para los candidatos. A los nervios habituales, se une el hecho de que los entrevistadores recurren cada vez más a técnicas en las que se busca incomodar al entrevistado. Para conseguir este objetivo, es habitual hacer preguntas extrañas...
+                </p>
+                <div class="post-meta" itemscope itemtype="https://schema.org/Person" itemprop="author">
+                  
+                  <div class="author-photo">
+                    <img itemprop="image" src="/assets/images/authors/aritz.png" alt="">
+                  </div>
+                  <div>
+                    <span itemprop="name" class="post-author">Aritz Berasarte</span>
+                  </div>
+                  <div class="post-meta">
+                    <span class="post-date">24 Oct 2019</span>
+                  </div>
+                </div>
+                <meta  itemprop="datePublished dateModified" content="24 Oct 2019" />
+              </li>
+            
+              <li itemprop="blogPosts" itemscope itemtype="http://schema.org/BlogPosting" itemref="publisher_id">
+                <h2>
+                  <a class="post-link" href="/2019/10/11/switch-off-the-lights.html"><span itemprop="name headline">[CSS] Switch off the lights</span></a>
+                </h2>
+                <div itemprop="image" itemscope itemtype="http://schema.org/ImageObject">
+                  <meta itemprop="url" content="https://blog.arima.eu/assets/images/post-headers/lights-header.jpg" />
+                </div>
+
+                <p>
+                  El “modo oscuro” en las interfaces de usuario se ha puesto de moda el último año. Antes eran pocas las aplicaciones (nativas o webapps) que tenían una interfaz alternativa a la de colores blancos/claros que utilizan la mayoría de UIs por defecto. Y las que lo ofrecían (por ejemplo, Youtube)...
+                </p>
+                <div class="post-meta" itemscope itemtype="https://schema.org/Person" itemprop="author">
+                  
+                  <div class="author-photo">
+                    <img itemprop="image" src="/assets/images/authors/alberto.png" alt="">
+                  </div>
+                  <div>
+                    <span itemprop="name" class="post-author">Alberto Calvo</span>
+                  </div>
+                  <div class="post-meta">
+                    <span class="post-date">11 Oct 2019</span>
+                  </div>
+                </div>
+                <meta  itemprop="datePublished dateModified" content="11 Oct 2019" />
+              </li>
+            
+              <li itemprop="blogPosts" itemscope itemtype="http://schema.org/BlogPosting" itemref="publisher_id">
+                <h2>
+                  <a class="post-link" href="/2019/10/03/spring-data-jdbc.html"><span itemprop="name headline">Spring Data, JDBC frente a JPA</span></a>
+                </h2>
+                <div itemprop="image" itemscope itemtype="http://schema.org/ImageObject">
+                  <meta itemprop="url" content="https://blog.arima.eu/assets/images/post-headers/data.jpg" />
+                </div>
+
+                <p>
+                  Spring Data JDBC es una librería para facilitar la creación de repositorios que acceden a bases de datos sin tratar con la complejidad que supone utilizar JPA. El hecho de que JPA ofrezca muchas funcionalidades como caché, carga de relaciones bajo demanda (Lazy), etc. supone que el desarrollador tenga que...
+                </p>
+                <div class="post-meta" itemscope itemtype="https://schema.org/Person" itemprop="author">
+                  
+                  <div class="author-photo">
+                    <img itemprop="image" src="/assets/images/authors/ugaitz.png" alt="">
+                  </div>
+                  <div>
+                    <span itemprop="name" class="post-author">Ugaitz Urien</span>
+                  </div>
+                  <div class="post-meta">
+                    <span class="post-date">03 Oct 2019</span>
+                  </div>
+                </div>
+                <meta  itemprop="datePublished dateModified" content="03 Oct 2019" />
+              </li>
+            
+              <li itemprop="blogPosts" itemscope itemtype="http://schema.org/BlogPosting" itemref="publisher_id">
+                <h2>
+                  <a class="post-link" href="/2019/09/26/java-docker-building-with-jib.html"><span itemprop="name headline">Java en contenedores Docker con Jib</span></a>
+                </h2>
+                <div itemprop="image" itemscope itemtype="http://schema.org/ImageObject">
+                  <meta itemprop="url" content="https://blog.arima.eu/assets/images/2017-01-15-view-rendering-performance/post-header2.jpg" />
+                </div>
+
+                <p>
+                  Generalmente cuando se quiere empaquetar una aplicación Java en un contenedor Docker, se crea un 
+fichero Dockerfile en el proyecto para especificar las propiedades de la imagen Docker, tales como: 
+en qué imagen se basa, cuál es el entrypoint, qué puerto se expone, etc.
+
+                </p>
+                <div class="post-meta" itemscope itemtype="https://schema.org/Person" itemprop="author">
+                  
+                  <div class="author-photo">
+                    <img itemprop="image" src="/assets/images/authors/telle.png" alt="">
+                  </div>
+                  <div>
+                    <span itemprop="name" class="post-author">Iñigo Telleria</span>
+                  </div>
+                  <div class="post-meta">
+                    <span class="post-date">26 Sep 2019</span>
+                  </div>
+                </div>
+                <meta  itemprop="datePublished dateModified" content="26 Sep 2019" />
+              </li>
+            
+          </ul>
+        </div>
+      </div>
+    </main>
+    <footer>
+    <div class="wrapper">
+        <div class="footer__container">
+            <div class="footer__sello">
+                <img src="/assets/images/arima_sello_white.png" alt="" />
+            </div>
+            <div class="footer__content">
+                <div class="footer__data">
+                    <dl>
+                        <dt>web</dt>
+                        <dd><a itemprop="sameAs" href="https://www.arima.eu/es/">arima.eu</a></dd>
+                    </dl>
+                    <dl>
+                        <dt>social</dt>
+                        <dd>
+                            <a itemprop="sameAs" href="https://github.com/wearearima" class="social"><span class="icon-github"></span></a>
+                            <a itemprop="sameAs" href="https://twitter.com/wearearima" class="social"><span class="icon-twitter"></span></a>
+                            <a itemprop="sameAs" href="https://www.linkedin.com/company/arima-software-design/" class="social"><span class="icon-linkedin"></span></a>
+                            <a itemprop="sameAs" href="/feed.xml" class="social"><span class="icon-feed"></span></a>
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt>Privacidad</dt>
+                        <dd class="politica-cookies">
+                            <a href="/cookies.html">Política de cookies</a>
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+    <div class="cookies-message" id="cookies-message">
+    <h4>Este sitio web utiliza cookies</h4>
+    <p>Este sitio web utiliza cookies para mejorar la experiencia del usuario. Al utilizar nuestro sitio web, usted acepta todas las cookies de acuerdo con nuestra Política de cookies.</p>
+    <div class="buttons">
+        <a class="button" href="/cookies.html">Leer política de cookies</a>
+        <button class="button" id="accept-cookies">Aceptar</button>
+    </div>
+</div>
+<script>
+    (function() {
+        if(localStorage) {
+            var cookiesAccepted = localStorage.getItem("cookies-accepted");
+            if(cookiesAccepted) {
+                hideCookiesMessage();
+                
+            } else {
+                document.getElementById('accept-cookies').addEventListener("click", function() {
+                    hideCookiesMessage();
+                    localStorage.setItem("cookies-accepted", true);
+                })
+            }
+        }
+        function hideCookiesMessage() {
+            document.getElementById('cookies-message').style.display = "none";
+        }
+    })();
+</script>
+    <script src="/assets/toolbar-script.min.js"></script>
+  </body>
+</html>

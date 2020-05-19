@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en" itemscope itemtype="http://schema.org/Blog">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Dockerfile best practices</title>
+  <meta name="description" content="When writing a Dockerfile, the possibilities are endless. You can create images for the same purpose, that work similarly, but are structured in a very diffe...">
+  
+  <meta name="keywords" content="docker,dockerfile">
+  
+
+  <!-- Twitter cards -->
+  <meta name="twitter:site"    content="@wearearima">
+  <meta name="twitter:creator" content="@urko">
+  <meta name="twitter:title"   content="Dockerfile best practices">
+
+  
+  <meta name="twitter:description" content="">
+  
+
+  
+  <meta name="twitter:card"  content="summary_large_image">
+  <meta name="twitter:image" content="https://blog.arima.eu/assets/images/2020-04-21-buenas-practicas-para-escribir-un-dockerfile/skyline.jpg">
+  
+  <!-- end of Twitter cards -->
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="https://blog.arima.eu/en/2020/04/21/buenas-practicas-para-escribir-un-dockerfile.html">
+  <link rel="alternate" type="application/rss+xml" title="ARIMA" href="/en/feed.xml">
+
+  <!-- SEO Recipes (http://polyglot.untra.io/seo/) -->
+  <meta http-equiv="Content-Language" content="en">
+  <link rel="alternate"
+      hreflang="es"
+      href="https://blog.arima.eu/en/2020/04/21/buenas-practicas-para-escribir-un-dockerfile.html" />
+  
+  
+  <link rel="alternate"
+      hreflang="es"
+      href="https://blog.arima.eu/es/2020/04/21/buenas-practicas-para-escribir-un-dockerfile.html" />
+  
+  
+  <link rel="alternate"
+      hreflang="en"
+      href="https://blog.arima.eu/en/2020/04/21/buenas-practicas-para-escribir-un-dockerfile.html" />
+  
+
+  
+</head>
+
+  <body>
+    <nav class="toolbar">
+    <div class="wrapper">    
+        <a href="/en/">
+            <div class="toolbar__logo">
+                <svg xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" version="1.1" width="100%" height="100%" viewBox="0 0 33 6">
+    <path id="path24" d="m30.346988508615652,-0.000015174522529526127 l-0.6439224998849951,0 l-2.7763635316117727,6.135695064030662 l0.7050150612484405,0 l2.3859233880279893,-5.335002838884215 l2.3660424189063254,5.335002838884215 l0.739668694925785,0 L30.346988508615652,-0.000015174522529526127 zm-8.274141805179609,3.3681675186951847 l-2.2194202716340565,-3.324608867598761 l-0.6962481061149294,0 l0,6.092136412934239 l0.6700853029999622,0 l0,-4.926062349034439 l2.2194202716340565,3.2553706313868567 l0.034929758248478535,0 l2.2192131782057056,-3.2639304930920168 l0,4.934622210739599 l0.6873430886958508,0 l0,-6.092136412934239 l-0.6961100438293623,0 l-2.2192131782057056,3.324608867598761 zm-9.143036799396208,-1.5057072863948877 c0,-1.0964906719739773 -0.8613705996531913,-1.8189015812038738 -2.201748299081466,-1.8189015812038738 l-2.619662837493104,0 l0,6.092136412934239 l0.6876192132669849,0 l0,-5.456842805897188 l1.8799251114245357,0 c0.9833486289517317,0 1.5576187057681203,0.4525681720889824 1.5576187057681203,1.2097017461390067 c0,0.7919252700129356 -0.7831583148794242,1.2620273523689407 -1.6968545207625496,1.2620273523689407 l0,0.6178287279128115 l1.7665759749739396,2.3672849794764295 l0.8442508762428699,0 l-1.8711581562910244,-2.4891249464894027 c0.9571858258367647,-0.17416557324290774 1.6534339319516944,-0.7659695603263191 1.6534339319516944,-1.7841098852409623 m2.7743616284710493,4.273234831730365 l0.6872050264102838,0 l0,-6.0920673817914555 l-0.6872050264102838,0 l0,6.0920673817914555 zM2.7761571742923965,-0.000015174522529526127 l-2.7761564381834223,6.135695064030662 l0.7048769989628736,0 l2.386061450313556,-5.335002838884215 l2.3658353254779745,5.335002838884215 l0.739668694925785,0 l-2.7761564381834223,-6.135695064030662 l-0.6441295933133457,0 z" stroke-width="0"/>
+</svg>
+
+            </div>
+        </a>
+        <!-- Language selector -->
+        <div class="language-selector">
+            
+              
+                <a class="unselected" href="/es/2020/04/21/buenas-practicas-para-escribir-un-dockerfile.html">ES</a>
+              
+              
+                &nbsp;|&nbsp;
+              
+            
+              
+                <b class="selected">EN</b>
+              
+              
+            
+         </div>
+    </div>
+</nav>
+<div id="publisher_id" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Arima 100% Software Design" />
+    <meta itemprop="url" content="https://arima.eu" />
+    <div itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+        <meta itemprop="url" content="https://arima.eu/img/logo.png" />
+    </div>
+</div>
+    <main aria-label="Content">        
+        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting" itemref="publisher_id">
+          <link itemprop="mainEntityOfPage" href="/en/2020/04/21/buenas-practicas-para-escribir-un-dockerfile.html" />
+
+          <header class="post-header">
+            <div class="post-img" itemprop="image" itemscope itemtype="http://schema.org/ImageObject" style="background-image: url('https://blog.arima.eu/assets/images/2020-04-21-buenas-practicas-para-escribir-un-dockerfile/skyline.jpg');">
+              <meta itemprop="url" content="https://blog.arima.eu/assets/images/2020-04-21-buenas-practicas-para-escribir-un-dockerfile/skyline.jpg" />
+            </div>
+            <div class="wrapper">
+              <div class="post-info__container">
+                <div class="post-info">
+                  <h1 class="post-title" itemprop="name headline">Dockerfile best practices</h1>
+                    <div class="post-meta" itemscope itemtype="https://schema.org/Person" itemprop="author">
+                      
+                      <div class="author-photo">
+                        <img itemprop="image" src="/assets/images/authors/urko.png" alt="">
+                      </div>
+                      <div>
+                        <span class="post-author" itemprop="name">Urko Lekuona</span>
+                      </div>
+                      <div>
+                        <span class="post-date">21 Apr 2020</span>
+                      </div>
+                    </div>
+                    <meta  itemprop="datePublished dateModified" content="21 Apr 2020" />
+                </div>
+              </div>
+            </div>
+          </header>
+          <div class="wrapper">
+            <div class="post-content" itemprop="articleBody">
+              <p>When writing a Dockerfile, the possibilities are endless. You can create images for the same purpose, that work similarly, but are structured in a very different way. Beginning by choosing a starting image (FROM), going through the order of the commands we execute when building the image, or creating intermediate images (<em>multistage builds</em>), writing a Dockerfile is another world.</p>
+
+<p>This document contains some of the most important guidelines that need to be followed in order to optimize the time it takes to create the image, as well as its security and the space it takes up.</p>
+
+<h3 id="1-command-order-matters">1. Command order matters</h3>
+
+<p>Due to the way the cache works when building an image, Docker is able to detect if the command we want to execute has been executed before or not (in a previous <em>build</em>) and reuse the result from the cache to do it faster. The problem is that, if one of the commands has changed, the commands that follow it cannot be removed from cache because some of them may have been affected and the result may be different.</p>
+
+<p>This is why it is recommended to order the commands according to how often they have to be changed. If we were creating an image that contains an application, for example, the most common modifications would be those of the code, followed by the resources and finally the dependencies. So we should sort them in ascending order to make sure we optimize cache usage.</p>
+
+<h3 id="2-layer-the-commands-together">2. Layer the commands together</h3>
+
+<p>In a Dockerfile, each command represents a layer of the final image. It is important to bring together the layers that share the same logic (installing dependencies, for example) to improve the use of cache and to make the Dockerfile more maintainable.</p>
+
+<p>However, we should bear in mind that, if we perform too many actions in the same command, if at any time we want to change something in the command, the cache will no longer work and we will have to go back and totally rerun it. Therefore, it is important to study each scenario and evaluate the best way to do it.</p>
+
+<p><strong>WRONG</strong> ❌</p>
+<pre><code class="language-Dockerfile">FROM ubuntu
+RUN apt update &amp;&amp; apt install openjdk-8-jdk -y
+RUN apt update &amp;&amp; apt install vim -y
+</code></pre>
+<p><strong>GOOD</strong> ✅</p>
+<pre><code class="language-Dockerfile">FROM ubuntu
+RUN apt update &amp;&amp; apt install openjdk-8-jdk vim -y
+</code></pre>
+
+<h3 id="3-delete-the-cache-you-do-not-need">3. Delete the cache you do not need</h3>
+
+<p>Cache is good, yes, but which one? We have to understand that when building an image there are two types of cache: 1. that which is generated by Docker with the layers of our image and 2. that generated by our commands within the image itself. The first is good for improving build time, but the second probably is not.</p>
+
+<p>The second type of cache is usually generated when installing dependencies or during the process of compiling an application, and it is very unlikely that you will use it and most probably it is only taking up space.</p>
+
+<p>Look at the last line of the following Dockerfile:</p>
+<pre><code class="language-Dockerfile">FROM maven:3.6.3-jdk-11
+ENTRYPOINT ["java", "-jar", "target/*.jar"]
+COPY pom.xml .
+COPY src ./src
+RUN mvn -e -B clean package &amp;&amp; rm -rf /root/.m2
+</code></pre>
+
+<p>It is important to point out that, in order to delete a file from the image, it is necessary that the file be created and deleted in the same command. If done in different commands, the file will appear to have disappeared, but it will still be in the <em>layer</em> in which we created it and it will continue consuming space.</p>
+
+<p>This file still exists:</p>
+<pre><code class="language-Dockerfile">FROM busybox
+RUN touch a
+RUN rm a
+</code></pre>
+
+<p>This one does not:</p>
+<pre><code class="language-Dockerfile">FROM busybox
+RUN touch a &amp;&amp; rm a
+</code></pre>
+
+<p>If the objective is to reduce the space occupied by the final image and we cannot eliminate this type of file in the same command in which we created it, we can use the <code class="highlighter-rouge">--squash</code> option when creating the image, to join all the layers into one where we would then delete the file. But beware! The <code class="highlighter-rouge">--squash</code> option has more implications, such as deleting the image history, so use it only when strictly necessary.</p>
+
+<h3 id="4-choose-the-base-image-well">4. Choose the base image well</h3>
+
+<p>When choosing an image to start from, the first thing we may do is to take an image that has nothing but the basics (an operating system) and install everything we need on it. This may work, but much better in terms of security, maintainability and space, is to use an image from a trusted provider who has already done so.</p>
+
+<p>For example, suppose we need an image with Python 3.6 installed. We could use <code class="highlighter-rouge">alpine</code> as a base and install Python with the package manager, or use the <code class="highlighter-rouge">python: 3.6-alpine</code> image, which already has Python installed and is maintained by Python developers (in addition to other things).</p>
+
+<p>The exponent that best achieves this may be <a href="https://github.com/GoogleContainerTools/distroless" target="_blank">Google Distroless Docker Images</a>, which is a base image that only contains the necessary dependencies to run your application, eliminating all other elements (such as package managers, shells, and other commands), therefore reducing the attack surface of our containers. These images are specific to each language and the one you need may not be supported, but if it is, you will not find a more secure image from which to start.</p>
+
+<h3 id="5-specify-the-version-of-the-base-image">5. Specify the version of the base image</h3>
+
+<p>If you have noticed, when choosing the Python image, we have used a <em>tag</em>. This is also important. For an image to be reproducible, we must choose a <em>tag</em> for that image so that we know it will not change over time (<em>tag</em>s like <code class="highlighter-rouge">latest</code> or<code class="highlighter-rouge"> slim</code> do change, watch out!).</p>
+
+<p>Actually, there is no guarantee that a <em>tag</em> we choose will always stay the same, regardless of whether it is a generic one like <code class="highlighter-rouge">latest</code> or a specific one like <code class="highlighter-rouge">3.6.8-alpine-slim</code>. The best practice of all would be to choose the specific version of an image that we want to use, and use its identifier. This identifier can be obtained with the command:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker images --format "{{.Repository}}:{{.Tag}} {{.ID}}"
+</code></pre></div></div>
+
+<p>For example, if I wanted the identifier of the <code class="highlighter-rouge">busybox</code> image I just added to my local registry, I run:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ docker images --format "{{.Repository}}:{{.Tag}} {{.ID}}" |grep busybox
+busybox:latest 83aa35aa1c79
+</code></pre></div></div>
+
+<p>Now, I could use the identifier as <code class="highlighter-rouge">FROM</code> of my Dockerfile:</p>
+
+<pre><code class="language-Dockerfile">FROM 83aa35aa1c79
+CMD ["echo", "Hello!"]
+</code></pre>
+
+<h3 id="6-the-potential-of-multistage-builds">6. The potential of <em>multistage build</em>s</h3>
+
+<p>When we create an image, we can generate intermediate images that we use for a specific purpose (such as generating an artifact) and that end up being eliminated and are not part of the final image (although the artifact that we have generated is). This is called <em>multistage build</em>, and is very useful in cases where we have to compile an application, for example.</p>
+
+<p>Using <em>multistage builds</em> will make our final image lighter, and probably more secure. Notice how in the following Dockerfile we compile the application in an image which ends up not being used, and generate a JAR that we execute in the final image where we have neither JDK nor Maven.</p>
+
+<pre><code class="language-Dockerfile">FROM maven:3.6.3-jdk-11 as builder
+WORKDIR /app
+COPY pom.xml .
+RUN mvn -e -B dependency:go-offline
+COPY src ./src
+RUN mvn -e -B clean package
+
+FROM adoptopenjdk:8u242-b08-jre-hotspot
+COPY --from=builder /app/target/*.jar /app.jar
+ENTRYPOINT ["java", "-jar", "/app.jar"]
+</code></pre>
+
+<h3 id="7-user-without-privileges">7. User without privileges</h3>
+
+<p>It is considered good practice in a Dockerfile to modify the end user of the image to one that has the right privileges to fulfil the purpose of the image and nothing more. This will make our image more secure and prevent an administrator user in the container from gaining access to the <em>host</em>.</p>
+
+<p>To do this, it is best to add a new user (and a group) and give them the permissions they need. For example:</p>
+
+<pre><code class="language-Dockerfile">FROM ubuntu
+RUN groupadd -r usergroup &amp;&amp; useradd -r -g user usergroup
+ENTRYPOINT ["sh", "myScript.sh"]
+COPY ./myScript.sh /myScript.sh
+RUN chown user /myScript.sh
+USER user
+</code></pre>
+
+<h3 id="8-keep-your-secrets-hidden">8. Keep your secrets hidden</h3>
+
+<p>It is very common that in an image, we need to use credentials, access <em>token</em>s or files with information that we do not want to share. If we pass these elements to the image using commands such as <code class="highlighter-rouge">COPY</code> or<code class="highlighter-rouge"> ADD</code>, they will be visible in the image and anyone who has access to it will be able to see them.</p>
+
+<p>There is a way to add this information to our containers, called <code class="highlighter-rouge">docker secret</code>. The way to implement it is a bit complicated to explain in this document, since it depends on the way you are going to deploy the image (<code class="highlighter-rouge">docker-compose</code>,<code class="highlighter-rouge"> kubernetes</code>, …). <a href="https://dzone.com/articles/introduction-to-docker-secrets">Introduction to Docker Secrets</a> or <a href="https://kubernetes.io/docs/tasks/inject-data-application/distribute-credentials-secure/" target="_blank">Distribute Credentials Securely Using Secrets</a> could be a good starting point.</p>
+
+<h3 id="9-copy-only-what-you-need">9. Copy only what you need</h3>
+
+<p>The image we generate should only and exclusively contain the files needed. It is common to see commands like <code class="highlighter-rouge">COPY . /app</code>, which will copy the entire context to the <code class="highlighter-rouge">/app</code> directory. This may not be bad, depending on the context and what we intend to do, but in many cases we may be copying files that we are not going to use or that have confidential information.</p>
+
+<p>There are two ways to avoid this:</p>
+<ol>
+  <li>Copy only the files that we are going to use, although if there are a lot and we do not have them structured in directories, it could create too many <em>layer</em>s.</li>
+  <li>Use <code class="highlighter-rouge">.dockerignore</code>. In this file with the same syntax as <code class="highlighter-rouge">.gitignore</code> we can decide which files or directories we want to avoid adding to the context. <a href="https://docs.docker.com/engine/reference/builder/#dockerignore-file" target="_blank">More information</a>.</li>
+</ol>
+
+<h3 id="10-copy-do-not-add">10. Copy, do not add</h3>
+
+<p>There are two very similar commands in Dockerfile: <code class="highlighter-rouge">COPY</code> and <code class="highlighter-rouge">ADD</code>. The first is used to copy a series of files or directories from the <em>host</em> to the image. The second one does the same, but it is also capable of downloading elements from URLs or repositories and decompressing compressed files. For more information on <code class="highlighter-rouge">ADD</code>, see <a href="https://docs.docker.com/engine/reference/builder/#add" target="_blank">the documentation</a>.</p>
+
+<p>It may be that seeing as they do the same and <code class="highlighter-rouge">ADD</code> is more powerful, you want to use only this, but you should avoid it. Use <code class="highlighter-rouge">COPY</code> for most situations, which will be copying from the <em>host</em>, and only use <code class="highlighter-rouge">ADD</code> when you need something you cannot achieve with <code class="highlighter-rouge">COPY</code>. Using <code class="highlighter-rouge">ADD</code> without regard for the difference may carry security risks such as <a href="https://en.wikipedia.org/wiki/Zip_bomb" target="_blank"><em>zip bomb</em>s</a>.</p>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>Although writing a Dockerfile may seem simple, it is important to follow certain recommendations that will make our <em>building</em> process run faster and make the resulting image smaller and more secure.</p>
+
+<p>In this article we have reviewed some of the most important points, which at the same time, in most cases, are very easy to follow. You can find more tips like these in the <a href="https://docs.docker.com/develop/develop-images/dockerfile_best-practices/" target="_blank">official documentation</a>.</p>
+
+            </div>
+
+            
+          </div>
+        </article>
+      </div>
+    </main>
+
+    <footer>
+    <div class="wrapper">
+        <div class="footer__container">
+            <div class="footer__sello">
+                <img src="/assets/images/arima_sello_white.png" alt="" />
+            </div>
+            <div class="footer__content">
+                <div class="footer__data">
+                    <dl>
+                        <dt>web</dt>
+                        <dd><a itemprop="sameAs" href="https://www.arima.eu/en/">arima.eu</a></dd>
+                    </dl>
+                    <dl>
+                        <dt>social</dt>
+                        <dd>
+                            <a itemprop="sameAs" href="https://github.com/wearearima" class="social"><span class="icon-github"></span></a>
+                            <a itemprop="sameAs" href="https://twitter.com/wearearima" class="social"><span class="icon-twitter"></span></a>
+                            <a itemprop="sameAs" href="https://www.linkedin.com/company/arima-software-design/" class="social"><span class="icon-linkedin"></span></a>
+                            <a itemprop="sameAs" href="/en/feed.xml" class="social"><span class="icon-feed"></span></a>
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt>Privacy</dt>
+                        <dd class="politica-cookies">
+                            <a href="/en/cookies.html">Cookies Policy</a>
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+    <div class="cookies-message" id="cookies-message">
+    <h4>This website uses cookies</h4>
+    <p>This website uses cookies to improve user experience. By continuing to browse this website, you agree to the use of cookies as stated in our Cookies Policy.</p>
+    <div class="buttons">
+        <a class="button" href="/en/cookies.html">Read Cookies Policy</a>
+        <button class="button" id="accept-cookies">Accept</button>
+    </div>
+</div>
+<script>
+    (function() {
+        if(localStorage) {
+            var cookiesAccepted = localStorage.getItem("cookies-accepted");
+            if(cookiesAccepted) {
+                hideCookiesMessage();
+                
+            } else {
+                document.getElementById('accept-cookies').addEventListener("click", function() {
+                    hideCookiesMessage();
+                    localStorage.setItem("cookies-accepted", true);
+                })
+            }
+        }
+        function hideCookiesMessage() {
+            document.getElementById('cookies-message').style.display = "none";
+        }
+    })();
+</script>
+
+  </body>
+
+</html>

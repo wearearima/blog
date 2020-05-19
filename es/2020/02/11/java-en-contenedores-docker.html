@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="es" itemscope itemtype="http://schema.org/Blog">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>¿Es viable ejecutar Java en contenedores Docker?</title>
+  <meta name="description" content="En nuestro alrededor existen muchas empresas que llevan años trabajando sobre Java utilizando un stack tecnológico tradicional (Spring, Tomcat, Weblogic, JPA...">
+  
+  <meta name="keywords" content="docker,containers,java,contenedores">
+  
+
+  <!-- Twitter cards -->
+  <meta name="twitter:site"    content="@wearearima">
+  <meta name="twitter:creator" content="@telle">
+  <meta name="twitter:title"   content="¿Es viable ejecutar Java en contenedores Docker?">
+
+  
+  <meta name="twitter:description" content="">
+  
+
+  
+  <meta name="twitter:card"  content="summary_large_image">
+  <meta name="twitter:image" content="https://blog.arima.eu/assets/images/2020-02-11-java-en-contenedores-docker/fondo-cafe-min.jpg">
+  
+  <!-- end of Twitter cards -->
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="https://blog.arima.eu/es/2020/02/11/java-en-contenedores-docker.html">
+  <link rel="alternate" type="application/rss+xml" title="ARIMA" href="/es/feed.xml">
+
+  <!-- SEO Recipes (http://polyglot.untra.io/seo/) -->
+  <meta http-equiv="Content-Language" content="es">
+  <link rel="alternate"
+      hreflang="es"
+      href="https://blog.arima.eu/es/2020/02/11/java-en-contenedores-docker.html" />
+  
+  
+  <link rel="alternate"
+      hreflang="es"
+      href="https://blog.arima.eu/es/2020/02/11/java-en-contenedores-docker.html" />
+  
+  
+  <link rel="alternate"
+      hreflang="en"
+      href="https://blog.arima.eu/en/2020/02/11/java-en-contenedores-docker.html" />
+  
+
+  
+</head>
+
+  <body>
+    <nav class="toolbar">
+    <div class="wrapper">    
+        <a href="/es/">
+            <div class="toolbar__logo">
+                <svg xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" version="1.1" width="100%" height="100%" viewBox="0 0 33 6">
+    <path id="path24" d="m30.346988508615652,-0.000015174522529526127 l-0.6439224998849951,0 l-2.7763635316117727,6.135695064030662 l0.7050150612484405,0 l2.3859233880279893,-5.335002838884215 l2.3660424189063254,5.335002838884215 l0.739668694925785,0 L30.346988508615652,-0.000015174522529526127 zm-8.274141805179609,3.3681675186951847 l-2.2194202716340565,-3.324608867598761 l-0.6962481061149294,0 l0,6.092136412934239 l0.6700853029999622,0 l0,-4.926062349034439 l2.2194202716340565,3.2553706313868567 l0.034929758248478535,0 l2.2192131782057056,-3.2639304930920168 l0,4.934622210739599 l0.6873430886958508,0 l0,-6.092136412934239 l-0.6961100438293623,0 l-2.2192131782057056,3.324608867598761 zm-9.143036799396208,-1.5057072863948877 c0,-1.0964906719739773 -0.8613705996531913,-1.8189015812038738 -2.201748299081466,-1.8189015812038738 l-2.619662837493104,0 l0,6.092136412934239 l0.6876192132669849,0 l0,-5.456842805897188 l1.8799251114245357,0 c0.9833486289517317,0 1.5576187057681203,0.4525681720889824 1.5576187057681203,1.2097017461390067 c0,0.7919252700129356 -0.7831583148794242,1.2620273523689407 -1.6968545207625496,1.2620273523689407 l0,0.6178287279128115 l1.7665759749739396,2.3672849794764295 l0.8442508762428699,0 l-1.8711581562910244,-2.4891249464894027 c0.9571858258367647,-0.17416557324290774 1.6534339319516944,-0.7659695603263191 1.6534339319516944,-1.7841098852409623 m2.7743616284710493,4.273234831730365 l0.6872050264102838,0 l0,-6.0920673817914555 l-0.6872050264102838,0 l0,6.0920673817914555 zM2.7761571742923965,-0.000015174522529526127 l-2.7761564381834223,6.135695064030662 l0.7048769989628736,0 l2.386061450313556,-5.335002838884215 l2.3658353254779745,5.335002838884215 l0.739668694925785,0 l-2.7761564381834223,-6.135695064030662 l-0.6441295933133457,0 z" stroke-width="0"/>
+</svg>
+
+            </div>
+        </a>
+        <!-- Language selector -->
+        <div class="language-selector">
+            
+              
+                <b class="selected">ES</b>
+              
+              
+                &nbsp;|&nbsp;
+              
+            
+              
+                <a class="unselected" href="/en/2020/02/11/java-en-contenedores-docker.html">EN</a>
+              
+              
+            
+         </div>
+    </div>
+</nav>
+<div id="publisher_id" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Arima 100% Software Design" />
+    <meta itemprop="url" content="https://arima.eu" />
+    <div itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+        <meta itemprop="url" content="https://arima.eu/img/logo.png" />
+    </div>
+</div>
+    <main aria-label="Content">        
+        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting" itemref="publisher_id">
+          <link itemprop="mainEntityOfPage" href="/es/2020/02/11/java-en-contenedores-docker.html" />
+
+          <header class="post-header">
+            <div class="post-img" itemprop="image" itemscope itemtype="http://schema.org/ImageObject" style="background-image: url('https://blog.arima.eu/assets/images/2020-02-11-java-en-contenedores-docker/fondo-cafe-min.jpg');">
+              <meta itemprop="url" content="https://blog.arima.eu/assets/images/2020-02-11-java-en-contenedores-docker/fondo-cafe-min.jpg" />
+            </div>
+            <div class="wrapper">
+              <div class="post-info__container">
+                <div class="post-info">
+                  <h1 class="post-title" itemprop="name headline">¿Es viable ejecutar Java en contenedores Docker?</h1>
+                    <div class="post-meta" itemscope itemtype="https://schema.org/Person" itemprop="author">
+                      
+                      <div class="author-photo">
+                        <img itemprop="image" src="/assets/images/authors/telle.png" alt="">
+                      </div>
+                      <div>
+                        <span class="post-author" itemprop="name">Iñigo Telleria</span>
+                      </div>
+                      <div>
+                        <span class="post-date">11 Feb 2020</span>
+                      </div>
+                    </div>
+                    <meta  itemprop="datePublished dateModified" content="11 Feb 2020" />
+                </div>
+              </div>
+            </div>
+          </header>
+          <div class="wrapper">
+            <div class="post-content" itemprop="articleBody">
+              <p>En nuestro alrededor existen muchas empresas que llevan años trabajando sobre Java utilizando un stack tecnológico tradicional (Spring, Tomcat, Weblogic, JPA, etc). Esta infraestructura ha sido bastante estable en el tiempo y ha sufrido pocos cambios.</p>
+
+<p>Sin embargo, reciemente han surgido nuevas infraestructuras cloud basadas en Kubernetes (<a href="https://azure.microsoft.com/en-us/free/kubernetes-service/" target="_blank">Azure</a>, <a href="https://www.redhat.com/es/technologies/cloud-computing/openshift" target="_blank">Openshift</a>, <a href="https://aws.amazon.com/es/eks/" target="_blank">Amazon EKS</a>, etc) y estas empresas ahora se encuentran en proceso de evaluación o transición a Kubernetes. En este proceso, surgen dudas y se cuestiona por ejemplo, si el stack tecnológico empleado hasta ahora sigue siendo valido en estos nuevos entornos  cloud.</p>
+
+<p>En estos casos, como suele ser habitual, solemos echar mano de Google para consultar cómo es la transición de los proyectos Java a Kubernetes. Sorprendentemente nos encontramos artículos y presentaciones que nos pueden asustar a dar el salto a Kubernetes. Por ejemplo, <a href="https://jaxenter.com/nobody-puts-java-container-139373.html" target="_blank">Nobody puts Java in a container</a> o <a href="https://vimeo.com/181900266" target="_blank">Nobody puts Java in the container</a>.</p>
+
+<p><img src="/assets/images/2020-02-11-java-en-contenedores-docker/no-body-puts-java-in-a-container.png" alt="Nobody puts java in containers" /></p>
+
+<p>Visto esto, a todos nos viene la misma pregunta a la cabeza: ¿es viable ejecutar Java en contenedores Docker?</p>
+
+<h2 id="java-ergonomics">Java Ergonomics</h2>
+
+<p>La plataforma Java se creó en el año 1995 y un poco más tarde vinieron los servidores web y servidores de aplicación para desarrollar aplicaciones Web sobre Java. En aquel entonces no existía el concepto de <a href="https://www.docker.com/resources/what-container" target="_blank">contenedor</a> ni tampoco el movimiento <a href="https://www.cncf.io/" target="_blank">cloud native</a>. Lo habitual era que el servidor de aplicaciones Java se ejecutara en una máquina dedicada y en dicho servidor se desplegaban múltiples aplicaciones Web (wars o ears).</p>
+
+<p align="center">
+    <img src="/assets/images/2020-02-11-java-en-contenedores-docker/servidor-java-ee.png" />
+</p>
+
+<p>Java fue diseñado para ejecutarse sobre este tipo de infraestructuras, una única JVM en un servidor. En base a esto, la JVM ejecuta el proceso <a href="https://docs.oracle.com/javase/8/docs/technotes/guides/vm/gctuning/ergonomics.html" target="_blank">Java Ergonomics</a> que calcula los parámetros de configuración de JVM en función de los recursos HW disponibles en la máquina. Por ejemplo, Java Ergonomics establece el tamaño de heap máximo de JVM como la cuarta parte de la RAM del servidor. Es decir, en un servidor con 64GB de RAM el tamaño máximo del Heap es 16GB por defecto.</p>
+
+<p>Todo bien hasta ahora. Un servidor para cada JVM y Java Ergonomics configura la JVM en base a los recursos del servidor. Pero, ¿qué ocurre si ejecutamos Java Ergonomics en un contenedor Docker?</p>
+
+<h2 id="primeras-experiencias-de-java-en-docker">Primeras experiencias de Java en Docker</h2>
+
+<p>Cuando ejecutamos una aplicación Java en un contenedor, nos interesa que Java Ergonomics calcule los parámetros de JVM en función de los recursos del propio contenedor. Por ejemplo, si arrancamos un contenedor con 4GB de memoria, esperamos que Java Ergonomics establezca 1GB de heap máximo.</p>
+
+<p>Sin embargo, las primeras experiencias de Java en contenedores demostraron que eso no era así. Java Ergonomics continuaba configurando la JVM en base a los recursos del servidor en lugar de los recursos del contenedor. Es decir, si el servidor tiene 64GB de RAM, se establecía 16 GB de heap máximo, en lugar de 1GB que se esperaba. Esto hacía que al escalar una aplicación, por ejemplo a 5 contenedores, se agotara toda la memoria del servidor porque la suma del heap de todos los containers superaba la memoria del servidor (16GB * 5 &gt; 64GB).</p>
+
+<p>La manera de solventar esto consistía en utilizar los flags de configuración de Java Ergonomics (-Xmx, -Xms, etc), pero algunos se dieron cuenta demasiado tarde, cuando la aplicación que tenían en producción estaba sufriendo caídas y problemas de memoria OOMKilled. Este tipo de problemas motivaron los artículos antes citados que advertían del riesgo que implicaba ejecutar Java en contenedores.</p>
+
+<h2 id="java-container-aware">Java Container Aware</h2>
+
+<p>Conocidos los problemas de Java Ergonomics con los contenedores Docker, <a href="https://blogs.oracle.com/java-platform-group/java-se-support-for-docker-cpu-and-memory-limits" target="_blank">Oracle reaccionó</a> e implementó un soporte de contenedores experimental en las versiones Java 8u131 y Java 9. Sin embargo, este soporte experimental tenía carencias que finalmente fueron resueltas en las versiones Java 8u191 y Java 10.</p>
+
+<p>A partir de estas versiones, Java Ergonomics calcula automáticamente la configuración de JVM en base a los recursos del contenedor. Si queréis probar las diferencias entre versiones diferentes de Java en contenedores, podéis jugar con este <a href="https://github.com/wearearima/docker-java-cpu-memory-limit" target="_blank">repositorio</a>.</p>
+
+<p>Asimismo, también se añadieron nuevas opciones de configuración en la JVM para ajustar mejor la configuración del heap en un contenedor: <code class="highlighter-rouge">InitialRAMPercentage</code>, <code class="highlighter-rouge">MaxRAMPercentage</code> y <code class="highlighter-rouge">MinRAMPercentage</code>.</p>
+
+<p>Con todos estos cambios, ya se considera que <strong>Java es Container Aware a partir de las versiones Java 8u191 y Java 10</strong>.</p>
+
+<h2 id="conclusiones">Conclusiones</h2>
+
+<p>Cuando se creó Java en 1995 nadie se imaginaba que surgirían las tecnologías Docker, Kubernetes, etc. Entonces, ¿es viable ejecutar Java en contenedores?</p>
+
+<p>La respuesta es que sí. La comunidad Java está reaccionando y se está adaptando a los cambios que suponen estas nuevas tecnologías cloud y contenedores. Uno de los primeros obstáculos fue solventar la compatibilidad entre Java Ergonomics y los contendores. Ese escollo ya está resuelto con las versiones superiores de Java y no nos tendremos que volver a preocupar.</p>
+
+<p>De todos modos, hay otros aspectos de la plataforma Java como puede ser el peso de la máquina virtual que la comunidad está tratando de mejorar. En este sentido, también hay mucho movimiento y están surgiendo nuevas herramientas y frameworks que hay que vigilar (<a href="https://www.graalvm.org/docs/reference-manual/native-image/" target="_blank">Graal Native Image</a>, <a href="https://micronaut.io/" target="_blank">Micronaut</a>, <a href="https://quarkus.io/" target="_blank">Quarkus</a>, etc).</p>
+
+            </div>
+
+            
+          </div>
+        </article>
+      </div>
+    </main>
+
+    <footer>
+    <div class="wrapper">
+        <div class="footer__container">
+            <div class="footer__sello">
+                <img src="/assets/images/arima_sello_white.png" alt="" />
+            </div>
+            <div class="footer__content">
+                <div class="footer__data">
+                    <dl>
+                        <dt>web</dt>
+                        <dd><a itemprop="sameAs" href="https://www.arima.eu/es/">arima.eu</a></dd>
+                    </dl>
+                    <dl>
+                        <dt>social</dt>
+                        <dd>
+                            <a itemprop="sameAs" href="https://github.com/wearearima" class="social"><span class="icon-github"></span></a>
+                            <a itemprop="sameAs" href="https://twitter.com/wearearima" class="social"><span class="icon-twitter"></span></a>
+                            <a itemprop="sameAs" href="https://www.linkedin.com/company/arima-software-design/" class="social"><span class="icon-linkedin"></span></a>
+                            <a itemprop="sameAs" href="/es/feed.xml" class="social"><span class="icon-feed"></span></a>
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt>Privacidad</dt>
+                        <dd class="politica-cookies">
+                            <a href="/es/cookies.html">Política de cookies</a>
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+    <div class="cookies-message" id="cookies-message">
+    <h4>Este sitio web utiliza cookies</h4>
+    <p>Este sitio web utiliza cookies para mejorar la experiencia del usuario. Al utilizar nuestro sitio web, usted acepta todas las cookies de acuerdo con nuestra Política de cookies.</p>
+    <div class="buttons">
+        <a class="button" href="/es/cookies.html">Leer política de cookies</a>
+        <button class="button" id="accept-cookies">Aceptar</button>
+    </div>
+</div>
+<script>
+    (function() {
+        if(localStorage) {
+            var cookiesAccepted = localStorage.getItem("cookies-accepted");
+            if(cookiesAccepted) {
+                hideCookiesMessage();
+                
+            } else {
+                document.getElementById('accept-cookies').addEventListener("click", function() {
+                    hideCookiesMessage();
+                    localStorage.setItem("cookies-accepted", true);
+                })
+            }
+        }
+        function hideCookiesMessage() {
+            document.getElementById('cookies-message').style.display = "none";
+        }
+    })();
+</script>
+
+  </body>
+
+</html>

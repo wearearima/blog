@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="es" itemscope itemtype="http://schema.org/Blog">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Utilizando el estándar OAuth2 de forma segura</title>
+  <meta name="description" content="El estándar OAuth2 es tan conocido como complejo. El hecho de que sea un estándar en evolución y el exceso de información disponible, hace que sea muy fácil ...">
+  
+  <meta name="keywords" content="autenticación,oauth,oauth2,resourceownerpasswordcredentials,authorizationcode,implicit,silentrefresh">
+  
+
+  <!-- Twitter cards -->
+  <meta name="twitter:site"    content="@wearearima">
+  <meta name="twitter:creator" content="@aritz">
+  <meta name="twitter:title"   content="Utilizando el estándar OAuth2 de forma segura">
+
+  
+  <meta name="twitter:description" content="">
+  
+
+  
+  <meta name="twitter:card"  content="summary_large_image">
+  <meta name="twitter:image" content="https://blog.arima.eu/assets/images/2020-01-27-oauth2/kai-pilger-1k3vsv7iIIc-unsplash.png">
+  
+  <!-- end of Twitter cards -->
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="https://blog.arima.eu/2020/01/27/oauth2.html">
+  <link rel="alternate" type="application/rss+xml" title="ARIMA" href="/feed.xml">
+
+  <!-- SEO Recipes (http://polyglot.untra.io/seo/) -->
+  <meta http-equiv="Content-Language" content="es">
+  <link rel="alternate"
+      hreflang="es"
+      href="https://blog.arima.eu/2020/01/27/oauth2.html" />
+  
+  
+  <link rel="alternate"
+      hreflang="es"
+      href="https://blog.arima.eu/es/2020/01/27/oauth2.html" />
+  
+  
+  <link rel="alternate"
+      hreflang="en"
+      href="https://blog.arima.eu/en/2020/01/27/oauth2.html" />
+  
+
+  
+</head>
+
+  <body>
+    <nav class="toolbar">
+    <div class="wrapper">    
+        <a href="/">
+            <div class="toolbar__logo">
+                <svg xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" version="1.1" width="100%" height="100%" viewBox="0 0 33 6">
+    <path id="path24" d="m30.346988508615652,-0.000015174522529526127 l-0.6439224998849951,0 l-2.7763635316117727,6.135695064030662 l0.7050150612484405,0 l2.3859233880279893,-5.335002838884215 l2.3660424189063254,5.335002838884215 l0.739668694925785,0 L30.346988508615652,-0.000015174522529526127 zm-8.274141805179609,3.3681675186951847 l-2.2194202716340565,-3.324608867598761 l-0.6962481061149294,0 l0,6.092136412934239 l0.6700853029999622,0 l0,-4.926062349034439 l2.2194202716340565,3.2553706313868567 l0.034929758248478535,0 l2.2192131782057056,-3.2639304930920168 l0,4.934622210739599 l0.6873430886958508,0 l0,-6.092136412934239 l-0.6961100438293623,0 l-2.2192131782057056,3.324608867598761 zm-9.143036799396208,-1.5057072863948877 c0,-1.0964906719739773 -0.8613705996531913,-1.8189015812038738 -2.201748299081466,-1.8189015812038738 l-2.619662837493104,0 l0,6.092136412934239 l0.6876192132669849,0 l0,-5.456842805897188 l1.8799251114245357,0 c0.9833486289517317,0 1.5576187057681203,0.4525681720889824 1.5576187057681203,1.2097017461390067 c0,0.7919252700129356 -0.7831583148794242,1.2620273523689407 -1.6968545207625496,1.2620273523689407 l0,0.6178287279128115 l1.7665759749739396,2.3672849794764295 l0.8442508762428699,0 l-1.8711581562910244,-2.4891249464894027 c0.9571858258367647,-0.17416557324290774 1.6534339319516944,-0.7659695603263191 1.6534339319516944,-1.7841098852409623 m2.7743616284710493,4.273234831730365 l0.6872050264102838,0 l0,-6.0920673817914555 l-0.6872050264102838,0 l0,6.0920673817914555 zM2.7761571742923965,-0.000015174522529526127 l-2.7761564381834223,6.135695064030662 l0.7048769989628736,0 l2.386061450313556,-5.335002838884215 l2.3658353254779745,5.335002838884215 l0.739668694925785,0 l-2.7761564381834223,-6.135695064030662 l-0.6441295933133457,0 z" stroke-width="0"/>
+</svg>
+
+            </div>
+        </a>
+        <!-- Language selector -->
+        <div class="language-selector">
+            
+              
+                <b class="selected">ES</b>
+              
+              
+                &nbsp;|&nbsp;
+              
+            
+              
+                <a class="unselected" href="/en/2020/01/27/oauth2.html">EN</a>
+              
+              
+            
+         </div>
+    </div>
+</nav>
+<div id="publisher_id" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Arima 100% Software Design" />
+    <meta itemprop="url" content="https://arima.eu" />
+    <div itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+        <meta itemprop="url" content="https://arima.eu/img/logo.png" />
+    </div>
+</div>
+    <main aria-label="Content">        
+        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting" itemref="publisher_id">
+          <link itemprop="mainEntityOfPage" href="/2020/01/27/oauth2.html" />
+
+          <header class="post-header">
+            <div class="post-img" itemprop="image" itemscope itemtype="http://schema.org/ImageObject" style="background-image: url('https://blog.arima.eu/assets/images/2020-01-27-oauth2/kai-pilger-1k3vsv7iIIc-unsplash.png');">
+              <meta itemprop="url" content="https://blog.arima.eu/assets/images/2020-01-27-oauth2/kai-pilger-1k3vsv7iIIc-unsplash.png" />
+            </div>
+            <div class="wrapper">
+              <div class="post-info__container">
+                <div class="post-info">
+                  <h1 class="post-title" itemprop="name headline">Utilizando el estándar OAuth2 de forma segura</h1>
+                    <div class="post-meta" itemscope itemtype="https://schema.org/Person" itemprop="author">
+                      
+                      <div class="author-photo">
+                        <img itemprop="image" src="/assets/images/authors/aritz.png" alt="">
+                      </div>
+                      <div>
+                        <span class="post-author" itemprop="name">Aritz Berasarte</span>
+                      </div>
+                      <div>
+                        <span class="post-date">27 Jan 2020</span>
+                      </div>
+                    </div>
+                    <meta  itemprop="datePublished dateModified" content="27 Jan 2020" />
+                </div>
+              </div>
+            </div>
+          </header>
+          <div class="wrapper">
+            <div class="post-content" itemprop="articleBody">
+              <p>El estándar OAuth2 es tan conocido como complejo. El hecho de que sea un estándar en evolución y el exceso de información disponible, hace que sea muy fácil encontrar artículos con información contradictoria o que se recomiende el uso de flujos que actualmente se consideran “legacy” por motivos de seguridad.</p>
+
+<p>En este artículo, haremos un repaso de los flujos que componen OAuth2 y recomendaremos los flujos a utilizar para cubrir distintos escenarios. Pero antes, empecemos desde el principio.</p>
+
+<h2 id="qué-demonios-es-oauth-y-por-qué-debería-importarme">¿Qué demonios es OAuth y por qué debería importarme?</h2>
+<p>Como estas cosas se entienden mejor con un ejemplo, vamos a ponernos en situación y pensar que queremos desarrollar una aplicación web que gestiona fotos. Como sabemos que muchos de nuestros usuarios potenciales utilizan Google Photos para almacenar y gestionar sus álbumes de fotos, vemos interesante que nuestra aplicación pueda conectarse con Google para obtener los álbumes del usuario que está utilizando nuestra aplicación. Investigamos un poco y vemos que Google <a href="https://developers.google.com/photos/library/reference/rest/v1/albums/list" target="_blank">ofrece una API para obtener el listado de álbumes de un usuario</a> así que todo parece encajar a la perfección.</p>
+
+<p>Evidentemente, el servicio de Google Photos no es público y requiere que el usuario final esté autenticado de alguna forma.</p>
+
+<h3 id="cómo-podemos-conseguir-esto">¿Cómo podemos conseguir esto?</h3>
+<p>Una opción podría ser que ese usuario introdujera sus credenciales de Google (usuario y password) en nuestra aplicación, de forma que nuestra aplicación pudiera autenticarse contra Google en nombre de ese usuario y de esta manera, obtener sus álbumes. Esto no tendría mucho sentido ya que estaríamos entregando a la aplicación la llave de nuestra cuenta de Google y además de los álbumes, podría acceder a todo tipo de información o realizar cualquier acción en nuestro nombre.</p>
+
+<p>Necesitamos por tanto, un sistema que permita otorgar acceso a cierta información por parte de aplicaciones de terceros pero indicando explícitamente qué acciones se van a poder realizar en nuestro nombre y sin tener que entregar para ello nuestras crendenciales. El estándar OAuth nace precisamente para dar respuesta a esta necesidad. El primer borrador de OAuth fué publicado en 2007 y fué desarrollado principalmente por gente de Twitter y Google. En abril de 2010 se publicó la <a href="https://tools.ietf.org/html/rfc5849" target="_blank">versión 1.0 del protocolo OAuth.</a></p>
+
+<p>Retomando el ejemplo anterior, si implementásemos la aplicación de gestión de fotos utilizando OAuth, veríamos que cuando nuestra aplicación necesitase acceder a la API que devuelve el listado de álbumes que el usario en curso tiene en Google Photos, en lugar de pedir que el usuario introduzca las credenciales de Google en nuestra aplicación, se redirigiría a una pantalla de login gestionada por Google.</p>
+
+<p>Una vez completada la autenticación, se le mostraría una pantalla en la que tendría que dar el cosentimiento explícito para que la aplicación pudiera consumir esa (y solo esa) información:</p>
+
+<p><img src="/assets/images/2020-01-27-oauth2/oauth2-consent.png" alt="Ejemplo de pantalla de consentimiento" /></p>
+
+<p>Tras el consentimiento del usuario, Google se encarga de devolver el control a la aplicación que inició el proceso proporcionándole un token con una fecha de caducidad. La aplicación podrá utilizar este token en las llamadas a las APIs que correspondan para acceder a la información para la que ha sido autorizado.</p>
+
+<p>El problema de la primera versión de OAuth es que era complejo, estaba dirigido sobre todo a aplicaciones web y no era demasiado escalable. Para dar respuesta a estas limitaciones, en 2012 se publicó <a href="https://tools.ietf.org/html/rfc6749" target="_blank">la versión 2.0</a> del protocolo OAuth junto con el estándar para el uso de <a href="https://tools.ietf.org/html/rfc6750" target="_blank">“bearer tokens”</a>. Se puede decir que OAuth2 es una reescritura del estándar ya que se aplicaron todas las lecciones aprendidas con la primera versión y esto a su vez les obligó a romper compatibilidad con la primera versión.</p>
+
+<p>En el estándar OAuth2 se hace referencia a los siguientes roles que son los que participan en los distintos flujos disponibles:</p>
+
+<ul>
+  <li><strong>Resource Owner:</strong> Es el dueño de la información a la que se intenta acceder. En el ejemplo anterior, sería el usuario que está utilizando la aplicación y que es el dueño de las fotos de Google Photos a las que se intenta acceder.</li>
+  <li><strong>Client Application:</strong> Es la aplicación que pretende acceder al recurso protegido. En el ejemplo anterior, sería la aplicación que hemos desarrollado nosotros.</li>
+  <li><strong>Authorization Server:</strong> Es el servicio encargado de emitir tokens que permiten el acceso a un recurso protegido una vez que el dueño de dicho recurso haya otorgado su consentimiento. En el ejemplo anterior, el Authorization Server sería el servicio central de Google que se encarga de autorizar usuarios <a href="" target="_blank">https://accounts.google.com</a>.</li>
+  <li><strong>Resource Server:</strong> Se refiere al servicio que expone los recursos protegidos a los que se pretende acceder. En nuestro ejemplo, este papel correspondería al servicio Google Photos de Google.</li>
+</ul>
+
+<p>Tal y como hemos apuntado, el objetivo de OAuth es impedir que el usuario tenga que introducir sus credenciales en aplicaciones de terceros para darles acceso a los recursos que pueda disponer en otras aplicaciones. Para conseguir esto, se realiza un proceso de autorización en el que intervienen los distintos actores implicados (“Resource Owner”, “Client Application” y “Authorization Server”) cuyo resultado es un token con el que la aplicación puede invocar las APIs que dan acceso a los recursos protegidos. Existen distintas variaciones de este flujo para adecuarse a diferentes escenarios:</p>
+
+<h2 id="authorization-code-grant">Authorization code grant</h2>
+
+<p>Se podría decir que este es el flujo OAuth2 principal y el que se debería utilizar en todos los casos en los que sea posible. Este flujo se puede utilizar cuando tenemos una aplicación en la que la lógica de presentación se lleva principalmente en el servidor, es decir, el servidor es el encargado de renderizar los HTML. A continuación se especifican los pasos que se llevan a cabo en este flujo:</p>
+
+<p><a href="/assets/images/2020-01-27-oauth2/authorization-code-grant.png" target="_blank"><img src="/assets/images/2020-01-27-oauth2/authorization-code-grant.png" alt="Authorization code grant" /></a></p>
+
+<p>0. Hay un proceso previo en el que se registra la aplicación cliente en el “Authorization Server”. Para llevar a cabo este registro, hay que indicar el <code class="highlighter-rouge">client-id</code>, el <code class="highlighter-rouge">client-secret</code> y <code class="highlighter-rouge">redirect-uri</code> de la aplicación que se está registrando. Normalmente los “Authorizations Servers” permiten registrar varias URIs de redirección. En el caso de Google, este registro se lleva a cabo en el portal de desarrolladores (más info <a href="https://developers.google.com/identity/protocols/OAuth2WebServer#enable-apis" target="_blank">aquí</a>).</p>
+
+<p>1. y 2. Cuando el usuario intenta acceder a una parte de la aplicación que necesita poder acceder a su cuenta de Google Photos, se iniciará el flujo OAuth2. El objetivo de este flujo es que el usuario pueda dar su consentimiento a que la aplicación acceda a información de Google Photos en su nombre. Para ello, forzará una redirección del navegador a la URL de autenticación que expone el “Authorization Server” pasándole los siguientes parámetros en la URL como “query string”:</p>
+
+<ul>
+  <li><em>response_type:</em> El valor de este parámetro indica el tipo de flujo que queremos iniciar. En este caso será <code class="highlighter-rouge">code</code> ya que es el valor correspondiente al “Authorization Code Grant”.</li>
+  <li><em>client_id:</em> El identificador del cliente que está iniciando el flujo.</li>
+  <li><em>scope:</em> En esta propiedad se indica a qué recursos del usuario pretende acceder la aplicación pudiendo establecerse más de un scope. En el ejemplo se ha utilizado <code class="highlighter-rouge">https://www.googleapis.com/auth/photoslibrary</code> que <a href="https://developers.google.com/photos/library/reference/rest/v1/albums/list#authorization-scopes" target="_blank">según la documentación</a> es uno de los scopes que permiten acceder a los álbumes de un usuario.</li>
+  <li><em>redirect_uri:</em> La URI a la que el “Authorization Server” tiene que redirigir una vez que el usuario haya otorgado su consentimiento. Esta URI tiene que coincidir con alguna de las URI que se ha registrado para la aplicación.</li>
+  <li><em>state:</em> Se trata de un valor que la aplicación cliente utiliza para mantener un estado entre la petición que inició el flujo y la respuesta que llega en el callback. El “Authorization Server” incluye este valor en la petición que devuelve el control a la aplicación que inició el flujo OAuth. Este parámetro también se puede utilizar como mecanismo de defensa ante ataques CSRF (“Cross Site Request Forguery”) tal y como se indica en <a href="https://tools.ietf.org/html/rfc6749#section-10.12" target="_blank">el RFC6749</a>.</li>
+</ul>
+
+<p>3. ,4. y 5. El usuario llega a la pantalla de login del “Authorization Server” (Google Accounts en el caso de google) e introduce sus credenciales.</p>
+
+<p>6. y 7. Una vez validadas las credenciales, el “Authorization Server” muestra una pantalla en la que se le enumeran los accesos o scopes que la aplicación cliente está solicitando. En este caso, se pediría permiso para poder acceder a los álbumes de fotos.</p>
+
+<p>8. y 9. El usuario da su consentimiento para que la aplicación cliente pueda acceder a la información solicitada y esto provoca una redirección a la url <code class="highlighter-rouge">redirect_uri</code> que se había enviado al iniciar el flujo. En esta URL, se añadirá como parámetro un <code class="highlighter-rouge">code</code> y el <code class="highlighter-rouge">state</code> cuyo valor tendrá que ser el mismo que la aplicación cliente envió al iniciar el flujo.</p>
+
+<p>10. y 11. La aplicación cliente obtiene el <code class="highlighter-rouge">code</code> de la URL e intercambia este <code class="highlighter-rouge">code</code> por un <code class="highlighter-rouge">access_token</code> haciendo una petición POST al endpoint que el “Authorization Server” habrá dispuesto para tal efecto (en el caso de Google <code class="highlighter-rouge">https://oauth2.googleapis.com/token</code>). Además del <code class="highlighter-rouge">code</code>, también es necesario que la aplicación cliente envíe su <code class="highlighter-rouge">client_id</code> y su <code class="highlighter-rouge">client_secret</code> en el cuerpo de la petición.</p>
+
+<p>12. La aplicación cliente puede utilizar el <code class="highlighter-rouge">access_token</code> que ha recibido para obtener los álbumes que el usuario tiene alojados en Google Photos. Para conseguir esta información puede hacer peticiones al servicio <code class="highlighter-rouge">https://www.googleapis.com/auth/photoslibrary</code> enviando el <code class="highlighter-rouge">access_token</code> en la cabecera HTTP “Authorization: Bearer” tal y como se indica en la <a href="https://tools.ietf.org/html/rfc6750" target="_blank">especificación</a>.</p>
+
+<p>El último paso consistiría en que el “Resource Server” validase el <code class="highlighter-rouge">access_token</code> antes de devolver la información protegida. La forma en la que se lleve a cabo esta validación dependerá principalmente de la naturaleza del token ya que los “Authorization Server” normalmente pueden enviar dos tipos de tokens:</p>
+
+<ul>
+  <li>
+    <p><strong>JWTs firmados:</strong> Un JWT es un string con formato JSON que está firmado y codificado siguiendo los criterios especificados en la <a href="https://tools.ietf.org/html/rfc7519" target="_blank">RFC 7519</a>. El hecho de que el contenido del JWT esté firmado, hace que se pueda verificar la validez del mismo sin tener que hacer ninguna llamada remota. Por lo tanto, si el resource server recibe un token de este tipo, puede verificarlo y devolver directamente la información solicitada.</p>
+
+    <p>Los JWTs <a href="https://tools.ietf.org/html/rfc7519#section-4.1.4" target="_blank">tienen una propiedad (<code class="highlighter-rouge">exp</code>)</a> en la que se indica la fecha de expiración del mismo. Por lo tanto, el resource server tendrá que verificar también que el JWT no esté caducado.</p>
+
+    <p>Utilizar JWTs como tokens de acceso es una práctica bastante habitual. El objetivo de utilizar este tipo de tokens autocontenidos suele ser evitar el tener que hacer peticiones adicionales al “Authorization Server” para verificar si el token es válido. De esta forma, el token será válido mientras no se alcance su fecha de expiración.</p>
+
+    <p>Sin embargo, ¿qué ocurre en caso de que el <code class="highlighter-rouge">access_token</code> se revoque por cualquier motivo? Desde el panel de administración de Google por ejemplo, un usuario puede quitar en cualquier momento los permisos que ha otorgado a una aplicación determinada. Esto provoca que todos los <code class="highlighter-rouge">access_token</code> y <code class="highlighter-rouge">refresh_token</code> que se hubieran expedido para esa aplicación sean revocados de inmediato.</p>
+
+    <p>En este escenario, lo que ocurriría es que el “Resource Server” no sería consciente de esta revocación porque lo único que hace es validar que esté correctamente firmado y que la fecha de expiración que contiene no haya vencido. En definitiva, seguiría aceptando el token revocado hasta que este caducase. Este es uno de los motivos por los que no se aconseja utilizar JWTs como <code class="highlighter-rouge">access_token</code>.</p>
+  </li>
+  <li>
+    <p><strong>Tokens Opacos</strong>: Al contrario que los JWT, los tokens opacos no contienen ningún tipo de información legible para el cliente y por este motivo, pueden ser una secuencia de caracterés pseudoaleatorios. Este hecho hace que el “Authorization Server” tenga que mantener un registro de los <code class="highlighter-rouge">access_token</code> que ha expedido y que tenga que exponer un endpoint al que el “Resource Server” pueda hacer peticiones para verificar la validez de los token que recibe. A este proceso de validación se le llama introspección y está especificado en la <a href="https://tools.ietf.org/html/rfc7662" target="_blank">RFC 7662.</a></p>
+
+    <p>La recomendación es utilizar este tipo de tokens como <code class="highlighter-rouge">access_token</code> y hacer verificaciones utilizando el endpoint de introspección.</p>
+  </li>
+</ul>
+
+<p>Los <code class="highlighter-rouge">access_token</code> suelen tener una fecha de expiración muy cercana en el tiempo (por debajo de una hora) para que si este se ve comprometido, solo pueda explotarse durante un corto periodo de tiempo. Esto que en un principio suena lógico tiene un inconveniente:</p>
+
+<p>¿Qué ocurre cuando el <code class="highlighter-rouge">access_token</code> que una aplicación ha obtenido legitimamente caduca? ¿Hay que volver a iniciar el flujo OAuth pidiendo el consentimiento del usuario final? Esto no parece muy usable en la mayoría de casos.</p>
+
+<p>Para dar respuesta a esta problemática, en la especificación OAuth2 se recoge la posibilidad de obtener nuevos <code class="highlighter-rouge">access_token</code> utilizando <a href="https://tools.ietf.org/html/rfc6749#section-6" target="_blank">un flujo de refresco</a>. Para ejecutar este proceso de refresco, es necesario haber obtenido previamente un token adicional denominado <code class="highlighter-rouge">refresh_token</code>. Este token viene junto con el <code class="highlighter-rouge">access_token</code> en el paso 11) del diagrama anterior siempre y cuando se hayan dado las condiciones para ello. En el caso de Google por ejemplo, la condición para que devuelva un <code class="highlighter-rouge">refresh_token</code> es que en la petición que inicia el flujo se añada el parámetro <code class="highlighter-rouge">access_type</code> con el valor <code class="highlighter-rouge">offline</code>. <a href="https://developers.google.com/identity/protocols/OAuth2WebServer#obtainingaccesstokens" target="_blank">Este</a> es el apartado de la documentación en el que se hace referencia a este parámetro:</p>
+
+<p><img src="/assets/images/2020-01-27-oauth2/access_type.png" alt="Google OAuth2 access_type" /></p>
+
+<p>Tal y como se ha comentado, el “Authorization Code Grant” es el flujo recomendado para la mayoría de casos pero tiene un requisito que no todas las aplicaciónes pueden cumplir: necesita poder almacenar un <code class="highlighter-rouge">client_secret</code> de forma segura ya que este valor es necesario para hacer el intercambio del <code class="highlighter-rouge">code</code> por el <code class="highlighter-rouge">access_token</code> en el paso 10) del proceso.</p>
+
+<p>Hay aplicaciones que por su naturaleza no pueden almacenar secretos sin que estos se vean fácilmente comprometidos. Dos ejemplos claros de este tipo de aplicaciones serían:</p>
+
+<ul>
+  <li>
+    <p>Las aplicaciones cuya lógica de presentación se ejecuta integramente en el navegador haciendo uso de Javascript (también conocidas como single page applications o SPAs).</p>
+  </li>
+  <li>
+    <p>Aplicaciones móviles nativas.</p>
+  </li>
+</ul>
+
+<p>Decimos que este tipo de aplicaciones no pueden almacenar secretos porque el código es fácilmente accesible por el usuario final. En el caso de las aplicaciones SPA por ejemplo, es suficiente con abrir las herramientas de desarrollador e inspeccionar el código fuente o analizar las peticiones que se hacen al servidor para obtener el secreto. Se puede aplicar prácticamente lo mismo para las aplicaciones móviles nativas aunque el esfuerzo necesario para poder lograr esta información sea un poco mayor.</p>
+
+<p>Es en este punto cuando los desarrolladores empezamos a dirigir nuestra atención hacia otros flujos que también se contemplan en la especificación como pueden ser el “Resource Owner Password Credentials Grant” y el “Implicit Grant”.</p>
+
+<h2 id="resource-owner-password-credentials-grant">Resource owner password credentials grant</h2>
+
+<p>En este flujo, se utilizan directamente las credenciales del resource owner como forma de autorización para obtener un token. Este sería el diagrama del flujo:</p>
+
+<p><a href="/assets/images/2020-01-27-oauth2/resource-owner-password-credentials-grant.png" target="_blank"><img src="/assets/images/2020-01-27-oauth2/resource-owner-password-credentials-grant.png" alt="Resource owner credentials grant" /></a></p>
+
+<p>Como se puede ver en el diagrama, en este flujo el usuario introduce sus credenciales directamente en la aplicación cliente para que haciendo uso de estas credenciales, la aplicación pueda solicitar tokens de acceso al “Authorization Server”.</p>
+
+<h3 id="un-momento">Un momento…</h3>
+
+<p>¿No habíamos dicho que con OAuth precisamente se busca evitar el tener que introducir las credenciales en aplicaciones de terceros?</p>
+
+<p>Efectivamente y es por eso que en la especificación se indica lo siguiente:</p>
+
+<blockquote>
+  <p>The credentials should only be used when there is a high
+degree of trust between the resource owner and the client (e.g., the
+client is part of the device operating system or a highly privileged
+application), and when other authorization grant types are not
+available (such as an authorization code).</p>
+</blockquote>
+
+<p>Es decir, dicen que solo se debe utilizar este flujo en aplicaciones que son de un alto nivel de confianza y cuando no se puede utilizar ningún otro flujo. A pesar de esto, en la práctica <strong>la recomendación es no utilizar este flujo en ningún caso</strong>. Los motivos principales por los que utilizar este flujo se considera mala práctica son los siguientes:</p>
+
+<ul>
+  <li>
+    <p>Se fomentan malos hábitos de los usuarios ya que este flujo es muy parecido a un ataque de “phishing”: se le presenta un formulario al usuario en el que se le pide que introduzca sus credenciales de otra aplicación como puede ser Google en lugar de redirigirle a la pantalla de autenticación de esa aplicación.</p>
+
+    <p>El usuario debería acostumbrarse a únicamente introducir sus credenciales en la pantalla de login de la plataforma y desconfiar si cualquier otra aplicación le pide que las introduzca.</p>
+
+    <p>Google por ejemplo, utiliza una pantalla central para gestionar la autenticación y es la misma tanto para sus propios productos (Gmail, Google Calendar, Drive,…) como para las integraciones con terceros.</p>
+  </li>
+  <li>
+    <p>Las credenciales de un usuario son información altamente sensible. Por lo tanto, es preferible que sean manejadas por el menor número de aplicaciones posible con el objetivo de reducir las probabilidades de que pueda haber fugas de información tanto de manera malintencionada como por accidente (vía logs, etc.).</p>
+  </li>
+  <li>
+    <p>En el flujo “Resource Owner Password Credentials Grant” el usuario introduce sus credenciales pero no tiene el control sobre qué uso se va a hacer de los mismos. Al explicar el “Authorization Code Grant” se ha visto como el “Authorization Server” se encarga de mostrar una pantalla de consentimiento al usuario para autorizar que la aplicación pueda realizar una serie de acciones (scopes) en su nombre. Por el contrario, en el “Resource Owner Password Credentials Grant”, una vez que la aplicación dispone de las credenciales, puede establecer los scopes que considere oportunos sin el consentimiento del usuario.</p>
+  </li>
+</ul>
+
+<p>Debido a estas problemáticas y otras que no se han recogido en este artículo, <strong>este flujo no está soportado por Google y muchos otros Authorization Servers.</strong></p>
+
+<h2 id="implicit-grant">Implicit grant</h2>
+
+<p>Este es el flujo que se ha venido recomendando para aplicaciones móviles y SPAs hasta hace no demasiado tiempo. El diagrama de este flujo es el siguiente:</p>
+
+<p><a href="/assets/images/2020-01-27-oauth2/implicit-grant.png" target="_blank"><img src="/assets/images/2020-01-27-oauth2/implicit-grant.png" alt="Implicit grant" /></a></p>
+
+<p>Este flujo es una versión simplificada del “Authorization Code Grant”. En la primera petición se envía el <code class="highlighter-rouge">response_type</code> con valor a <code class="highlighter-rouge">token</code> para indicarle al “Authorization Server” que se va a usar el flujo “Implicit Grant”. La diferencia con el “Authorization Code Grant” es que una vez el usuario final se autentica y otorga su consentimiento, el “Authorization Server” hace la redirección al <code class="highlighter-rouge">redirect_uri</code> pasándole el <code class="highlighter-rouge">access_token</code> directamente como parte de la URL. Es decir, no existen los pasos 10) y 11) del flujo “Authorization Code Grant” en el que se obtiene un <code class="highlighter-rouge">code</code> temporal que hay que intercambiar por un <code class="highlighter-rouge">access_token</code> haciendo uso del <code class="highlighter-rouge">client_secret</code>.</p>
+
+<p>Gracias a esto, no es necesario disponer de un <code class="highlighter-rouge">client_secret</code> para llevar a cabo este flujo y por lo tanto, el flujo se puede utilizar en aplicaciones que no pueden almacenar secretos de forma segura.</p>
+
+<p>Todo esto suena muy bien pero si el “Implicit Grant” es más simple que el “Authorization Code Grant” y además no necesita secretos, ¿por qué no lo utilizamos en todos los casos?</p>
+
+<h3 id="buena-pregunta">Buena pregunta…</h3>
+
+<p>El caso es que este flujo tiene sus inconvenientes tal y como se recoge en la <a href="https://tools.ietf.org/html/rfc6819" target="_blank">RFC6819</a>:</p>
+
+<h3 id="riesgo-de-interceptar-el-access_token">Riesgo de interceptar el access_token</h3>
+
+<p>Tal y como se ha explicado, el <code class="highlighter-rouge">access_token</code> viene como parte de la URL que hace la redirección hacia la aplicación cliente y no en el cuerpo de la respuesta de una petición POST como ocurre en flujo “Authorization Code Grant”. Este detalle es muy importante ya que al venir el token en la URL, este puede quedar registrado en logs o históricos. Por lo tanto, cualquiera con acceso a este tipo de información en la aplicación cliente podría obtener el <code class="highlighter-rouge">access_token</code> y explotarlo de manera ilegítima.</p>
+
+<p>Para mitigar este problema, en lugar de utilizar un “query string” para pasar este valor, se utiliza <a href="https://developer.mozilla.org/en-US/docs/Web/API/URL/hash" target="_blank">un fragmento o hash</a>. Si nos fijamos en la URL del paso 6) del diagrama, podemos ver cómo el <code class="highlighter-rouge">access_token</code> se envía como fragmento haciendo uso del caracter <strong>#</strong>: https://…index.html#access_token=m4odaim6h…</p>
+
+<p>Los navegadores, no envían la parte del fragmento al servidor. Esto quiere decir que cuando el navegador haga la petición a index.html para descargarse la aplicación SPA, no enviará todo lo que sigue al caracter <strong>#</strong>. De esta forma, se consigue limitar la superficie de un posible ataque ya que sabremos que el <code class="highlighter-rouge">access_token</code> no quedará registrado en los logs del servidor en el que se aloja la aplicación cliente. Sin embargo, el fragmento sí que quedaría almacenado en el histórico del navegador.</p>
+
+<p><a href="https://tools.ietf.org/html/rfc6819#section-4.4.2" target="_blank">En este RFC</a>, se enumeran esta y otras amenazas relacionadas. Incluso en la propia especificación OAuth2 se alerta de las implicaciones de seguridad que tiene utilizar el flujo “Implicit Grant”:</p>
+
+<blockquote>
+  <p>Implicit grants improve the responsiveness and efficiency of some
+   clients (such as a client implemented as an in-browser application),
+   since it reduces the number of round trips required to obtain an
+   access token.  However, <strong>this convenience should be weighed against
+   the security implications of using implicit grants</strong>, such as those
+   described in Sections 10.3 and 10.16, especially when the
+   authorization code grant type is available.</p>
+</blockquote>
+
+<h3 id="no-permite-el-uso-de-refresh_token">No permite el uso de refresh_token</h3>
+
+<p>En el punto anterior se ha comentado que la forma en la que las aplicaciones cliente obtienen el <code class="highlighter-rouge">access_token</code> cuando se utiliza “Implicit Grant” no es demasiado seguro. Si bien es cierto que las consecuencias de una fuga de <code class="highlighter-rouge">access_token</code> son limitadas porque los <code class="highlighter-rouge">access_token</code> expiran en un periodo de tiempo muy corto, no se podría decir lo mismo de un <code class="highlighter-rouge">refresh_token</code>.</p>
+
+<p>Los <code class="highlighter-rouge">refresh_token</code> tienen un ciclo de vida mucho más largo ya que se utilizan para obtener nuevos <code class="highlighter-rouge">access_token</code> sin necesidad de que el usuario final tenga que estar dando su consentimiento continuamente. En el caso de Google por ejemplo, el <code class="highlighter-rouge">refresh_token</code> <a href="https://developers.google.com/identity/protocols/OAuth2#expiration" target="_blank">caduca cuando no haya sido utilizado durante 6 meses</a>. Por lo tanto, la fuga de un <code class="highlighter-rouge">refresh_token</code> sería catastrófico ya que podría utilizarse para generar <code class="highlighter-rouge">access_token</code> durante un largo periodo de tiempo. Es por esto que la propia especificación de OAuth2 advierte que la expedición de tokens de refresco no está soportada cuando se utiliza “Implicit Grant”.</p>
+
+<p>Como ya hemos dicho, el no poder utilizar tokens de refresco atenta contra la usabilidad ya que cada vez que el <code class="highlighter-rouge">access_token</code> caduque, tendremos que volver a iniciar el flujo y redirigir al usuario al “Authorization Server” para que vuelva a dar su consentimiento. Para dar respuesta a este problema, existe el concepto de “Silent Refresh” que consiste en utilizar un IFrame para obtener nuevos <code class="highlighter-rouge">access_tokens</code> de forma silenciosa. Este “hack” tiene varios condicionantes y riesgos que no se van a extender en este artículo. Se puede leer más información sobre cómo efectuar un “silent refresh” <a href="https://www.scottbrady91.com/OpenID-Connect/Silent-Refresh-Refreshing-Access-Tokens-when-using-the-Implicit-Flow" target="_blank">aquí</a>.</p>
+
+<p>Si no recomendamos utilizar ni “Resource Owner Password Credentials Grant” ni “Implicit Grant” para nuestras aplicaciones móviles o SPAs, ¿qué otras opciones tenemos? La respuesta a esta pregunta es…</p>
+
+<h2 id="authorization-code-grant-with-pkce">Authorization Code Grant with PKCE</h2>
+
+<p>El flujo “Authorization Code Grant with PKCE” nació para dar respuesta a todos los problemas asociados a las aplicaciones públicas (SPAs y móviles) ya que se trata de una extensión de “Authorization Code Grant” dirigido a este tipo de aplicaciones. Las motivaciones y particularidades de este flujo se recogen en la <a href="https://tools.ietf.org/html/rfc7636" target="_blank">RFC 7636</a> y este es su diagrama correspondiente:</p>
+
+<p><a href="/assets/images/2020-01-27-oauth2/authz-code-grant-pkce.png" target="_blank"><img src="/assets/images/2020-01-27-oauth2/authz-code-grant-pkce.png" alt="Authorization code grant with PKCE" /></a></p>
+
+<p>Tal y como se puede ver en el diagrama, el flujo es idéntico a un “Authorization Code Grant” solo que en el paso 1) se añade un parámetro extra llamado <code class="highlighter-rouge">code_challenge</code> y en el paso 7) en lugar de enviar el <code class="highlighter-rouge">client_secret</code> se envía otro parámetro denominado <code class="highlighter-rouge">code_verifier</code>. Es decir, la combinación de <code class="highlighter-rouge">code_challenge</code> + <code class="highlighter-rouge">code_verifier</code> sustituyen al <code class="highlighter-rouge">client_secret</code> creando una especie de secreto temporal y único por cada flujo.</p>
+
+<h3 id="cómo-funciona-esto">¿Cómo funciona esto?</h3>
+
+<p>Al inicio del flujo, la aplicación cliente genera un <code class="highlighter-rouge">code_verifier</code> que no es más que un string aleatorio criptográfico que tiene que cumplir <a href="https://tools.ietf.org/html/rfc7636#section-4.1" target="_blank">una serie de condiciones</a>. A continuación, se crea el <code class="highlighter-rouge">code_challenge</code> que es un derivado del <code class="highlighter-rouge">code_verifier</code>. Hay múltiples formas de generar el <code class="highlighter-rouge">code_challenge</code> pero la recomendación es utilizar SHA-256 aplicando una fórmula del estilo <code class="highlighter-rouge">code_challenge = BASE64URL-ENCODE(SHA256(ASCII(code_verifier)))</code>. La forma en la que se hace la verificación de este “challenge” es la siguiente:</p>
+
+<ul>
+  <li>
+    <p>En el primer paso del flujo, la aplicación cliente guarda el <code class="highlighter-rouge">code_verifier</code> y envía el <code class="highlighter-rouge">code_challenge</code> al “Authorization Server”.</p>
+  </li>
+  <li>
+    <p>El “Authorization Server” almacena el <code class="highlighter-rouge">code_challenge</code> recibido y una vez que el usuario da su consentimiento, responde con el <code class="highlighter-rouge">code</code>.</p>
+  </li>
+  <li>
+    <p>Cuando la aplicación cliente va a intercambiar el <code class="highlighter-rouge">code</code> por el <code class="highlighter-rouge">access_token</code> en el paso 7), envía también el <code class="highlighter-rouge">code_verifier</code> que había guardado previamente y que es el origen desde el que se había creado el <code class="highlighter-rouge">code_challenge</code> enviado en el primer paso.</p>
+  </li>
+  <li>
+    <p>Por último, el “Authorization Server” aplica la fórmula de derivación sobre este <code class="highlighter-rouge">code_verifier</code> y lo compara con el <code class="highlighter-rouge">code_challenge</code> que había guardado en el primer paso. Si los códigos son iguales, la petición es válida y devuelve el <code class="highlighter-rouge">access_token</code> y opcionalmente el <code class="highlighter-rouge">refresh_token</code>. Los criterios que sigue el “Authorization Server” para devolver o no un <code class="highlighter-rouge">refresh_token</code> son los mismos que en el “Authorization Code Grant”.</p>
+  </li>
+</ul>
+
+<p>Por lo tanto, este flujo tienes las ventajas del “Authorization Code Grant” y puede utilizarse sin necesidad de disponer de un secreto “estático” ya que este se genera en caliente cada vez que se inicia un nuevo flujo.</p>
+
+<h2 id="conclusiones">Conclusiones</h2>
+
+<p>En este artículo se ha hecho una introducción a OAuth en el que se han explicado cuáles fueron las motivaciones para su creación así como la forma en la que funciona.</p>
+
+<p>Se han repasado los principales flujos que se contemplan en la especificación para permitir a un usuario dar autorización a aplicaciones de terceros con el objetivo de que puedan realizar acciones en su nombre.</p>
+
+<p>Si bien para aplicaciones web tradicionales en las que el renderizado de los HTML se realiza en servidor el flujo a utilizar está muy claro (Authorization Code Grant), cuando tratamos de buscar el flujo a utilizar para SPAs o aplicaciones móviles la información disponible es bastante confusa.</p>
+
+<p>Debido a la evolución de la especificación o a la ambigüedad del propio texto, es fácil encontrar en internet artículos o comentarios en los que se invita a utilizar flujos que son potencialmente peligrosos como pueden ser “Resource Owner Password Grant” o “Implicit Grant”. <strong>La recomendación es que para este tipo de aplicaciones se utilice el flujo “Authorization Code Grant with PKCE” que salva la problemática de los secretos haciendo uso de criptografía.</strong></p>
+
+<p>En este artículo se han dejado a un lado los flujos en los que no interviene el usuario como puede ser el “Client Credentials Grant” u otros en los que no se utiliza un navegador como el “Device Authorization Grant”. De igual forma, se ha hablado solo de autorización que es lo que cubre OAuth y dejado a un lado la autenticación. Quizás tratemos estos temas relacionados en futuras publicaciones.</p>
+
+<p>Por último, se ha visto que OAuth no es un protocolo sencillo de implementar y por lo tanto se recomienda utilizar librerías ya existentes que encapsulen toda esta complejidad.</p>
+
+            </div>
+
+            
+          </div>
+        </article>
+      </div>
+    </main>
+
+    <footer>
+    <div class="wrapper">
+        <div class="footer__container">
+            <div class="footer__sello">
+                <img src="/assets/images/arima_sello_white.png" alt="" />
+            </div>
+            <div class="footer__content">
+                <div class="footer__data">
+                    <dl>
+                        <dt>web</dt>
+                        <dd><a itemprop="sameAs" href="https://www.arima.eu/es/">arima.eu</a></dd>
+                    </dl>
+                    <dl>
+                        <dt>social</dt>
+                        <dd>
+                            <a itemprop="sameAs" href="https://github.com/wearearima" class="social"><span class="icon-github"></span></a>
+                            <a itemprop="sameAs" href="https://twitter.com/wearearima" class="social"><span class="icon-twitter"></span></a>
+                            <a itemprop="sameAs" href="https://www.linkedin.com/company/arima-software-design/" class="social"><span class="icon-linkedin"></span></a>
+                            <a itemprop="sameAs" href="/feed.xml" class="social"><span class="icon-feed"></span></a>
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt>Privacidad</dt>
+                        <dd class="politica-cookies">
+                            <a href="/cookies.html">Política de cookies</a>
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+    <div class="cookies-message" id="cookies-message">
+    <h4>Este sitio web utiliza cookies</h4>
+    <p>Este sitio web utiliza cookies para mejorar la experiencia del usuario. Al utilizar nuestro sitio web, usted acepta todas las cookies de acuerdo con nuestra Política de cookies.</p>
+    <div class="buttons">
+        <a class="button" href="/cookies.html">Leer política de cookies</a>
+        <button class="button" id="accept-cookies">Aceptar</button>
+    </div>
+</div>
+<script>
+    (function() {
+        if(localStorage) {
+            var cookiesAccepted = localStorage.getItem("cookies-accepted");
+            if(cookiesAccepted) {
+                hideCookiesMessage();
+                
+            } else {
+                document.getElementById('accept-cookies').addEventListener("click", function() {
+                    hideCookiesMessage();
+                    localStorage.setItem("cookies-accepted", true);
+                })
+            }
+        }
+        function hideCookiesMessage() {
+            document.getElementById('cookies-message').style.display = "none";
+        }
+    })();
+</script>
+
+  </body>
+
+</html>
