@@ -1,10 +1,10 @@
 ---
 layout: post
-title:  "Mutation Testing: caminando con paso firme hacia el software de calidad"
+title:  "Mutation testing systems, mejorando la calidad de los tests"
 date:   2020-04-28 9:00:00
 author: jessica
 categories: testing, software quality, QA
-tags: testing, mutation testing, pi test, software quality, QA, cobertura, coverage
+tags: testing, mutation testing systems, pit, pitest, calidad, software quality, QA, cobertura, coverage, junit
 header-image:	2020-05-12-mutation-testing/header.jpg
 ---
 
@@ -170,7 +170,7 @@ Nuestros tests seguirán pasando[^2]. Además seguimos con un x% de cobertura al
 
 > Test &rarr; **sensación** de seguridad
 
-## Mutation testing: asegurando el camino
+## Mutation testing systems: asegurando el camino
 
 >**Because we can’t write perfect software, it follows that we can’t write perfect test software either. We need to test the tests.**
 ><p align="right" markdown="1">**The Pragmatic Programmer.** Chapter 8: Pragmatic projects</p>
