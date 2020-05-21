@@ -25,7 +25,8 @@ Afortunadamente, los desarrolladores no nos encontramos solos en esta tarea. Exi
 >**Tests are as important to the health of a project as the production code is.**
 ><p align="right" markdown="1">**Clean Code.** Chapter 9: Unit Tests</p>  
 
-Hay varios tipos de test (unitarios, de integración, de aceptación...). Los más extendidos son los tests unitarios y los tests de integración. Con ellos se consigue una cierta percepción de seguridad, ya que si bien no sabemos si el código hace lo que debe, al menos hace lo que dice.  
+Hay varios tipos de test (unitarios, de integración, de aceptación...). Los más extendidos son los tests unitarios y los tests de integración. Con ellos se consigue una cierta percepción de seguridad, ya que si bien no sabemos si el código hace lo que debe, al menos hace lo que dice. 
+
 ¿Pero es esto así? Paradójicamente esta práctica consiste en generar más código, es decir, seguimos programando, ¿quién vela porque este código hace lo que dice?, es decir ¿quién vela por la calidad de los tests? De nuevo otra asociación de términos: **tests de calidad** son aquellos que ofrecen un % de **cobertura** del código alto.
 
 > Tests de calidad &rarr; % cobertura elevado de nuestro código
@@ -97,6 +98,7 @@ Tenemos una cobertura de un 92% de líneas y 87% de ramas: objetivo cumplido. Pe
 [^1]: Si quieres probar todo esto puedes descargarte el código de [aquí](https://github.com/wearearima/time-report-app/tree/feature/01_tests_for_project_requirements){:target="_blank"}
 
 Pues esta es mi realidad, y mucho me temo que LA realidad, de aquella época en muchos proyectos (y quien sabe si en algunos de hoy en día). Los proyectos cumplían los requerimientos de cobertura de código, lo que distaba mucho de tener un software de calidad.  
+
 Es cierto que el ejemplo que he puesto es extremo, pero es real. En mi opinión, el problema está en el enfoque: se ha dado la vuelta a la tortilla y en él los tests nacen como una mera herramienta para asegurar uno de los requerimientos del proyecto.
 
 > % cobertura mínimo por requerimiento &rarr; test = "pérdida de tiempo"
@@ -225,6 +227,7 @@ En nuestro caso, solemos configurar los que vienen por defecto (DEFAULTS) y aña
 Software de calidad require de código calidad que a su vez puede validarse gracias a tests de calidad.  
 
 Generalmente hay más código para testear un método que para implementarlo, lo que conlleva un claro esfuerzo en tiempo: dedicaremos más tiempo al testeo de un método que a su implementación. Necesitamos asegurar que dicho esfuerzo no sea en balde.  
+
 **Mutation testing** es una herramienta que nos permite evaluar y mejorar la calidad de nuestros tests. El precio a pagar es el aumento de tiempo necesario para pasarlos. Teniendo en cuenta que se basa en mutaciones de código y que aplica no sólo a tests unitarios, también a tests de integración, a medida que el código crezca y el número de tests aumente, mayor será el tiempo necesario para ejecutarlos. Es necesario, por tanto, buscar fórmulas que aseguren que en alguna fase de nuestro desarrollo todos los tests pasan: si dejamos de pasarlos porque es demasiado costoso todo el esfuerzo habrá sido en vano.  
 
 Hemos dado un paso firme, pero nos queda recorrido en nuestro camino hacia la calidad: ¿Qué podemos hacer para buscar este equilibrio? ¿Podemos organizar de alguna forma los tests para facilitarlo? ¿Hay herramientas que nos permitan desarrollar/ejecutar tests de forma más eficiente?
