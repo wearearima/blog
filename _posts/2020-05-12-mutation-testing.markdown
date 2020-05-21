@@ -161,12 +161,15 @@ Supongamos que lo que se modifica en el método de ejemplo es:
     totalDuration = totalDuration + worklog.getDuration();
   }
 ```
+
 por
+
 ```java
   for (Worklog worklog : worklogsForDay) {
     totalDuration = worklog.getDuration();
   }
 ```
+
 Nuestros tests seguirán pasando[^2]. Además seguimos con un x% de cobertura alto... ¡Todo perfecto!
 
 [^2]: Pruébalo tu mismo, el código está disponible [aquí](https://github.com/wearearima/time-report-app/tree/feature/02_tests_for_testing_purposes)
@@ -179,6 +182,7 @@ Nuestros tests seguirán pasando[^2]. Además seguimos con un x% de cobertura al
 ><p align="right" markdown="1">**The Pragmatic Programmer.** Chapter 8: Pragmatic projects</p>
 
 Parece que los tests que hemos creado no son tan buenos como creíamos, no tienen calidad suficiente como para asegurar la calidad (valga la redundancia) de nuestro método. Nos han ofrecido una falsa sensación de seguridad.  
+
 Está claro que conseguir % altos de cobertura no es sencillo y si escribir tests es costoso, escribir buenos tests lo es aún más y lo que obtenemos es una sensación de seguridad que no es real. ¿No podríamos hacer que esta sensación fuese más cercana a la realidad? ¿No podríamos detectar situaciones, como la que hemos visto, de forma automática?
 
 Pues bien, para abordar este tipo de situaciones surgen los denominados _Mutation Testing Systems_. La idea que hay detrás de ellos no es otra que la que hemos expuesto en el último ejemplo: simular cambios en el código fuente que se está probando y verificar que efectivamente, algún test fallará tras haber realizado la modificación.  
@@ -193,6 +197,7 @@ Los conceptos básicos son los siguientes:
 * Los cambios en el código se generan mediante **operadores mutantes** (mutators / mutation operators), que se agrupan en diferentes categorias dependiendo del tipo de cambio que realicen en el código.
 
 Personalmente no había oído hablar de este concepto hasta hace relativamente poco sin embargo, la realidad es que ya llevan varios años entre nosotros. Algunos de los sistemas de mutación para Java son (o han sido):
+
 * [PIT](https://pitest.org/)
 * [Jumble](http://jumble.sourceforge.net/index.html)
 * [Jester](http://jester.sourceforge.net/)
@@ -219,6 +224,7 @@ Las líneas marcadas en verde, reflejan código en el que PIT ha introducido cam
 En el siguiente [enlace](https://github.com/wearearima/time-report-app/tree/feature/03_tests_improving_quality) está disponible el código del ejemplo en el que hemos trabajado, donde hemos mejorado los tests para conseguir una mayor cobertura de mutantes.
 
 Los mutantes que se aplican son configurables, y hay que valorar el equilibrio entre la cantidad/tipo de mutantes configurados y el tiempo de ejecución. A mayor número de tests, mayor número de líneas de código y mayor cantidad de mutantes, más tiempo necesitará Pit en generar el informe correspondiente. Puede llegar un momento en el que sea tan costoso pasar el informe que se hagamos skip, y entonces todo el esfuerzo dedicado a testing se desvanecería. En los ejemplos hemos visto sólo tests unitarios pero lo mismo aplica a los test de integración (muchos de ellos ya costosos en sí mismos).  
+
 En nuestro caso, solemos configurar los que vienen por defecto (DEFAULTS) y añadiendo los del siguiente grupo (NEW_DEFAULTS). En el código de ejemplo hay alguno más configurado, pero [aquí](https://pitest.org/quickstart/mutators/) se muestran los "mutadores" (mutators) de Pit, así que prueba a cambiar la configuración y a ver los diferentes resultados.
 
 ## Conclusiones
