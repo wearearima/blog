@@ -196,7 +196,15 @@ Los conceptos básicos son los siguientes:
 * Cada cambio (o muntante) que nuestros tests no son capaces de detectar son **mutantes vivos** (lived)
 * Los cambios en el código se generan mediante **operadores mutantes** (mutators / mutation operators), que se agrupan en diferentes categorias dependiendo del tipo de cambio que realicen en el código.
 
-Personalmente no había oído hablar de este concepto hasta hace relativamente poco sin embargo, la realidad es que ya llevan varios años entre nosotros. Algunos de los sistemas de mutación para Java son (o han sido):
+Personalmente no había oído hablar de este concepto hasta hace relativamente poco sin embargo, la realidad es que ya llevan varios años entre nosotros. Existen múltiples alternativas para los diferentes stacks tecnológicos. Por ejemplo:
+
+* [Stryker](https://stryker-mutator.io/){:target="_blank"} para JavaScript, TypeScript, C# y Scala
+* [Mutode](https://thesoftwaredesignlab.github.io/mutode/){:target="_blank"} para JavaScript y Node.js
+* [Cosmic Ray](https://cosmic-ray.readthedocs.io/en/latest/){:target="_blank"} para Python
+* [mutmut](https://pypi.org/project/mutmut/){:target="_blank"} para Python
+* [Mutant](https://github.com/mbj/mutant){:target="_blank"} para Ruby
+
+Y volviendo a Java algunos de los sistemas de mutación son (o han sido):
 
 * [PIT](https://pitest.org/){:target="_blank"}
 * [Jumble](http://jumble.sourceforge.net/index.html){:target="_blank"}
