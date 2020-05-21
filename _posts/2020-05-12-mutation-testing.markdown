@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Mutation testing systems, mejorando la calidad de los tests"
-date:   2020-04-28 9:00:00
+date:   2020-05-21 9:00:00
 author: jessica
 categories: testing, software quality, QA
 tags: testing, mutation testing systems, pit, pitest, calidad, software quality, QA, cobertura, coverage, junit
@@ -89,7 +89,7 @@ public void calculates_the_status_based_on_worker_and_date_worklogs() {
 }
 ```
 
-Hemos configurado [JaCoCo](https://www.eclemma.org/jacoco/) para obtener el informe de la cobertura de nuestros tests, y el resultado ha sido el siguiente.  
+Hemos configurado [JaCoCo](https://www.eclemma.org/jacoco/){:target="_blank"} para obtener el informe de la cobertura de nuestros tests, y el resultado ha sido el siguiente.  
 
 ![JaCoCo report general](/assets/images/2020-05-12-mutation-testing/01jacocoreport.png){: .center }
 
@@ -170,9 +170,9 @@ por
   }
 ```
 
-Nuestros tests seguirán pasando[^2]. Además seguimos con un x% de cobertura alto... ¡Todo perfecto!
+Nuestros tests seguirán pasando[^2]. Además seguimos con un % de cobertura alto... ¡Todo perfecto!
 
-[^2]: Pruébalo tu mismo, el código está disponible [aquí](https://github.com/wearearima/time-report-app/tree/feature/02_tests_for_testing_purposes)
+[^2]: Pruébalo tu mismo, el código está disponible [aquí](https://github.com/wearearima/time-report-app/tree/feature/02_tests_for_testing_purposes){:target="_blank"}
 
 > Test &rarr; **sensación** de seguridad
 
@@ -198,10 +198,10 @@ Los conceptos básicos son los siguientes:
 
 Personalmente no había oído hablar de este concepto hasta hace relativamente poco sin embargo, la realidad es que ya llevan varios años entre nosotros. Algunos de los sistemas de mutación para Java son (o han sido):
 
-* [PIT](https://pitest.org/)
-* [Jumble](http://jumble.sourceforge.net/index.html)
-* [Jester](http://jester.sourceforge.net/)
-* [muJava](https://github.com/jeffoffutt/muJava)
+* [PIT](https://pitest.org/){:target="_blank"}
+* [Jumble](http://jumble.sourceforge.net/index.html){:target="_blank"}
+* [Jester](http://jester.sourceforge.net/){:target="_blank"}
+* [muJava](https://github.com/jeffoffutt/muJava){:target="_blank"}
 
 Nosotros hemos utilizado PIT porque:
 
@@ -221,11 +221,11 @@ Aquí se indica el resultado general: por un lado la cobertura de líneas de có
 
 Las líneas marcadas en verde, reflejan código en el que PIT ha introducido cambios y los tests han sido capaces de detectarlo. Las líneas marcadas en rojo, reflejan las líneas de código que nuestros tests no han sabido detectar que había habido cambios. Si nos fijamos la línea 27 es la que nosotros habíamos modificado y nuestros tests habían pasado. Ahora tenemos dos opciones: seguir adelante, asumiendo la fragilidad que puede tener nuestro código o lo más acertado (y lógico) añadir/corregir tests que nos aseguren la fiabilidad frente a los cambios detectados.
 
-En el siguiente [enlace](https://github.com/wearearima/time-report-app/tree/feature/03_tests_improving_quality) está disponible el código del ejemplo en el que hemos trabajado, donde hemos mejorado los tests para conseguir una mayor cobertura de mutantes.
+En el siguiente [enlace](https://github.com/wearearima/time-report-app/tree/feature/03_tests_improving_quality){:target="_blank"} está disponible el código del ejemplo en el que hemos trabajado, donde hemos mejorado los tests para conseguir una mayor cobertura de mutantes.
 
 Los mutantes que se aplican son configurables, y hay que valorar el equilibrio entre la cantidad/tipo de mutantes configurados y el tiempo de ejecución. A mayor número de tests, mayor número de líneas de código y mayor cantidad de mutantes, más tiempo necesitará Pit en generar el informe correspondiente. Puede llegar un momento en el que sea tan costoso pasar el informe que se hagamos skip, y entonces todo el esfuerzo dedicado a testing se desvanecería. En los ejemplos hemos visto sólo tests unitarios pero lo mismo aplica a los test de integración (muchos de ellos ya costosos en sí mismos).  
 
-En nuestro caso, solemos configurar los que vienen por defecto (DEFAULTS) y añadiendo los del siguiente grupo (NEW_DEFAULTS). En el código de ejemplo hay alguno más configurado, pero [aquí](https://pitest.org/quickstart/mutators/) se muestran los "mutadores" (mutators) de Pit, así que prueba a cambiar la configuración y a ver los diferentes resultados.
+En nuestro caso, solemos configurar los que vienen por defecto (DEFAULTS) y añadiendo los del siguiente grupo (NEW_DEFAULTS). En el código de ejemplo hay alguno más configurado, pero [aquí](https://pitest.org/quickstart/mutators/){:target="_blank"} se muestran los "mutadores" (mutators) de Pit, así que prueba a cambiar la configuración y a ver los diferentes resultados.
 
 ## Conclusiones
 
