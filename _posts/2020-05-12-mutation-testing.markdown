@@ -97,7 +97,7 @@ Tenemos una cobertura de un 92% de líneas y 87% de ramas: objetivo cumplido. Pe
 
 [^1]: Si quieres probar todo esto puedes descargarte el código de [aquí](https://github.com/wearearima/time-report-app/tree/feature/01_tests_for_project_requirements){:target="_blank"}
 
-Pues esta es mi realidad, y mucho me temo que LA realidad, de aquella época en muchos proyectos (y quien sabe si en algunos de hoy en día). Los proyectos cumplían los requerimientos de cobertura de código, lo que distaba mucho de tener un software de calidad.  
+Pues esta era mi realidad, y mucho me temo que LA realidad, de aquella época en muchos proyectos (y quien sabe si en algunos de hoy en día). Los proyectos cumplían los requerimientos de cobertura de código, lo que distaba mucho de tener un software de calidad.  
 
 Es cierto que el ejemplo que he puesto es extremo, pero es real. En mi opinión, el problema está en el enfoque: se ha dado la vuelta a la tortilla y en él los tests nacen como una mera herramienta para asegurar uno de los requerimientos del proyecto.
 
