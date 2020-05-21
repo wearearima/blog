@@ -149,6 +149,7 @@ public void if_the_worklog_for_the_resquested_day_is_more_than_8_hours_the_statu
 En este caso el porcentaje de cobertura es del 100% de líneas de código y ramas. Y además parece que los tests ya tienen más sentido. Ahora ya sí, nos sentiríamos seguros con ellos, ¿verdad? Es así, o ¿es sólo una percepción?
 
 Si alguien modificase algo del método, por su puesto, antes de comitear y pushear pasaría los tests. Si no hubiese ningún test en rojo, vía libre: no se ha "roto" nada.  
+
 ¿Seguro?
 
 Supongamos que lo que se modifica en el método de ejemplo es:
