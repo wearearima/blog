@@ -1,4 +1,272 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="https://blog.arima.eu/es/feed.xml" rel="self" type="application/atom+xml" /><link href="https://blog.arima.eu/es/" rel="alternate" type="text/html" /><updated>2020-05-19T14:11:20+00:00</updated><id>https://blog.arima.eu/feed.xml</id><title type="html">ARIMA</title><subtitle></subtitle><entry xml:lang="es"><title type="html">Cómo preparé y aprobé el Certified Kubernetes Application Developer (CKAD)</title><link href="https://blog.arima.eu/es/2020/04/28/examen-ckad.html" rel="alternate" type="text/html" title="Cómo preparé y aprobé el Certified Kubernetes Application Developer (CKAD)" /><published>2020-04-28T06:00:00+00:00</published><updated>2020-04-28T06:00:00+00:00</updated><id>https://blog.arima.eu/2020/04/28/examen-ckad</id><content type="html" xml:base="https://blog.arima.eu/2020/04/28/examen-ckad.html">&lt;p&gt;En este post voy a explicar un poco mi experiencia de cómo preparé y aprobé el Certified Kubernetes Application Developer (CKAD).&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="https://blog.arima.eu/es/feed.xml" rel="self" type="application/atom+xml" /><link href="https://blog.arima.eu/es/" rel="alternate" type="text/html" /><updated>2020-05-26T06:03:00+00:00</updated><id>https://blog.arima.eu/feed.xml</id><title type="html">ARIMA</title><subtitle></subtitle><entry><title type="html">Mutation testing systems, mejorando la calidad de los tests</title><link href="https://blog.arima.eu/es/2020/05/25/mutation-testing.html" rel="alternate" type="text/html" title="Mutation testing systems, mejorando la calidad de los tests" /><published>2020-05-25T09:00:00+00:00</published><updated>2020-05-25T09:00:00+00:00</updated><id>https://blog.arima.eu/2020/05/25/mutation-testing</id><content type="html" xml:base="https://blog.arima.eu/2020/05/25/mutation-testing.html">&lt;p&gt;Profesionalmente me etiqueto como &lt;em&gt;desarrolladora&lt;/em&gt;, aunque no me gustan mucho las etiquetas y me gusta más decir que la razón de ser de mi trabajo es: crear software de calidad. Pero ¿qué es &lt;strong&gt;software de calidad&lt;/strong&gt;? A mi me gusta definirlo como sigue:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Software de calidad es aquel que satisface las necesidades del usuario de forma eficiente y sin errores.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Podría añadir más adjetivos, entrar en detalle de por qué necesidades y no requerimientos… pero para mi ese sería el titular. Ahora bien, difícilmente se puede tener un software de calidad si este no está escrito con código de calidad.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Software de calidad → código de calidad&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Afortunadamente, los desarrolladores no nos encontramos solos en esta tarea. Existen herramientas para análisis de código de forma estática (Checkstyle, PMD, FindBugs, SonarQube…) y diferentes recomendaciones de buenas prácticas (personalmente destacaría Clean Code y The Pragmatic Programmer). Y ahí entre propuestas, siglas y métricas, no hay desarrollador que no asocie directamente el término &lt;em&gt;&lt;strong&gt;calidad&lt;/strong&gt;&lt;/em&gt; con el término &lt;em&gt;&lt;strong&gt;testing&lt;/strong&gt;&lt;/em&gt; (¿verdad?)&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Código de calidad → tests de calidad&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;testing-el-camino-hacia-la-calidad&quot;&gt;Testing: el camino hacia la calidad&lt;/h2&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;strong&gt;Tests are as important to the health of a project as the production code is.&lt;/strong&gt;&lt;/p&gt;
+  &lt;p align=&quot;right&quot;&gt;&lt;strong&gt;Clean Code.&lt;/strong&gt; Chapter 9: Unit Tests&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Hay varios tipos de test (unitarios, de integración, de aceptación…). Los más extendidos son los tests unitarios y los tests de integración. Con ellos se consigue una cierta percepción de seguridad, ya que si bien no sabemos si el código hace lo que debe, al menos hace lo que dice.&lt;/p&gt;
+
+&lt;p&gt;¿Pero es esto así? Paradójicamente esta práctica consiste en generar más código, es decir, seguimos programando, ¿quién vela porque este código hace lo que dice?, es decir ¿quién vela por la calidad de los tests? De nuevo otra asociación de términos: &lt;strong&gt;tests de calidad&lt;/strong&gt; son aquellos que ofrecen un % de &lt;strong&gt;cobertura&lt;/strong&gt; del código alto.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Tests de calidad → % cobertura elevado de nuestro código&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;A mayor porcentaje de cobertura de código mejores tests y código más fiable. Esto no es nada nuevo. Si hablo de mi experiencia personal, hace algunos años (allá por inicios del 2000) ya formaba parte de las especificaciones de entrega de algunos proyectos el % de cobertura mínimo que debía tener un proyecto. “&lt;em&gt;Este entregable debe tener una batería de tests que aseguren un mínimo de 70% de cobertura de código&lt;/em&gt;”, como sinónimo de código libre de errores y calidad probada en un 70% del código al menos.&lt;/p&gt;
+
+&lt;p&gt;Tomando como ejemplo una aplicación para controlar los partes de horas trabajados, vamos a imaginar que estamos desarrollando un método que dados un trabajador y un día, comprueba el estado de los partes de horas de ese trabajador en ese día (si ha cumplido o no las horas, si hay partes solapados….).&lt;/p&gt;
+
+&lt;h5 id=&quot;reportsserviceimpljava-ver-todo&quot;&gt;ReportsServiceImpl.java &lt;a href=&quot;https://github.com/wearearima/time-report-app/blob/feature/01_tests_for_project_requirements/src/main/java/eu/arima/tr/reports/ReportsServiceImpl.java&quot; target=&quot;_blank&quot;&gt;ver todo&lt;/a&gt;&lt;/h5&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;DayStatusSummary&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getDayStatusSummaryForWorkerAndDay&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;workerUserName&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;LocalDate&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;date&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nc&quot;&gt;DayStatusSummary&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;status&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;DayStatusSummary&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;status&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setDate&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;date&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;status&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setWorkerUserName&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;workerUserName&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+
+  &lt;span class=&quot;nc&quot;&gt;List&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Worklog&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;worklogsForDay&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;worklogRepository&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;findByUsernameAndDate&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;workerUserName&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;date&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;totalDuration&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Worklog&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;worklog&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;worklogsForDay&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;totalDuration&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;totalDuration&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;worklog&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getDuration&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+  &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;totalDuration&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;8&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;status&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getStatusList&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;DayStatus&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;RIGHT_HOURS&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;totalDuration&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;8&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;status&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getStatusList&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;DayStatus&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;EXTRA_HOURS&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;totalDuration&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;8&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;status&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getStatusList&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;DayStatus&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;MISSING_HOURS&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;status&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Vamos a ver un ejemplo de tests que entregábamos por aquel entonces:&lt;/p&gt;
+
+&lt;h5 id=&quot;getdaystatussummaryforworkeranddaytestsjava-ver-todo&quot;&gt;GetDayStatusSummaryForWorkerAndDayTests.java &lt;a href=&quot;https://github.com/wearearima/time-report-app/blob/92fd1b537de787bc2a5d10dc85c9ee80295350d8/src/test/java/eu/arima/tr/reports/reportsServiceImpl/GetDayStatusSummaryForWorkerAndDayTests.java&quot; target=&quot;_blank&quot;&gt;ver todo&lt;/a&gt;&lt;/h5&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@Test&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;get_status_summary_for_worker_and_day&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;reportsService&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getDayStatusSummaryForWorkerAndDay&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;USU&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;LocalDate&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;now&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;());&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;assertTrue&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;nd&quot;&gt;@Test&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;calculates_the_status_based_on_worker_and_date_worklogs&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nc&quot;&gt;List&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Worklog&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;partes&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ArrayList&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Worklog&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;();&lt;/span&gt;
+  &lt;span class=&quot;nc&quot;&gt;Worklog&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;wl&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Worklog&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;wl&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setFromTime&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;LocalTime&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;of&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;8&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;));&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;wl&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setToTime&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;LocalTime&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;of&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;19&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;));&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;partes&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;wl&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;nc&quot;&gt;Mockito&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;when&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;worklogRepository&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;findByUsernameAndDate&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;ArgumentMatchers&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;anyString&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(),&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ArgumentMatchers&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;any&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;LocalDate&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;))).&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;thenReturn&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;partes&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+
+  &lt;span class=&quot;nc&quot;&gt;LocalDate&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fecha&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;LocalDate&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;now&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;reportsService&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getDayStatusSummaryForWorkerAndDay&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;USU&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fecha&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+
+  &lt;span class=&quot;nc&quot;&gt;Mockito&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;verify&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;worklogRepository&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;findByUsernameAndDate&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;USU&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fecha&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Hemos configurado &lt;a href=&quot;https://www.eclemma.org/jacoco/&quot; target=&quot;_blank&quot;&gt;JaCoCo&lt;/a&gt; para obtener el informe de la cobertura de nuestros tests, y el resultado ha sido el siguiente.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/2020-05-12-mutation-testing/01jacocoreport.png&quot; alt=&quot;JaCoCo report general&quot; class=&quot;center&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Tenemos una cobertura de un 92% de líneas y 87% de ramas: objetivo cumplido. Pero…si nos fijamos: el primer test no fallará (casi) nunca porque siempre termina con &lt;code class=&quot;highlighter-rouge&quot;&gt;assert true&lt;/code&gt;, el segundo es un poco “más completo” porque al menos está verificando que se recuperan los partes… &lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+
+&lt;p&gt;Pues esta era mi realidad, y mucho me temo que LA realidad, de aquella época en muchos proyectos (y quien sabe si en algunos de hoy en día). Los proyectos cumplían los requerimientos de cobertura de código, lo que distaba mucho de tener un software de calidad.&lt;/p&gt;
+
+&lt;p&gt;Es cierto que el ejemplo que he puesto es extremo, pero es real. En mi opinión, el problema está en el enfoque: se ha dado la vuelta a la tortilla y en él los tests nacen como una mera herramienta para asegurar uno de los requerimientos del proyecto.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;% cobertura mínimo por requerimiento → test = “pérdida de tiempo”&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Volvamos al enfoque original. Quedaría:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Software de calidad → código de calidad → tests de calidad → % cobertura de código&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;En este escenario, los tests nacen bajo la premisa de tener un código de mayor calidad y el % de cobertura se convierte en un indicador más. Vamos a ver un fragmento de un ejemplo de test mejor, de esos de los que hacemos por convicción y no por cumplir un requerimiento sin más (supongo que más parecidos a los que podemos encontrarnos en los proyectos actuales que los anteriores…).&lt;/p&gt;
+
+&lt;h5 id=&quot;getdaystatussummaryforworkeranddaytestsjava-ver-todo-1&quot;&gt;GetDayStatusSummaryForWorkerAndDayTests.java &lt;a href=&quot;https://github.com/wearearima/time-report-app/blob/feature/02_tests_for_testing_purposes/src/test/java/eu/arima/tr/reports/reportsServiceImpl/GetDayStatusSummaryForWorkerAndDayTests.java&quot; target=&quot;_blank&quot;&gt;ver todo&lt;/a&gt;&lt;/h5&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@Test&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;if_the_worklog_for_the_resquested_day_is_less_than_8_hours_the_status_is_MISSING_HOURS&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nc&quot;&gt;Worklog&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;worklog&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Mockito&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;mock&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Worklog&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;nc&quot;&gt;Mockito&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;when&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;worklog&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getDuration&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()).&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;thenReturn&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;7&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;nc&quot;&gt;Mockito&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;when&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;worklogRepository&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;findByUsernameAndDate&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;ArgumentMatchers&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;anyString&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(),&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ArgumentMatchers&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;any&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;LocalDate&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;))).&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;thenReturn&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Arrays&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;asList&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;worklog&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;));&lt;/span&gt;
+
+  &lt;span class=&quot;nc&quot;&gt;DayStatusSummary&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;resultado&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;reportsService&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getDayStatusSummaryForWorkerAndDay&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;USU&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;LocalDate&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;now&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;());&lt;/span&gt;
+
+  &lt;span class=&quot;n&quot;&gt;assertEquals&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;DayStatus&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;MISSING_HOURS&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;resultado&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getStatusList&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;));&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;nd&quot;&gt;@Test&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;if_the_worklog_for_the_resquested_day_is_equal_to_8_hours_the_status_is_RIGHT_HOURS&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nc&quot;&gt;Worklog&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;worklog&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Mockito&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;mock&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Worklog&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;nc&quot;&gt;Mockito&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;when&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;worklog&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getDuration&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()).&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;thenReturn&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;8&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;nc&quot;&gt;Mockito&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;when&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;worklogRepository&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;findByUsernameAndDate&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;ArgumentMatchers&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;anyString&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(),&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ArgumentMatchers&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;any&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;LocalDate&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;))).&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;thenReturn&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Arrays&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;asList&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;worklog&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;));&lt;/span&gt;
+
+  &lt;span class=&quot;nc&quot;&gt;DayStatusSummary&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;resultado&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;reportsService&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getDayStatusSummaryForWorkerAndDay&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;USU&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;LocalDate&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;now&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;());&lt;/span&gt;
+
+  &lt;span class=&quot;n&quot;&gt;assertEquals&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;DayStatus&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;RIGHT_HOURS&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;resultado&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getStatusList&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;));&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;nd&quot;&gt;@Test&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;if_the_worklog_for_the_resquested_day_is_more_than_8_hours_the_status_is_EXTRA_HOURS&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nc&quot;&gt;Worklog&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;worklog&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Mockito&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;mock&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Worklog&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;nc&quot;&gt;Mockito&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;when&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;worklog&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getDuration&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()).&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;thenReturn&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;nc&quot;&gt;Mockito&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;when&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;worklogRepository&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;findByUsernameAndDate&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;ArgumentMatchers&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;anyString&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(),&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ArgumentMatchers&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;any&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;LocalDate&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;))).&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;thenReturn&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Arrays&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;asList&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;worklog&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;));&lt;/span&gt;
+
+  &lt;span class=&quot;nc&quot;&gt;DayStatusSummary&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;resultado&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;reportsService&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getDayStatusSummaryForWorkerAndDay&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;USU&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;LocalDate&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;now&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;());&lt;/span&gt;
+
+  &lt;span class=&quot;n&quot;&gt;assertEquals&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;DayStatus&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;EXTRA_HOURS&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;resultado&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getStatusList&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;));&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;En este caso el porcentaje de cobertura es del 100% de líneas de código y ramas. Y además parece que los tests ya tienen más sentido. Ahora ya sí, nos sentiríamos seguros con ellos, ¿verdad? Es así, o ¿es sólo una percepción?&lt;/p&gt;
+
+&lt;p&gt;Si alguien modificase algo del método, por su puesto, antes de comitear y pushear pasaría los tests. Si no hubiese ningún test en rojo, vía libre: no se ha “roto” nada.&lt;/p&gt;
+
+&lt;p&gt;¿Seguro?&lt;/p&gt;
+
+&lt;p&gt;Supongamos que lo que se modifica en el método de ejemplo es:&lt;/p&gt;
+
+&lt;h5 id=&quot;reportsserviceimpljava&quot;&gt;ReportsServiceImpl.java&lt;/h5&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Worklog&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;worklog&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;worklogsForDay&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;totalDuration&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;totalDuration&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;worklog&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getDuration&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+  &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;por&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Worklog&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;worklog&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;worklogsForDay&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;totalDuration&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;worklog&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getDuration&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+  &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Nuestros tests seguirán pasando&lt;sup id=&quot;fnref:2&quot;&gt;&lt;a href=&quot;#fn:2&quot; class=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt;. Además seguimos con un % de cobertura alto… ¡Todo perfecto!&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Test → &lt;strong&gt;sensación&lt;/strong&gt; de seguridad&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;mutation-testing-systems-asegurando-el-camino&quot;&gt;Mutation testing systems: asegurando el camino&lt;/h2&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;strong&gt;Because we can’t write perfect software, it follows that we can’t write perfect test software either. We need to test the tests.&lt;/strong&gt;&lt;/p&gt;
+  &lt;p align=&quot;right&quot;&gt;&lt;strong&gt;The Pragmatic Programmer.&lt;/strong&gt; Chapter 8: Pragmatic projects&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Parece que los tests que hemos creado no son tan buenos como creíamos, no tienen calidad suficiente como para asegurar la calidad (valga la redundancia) de nuestro método. Nos han ofrecido una falsa sensación de seguridad.&lt;/p&gt;
+
+&lt;p&gt;Está claro que conseguir % altos de cobertura no es sencillo y si escribir tests es costoso, escribir buenos tests lo es aún más y lo que obtenemos es una sensación de seguridad que no es real. ¿No podríamos hacer que esta sensación fuese más cercana a la realidad? ¿No podríamos detectar situaciones, como la que hemos visto, de forma automática?&lt;/p&gt;
+
+&lt;p&gt;Pues bien, para abordar este tipo de situaciones surgen los denominados &lt;em&gt;Mutation Testing Systems&lt;/em&gt;. La idea que hay detrás de ellos no es otra que la que hemos expuesto en el último ejemplo: simular cambios en el código fuente que se está probando y verificar que efectivamente, algún test fallará tras haber realizado la modificación.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Software de calidad → código de calidad → tests de calidad → % cobertura mutation tests&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Los conceptos básicos son los siguientes:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Cada cambio que se genera en el código es un &lt;strong&gt;mutante&lt;/strong&gt; (mutant).&lt;/li&gt;
+  &lt;li&gt;Cada cambio (o mutante) que nuestros tests son capaces de detectar se denomina &lt;strong&gt;matar un mutante&lt;/strong&gt; (killed mutant).&lt;/li&gt;
+  &lt;li&gt;Cada cambio (o muntante) que nuestros tests no son capaces de detectar son &lt;strong&gt;mutantes vivos&lt;/strong&gt; (lived)&lt;/li&gt;
+  &lt;li&gt;Los cambios en el código se generan mediante &lt;strong&gt;operadores mutantes&lt;/strong&gt; (mutators / mutation operators), que se agrupan en diferentes categorias dependiendo del tipo de cambio que realicen en el código.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Personalmente no había oído hablar de este concepto hasta hace relativamente poco sin embargo, la realidad es que ya llevan varios años entre nosotros. Existen múltiples alternativas para los diferentes stacks tecnológicos. Por ejemplo:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://stryker-mutator.io/&quot; target=&quot;_blank&quot;&gt;Stryker&lt;/a&gt; para JavaScript, TypeScript, C# y Scala&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://thesoftwaredesignlab.github.io/mutode/&quot; target=&quot;_blank&quot;&gt;Mutode&lt;/a&gt; para JavaScript y Node.js&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://cosmic-ray.readthedocs.io/en/latest/&quot; target=&quot;_blank&quot;&gt;Cosmic Ray&lt;/a&gt; para Python&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://pypi.org/project/mutmut/&quot; target=&quot;_blank&quot;&gt;mutmut&lt;/a&gt; para Python&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/mbj/mutant&quot; target=&quot;_blank&quot;&gt;Mutant&lt;/a&gt; para Ruby&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Y volviendo a Java algunos de los sistemas de mutación son (o han sido):&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://pitest.org/&quot; target=&quot;_blank&quot;&gt;PIT&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://jumble.sourceforge.net/index.html&quot; target=&quot;_blank&quot;&gt;Jumble&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://jester.sourceforge.net/&quot; target=&quot;_blank&quot;&gt;Jester&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/jeffoffutt/muJava&quot; target=&quot;_blank&quot;&gt;muJava&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Nosotros hemos utilizado PIT porque:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Es sencillo de usar&lt;/li&gt;
+  &lt;li&gt;Se integra fácilmente en los proyectos que los hemos usado (mediante un plugin de maven) así como en el IDE (en nuestro caso Eclipse)&lt;/li&gt;
+  &lt;li&gt;Admite diferentes configuraciones (algunas que permiten mejorar la eficiencia)&lt;/li&gt;
+  &lt;li&gt;Aún está activo&lt;/li&gt;
+  &lt;li&gt;Parece ser la solución más utilizada en la actualidad&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Si ejecutamos el informe de &lt;em&gt;pitest&lt;/em&gt; en nuestro ejemplo, veremos este resultado.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/2020-05-12-mutation-testing/PitTestCoverageReport01.png&quot; alt=&quot;Informe _Pit test_ general&quot; class=&quot;center&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Aquí se indica el resultado general: por un lado la cobertura de líneas de código y por otro lado la cobertura de mutación.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/2020-05-12-mutation-testing/PitTestCoverageReportClass01.png&quot; alt=&quot;Informe _Pit test_ clase&quot; class=&quot;center&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Las líneas marcadas en verde, reflejan código en el que PIT ha introducido cambios y los tests han sido capaces de detectarlo. Las líneas marcadas en rojo, reflejan las líneas de código que nuestros tests no han sabido detectar que había habido cambios. Si nos fijamos la línea 27 es la que nosotros habíamos modificado y nuestros tests habían pasado. Ahora tenemos dos opciones: seguir adelante, asumiendo la fragilidad que puede tener nuestro código o lo más acertado (y lógico) añadir/corregir tests que nos aseguren la fiabilidad frente a los cambios detectados.&lt;/p&gt;
+
+&lt;p&gt;En el siguiente &lt;a href=&quot;https://github.com/wearearima/time-report-app/tree/feature/03_tests_improving_quality&quot; target=&quot;_blank&quot;&gt;enlace&lt;/a&gt; está disponible el código del ejemplo en el que hemos trabajado, donde hemos mejorado los tests para conseguir una mayor cobertura de mutantes.&lt;/p&gt;
+
+&lt;p&gt;Los mutantes que se aplican son configurables, y hay que valorar el equilibrio entre la cantidad/tipo de mutantes configurados y el tiempo de ejecución. A mayor número de tests, mayor número de líneas de código y mayor cantidad de mutantes, más tiempo necesitará Pit en generar el informe correspondiente. Puede llegar un momento en el que sea tan costoso pasar el informe que se hagamos skip, y entonces todo el esfuerzo dedicado a testing se desvanecería. En los ejemplos hemos visto sólo tests unitarios pero lo mismo aplica a los test de integración (muchos de ellos ya costosos en sí mismos).&lt;/p&gt;
+
+&lt;p&gt;En nuestro caso, solemos configurar los que vienen por defecto (DEFAULTS) y añadiendo los del siguiente grupo (NEW_DEFAULTS). En el código de ejemplo hay alguno más configurado, pero &lt;a href=&quot;https://pitest.org/quickstart/mutators/&quot; target=&quot;_blank&quot;&gt;aquí&lt;/a&gt; se muestran los “mutadores” (mutators) de Pit, así que prueba a cambiar la configuración y a ver los diferentes resultados.&lt;/p&gt;
+
+&lt;h2 id=&quot;conclusiones&quot;&gt;Conclusiones&lt;/h2&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Software de calidad → código de calidad → tests de calidad&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Software de calidad require de código calidad que a su vez puede validarse gracias a tests de calidad.&lt;/p&gt;
+
+&lt;p&gt;Generalmente hay más código para testear un método que para implementarlo, lo que conlleva un claro esfuerzo en tiempo: dedicaremos más tiempo al testeo de un método que a su implementación. Necesitamos asegurar que dicho esfuerzo no sea en balde.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Mutation testing&lt;/strong&gt; es una herramienta que nos permite evaluar y mejorar la calidad de nuestros tests. El precio a pagar es el aumento de tiempo necesario para pasarlos. Teniendo en cuenta que se basa en mutaciones de código y que aplica no sólo a tests unitarios, también a tests de integración, a medida que el código crezca y el número de tests aumente, mayor será el tiempo necesario para ejecutarlos. Es necesario, por tanto, buscar fórmulas que aseguren que en alguna fase de nuestro desarrollo todos los tests pasan: si dejamos de pasarlos porque es demasiado costoso todo el esfuerzo habrá sido en vano.&lt;/p&gt;
+
+&lt;p&gt;Hemos dado un paso firme, pero nos queda recorrido en nuestro camino hacia la calidad: ¿Qué podemos hacer para buscar este equilibrio? ¿Podemos organizar de alguna forma los tests para facilitarlo? ¿Hay herramientas que nos permitan desarrollar/ejecutar tests de forma más eficiente?&lt;/p&gt;
+&lt;div class=&quot;footnotes&quot;&gt;
+  &lt;ol&gt;
+    &lt;li id=&quot;fn:1&quot;&gt;
+      &lt;p&gt;Si quieres probar todo esto puedes descargarte el código de &lt;a href=&quot;https://github.com/wearearima/time-report-app/tree/feature/01_tests_for_project_requirements&quot; target=&quot;_blank&quot;&gt;aquí&lt;/a&gt; &lt;a href=&quot;#fnref:1&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:2&quot;&gt;
+      &lt;p&gt;Pruébalo tu mismo, el código está disponible &lt;a href=&quot;https://github.com/wearearima/time-report-app/tree/feature/02_tests_for_testing_purposes&quot; target=&quot;_blank&quot;&gt;aquí&lt;/a&gt; &lt;a href=&quot;#fnref:2&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/div&gt;</content><author><name>jessica</name></author><category term="testing," /><category term="mutation" /><category term="testing" /><category term="systems," /><category term="pit," /><category term="pitest," /><category term="calidad," /><category term="software" /><category term="quality," /><category term="QA," /><category term="cobertura," /><category term="coverage," /><category term="junit" /><summary type="html">Profesionalmente me etiqueto como desarrolladora, aunque no me gustan mucho las etiquetas y me gusta más decir que la razón de ser de mi trabajo es: crear software de calidad. Pero ¿qué es software de calidad? A mi me gusta definirlo como sigue:</summary></entry><entry xml:lang="es"><title type="html">Cómo preparé y aprobé el Certified Kubernetes Application Developer (CKAD)</title><link href="https://blog.arima.eu/es/2020/04/28/examen-ckad.html" rel="alternate" type="text/html" title="Cómo preparé y aprobé el Certified Kubernetes Application Developer (CKAD)" /><published>2020-04-28T06:00:00+00:00</published><updated>2020-04-28T06:00:00+00:00</updated><id>https://blog.arima.eu/2020/04/28/examen-ckad</id><content type="html" xml:base="https://blog.arima.eu/2020/04/28/examen-ckad.html">&lt;p&gt;En este post voy a explicar un poco mi experiencia de cómo preparé y aprobé el Certified Kubernetes Application Developer (CKAD).&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&quot;https://www.linuxfoundation.org/&quot; target=&quot;_blank&quot;&gt;The Linux Foundation&lt;/a&gt; y &lt;a href=&quot;https://www.cncf.io/&quot; target=&quot;_blank&quot;&gt;Cloud Native Computing Foundation&lt;/a&gt; 
 ofrecen dos variantes en la certificación de Kubernetes, CKAD y CKA. En pocas palabras:&lt;/p&gt;
@@ -823,70 +1091,4 @@ body {
   &lt;li&gt;Como la instancia de un modelo no tiene ningún proxy, no puede saber que propiedades se han añadido o borrado de un objeto, por lo que al ejecutar un guardado de un modelo con tablas relacionadas, estas siempre se borran y se vuelven a insertar. (test updateWithRelations)&lt;/li&gt;
   &lt;li&gt;Así como JPA acepta relaciones &lt;em&gt;OneToMany&lt;/em&gt;, &lt;em&gt;ManyToOne&lt;/em&gt; o &lt;em&gt;ManyToMany&lt;/em&gt;, Spring Data JDBC acepta solo relaciones &lt;em&gt;OneToMany&lt;/em&gt;.&lt;/li&gt;
   &lt;li&gt;Aún no está implementada la interfaz &lt;em&gt;PagingAndSortingRepository&lt;/em&gt;, lo que implica que la paginación hay que hacerla de manera manual, como por ejemplo, haciendo uso de &lt;em&gt;@Query&lt;/em&gt;. Hay una tarea en el &lt;a href=&quot;https://jira.spring.io/browse/DATAJDBC-101&quot; target=&quot;_blank&quot;&gt;jira de Spring&lt;/a&gt;, pero es de prioridad &lt;em&gt;minor&lt;/em&gt;.&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>ugaitz</name></author><category term="base" /><category term="de" /><category term="datos,spring,jdbc," /><category term="JPA" /><summary type="html">Spring Data JDBC es una librería para facilitar la creación de repositorios que acceden a bases de datos sin tratar con la complejidad que supone utilizar JPA. El hecho de que JPA ofrezca muchas funcionalidades como caché, carga de relaciones bajo demanda (Lazy), etc. supone que el desarrollador tenga que tener en cuenta cierta complejidad.</summary></entry><entry xml:lang="es"><title type="html">Java en contenedores Docker con Jib</title><link href="https://blog.arima.eu/es/2019/09/26/java-docker-building-with-jib.html" rel="alternate" type="text/html" title="Java en contenedores Docker con Jib" /><published>2019-09-26T09:00:00+00:00</published><updated>2019-09-26T09:00:00+00:00</updated><id>https://blog.arima.eu/2019/09/26/java-docker-building-with-jib</id><content type="html" xml:base="https://blog.arima.eu/2019/09/26/java-docker-building-with-jib.html">&lt;p&gt;Generalmente cuando se quiere empaquetar una aplicación Java en un contenedor Docker, se crea un 
-fichero Dockerfile en el proyecto para especificar las propiedades de la imagen Docker, tales como: 
-en qué imagen se basa, cuál es el entrypoint, qué puerto se expone, etc.&lt;/p&gt;
-
-&lt;p&gt;Una alternativa al fichero Dockerfile es definir esa información en el pom.xml mediante el plugin de 
-&lt;a href=&quot;https://github.com/GoogleContainerTools/jib&quot; target=&quot;_blank&quot;&gt;Jib&lt;/a&gt; para Maven o Gradle. Las ventajas que nos aporta este proyecto son:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;No requiere configurar un fichero Dockerfile en el proyecto ni tener Docker instalado en el equipo para crear imágenes Docker.&lt;/li&gt;
-  &lt;li&gt;Logramos que el building de la imagen sea más rápido ya que JIB separa en diferentes capas el código del proyecto y 
- sus dependencias. Dado que las dependencias no cambian habitualmente, JIB puede reutilizar la capa de dependencias y sólo
- hacer el building de la capa de código.&lt;/li&gt;
-  &lt;li&gt;Simplificamos el flujo de construcción de la imagen y de publicación en un repositorio. Como ilustra la siguiente imagen,
- este flujo antes implicaba varios comandos y con jib lo resolvemos a la ejecución de un único comando.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/2019-09-26-java-docker-building-with-jib/jib-flow.png&quot; alt=&quot;jib-flow&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;En &lt;a href=&quot;https://github.com/wearearima/spring-boot-jib-docker&quot; target=&quot;_blank&quot;&gt;este proyecto de Spring Boot&lt;/a&gt; hemos configurado el plugin Jib para Maven de esta manera:&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;lt;plugin&amp;gt;
-    &amp;lt;groupId&amp;gt;com.google.cloud.tools&amp;lt;/groupId&amp;gt;
-    &amp;lt;artifactId&amp;gt;jib-maven-plugin&amp;lt;/artifactId&amp;gt;
-    &amp;lt;version&amp;gt;1.5.1&amp;lt;/version&amp;gt;
-&amp;lt;/plugin&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Sólo con esto y ejecutando el comando &lt;code class=&quot;highlighter-rouge&quot;&gt;./mvnw compile jib:dockerBuild&lt;/code&gt; ya es suficiente para crear una imagen Docker de nuestra aplicación Java.&lt;/p&gt;
-
-&lt;p&gt;Con objeto de reducir configuración de Docker, a partir de la información del proyecto Jib ha inferido la configuración que mejor se ajusta. Por ejemplo, no hemos especificado la imagen base que incluirá la JDK. Jib no lo ha necesitado porque a partir de la configuración del pom, &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;java.version&amp;gt;1.8&amp;lt;/java.version&amp;gt;&lt;/code&gt;, ha detectado que se necesita Java 8 y para este tipo de proyecto la imagen base que emplea Jib es &lt;code class=&quot;highlighter-rouge&quot;&gt;gcr.io/distroless/java:8&lt;/code&gt;, una imagen &lt;a href=&quot;https://github.com/GoogleContainerTools/distroless&quot; target=&quot;_blank&quot;&gt;distroless de Google&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;Asimismo, aunque carecemos del fichero Dockerfile, seguimos teniendo el control sobre los parámetros de configuración de la imagen Docker. En el siguiente ejemplo veremos cómo podemos configurar algunos de estos parámetros:&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;lt;plugin&amp;gt;
-    &amp;lt;groupId&amp;gt;com.google.cloud.tools&amp;lt;/groupId&amp;gt;
-    &amp;lt;artifactId&amp;gt;jib-maven-plugin&amp;lt;/artifactId&amp;gt;
-    &amp;lt;version&amp;gt;1.5.1&amp;lt;/version&amp;gt;
-    &amp;lt;configuration&amp;gt;
-        &amp;lt;from&amp;gt;
-            &amp;lt;image&amp;gt;adoptopenjdk/openjdk8:alpine-slim&amp;lt;/image&amp;gt;
-        &amp;lt;/from&amp;gt;
-        &amp;lt;to&amp;gt;
-            &amp;lt;image&amp;gt;${project.groupId}/${project.artifactId}&amp;lt;/image&amp;gt;
-        &amp;lt;/to&amp;gt;
-        &amp;lt;container&amp;gt;
-            &amp;lt;jvmFlags&amp;gt;
-                &amp;lt;jvmFlag&amp;gt;-Djava.security.egd=file:/dev/./urandom&amp;lt;/jvmFlag&amp;gt;
-            &amp;lt;/jvmFlags&amp;gt;
-        &amp;lt;/container&amp;gt;
-    &amp;lt;/configuration&amp;gt;
-&amp;lt;/plugin&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;En esta configuración se ha especificado:&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;AdoptOpenJDK como imagen base mediante &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;form&amp;gt;&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;Tag de la imagen mediante &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;to&amp;gt;&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;Flags de JVM mediante &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;jvmFlags&amp;gt;&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Si inspeccionamos la imagen recien creada observamos que la imagen fue creada hace ¡49 años!&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ docker image ls | grep spring-boot-jib-docker
-spring-boot-jib-docker                                           0.0.1-SNAPSHOT          fe30b0d3f8d6        49 years ago        142MB
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;No se trata de un bug, no hay que asustarse. Jib por defecto elimina la fecha de creación para mantener la &lt;a href=&quot;https://reproducible-builds.org/&quot; target=&quot;_blank&quot;&gt;reproducibilidad&lt;/a&gt; de la imagen. Un building reproducible es aquel que siempre devuelve el mismo resultado, incluso la misma fecha de creación. Por este motivo Jib lo elimina, aunque se puede &lt;a href=&quot;https://github.com/GoogleContainerTools/jib/blob/master/docs/faq.md#why-is-my-image-created-48-years-ago&quot; target=&quot;_blank&quot;&gt;modificar este comportamiento&lt;/a&gt;.&lt;/p&gt;</content><author><name>telle</name></author><category term="spring-boot," /><category term="docker," /><category term="jib," /><category term="maven" /><summary type="html">Generalmente cuando se quiere empaquetar una aplicación Java en un contenedor Docker, se crea un fichero Dockerfile en el proyecto para especificar las propiedades de la imagen Docker, tales como: en qué imagen se basa, cuál es el entrypoint, qué puerto se expone, etc.</summary></entry></feed>
+&lt;/ul&gt;</content><author><name>ugaitz</name></author><category term="base" /><category term="de" /><category term="datos,spring,jdbc," /><category term="JPA" /><summary type="html">Spring Data JDBC es una librería para facilitar la creación de repositorios que acceden a bases de datos sin tratar con la complejidad que supone utilizar JPA. El hecho de que JPA ofrezca muchas funcionalidades como caché, carga de relaciones bajo demanda (Lazy), etc. supone que el desarrollador tenga que tener en cuenta cierta complejidad.</summary></entry></feed>
