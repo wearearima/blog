@@ -64,6 +64,9 @@ authors:
   urko:
     display_name: Urko Lekuona
     bio:
+  jessica:
+    display_name: Jessica Aguado
+    bio:
 # Google Analytics
 google_analytics: UA-120217722-1
 plugins:
