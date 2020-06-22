@@ -3,6 +3,7 @@ layout: post
 title:  "Cómo preparé y aprobé el Certified Kubernetes Application Developer (CKAD)"
 date:   2020-04-28 6:00:00
 author: fernando
+lang: es
 categories: certificaciones
 tags: certificaciones, examenes, Kubernetes, CNCF, CKAD, CKA
 header-image:	2020-04-22-examen-ckad/header-image.jpg

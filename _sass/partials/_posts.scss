@@ -125,16 +125,20 @@ $post-header-height: 300px;
       font-size: 14px;
     }
   }
-  li {
-    list-style: none;
-    margin-bottom: .75em;
-    &::before {
-      content: '/';
-      margin-left: -25px;
-      padding-right: 14px;
-      position: absolute;
+
+  > *:not(.footnotes) {
+    li {
+      list-style: none;
+      margin-bottom: .75em;
+      &::before {
+        content: '/';
+        margin-left: -25px;
+        padding-right: 14px;
+        position: absolute;
+      }
     }
   }
+
   a {
     font-family: 'gothambook';
     color: #000;

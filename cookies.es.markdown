@@ -1,5 +1,7 @@
 ---
 layout: default
+lang: es
+permalink: cookies.html
 ---
 
 # Política de cookies

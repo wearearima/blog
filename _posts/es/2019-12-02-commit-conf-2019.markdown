@@ -3,6 +3,7 @@ layout: post
 title:  "Hemos estado en la Commit Conf 2019"
 date:   2019-12-02 9:00:00
 author: fernando
+lang: es
 categories: conferencias
 tags: conferencias, commit conf
 header-image:	2019-12-02-commit-conf-2019/commit.png

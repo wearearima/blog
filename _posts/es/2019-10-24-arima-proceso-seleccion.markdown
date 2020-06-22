@@ -3,6 +3,7 @@ layout: post
 title:  "Nuestro proceso de selección"
 date:   2019-10-24 9:00:00
 author: aritz
+lang: es
 categories: contratación
 tags: recruiting, contratación, proceso de selección, remote working
 header-image:	post-headers/hiring-process.jpg

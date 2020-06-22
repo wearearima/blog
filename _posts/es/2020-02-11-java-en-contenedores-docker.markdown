@@ -3,6 +3,7 @@ layout: post
 title:  "¿Es viable ejecutar Java en contenedores Docker?"
 date:   2020-02-11 9:00:00
 author: telle
+lang: es
 categories: docker, containers, java
 tags: docker, containers, java, contenedores
 header-image: 2020-02-11-java-en-contenedores-docker/fondo-cafe-min.jpg

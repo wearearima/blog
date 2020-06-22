@@ -3,6 +3,7 @@ layout: post
 title:  "Buenas prácticas para escribir un Dockerfile"
 date:   2020-04-21 9:00:00
 author: urko
+lang: es
 categories: docker
 tags: docker, dockerfile
 header-image: 2020-04-21-buenas-practicas-para-escribir-un-dockerfile/skyline.jpg
