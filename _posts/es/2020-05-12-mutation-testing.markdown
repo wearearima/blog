@@ -194,7 +194,7 @@ Los conceptos básicos son los siguientes:
 
 * Cada cambio que se genera en el código es un **mutante** (mutant).
 * Cada cambio (o mutante) que nuestros tests son capaces de detectar se denomina **matar un mutante** (killed mutant).
-* Cada cambio (o muntante) que nuestros tests no son capaces de detectar son **mutantes vivos** (lived)
+* Cada cambio (o muntante) que nuestros tests no son capaces de detectar son **mutantes vivos** (survived mutant).
 * Los cambios en el código se generan mediante **operadores mutantes** (mutators / mutation operators), que se agrupan en diferentes categorias dependiendo del tipo de cambio que realicen en el código.
 
 Personalmente no había oído hablar de este concepto hasta hace relativamente poco sin embargo, la realidad es que ya llevan varios años entre nosotros. Existen múltiples alternativas para los diferentes stacks tecnológicos. Por ejemplo:
