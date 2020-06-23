@@ -3,6 +3,7 @@ layout: post
 title:  "Mutation testing systems, mejorando la calidad de los tests"
 date:   2020-05-25 9:00:00
 author: jessica
+lang: es
 categories: testing, software quality, QA
 tags: testing, mutation testing systems, pit, pitest, calidad, software quality, QA, cobertura, coverage, junit
 header-image:	2020-05-12-mutation-testing/header.jpg
