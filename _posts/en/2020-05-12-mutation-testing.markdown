@@ -94,7 +94,7 @@ We configured [JaCoCo](https://www.eclemma.org/jacoco/) to get the test coverage
 
 ![JaCoCo report general](/assets/images/2020-05-12-mutation-testing/01jacocoreport.png){: .center } 
 
-We have a coverage of 92% of lines and 87% of branches: objective met. But...if you look: the first test will (almost) never fail because it always ends with `assert true`, the second is a bit “more complete” because at least it verifies that the hours (or part hours) are made up... [^1]
+We have a coverage of 92% of lines and 87% of branches: objective met. But...if you look: the first test will (almost) never fail because it always ends with `assert true`, the second is a bit “more complete” because at least it verifies that the hours (or part hours) are retrieved... [^1]
 
 [^1]: If you want to try all this then download the code from [here](https://github.com/wearearima/time-report-app/tree/feature/01_tests_for_project_requirements){:target="_blank"}
 
@@ -170,7 +170,7 @@ for
   }
 ```
 
-Our tests will continue to pass[^2]. We also continue with a high x% coverage... Everything is perfect!
+Our tests will continue to pass[^2]. We also continue with a high % coverage... Everything is perfect!
 
 [^2]: Try it for yourself, the code is available [here](https://github.com/wearearima/time-report-app/tree/feature/02_tests_for_testing_purposes)
 
