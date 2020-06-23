@@ -185,7 +185,7 @@ It seems that the tests we have created are not as good as we thought, they don'
 
 It’s clear that achieving a high % coverage isn’t easy and if writing tests is costly, writing good tests is even more so, and what we get is an unreal sense of security. Couldn't we make this feeling closer to reality? Couldn't we detect situations, like the one we've seen, automatically?
 
-Well, to deal with this type of situation, the so-called _Mutation Testing Systems_ come up. The idea behind them is none other than the one we have put forward in the last example: to simulate changes in the source code which are tested and verified so that indeed, after making a modification, it will fail some tests.  
+Well, to deal with this type of situation, the so-called _Mutation Testing Systems_ come up. The idea behind them is none other than the one we have put forward in the last example: to simulate changes in the source code being tested and verify that in reality, some tests are failed after a modification has been made.  
 
 > Quality software &rarr; quality code &rarr; quality tests &rarr; mutation test % coverage
 
