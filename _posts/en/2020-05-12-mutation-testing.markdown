@@ -181,7 +181,7 @@ Our tests will continue to pass[^2]. We also continue with a high % coverage... 
 >**Because we can’t write perfect software, it follows that we can’t write perfect test software either. We need to test the tests.**
 ><p align="right" markdown="1">**The Pragmatic Programmer.** Chapter 8: Pragmatic projects</p>
 
-It seems that the tests we have created are not as good as we thought, they are not good enough to ensure the quality (forgive the repetition) of our method. We have been offered a false sense of security.   
+It seems that the tests we have created are not as good as we thought, they don't have enough quality to ensure the quality (forgive the repetition) of our method. We have been offered a false sense of security.   
 
 It’s clear that achieving a high % coverage isn’t easy and if writing tests is costly, writing good tests is even more so, and what we get is an unreal sense of security. Couldn't we make this feeling closer to reality? Couldn't we detect situations, like the one we've seen, automatically?
 
