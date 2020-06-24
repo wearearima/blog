@@ -6,8 +6,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Mutation testing systems, mejorando la calidad de los tests</title>
-  <meta name="description" content="Profesionalmente me etiqueto como desarrolladora, aunque no me gustan mucho las etiquetas y me gusta más decir que la razón de ser de mi trabajo es: crear so...">
+  <title>Mutation testing systems, improving the quality of tests</title>
+  <meta name="description" content="Professionally I label myself as a developer, although I don’t like labels very much and I prefer to say that the reason for my work is: to create quality so...">
   
   <meta name="keywords" content="testing,mutationtestingsystems,pit,pitest,calidad,softwarequality,QA,cobertura,coverage,junit">
   
@@ -15,7 +15,7 @@
   <!-- Twitter cards -->
   <meta name="twitter:site"    content="@wearearima">
   <meta name="twitter:creator" content="@jessica">
-  <meta name="twitter:title"   content="Mutation testing systems, mejorando la calidad de los tests">
+  <meta name="twitter:title"   content="Mutation testing systems, improving the quality of tests">
 
   
   <meta name="twitter:description" content="">
@@ -108,7 +108,7 @@
             <div class="wrapper">
               <div class="post-info__container">
                 <div class="post-info">
-                  <h1 class="post-title" itemprop="name headline">Mutation testing systems, mejorando la calidad de los tests</h1>
+                  <h1 class="post-title" itemprop="name headline">Mutation testing systems, improving the quality of tests</h1>
                     <div class="post-meta" itemscope itemtype="https://schema.org/Person" itemprop="author">
                       
                       <div class="author-photo">
@@ -128,42 +128,42 @@
           </header>
           <div class="wrapper">
             <div class="post-content" itemprop="articleBody">
-              <p>Profesionalmente me etiqueto como <em>desarrolladora</em>, aunque no me gustan mucho las etiquetas y me gusta más decir que la razón de ser de mi trabajo es: crear software de calidad. Pero ¿qué es <strong>software de calidad</strong>? A mi me gusta definirlo como sigue:</p>
+              <p>Professionally I label myself as a developer, although I don’t like labels very much and I prefer to say that the reason for my work is: to create quality software. But what is <strong>quality software</strong>? I like to define it as follows:</p>
 
 <blockquote>
-  <p>Software de calidad es aquel que satisface las necesidades del usuario de forma eficiente y sin errores.</p>
+  <p>Quality software is that which meets the user’s needs efficiently and without errors.</p>
 </blockquote>
 
-<p>Podría añadir más adjetivos, entrar en detalle de por qué necesidades y no requerimientos… pero para mi ese sería el titular. Ahora bien, difícilmente se puede tener un software de calidad si este no está escrito con código de calidad.</p>
+<p>I could add more adjectives, go into detail why needs and not requirements… but for me, that would be the definition. However, it’s difficult to get quality software if it’s not written with quality code.</p>
 
 <blockquote>
-  <p>Software de calidad → código de calidad</p>
+  <p>Quality software → quality code</p>
 </blockquote>
 
-<p>Afortunadamente, los desarrolladores no nos encontramos solos en esta tarea. Existen herramientas para análisis de código de forma estática (Checkstyle, PMD, FindBugs, SonarQube…) y diferentes recomendaciones de buenas prácticas (personalmente destacaría Clean Code y The Pragmatic Programmer). Y ahí entre propuestas, siglas y métricas, no hay desarrollador que no asocie directamente el término <em><strong>calidad</strong></em> con el término <em><strong>testing</strong></em> (¿verdad?)</p>
+<p>Fortunately, developers are not alone in this task. There are tools for static code analysis (Checkstyle, PMD, FindBugs, SonarQube…) and different recommendations for good practices (personally I would highlight Clean Code and The Pragmatic Programmer). And there among proposals, acronyms and metrics, there’s no developer that doesn’t directly associate the term <em><strong>quality</strong></em> with the term <em><strong>testing</strong></em> (right?)</p>
 
 <blockquote>
-  <p>Código de calidad → tests de calidad</p>
+  <p>Quality code → quality tests</p>
 </blockquote>
 
-<h2 id="testing-el-camino-hacia-la-calidad">Testing: el camino hacia la calidad</h2>
+<h2 id="testing-the-path-to-quality">Testing: the path to quality</h2>
 
 <blockquote>
   <p><strong>Tests are as important to the health of a project as the production code is.</strong></p>
   <p align="right"><strong>Clean Code.</strong> Chapter 9: Unit Tests</p>
 </blockquote>
 
-<p>Hay varios tipos de test (unitarios, de integración, de aceptación…). Los más extendidos son los tests unitarios y los tests de integración. Con ellos se consigue una cierta percepción de seguridad, ya que si bien no sabemos si el código hace lo que debe, al menos hace lo que dice.</p>
+<p>There are several types of tests (unit, integration, acceptance…). The most widespread are unit tests and integration tests. With them you get a certain perception of security, since although we do not know if the code does what it should, at least it does what it says.</p>
 
-<p>¿Pero es esto así? Paradójicamente esta práctica consiste en generar más código, es decir, seguimos programando, ¿quién vela porque este código hace lo que dice?, es decir ¿quién vela por la calidad de los tests? De nuevo otra asociación de términos: <strong>tests de calidad</strong> son aquellos que ofrecen un % de <strong>cobertura</strong> del código alto.</p>
+<p>But is this so? Paradoxically, this practice consists of generating more code. So we continue programming, but who says this code does what it says? That is, who watches over the quality of the tests? Again another association of terms: <strong>quality tests</strong> are those that offer a high % of code <strong>coverage</strong>.</p>
 
 <blockquote>
-  <p>Tests de calidad → % cobertura elevado de nuestro código</p>
+  <p>Quality tests → High % coverage of our code</p>
 </blockquote>
 
-<p>A mayor porcentaje de cobertura de código mejores tests y código más fiable. Esto no es nada nuevo. Si hablo de mi experiencia personal, hace algunos años (allá por inicios del 2000) ya formaba parte de las especificaciones de entrega de algunos proyectos el % de cobertura mínimo que debía tener un proyecto. “<em>Este entregable debe tener una batería de tests que aseguren un mínimo de 70% de cobertura de código</em>”, como sinónimo de código libre de errores y calidad probada en un 70% del código al menos.</p>
+<p>A higher percentage of code coverage gives better tests and more reliable code. This is nothing new. If I talk from my personal experience, a few years ago (back in the early 2000s) the minimum % coverage requirement was part of the delivery specifications of some projects. “<em>This deliverable must have a battery of tests that ensure a minimum of 70% code coverage</em>”, as a synonym of error-free code and proven quality in at least 70% of the code.</p>
 
-<p>Tomando como ejemplo una aplicación para controlar los partes de horas trabajados, vamos a imaginar que estamos desarrollando un método que dados un trabajador y un día, comprueba el estado de los partes de horas de ese trabajador en ese día (si ha cumplido o no las horas, si hay partes solapados….).</p>
+<p>Taking as an example an application to check the hours (or part hours) worked, let’s imagine that we are developing a method that, given a worker and a day, checks the status of the worker’s time sheets on that day (whether or not he has done the required hours, if he has done extra time….).</p>
 
 <h5 id="reportsserviceimpljava-ver-todo">ReportsServiceImpl.java <a href="https://github.com/wearearima/time-report-app/blob/feature/01_tests_for_project_requirements/src/main/java/eu/arima/tr/reports/ReportsServiceImpl.java" target="_blank">ver todo</a></h5>
 
@@ -191,7 +191,7 @@
 <span class="o">}</span>
 </code></pre></div></div>
 
-<p>Vamos a ver un ejemplo de tests que entregábamos por aquel entonces:</p>
+<p>Let’s see an example of tests that we submitted at the time:</p>
 
 <h5 id="getdaystatussummaryforworkeranddaytestsjava-ver-todo">GetDayStatusSummaryForWorkerAndDayTests.java <a href="https://github.com/wearearima/time-report-app/blob/92fd1b537de787bc2a5d10dc85c9ee80295350d8/src/test/java/eu/arima/tr/reports/reportsServiceImpl/GetDayStatusSummaryForWorkerAndDayTests.java" target="_blank">ver todo</a></h5>
 
@@ -217,27 +217,27 @@
 <span class="o">}</span>
 </code></pre></div></div>
 
-<p>Hemos configurado <a href="https://www.eclemma.org/jacoco/" target="_blank">JaCoCo</a> para obtener el informe de la cobertura de nuestros tests, y el resultado ha sido el siguiente.</p>
+<p>We configured <a href="https://www.eclemma.org/jacoco/">JaCoCo</a> to get the test coverage report and the result is as follows.</p>
 
 <p><img src="/assets/images/2020-05-12-mutation-testing/01jacocoreport.png" alt="JaCoCo report general" class="center" /></p>
 
-<p>Tenemos una cobertura de un 92% de líneas y 87% de ramas: objetivo cumplido. Pero…si nos fijamos: el primer test no fallará (casi) nunca porque siempre termina con <code class="highlighter-rouge">assert true</code>, el segundo es un poco “más completo” porque al menos está verificando que se recuperan los partes… <sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup></p>
+<p>We have a coverage of 92% of lines and 87% of branches: objective met. But…if you look: the first test will (almost) never fail because it always ends with <code class="highlighter-rouge">assert true</code>, the second is a bit “more complete” because at least it verifies that the hours (or part hours) are retrieved… <sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup></p>
 
-<p>Pues esta era mi realidad, y mucho me temo que LA realidad, de aquella época en muchos proyectos (y quien sabe si en algunos de hoy en día). Los proyectos cumplían los requerimientos de cobertura de código, lo que distaba mucho de tener un software de calidad.</p>
+<p>Well this was my reality, and I am very much afraid that it was THE reality of that time in many projects (and who knows if in some of today). The projects met the code coverage requirements, which was far from having quality software.</p>
 
-<p>Es cierto que el ejemplo que he puesto es extremo, pero es real. En mi opinión, el problema está en el enfoque: se ha dado la vuelta a la tortilla y en él los tests nacen como una mera herramienta para asegurar uno de los requerimientos del proyecto.</p>
-
-<blockquote>
-  <p>% cobertura mínimo por requerimiento → test = “pérdida de tiempo”</p>
-</blockquote>
-
-<p>Volvamos al enfoque original. Quedaría:</p>
+<p>It’s true that the example I have given is extreme, but it is real. In my opinion, the problem is in the focus: everything has been turned around and the tests are created as a mere tool to fulfill one of the requirements of the project.</p>
 
 <blockquote>
-  <p>Software de calidad → código de calidad → tests de calidad → % cobertura de código</p>
+  <p>minimum % coverage required → test = “waste of time”</p>
 </blockquote>
 
-<p>En este escenario, los tests nacen bajo la premisa de tener un código de mayor calidad y el % de cobertura se convierte en un indicador más. Vamos a ver un fragmento de un ejemplo de test mejor, de esos de los que hacemos por convicción y no por cumplir un requerimiento sin más (supongo que más parecidos a los que podemos encontrarnos en los proyectos actuales que los anteriores…).</p>
+<p>Let’s go back to the original approach. It would remain:</p>
+
+<blockquote>
+  <p>Quality software → quality code → quality tests → % coverage of code</p>
+</blockquote>
+
+<p>In this scenario, the tests are created under the premise of having a higher quality code and the % coverage becomes another indicator. We are going to see a fragment of a better test example, one of those we do out of conviction and not just to fulfill a requirement (I suppose that they are more similar to those that we can find in current projects than previous ones …).</p>
 
 <h5 id="getdaystatussummaryforworkeranddaytestsjava-ver-todo-1">GetDayStatusSummaryForWorkerAndDayTests.java <a href="https://github.com/wearearima/time-report-app/blob/feature/02_tests_for_testing_purposes/src/test/java/eu/arima/tr/reports/reportsServiceImpl/GetDayStatusSummaryForWorkerAndDayTests.java" target="_blank">ver todo</a></h5>
 
@@ -275,13 +275,13 @@
 <span class="o">}</span>
 </code></pre></div></div>
 
-<p>En este caso el porcentaje de cobertura es del 100% de líneas de código y ramas. Y además parece que los tests ya tienen más sentido. Ahora ya sí, nos sentiríamos seguros con ellos, ¿verdad? Es así, o ¿es sólo una percepción?</p>
+<p>In this case the coverage percentage is 100% of code lines and branches. And it also seems that the tests already make more sense. Now, yes, we would feel safe with them, right? Is that so, or is it just a perception?</p>
 
-<p>Si alguien modificase algo del método, por su puesto, antes de comitear y pushear pasaría los tests. Si no hubiese ningún test en rojo, vía libre: no se ha “roto” nada.</p>
+<p>If someone modified part of the method, of course, before committing and pushing, it would pass the tests. If there were no tests in red, all clear: nothing has been “broken”.</p>
 
-<p>¿Seguro?</p>
+<p>Can we be sure?</p>
 
-<p>Supongamos que lo que se modifica en el método de ejemplo es:</p>
+<p>Let’s suppose that what is modified in the example method is:</p>
 
 <h5 id="reportsserviceimpljava">ReportsServiceImpl.java</h5>
 
@@ -289,111 +289,100 @@
     <span class="n">totalDuration</span> <span class="o">=</span> <span class="n">totalDuration</span> <span class="o">+</span> <span class="n">worklog</span><span class="o">.</span><span class="na">getDuration</span><span class="o">();</span>
   <span class="o">}</span>
 </code></pre></div></div>
-
-<p>por</p>
+<p>for</p>
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="k">for</span> <span class="o">(</span><span class="nc">Worklog</span> <span class="n">worklog</span> <span class="o">:</span> <span class="n">worklogsForDay</span><span class="o">)</span> <span class="o">{</span>
     <span class="n">totalDuration</span> <span class="o">=</span> <span class="n">worklog</span><span class="o">.</span><span class="na">getDuration</span><span class="o">();</span>
   <span class="o">}</span>
 </code></pre></div></div>
 
-<p>Nuestros tests seguirán pasando<sup id="fnref:2"><a href="#fn:2" class="footnote">2</a></sup>. Además seguimos con un % de cobertura alto… ¡Todo perfecto!</p>
+<p>Our tests will continue to pass<sup id="fnref:2"><a href="#fn:2" class="footnote">2</a></sup>. We also continue with a high % coverage… Everything is perfect!</p>
 
 <blockquote>
-  <p>Test → <strong>sensación</strong> de seguridad</p>
+  <p>Test → <strong>feeling</strong> of security</p>
 </blockquote>
 
-<h2 id="mutation-testing-systems-asegurando-el-camino">Mutation testing systems: asegurando el camino</h2>
+<h2 id="mutation-testing-systems-securing-the-way">Mutation testing systems: securing the way</h2>
 
 <blockquote>
   <p><strong>Because we can’t write perfect software, it follows that we can’t write perfect test software either. We need to test the tests.</strong></p>
   <p align="right"><strong>The Pragmatic Programmer.</strong> Chapter 8: Pragmatic projects</p>
 </blockquote>
 
-<p>Parece que los tests que hemos creado no son tan buenos como creíamos, no tienen calidad suficiente como para asegurar la calidad (valga la redundancia) de nuestro método. Nos han ofrecido una falsa sensación de seguridad.</p>
+<p>It seems that the tests we have created are not as good as we thought, they don’t have enough quality to ensure the quality (forgive the repetition) of our method. We have been offered a false sense of security.</p>
 
-<p>Está claro que conseguir % altos de cobertura no es sencillo y si escribir tests es costoso, escribir buenos tests lo es aún más y lo que obtenemos es una sensación de seguridad que no es real. ¿No podríamos hacer que esta sensación fuese más cercana a la realidad? ¿No podríamos detectar situaciones, como la que hemos visto, de forma automática?</p>
+<p>It’s clear that achieving a high % coverage isn’t easy and if writing tests is costly, writing good tests is even more so, and what we get is an unreal sense of security. Couldn’t we make this feeling closer to reality? Couldn’t we detect situations, like the one we’ve seen, automatically?</p>
 
-<p>Pues bien, para abordar este tipo de situaciones surgen los denominados <em>Mutation Testing Systems</em>. La idea que hay detrás de ellos no es otra que la que hemos expuesto en el último ejemplo: simular cambios en el código fuente que se está probando y verificar que efectivamente, algún test fallará tras haber realizado la modificación.</p>
+<p>Well, to deal with this type of situation, the so-called <em>Mutation Testing Systems</em> come up. The idea behind them is none other than the one we have put forward in the last example: to simulate changes in the source code being tested and verify that in reality, some tests are failed after a modification has been made.</p>
 
 <blockquote>
-  <p>Software de calidad → código de calidad → tests de calidad → % cobertura mutation tests</p>
+  <p>Quality software → quality code → quality tests → mutation test % coverage</p>
 </blockquote>
 
-<p>Los conceptos básicos son los siguientes:</p>
+<p>The basic concepts are as follows:</p>
 
 <ul>
-  <li>Cada cambio que se genera en el código es un <strong>mutante</strong> (mutant).</li>
-  <li>Cada cambio (o mutante) que nuestros tests son capaces de detectar se denomina <strong>matar un mutante</strong> (killed mutant).</li>
-  <li>Cada cambio (o muntante) que nuestros tests no son capaces de detectar son <strong>mutantes vivos</strong> (lived)</li>
-  <li>Los cambios en el código se generan mediante <strong>operadores mutantes</strong> (mutators / mutation operators), que se agrupan en diferentes categorias dependiendo del tipo de cambio que realicen en el código.</li>
+  <li>Every change that is generated in the code is a <strong>mutant</strong>.</li>
+  <li>Each change (or mutation) that our tests are able to detect is called <strong>killing a mutant</strong> (killed mutant).</li>
+  <li>Any changes (or mutants) that our tests are not able to detect are <strong>living mutants</strong> (survived mutant).</li>
+  <li>Changes in the code are generated by <strong>mutant operators</strong> (mutators / mutation operators), which are grouped into different categories depending on the type of change they make in the code.</li>
 </ul>
 
-<p>Personalmente no había oído hablar de este concepto hasta hace relativamente poco sin embargo, la realidad es que ya llevan varios años entre nosotros. Existen múltiples alternativas para los diferentes stacks tecnológicos. Por ejemplo:</p>
+<p>Personally, I hadn’t heard  of this concept until relatively recently. However, the reality is that it has been with us for several years. Some of the mutation systems for Java are (or have been):</p>
 
 <ul>
-  <li><a href="https://stryker-mutator.io/" target="_blank">Stryker</a> para JavaScript, TypeScript, C# y Scala</li>
-  <li><a href="https://thesoftwaredesignlab.github.io/mutode/" target="_blank">Mutode</a> para JavaScript y Node.js</li>
-  <li><a href="https://cosmic-ray.readthedocs.io/en/latest/" target="_blank">Cosmic Ray</a> para Python</li>
-  <li><a href="https://pypi.org/project/mutmut/" target="_blank">mutmut</a> para Python</li>
-  <li><a href="https://github.com/mbj/mutant" target="_blank">Mutant</a> para Ruby</li>
+  <li><a href="https://pitest.org/">PIT</a></li>
+  <li><a href="http://jumble.sourceforge.net/index.html">Jumble</a></li>
+  <li><a href="http://jester.sourceforge.net/">Jester</a></li>
+  <li><a href="https://github.com/jeffoffutt/muJava">muJava</a></li>
 </ul>
 
-<p>Y volviendo a Java algunos de los sistemas de mutación son (o han sido):</p>
+<p>We have used PIT because:</p>
 
 <ul>
-  <li><a href="https://pitest.org/" target="_blank">PIT</a></li>
-  <li><a href="http://jumble.sourceforge.net/index.html" target="_blank">Jumble</a></li>
-  <li><a href="http://jester.sourceforge.net/" target="_blank">Jester</a></li>
-  <li><a href="https://github.com/jeffoffutt/muJava" target="_blank">muJava</a></li>
+  <li>It is easy to use</li>
+  <li>It is easily integrated in the projects that we have used (through a maven plugin) as well as in the IDE (in our case Eclipse)</li>
+  <li>It supports different configurations (some to improve efficiency)</li>
+  <li>It is still active</li>
+  <li>It seems to be the most widely used solution today</li>
 </ul>
 
-<p>Nosotros hemos utilizado PIT porque:</p>
-
-<ul>
-  <li>Es sencillo de usar</li>
-  <li>Se integra fácilmente en los proyectos que los hemos usado (mediante un plugin de maven) así como en el IDE (en nuestro caso Eclipse)</li>
-  <li>Admite diferentes configuraciones (algunas que permiten mejorar la eficiencia)</li>
-  <li>Aún está activo</li>
-  <li>Parece ser la solución más utilizada en la actualidad</li>
-</ul>
-
-<p>Si ejecutamos el informe de <em>pitest</em> en nuestro ejemplo, veremos este resultado.</p>
+<p>If we run the <em>pitest</em> report in our example, we will see this result.</p>
 
 <p><img src="/assets/images/2020-05-12-mutation-testing/PitTestCoverageReport01.png" alt="Informe _Pit test_ general" class="center" /></p>
 
-<p>Aquí se indica el resultado general: por un lado la cobertura de líneas de código y por otro lado la cobertura de mutación.</p>
+<p>Here we see general result: on one side is the coverage of code lines, and on the other side, the mutation coverage.</p>
 
 <p><img src="/assets/images/2020-05-12-mutation-testing/PitTestCoverageReportClass01.png" alt="Informe _Pit test_ clase" class="center" /></p>
 
-<p>Las líneas marcadas en verde, reflejan código en el que PIT ha introducido cambios y los tests han sido capaces de detectarlo. Las líneas marcadas en rojo, reflejan las líneas de código que nuestros tests no han sabido detectar que había habido cambios. Si nos fijamos la línea 27 es la que nosotros habíamos modificado y nuestros tests habían pasado. Ahora tenemos dos opciones: seguir adelante, asumiendo la fragilidad que puede tener nuestro código o lo más acertado (y lógico) añadir/corregir tests que nos aseguren la fiabilidad frente a los cambios detectados.</p>
+<p>The lines marked in green reflect code in which PIT has made changes and tests have been able to detect them. The lines marked in red reflect the lines of code in which our tests have failed to detect that there had been changes. If we look at line 27, it is the one that we had modified and it passed our tests. Now we have two options: go ahead, accepting that our code may have some fragility, or the most accurate (and logical), add/correct tests that ensure reliability when faced with detected changes.</p>
 
-<p>En el siguiente <a href="https://github.com/wearearima/time-report-app/tree/feature/03_tests_improving_quality" target="_blank">enlace</a> está disponible el código del ejemplo en el que hemos trabajado, donde hemos mejorado los tests para conseguir una mayor cobertura de mutantes.</p>
+<p>In the following <a href="https://github.com/wearearima/time-report-app/tree/feature/03_tests_improving_quality">link</a> the sample code which we have worked on is available, where we have improved the tests to achieve greater mutant coverage.</p>
 
-<p>Los mutantes que se aplican son configurables, y hay que valorar el equilibrio entre la cantidad/tipo de mutantes configurados y el tiempo de ejecución. A mayor número de tests, mayor número de líneas de código y mayor cantidad de mutantes, más tiempo necesitará Pit en generar el informe correspondiente. Puede llegar un momento en el que sea tan costoso pasar el informe que se hagamos skip, y entonces todo el esfuerzo dedicado a testing se desvanecería. En los ejemplos hemos visto sólo tests unitarios pero lo mismo aplica a los test de integración (muchos de ellos ya costosos en sí mismos).</p>
+<p>The mutants that are applied are configurable, and the balance between the number/type of mutants configured and the execution time must be assessed. The greater the number of tests, the greater the number of lines of code and the greater the number of mutants, the more time Pit will need to generate the corresponding report. We could reach a point where it is so costly to do the report that we skip it, and then all the effort put into testing would be lost. In the examples, we have seen only unit tests, but the same applies to integration tests (many of them already costly in themselves).</p>
 
-<p>En nuestro caso, solemos configurar los que vienen por defecto (DEFAULTS) y añadiendo los del siguiente grupo (NEW_DEFAULTS). En el código de ejemplo hay alguno más configurado, pero <a href="https://pitest.org/quickstart/mutators/" target="_blank">aquí</a> se muestran los “mutadores” (mutators) de Pit, así que prueba a cambiar la configuración y a ver los diferentes resultados.</p>
+<p>In our case, we usually configure the ones that come by default (DEFAULTS) and add those of the following group (NEW_DEFAULTS). In the sample code, others are configured, but <a href="https://pitest.org/quickstart/mutators/">here</a> the Pit mutators are shown, so try to change the configuration and see the different results.</p>
 
-<h2 id="conclusiones">Conclusiones</h2>
+<h2 id="conclusions">Conclusions</h2>
 
 <blockquote>
-  <p>Software de calidad → código de calidad → tests de calidad</p>
+  <p>Quality software → quality code → quality tests</p>
 </blockquote>
 
-<p>Software de calidad require de código calidad que a su vez puede validarse gracias a tests de calidad.</p>
+<p>Quality software requires quality code, which in turn can be ensured thanks to quality tests.</p>
 
-<p>Generalmente hay más código para testear un método que para implementarlo, lo que conlleva un claro esfuerzo en tiempo: dedicaremos más tiempo al testeo de un método que a su implementación. Necesitamos asegurar que dicho esfuerzo no sea en balde.</p>
+<p>Generally, there is more code to test a method than to implement it, which obviously involves a lot of time: we will spend more time testing a method than implementing it. We need to ensure that this effort is not in vain.</p>
 
-<p><strong>Mutation testing</strong> es una herramienta que nos permite evaluar y mejorar la calidad de nuestros tests. El precio a pagar es el aumento de tiempo necesario para pasarlos. Teniendo en cuenta que se basa en mutaciones de código y que aplica no sólo a tests unitarios, también a tests de integración, a medida que el código crezca y el número de tests aumente, mayor será el tiempo necesario para ejecutarlos. Es necesario, por tanto, buscar fórmulas que aseguren que en alguna fase de nuestro desarrollo todos los tests pasan: si dejamos de pasarlos porque es demasiado costoso todo el esfuerzo habrá sido en vano.</p>
+<p><strong>Mutation testing</strong> is a tool that allows us to evaluate and improve the quality of our tests. The price to pay is the increase in time needed to do it. Taking into account that it is based on code mutations and that it applies not only to unit tests, but also to integration tests, as the code grows and the number of tests increases, it will take longer to execute them. Therefore, it is necessary to look for formulas that ensure that at some stage of our development, all tests are done: if we stop doing them because it is too costly, all the effort will have been for nothing.</p>
 
-<p>Hemos dado un paso firme, pero nos queda recorrido en nuestro camino hacia la calidad: ¿Qué podemos hacer para buscar este equilibrio? ¿Podemos organizar de alguna forma los tests para facilitarlo? ¿Hay herramientas que nos permitan desarrollar/ejecutar tests de forma más eficiente?</p>
+<p>We have taken a firm step, but we are still on the path to quality: what can we do to find this balance? Can we organize the tests in some way to make things easier? Are there tools that allow us to develop/run tests more efficiently?</p>
 <div class="footnotes">
   <ol>
     <li id="fn:1">
-      <p>Si quieres probar todo esto puedes descargarte el código de <a href="https://github.com/wearearima/time-report-app/tree/feature/01_tests_for_project_requirements" target="_blank">aquí</a> <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
+      <p>If you want to try all this then download the code from <a href="https://github.com/wearearima/time-report-app/tree/feature/01_tests_for_project_requirements" target="_blank">here</a> <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
     </li>
     <li id="fn:2">
-      <p>Pruébalo tu mismo, el código está disponible <a href="https://github.com/wearearima/time-report-app/tree/feature/02_tests_for_testing_purposes" target="_blank">aquí</a> <a href="#fnref:2" class="reversefootnote">&#8617;</a></p>
+      <p>Try it for yourself, the code is available <a href="https://github.com/wearearima/time-report-app/tree/feature/02_tests_for_testing_purposes">here</a> <a href="#fnref:2" class="reversefootnote">&#8617;</a></p>
     </li>
   </ol>
 </div>
