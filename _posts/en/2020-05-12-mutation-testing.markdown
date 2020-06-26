@@ -36,7 +36,7 @@ A higher percentage of code coverage gives better tests and more reliable code. 
 
 Taking as an example an application to check the hours (or part hours) worked, let's imagine that we are developing a method that, given a worker and a day, checks the status of the worker’s time sheets on that day (whether or not he has done the required hours, if he has done extra time....).
 
-##### ReportsServiceImpl.java [ver todo](https://github.com/wearearima/time-report-app/blob/feature/01_tests_for_project_requirements/src/main/java/eu/arima/tr/reports/ReportsServiceImpl.java){:target="_blank"}
+##### ReportsServiceImpl.java [see all](https://github.com/wearearima/time-report-app/blob/feature/01_tests_for_project_requirements/src/main/java/eu/arima/tr/reports/ReportsServiceImpl.java){:target="_blank"}
 
 ```java
 @Override
@@ -65,7 +65,7 @@ public DayStatusSummary getDayStatusSummaryForWorkerAndDay(String workerUserName
 
 Let's see an example of tests that we submitted at the time:
 
-##### GetDayStatusSummaryForWorkerAndDayTests.java [ver todo](https://github.com/wearearima/time-report-app/blob/92fd1b537de787bc2a5d10dc85c9ee80295350d8/src/test/java/eu/arima/tr/reports/reportsServiceImpl/GetDayStatusSummaryForWorkerAndDayTests.java){:target="_blank"}
+##### GetDayStatusSummaryForWorkerAndDayTests.java [see all](https://github.com/wearearima/time-report-app/blob/92fd1b537de787bc2a5d10dc85c9ee80295350d8/src/test/java/eu/arima/tr/reports/reportsServiceImpl/GetDayStatusSummaryForWorkerAndDayTests.java){:target="_blank"}
 
 ```java
 @Test
@@ -110,7 +110,7 @@ Let's go back to the original approach. It would remain:
 
 In this scenario, the tests are created under the premise of having a higher quality code and the % coverage becomes another indicator. We are going to see a fragment of a better test example, one of those we do out of conviction and not just to fulfill a requirement (I suppose that they are more similar to those that we can find in current projects than previous ones ...).
 
-##### GetDayStatusSummaryForWorkerAndDayTests.java [ver todo](https://github.com/wearearima/time-report-app/blob/feature/02_tests_for_testing_purposes/src/test/java/eu/arima/tr/reports/reportsServiceImpl/GetDayStatusSummaryForWorkerAndDayTests.java){:target="_blank"}
+##### GetDayStatusSummaryForWorkerAndDayTests.java [see all](https://github.com/wearearima/time-report-app/blob/feature/02_tests_for_testing_purposes/src/test/java/eu/arima/tr/reports/reportsServiceImpl/GetDayStatusSummaryForWorkerAndDayTests.java){:target="_blank"}
 
 ```java
 @Test
