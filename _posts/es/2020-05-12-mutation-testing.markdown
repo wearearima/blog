@@ -3,6 +3,7 @@ layout: post
 title:  "Mutation testing systems, mejorando la calidad de los tests"
 date:   2020-05-25 9:00:00
 author: jessica
+lang: es
 categories: testing, software quality, QA
 tags: testing, mutation testing systems, pit, pitest, calidad, software quality, QA, cobertura, coverage, junit
 header-image:	2020-05-12-mutation-testing/header.jpg
@@ -193,7 +194,7 @@ Los conceptos básicos son los siguientes:
 
 * Cada cambio que se genera en el código es un **mutante** (mutant).
 * Cada cambio (o mutante) que nuestros tests son capaces de detectar se denomina **matar un mutante** (killed mutant).
-* Cada cambio (o muntante) que nuestros tests no son capaces de detectar son **mutantes vivos** (lived)
+* Cada cambio (o muntante) que nuestros tests no son capaces de detectar son **mutantes vivos** (survived mutant).
 * Los cambios en el código se generan mediante **operadores mutantes** (mutators / mutation operators), que se agrupan en diferentes categorias dependiendo del tipo de cambio que realicen en el código.
 
 Personalmente no había oído hablar de este concepto hasta hace relativamente poco sin embargo, la realidad es que ya llevan varios años entre nosotros. Existen múltiples alternativas para los diferentes stacks tecnológicos. Por ejemplo:
