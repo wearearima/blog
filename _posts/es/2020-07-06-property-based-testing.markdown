@@ -54,7 +54,7 @@ Estamos indicando una precondición de que tanto `a` como `b` deben estar compre
 Comprobación que se ejecutará cada vez.
 
 ## De la teoría a la práctica
-Vale y ¿esto como aplica a mis caso de uso? Repaso mis tests, definidos en [GetDayStatusSummaryForWorkerAndDayTests.java](//TODO url repo rama 1) y pienso en si alguno de ellos podría escribirse en base a propiedades del método sin importar los valores “exactos” de los parámetros.
+Vale y ¿esto como aplica a mis caso de uso? Repaso mis tests, definidos en [GetDayStatusSummaryForWorkerAndDayTests.java](https://github.com/jaguado-arima/time-report-pbt/blob/feature/01_tests_jqwik_property_test/src/test/java/eu/arima/tr/reports/reportsServiceImpl/GetDayStatusSummaryForWorkerAndDayTests.java){:target="_blank"} y pienso en si alguno de ellos podría escribirse en base a propiedades del método sin importar los valores “exactos” de los parámetros.
 Me doy cuenta de que tengo dos tests que en realidad están escritos en estos términos:
 ```java
 @Test
@@ -76,8 +76,8 @@ void the_status_result_belongs_to_the_requested_day() {
 En ambos estoy haciendo tests basados en ejemplos concretos, pero en realidad si leemos lo que se pretende probar, es bastante más genérico: ¿quizás podríamos aplicar aquí PBT?
 
 Para Java hay varias herramientas, las más populares son:
-* [junit-quickcheck](https://pholser.github.io/junit-quickcheck/site/0.9.1/#)
-* [jqwik](https://jqwik.net/)
+* [junit-quickcheck](https://pholser.github.io/junit-quickcheck/site/0.9.1/#){:target="_blank"}
+* [jqwik](https://jqwik.net/){:target="_blank"}
 
 A priori la primera de ellas no soporta JUnit 5, así que vamos a probar con **jqwik**. 
 
@@ -123,7 +123,7 @@ public class GetDayStatusSummaryForWorkerAndDayPropertyTests {
 ```
 Voila! Nuestro test se ejecuta 1000 veces con una batería de parámetros de entrada diferente cada vez (es como si hubiésemos generado y ejecutado 1000 tests diferentes). Si mostramos por consola ambos parámetros veremos las 1000 combinaciones que se ejecutan. El número de ejecuciones por defecto varía en función de la herramienta seleccionada y normalmente es configurable. Si lo ejecutamos una segunda vez, se ejecutará 1000 veces con otra batería de parámetros diferente.
 
-Nota: Este ejemplo al completo está disponible en [Github](//TODO URL repo rama 1). Para personalizar/configurar diferentes parámetros consultar la documentación de [jqwik](https://jqwik.net/))
+Nota: Este ejemplo al completo está disponible en [Github](https://github.com/jaguado-arima/time-report-pbt/tree/feature/01_tests_jqwik_property_test){:target="_blank"}. Para personalizar/configurar diferentes parámetros consultar la documentación de [jqwik](https://jqwik.net/){:target="_blank"}.
 
 ## En resumen
 Hasta aquí un caso muy simple que nos ha servido para entender el concepto de _property based testing_. Leyendo la documentación y revisando el estado del arte, parece que en casos más complejos hacer PBT es más complicado: tanto a la hora de formular/identificar los tests como a la hora de implementarlos.
@@ -139,8 +139,7 @@ A primera vista, se me ocurre: y ¿por qué no usar `@ParameterizedTests` con un
 
 Básicamente, nos ofrece la posibilidad de tener no sólo valores para los inputs aleatorios, sino que además diferentes combinaciones entre ellos (algo que de otro modo tendríamos que implementar de alguna forma).
 
-Por ejemplo:
-[JqwikPropertiesTests.java](//TODO URL repo rama 2)
+Por ejemplo, en [Github](https://github.com/jaguado-arima/time-report-pbt/tree/feature/02_tests_jqwik_combinedValues){:target="_blank"} hemos añadido un `System.out.println` para los parámetros del test anterior y además hemos creado una clase `JqwikPropertiesTests.java` cuyo objetivo únicamente es ver las combinatorias:
 ```java
 @Property(edgeCases = EdgeCasesMode.FIRST, tries = 30)
 void printCombinedValuesOfTwoParams(@ForAll @IntRange(min = 0, max = 10) int a, @ForAll @IntRange(min = 0, max = 10) int b) {
@@ -154,7 +153,7 @@ void printCombinedValuesOfThreParams(@ForAll @IntRange(min = 0, max = 10) int a,
   System.out.println(parameters);
 }
 ```
-Genera un output de combinaciones:
+Que genera un output de combinaciones, como por ejemplo:
 <table>
 <tr>
 <th>Combinación de parámetros generados para primer ejemplo</th>
@@ -224,7 +223,7 @@ Genera un output de combinaciones:
 </tr>
 </table>
 
-Además, nos ofrece diferentes herramientas para la generación de esos parámetros y configuraciones, para casuísticas más complejas.
+Además de las combinatorias, nos ofrece diferentes herramientas para la generación de esos parámetros y configuraciones, para casuísticas más complejas.
 
 El peaje: cambiar el enfoque de los tests, aprender un nuevo framework para la implementación de los mismos y el tiempo de ejecución.
 
