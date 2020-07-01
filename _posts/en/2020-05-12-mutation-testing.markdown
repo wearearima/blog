@@ -90,9 +90,9 @@ public void calculates_the_status_based_on_worker_and_date_worklogs() {
 }
 ```
 
-We configured [JaCoCo](https://www.eclemma.org/jacoco/) to get the test coverage report and the result is as follows.
+We configured [JaCoCo](https://www.eclemma.org/jacoco/){:target="_blank"} to get the test coverage report and the result is as follows.
 
-![JaCoCo report general](/assets/images/2020-05-12-mutation-testing/01jacocoreport.png){: .center } 
+![JaCoCo report general](/assets/images/2020-05-12-mutation-testing/01jacocoreport.png){: .center }{:target="_blank"}
 
 We have a coverage of 92% of lines and 87% of branches: objective met. But...if you look: the first test will (almost) never fail because it always ends with `assert true`, the second is a bit “more complete” because at least it verifies that the hours (or part hours) are retrieved... [^1]
 
@@ -172,7 +172,7 @@ for
 
 Our tests will continue to pass[^2]. We also continue with a high % coverage... Everything is perfect!
 
-[^2]: Try it for yourself, the code is available [here](https://github.com/wearearima/time-report-app/tree/feature/02_tests_for_testing_purposes)
+[^2]: Try it for yourself, the code is available [here](https://github.com/wearearima/time-report-app/tree/feature/02_tests_for_testing_purposes){:target="_blank"}
 
 > Test &rarr; **feeling** of security
 
@@ -233,7 +233,7 @@ In the following [link](https://github.com/wearearima/time-report-app/tree/featu
 
 The mutants that are applied are configurable, and the balance between the number/type of mutants configured and the execution time must be assessed. The greater the number of tests, the greater the number of lines of code and the greater the number of mutants, the more time Pit will need to generate the corresponding report. We could reach a point where it is so costly to do the report that we skip it, and then all the effort put into testing would be lost. In the examples, we have seen only unit tests, but the same applies to integration tests (many of them already costly in themselves).
 
-In our case, we usually configure the ones that come by default (DEFAULTS) and add those of the following group (NEW_DEFAULTS). In the sample code, others are configured, but [here](https://pitest.org/quickstart/mutators/) the Pit mutators are shown, so try to change the configuration and see the different results.
+In our case, we usually configure the ones that come by default (DEFAULTS) and add those of the following group (NEW_DEFAULTS). In the sample code, others are configured, but [here](https://pitest.org/quickstart/mutators/){:target="_blank"} the Pit mutators are shown, so try to change the configuration and see the different results.
 
 ## Conclusions
 
