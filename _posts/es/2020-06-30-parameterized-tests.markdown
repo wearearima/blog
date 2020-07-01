@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Descubriendo JUnit 5: Tests Parametrizados"
-date:   2020-06-30 9:00:00
+date:   2020-07-01 9:00:00
 author: jessica
 lang: es
 categories: testing, software quality, QA
