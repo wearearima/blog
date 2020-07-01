@@ -1,12 +1,12 @@
 ---
 layout: post
 title:  "Descubriendo JUnit 5: Tests Parametrizados"
-date:   2020-06-25 9:00:00
+date:   2020-06-30 9:00:00
 author: jessica
 lang: es
 categories: testing, software quality, QA
 tags: testing, calidad, software quality, QA, junit, junit 5, parameterized test
-header-image:	2020-05-12-mutation-testing/header.jpg
+header-image:	2020-06-30-parameterized-tests/header.jpg
 ---
 
 Estaba preparando el ejemplo de tests para el post [Mutation testing systems, mejorando la calidad de los tests](https://blog.arima.eu/2020/05/25/mutation-testing.html){:target="_blank"} y me surgió una duda sobre si podría probar de forma más exhaustiva el método under test, ya que era consciente de que me dejaba algunos ejemplos sin probar.
