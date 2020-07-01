@@ -115,7 +115,7 @@ void when_the_worklog_for_the_resquested_day_is_more_than_8_hours_the_status_is_
 }
 ```
 
-Pues sí, reconozco que alguna vez (en alguno de mis sideprojects) he hecho alguna de estas “guarradillas”🤫😰. Digo guarradilla, porque a priori no suena muy bien hacer estas triquiñuelas... (pero bueno, hay tests, hay cobertura de mutantes, no es para ningún cliente es para mi, así practico testing.....). Excusas y más excusas. Intento engañarme a mi misma y no duermo tranquila. Amanezco, pensando en cómo podría cubrir estos “vacíos” aparentes. Es un caso sencillo... ¿no hay nada que pueda ayudarme en esto?
+Pues sí, reconozco que alguna vez (en alguno de mis sideprojects) he hecho alguna de estas “chapucillas”🤫😰. Digo chapucilla, porque a priori no suena muy bien hacer estas triquiñuelas... (pero bueno, hay tests, hay cobertura de mutantes, estoy trasteando, así practico testing.....). Excusas y más excusas. Intento engañarme a mí misma y no duermo tranquila. Amanezco, pensando en cómo podría cubrir estos “vacíos” aparentes. Es un caso sencillo... ¿no hay nada que pueda ayudarme en esto?
 
 La respuesta es que sí, y ¡encima lo ofrece JUnit 5 por sí mismo!: no me hace falta ninguna herramienta nueva, sólo sacarle más chicha a la que tengo. La solución: [Parameterizered Tests](https://junit.org/junit5/docs/current/user-guide/#writing-tests-parameterized-tests){:target="_blank"}. Están en modo experimental para la última versión de JUnit 5, pero lo cierto es que están disponibles desde la versión 5.0 ¡y yo sin conocerlos! Vamos a probarlo.
 
