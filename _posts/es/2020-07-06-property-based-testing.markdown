@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Otra forma de hacer tests: property based testing"
-date:   2020-05-25 9:00:00
+date:   2020-07-07 9:00:00
 author: jessica
 lang: es
 categories: testing, software quality, QA
@@ -10,7 +10,7 @@ header-image:	2020-05-12-mutation-testing/header.jpg
 ---
 
 ## ¿Qué es property based testing?
-*Property based testing* (en adelante PBT) es una alternativa (más) para el desarrollo tests, cuyo eje principal en lugar de ser un ejemplo/caso concreto pasa a ser una propiedad del caso de uso, entendiendo que una propiedad viene a ser algo así como:
+*Property based testing* (en adelante PBT) es una alternativa (más) para el desarrollo de tests, cuyo eje principal en lugar de ser un ejemplo/caso concreto pasa a ser una propiedad del caso de uso, entendiendo que una propiedad viene a ser algo así como:
 
 > para cualquier entrada (x,y,....)  
 > que cumpla la precondición pre(x,y….) se cumple que  
@@ -153,7 +153,7 @@ void printCombinedValuesOfThreParams(@ForAll @IntRange(min = 0, max = 10) int a,
   System.out.println(parameters);
 }
 ```
-Que genera un output de combinaciones, como por ejemplo:
+Este código genera un output de combinaciones, como por ejemplo:
 <table>
 <tr>
 <th>Combinación de parámetros generados para primer ejemplo</th>
@@ -237,5 +237,5 @@ A continuación añado algunas referencias que he utilizado y que me han ayudado
 * [Introduction to Property Based Testing](https://medium.com/criteo-labs/introduction-to-property-based-testing-f5236229d237) - _por Nicolas Dubien_
 * [Property-based testing](https://www.erikschierboom.com/2016/02/22/property-based-testing/) - _por Erik Schierboom_
 * [Property based testing](https://felginep.github.io/2019-03-20/property-based-testing) - _por Pierre Felgines_ 
-* [Improve your software quality with Property-Based Testgin](https://medium.com/@yoan.thirion/improve-your-software-quality-with-property-based-testing-70bd5ad9a09a) - _por Yoan Thirion_
+* [Improve your software quality with Property-Based Testing](https://medium.com/@yoan.thirion/improve-your-software-quality-with-property-based-testing-70bd5ad9a09a) - _por Yoan Thirion_
 * [Property-based Testing Patterns](https://blog.ssanj.net/posts/2016-06-26-property-based-testing-patterns.html) - _Sanjiv Sahayam_
