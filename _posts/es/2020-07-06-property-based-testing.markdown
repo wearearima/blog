@@ -6,7 +6,7 @@ author: jessica
 lang: es
 categories: testing, software quality, QA
 tags: testing, property based testing, PBT, calidad, software quality, QA, junit
-header-image:	2020-05-12-mutation-testing/header.jpg
+header-image:	post-headers/property-based-testing.jpg
 ---
 
 ## ¿Qué es property based testing?
@@ -54,7 +54,7 @@ Estamos indicando una precondición de que tanto `a` como `b` deben estar compre
 Comprobación que se ejecutará cada vez.
 
 ## De la teoría a la práctica
-Vale y ¿esto como aplica a mis caso de uso? Repaso mis tests, definidos en [GetDayStatusSummaryForWorkerAndDayTests.java](https://github.com/jaguado-arima/time-report-pbt/blob/feature/01_tests_jqwik_property_test/src/test/java/eu/arima/tr/reports/reportsServiceImpl/GetDayStatusSummaryForWorkerAndDayTests.java){:target="_blank"} y pienso en si alguno de ellos podría escribirse en base a propiedades del método sin importar los valores “exactos” de los parámetros.
+Vale y ¿esto como aplica a mis caso de uso? Repaso mis tests, definidos en [GetDayStatusSummaryForWorkerAndDayTests.java](https://github.com/wearearima/time-report-pbt/blob/feature/01_tests_jqwik_property_test/src/test/java/eu/arima/tr/reports/reportsServiceImpl/GetDayStatusSummaryForWorkerAndDayTests.java){:target="_blank"} y pienso en si alguno de ellos podría escribirse en base a propiedades del método sin importar los valores “exactos” de los parámetros.
 Me doy cuenta de que tengo dos tests que en realidad están escritos en estos términos:
 ```java
 @Test
@@ -123,7 +123,7 @@ public class GetDayStatusSummaryForWorkerAndDayPropertyTests {
 ```
 Voila! Nuestro test se ejecuta 1000 veces con una batería de parámetros de entrada diferente cada vez (es como si hubiésemos generado y ejecutado 1000 tests diferentes). Si mostramos por consola ambos parámetros veremos las 1000 combinaciones que se ejecutan. El número de ejecuciones por defecto varía en función de la herramienta seleccionada y normalmente es configurable. Si lo ejecutamos una segunda vez, se ejecutará 1000 veces con otra batería de parámetros diferente.
 
-Nota: Este ejemplo al completo está disponible en [Github](https://github.com/jaguado-arima/time-report-pbt/tree/feature/01_tests_jqwik_property_test){:target="_blank"}. Para personalizar/configurar diferentes parámetros consultar la documentación de [jqwik](https://jqwik.net/){:target="_blank"}.
+Nota: Este ejemplo al completo está disponible en [Github](https://github.com/wearearima/time-report-pbt/tree/feature/01_tests_jqwik_property_test){:target="_blank"}. Para personalizar/configurar diferentes parámetros consultar la documentación de [jqwik](https://jqwik.net/){:target="_blank"}.
 
 ## En resumen
 Hasta aquí un caso muy simple que nos ha servido para entender el concepto de _property based testing_. Leyendo la documentación y revisando el estado del arte, parece que en casos más complejos hacer PBT es más complicado: tanto a la hora de formular/identificar los tests como a la hora de implementarlos.
@@ -139,7 +139,7 @@ A primera vista, se me ocurre: y ¿por qué no usar `@ParameterizedTests` con un
 
 Básicamente, nos ofrece la posibilidad de tener no sólo valores para los inputs aleatorios, sino que además diferentes combinaciones entre ellos (algo que de otro modo tendríamos que implementar de alguna forma).
 
-Por ejemplo, en [Github](https://github.com/jaguado-arima/time-report-pbt/tree/feature/02_tests_jqwik_combinedValues){:target="_blank"} hemos añadido un `System.out.println` para los parámetros del test anterior y además hemos creado una clase `JqwikPropertiesTests.java` cuyo objetivo únicamente es ver las combinatorias:
+Por ejemplo, en [Github](https://github.com/wearearima/time-report-pbt/tree/feature/02_tests_jqwik_combinedValues){:target="_blank"} hemos añadido un `System.out.println` para los parámetros del test anterior y además hemos creado una clase `JqwikPropertiesTests.java` cuyo objetivo únicamente es ver las combinatorias:
 ```java
 @Property(edgeCases = EdgeCasesMode.FIRST, tries = 30)
 void printCombinedValuesOfTwoParams(@ForAll @IntRange(min = 0, max = 10) int a, @ForAll @IntRange(min = 0, max = 10) int b) {
@@ -234,8 +234,8 @@ Mi feeling es que estos tests terminan siendo bastante más complejos si se les 
 
 <br/>
 A continuación añado algunas referencias que he utilizado y que me han ayudado a entender el concepto de _property based testing_
-* [Introduction to Property Based Testing](https://medium.com/criteo-labs/introduction-to-property-based-testing-f5236229d237) - _por Nicolas Dubien_
-* [Property-based testing](https://www.erikschierboom.com/2016/02/22/property-based-testing/) - _por Erik Schierboom_
-* [Property based testing](https://felginep.github.io/2019-03-20/property-based-testing) - _por Pierre Felgines_ 
-* [Improve your software quality with Property-Based Testing](https://medium.com/@yoan.thirion/improve-your-software-quality-with-property-based-testing-70bd5ad9a09a) - _por Yoan Thirion_
-* [Property-based Testing Patterns](https://blog.ssanj.net/posts/2016-06-26-property-based-testing-patterns.html) - _Sanjiv Sahayam_
+* [Introduction to Property Based Testing](https://medium.com/criteo-labs/introduction-to-property-based-testing-f5236229d237){:target="_blank"} - _por Nicolas Dubien_
+* [Property-based testing](https://www.erikschierboom.com/2016/02/22/property-based-testing/){:target="_blank"} - _por Erik Schierboom_
+* [Property based testing](https://felginep.github.io/2019-03-20/property-based-testing){:target="_blank"} - _por Pierre Felgines_ 
+* [Improve your software quality with Property-Based Testing](https://medium.com/@yoan.thirion/improve-your-software-quality-with-property-based-testing-70bd5ad9a09a){:target="_blank"} - _por Yoan Thirion_
+* [Property-based Testing Patterns](https://blog.ssanj.net/posts/2016-06-26-property-based-testing-patterns.html){:target="_blank"} - _Sanjiv Sahayam_
