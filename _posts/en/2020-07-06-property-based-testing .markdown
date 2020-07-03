@@ -1,9 +1,9 @@
 ---
 layout: post
-title:  "Otra forma de hacer tests: property based testing"
-date:   2020-05-25 9:00:00
+title:  "Another way of doing tests: property based testing"
+date:   2020-07-01 9:00:00
 author: jessica
-lang: es
+lang: en
 categories: testing, software quality, QA
 tags: testing, property based testing, PBT, calidad, software quality, QA, junit
 header-image:	2020-05-12-mutation-testing/header.jpg
@@ -12,42 +12,42 @@ header-image:	2020-05-12-mutation-testing/header.jpg
 ## What is property-based testing?
 *Property-based testing* (from now on PBT) is an alternative (more) for development tests where the main focus, instead of being a specific example/case, becomes a property of the the use case, understanding that a property becomes something like:
 
-> for all input (x,y,....)
-> the precondition (x,y…) is met
-> the property(x,y....) is true
+> for all input (x,y,....)  
+> where precondition (x,y…) is met then   
+> the property (z,k....) is true
 
 Normally the properties are not too detailed, they only verify some general characteristic that must be met.
 
-For example, to test an addition custom method, if you are doing _example-based testing_, we could have several tests like these:
-pre>
+For example, to test an addition custom method, if we were doing _example-based testing_, we could have several tests like these:
+<pre>
 <code>- given the numbers 10 and 1 the sum will be 11
 - given the numbers 10 and 20 the sum will be 30
    . . . . </code></pre>
 
 However, if we were doing PBT, we would formulate a more general test, for example like the one shown below:
 <pre>
-<code>for any whole numbers a and b that are between 1 and 20
+<code>for any integer a and b that are between 1 and 20
 the sum of a and b will be greater than a</code></pre>
 
 
 Let's look at the implications of a test like this.
 ### For all input (_a, b_)
 > <pre style="margin-bottom: 0px">
-> <code><b>for any whole numbers a and b</b> that are between 1 and 20
+> <code><b>for any integer a and b</b> that are between 1 and 20
 the sum of a and b will be greater than a</code></pre>
 
 Several sets of tests will be run with combinations of random values ​​for `a` and `b` (the exact number of runs depends on the framework/library used and is usually configurable).
 
-### That the precondition is met (_between 1 and 20_)
+### Where precondition is met (_a and b between 1 and 20_)
 > <pre style="margin-bottom: 0px">
-> <code>for any whole number <b>between 1 and 20 (a, b)</b>
+> <code>for any integer a and b <b>that are between 1 and 20</b>
 the sum of a and b will be greater than a</code></pre>
 
-We are indicating a precondition that both `a` and `b` must be between `1` and` 20`. If the random values ​​that are generated for a test (test implementation, if we are purists) do not comply, it is discarded as a valid test and continues with other values.
+We are indicating a precondition that both `a` and `b` must be between `1` and` 20`. If the random values ​​that are generated for a test (test execution, if we are purists) do not comply, it is discarded as a valid test and continues with other values.
 
 ### Property (_a+b> a_) is true
 > <pre style="margin-bottom: 0px">
-> <code>for any integer between 1 and 20 (a, b)
+> <code>for any integer a and b that are between 1 and 20
 <b>the sum of a and b will be greater than a</b></code></pre>
 
 This check is to be executed every time.
@@ -122,7 +122,7 @@ public class GetDayStatusSummaryForWorkerAndDayPropertyTests {
 ```
 Voila! Our test runs 1,000 times with a different set of input parameters each time (it's as if we had generated and run 1,000 different tests). If we show both parameters on the console, we will see the 1000 combinations that are executed. The default number of executions varies depending on the selected tool and is normally configurable. If we run it a second time, it will run 1000 times with a different set of parameters.
 
-Note: This full example is available at [Github](https://github.com/jaguado-arima/time-report-pbt/tree/feature/01_tests_jqwik_property_test){:target="_blank"}. To personalize/configure different parameters, consult the documentation [jqwik](https://jqwik.net/){:target="_blank"}.
+Note: This full example is available at [Github](https://github.com/jaguado-arima/time-report-pbt/tree/feature/01_tests_jqwik_property_test){:target="_blank"}. To personalize/configure different parameters, consult the [jqwik documentation](https://jqwik.net/){:target="_blank"}.
 
 ## In summary
 So far a very simple case has helped us understand the concept of _property-based testing_. Reading the documentation and reviewing the state of the art, it seems that in more complex cases, doing PBT is more complicated: both when formulating/identifying the tests and when implementing them.
@@ -130,11 +130,11 @@ So far a very simple case has helped us understand the concept of _property-base
 It is clear that like many other testing tools/trends, there is nothing black or white. There is no one type of test better than another, at least not absolutely: it depends on the context (functionality/project...) to which it applies.
 
 Based on this and the research, the ideas I would stay with are:
-* With _property-based testing_, we can replace several example-based tests with only one, testing the method with multiple combinations of inputs (which will vary with each implementation). It is more difficult to identify them given their generic nature.
+* With _property-based testing_, we can replace several example-based tests with only one, testing the method with multiple combinations of inputs (which will vary with each execution). It is more difficult to identify them given their generic nature.
 
-* With _example-based testing_ the combinations will be ones chosen by the developer (fixed in all implementations) and the tests will be very specific. They are easy to develop and understand. They are not that exhaustive.
+* With _example-based testing_ the combinations will be ones chosen by the developer (fixed in all executions) and the tests will be very specific. They are easy to develop and understand. They are not that exhaustive.
 
-At first glance it occurs to me: and why not use `@ ParameterizedTests` with a method that generates the parameters randomly? What does PBT offer that you cannot achieve with parameterized tests?
+At first glance it occurs to me: and why not use `@ParameterizedTests` with a method that generates the parameters randomly? What does PBT offer that you cannot achieve with parameterized tests?
 
 Basically, it offers us the possibility of having not only values ​​for random inputs, but also different combinations between them (something that we would otherwise have to implement in some other way).
 
@@ -152,7 +152,7 @@ void printCombinedValuesOfThreParams(@ForAll @IntRange(min = 0, max = 10) int a,
   System.out.println(parameters);
 }
 ```
-Which generates an output of combinations, such as:
+This code generates an output of combinations, such as:
 <table>
 <tr>
 <th>Combination of parameters generated for the first example</th>
@@ -238,5 +238,5 @@ Below I’ve added some references that I’ve used and that have helped me unde
 * [Introduction to Property Based Testing](https://medium.com/criteo-labs/introduction-to-property-based-testing-f5236229d237) - _por Nicolas Dubien_
 * [Property-based testing](https://www.erikschierboom.com/2016/02/22/property-based-testing/) - _por Erik Schierboom_
 * [Property based testing](https://felginep.github.io/2019-03-20/property-based-testing) - _por Pierre Felgines_ 
-* [Improve your software quality with Property-Based Testgin](https://medium.com/@yoan.thirion/improve-your-software-quality-with-property-based-testing-70bd5ad9a09a) - _por Yoan Thirion_
+* [Improve your software quality with Property-Based Testing](https://medium.com/@yoan.thirion/improve-your-software-quality-with-property-based-testing-70bd5ad9a09a) - _por Yoan Thirion_
 * [Property-based Testing Patterns](https://blog.ssanj.net/posts/2016-06-26-property-based-testing-patterns.html) - _Sanjiv Sahayam_
