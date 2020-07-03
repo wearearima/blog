@@ -13,8 +13,8 @@ header-image:	post-headers/property-based-testing.jpg
 *Property based testing* (en adelante PBT) es una alternativa (más) para el desarrollo de tests, cuyo eje principal en lugar de ser un ejemplo/caso concreto pasa a ser una propiedad del caso de uso, entendiendo que una propiedad viene a ser algo así como:
 
 > para cualquier entrada (x,y,....)  
-> que cumpla la precondición pre(x,y….) se cumple que  
-> la propiedad(x,y….) es verdad
+> que cumpla precondición (x,y,....) se cumple que  
+> la propiedad (z,k,....) es verdad
 
 Normalmente las propiedades no son demasiado detalladas, únicamente verifican alguna característica general que debe cumplirse.
 
@@ -27,28 +27,28 @@ Por ejemplo, para testear un método custom de sumas, en caso de estar haciendo 
   
 Sin embargo, si estuviésemos haciendo PBT, formularíamos un test más general, por ejemplo como el que se muestra a continuación:
 <pre>
-<code>para cualquier número entero a y b que estén entre que 1 y 20
-la suma de  a y b será mayor que a</code></pre>
+<code>para cualquier número entero a y b que estén entre 1 y 20
+la suma de a y b será mayor que a</code></pre>
 
   
 Veamos qué implicaciones tiene un test como este.
 ### Para cualquier entrada (_a, b_)
 > <pre style="margin-bottom: 0px">
-> <code><b>para cualquier número entero a y b</b> que estén entre que 1 y 20
+> <code><b>para cualquier número entero a y b </b>que estén entre 1 y 20
 la suma de a y b será mayor que a</code></pre>  
 
 Se ejecutarán varios sets de prueba con combinaciones de valores random para `a` y `b` (el número exacto de ejecuciones depende del framework/librería utilizado y suele ser configurable).
 
-### Que cumpla la precondición (_entre 1 y 20_)
+### Que cumpla precondición (_a y b entre 1 y 20_)
 > <pre style="margin-bottom: 0px">
-> <code>para cualquier número entero <b>entre 1 y 20 (a, b)</b>
+> <code>para cualquier número entero a y b <b>que estén entre 1 y 20</b>
 la suma de a y b será mayor que a</code></pre>
 
 Estamos indicando una precondición de que tanto `a` como `b` deben estar comprendidos entre `1` y `20`. Si los valores random que se generan para un test (una ejecución de un test, si somos puristas) no la cumplen se descarta como test válido y se continúa con otros valores.
 
 ### La propiedad (_a+b > a_) es verdad
 > <pre style="margin-bottom: 0px">
-> <code>para cualquier número entero entre 1 y 20 (a, b)
+> <code>para cualquier número entero a y b que estén entre 1 y 20
 <b>la suma de a y b será mayor que a</b></code></pre>
 
 Comprobación que se ejecutará cada vez.
