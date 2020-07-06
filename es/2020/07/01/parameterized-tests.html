@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="es" itemscope itemtype="http://schema.org/Blog">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Descubriendo JUnit 5: Tests Parametrizados</title>
+  <meta name="description" content="Estaba preparando el ejemplo de tests para el post Mutation testing systems, mejorando la calidad de los tests y me surgió una duda sobre si podría probar de...">
+  
+  <meta name="keywords" content="testing,calidad,softwarequality,QA,junit,junit5,parameterizedtest">
+  
+
+  <!-- Twitter cards -->
+  <meta name="twitter:site"    content="@wearearima">
+  <meta name="twitter:creator" content="@jessica">
+  <meta name="twitter:title"   content="Descubriendo JUnit 5: Tests Parametrizados">
+
+  
+  <meta name="twitter:description" content="">
+  
+
+  
+  <meta name="twitter:card"  content="summary_large_image">
+  <meta name="twitter:image" content="https://blog.arima.eu/assets/images/2020-06-30-parameterized-tests/header.jpg">
+  
+  <!-- end of Twitter cards -->
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="https://blog.arima.eu/es/2020/07/01/parameterized-tests.html">
+  <link rel="alternate" type="application/rss+xml" title="ARIMA" href="/es/feed.xml">
+
+  <!-- SEO Recipes (http://polyglot.untra.io/seo/) -->
+  <meta http-equiv="Content-Language" content="es">
+  <link rel="alternate"
+      hreflang="es"
+      href="https://blog.arima.eu/es/2020/07/01/parameterized-tests.html" />
+  
+  
+  <link rel="alternate"
+      hreflang="es"
+      href="https://blog.arima.eu/es/2020/07/01/parameterized-tests.html" />
+  
+  
+  <link rel="alternate"
+      hreflang="en"
+      href="https://blog.arima.eu/en/2020/07/01/parameterized-tests.html" />
+  
+
+  
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-120217722-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-120217722-1');
+</script>
+  
+</head>
+
+  <body>
+    <nav class="toolbar">
+    <div class="wrapper">    
+        <a href="/es/">
+            <div class="toolbar__logo">
+                <svg xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" version="1.1" width="100%" height="100%" viewBox="0 0 33 6">
+    <path id="path24" d="m30.346988508615652,-0.000015174522529526127 l-0.6439224998849951,0 l-2.7763635316117727,6.135695064030662 l0.7050150612484405,0 l2.3859233880279893,-5.335002838884215 l2.3660424189063254,5.335002838884215 l0.739668694925785,0 L30.346988508615652,-0.000015174522529526127 zm-8.274141805179609,3.3681675186951847 l-2.2194202716340565,-3.324608867598761 l-0.6962481061149294,0 l0,6.092136412934239 l0.6700853029999622,0 l0,-4.926062349034439 l2.2194202716340565,3.2553706313868567 l0.034929758248478535,0 l2.2192131782057056,-3.2639304930920168 l0,4.934622210739599 l0.6873430886958508,0 l0,-6.092136412934239 l-0.6961100438293623,0 l-2.2192131782057056,3.324608867598761 zm-9.143036799396208,-1.5057072863948877 c0,-1.0964906719739773 -0.8613705996531913,-1.8189015812038738 -2.201748299081466,-1.8189015812038738 l-2.619662837493104,0 l0,6.092136412934239 l0.6876192132669849,0 l0,-5.456842805897188 l1.8799251114245357,0 c0.9833486289517317,0 1.5576187057681203,0.4525681720889824 1.5576187057681203,1.2097017461390067 c0,0.7919252700129356 -0.7831583148794242,1.2620273523689407 -1.6968545207625496,1.2620273523689407 l0,0.6178287279128115 l1.7665759749739396,2.3672849794764295 l0.8442508762428699,0 l-1.8711581562910244,-2.4891249464894027 c0.9571858258367647,-0.17416557324290774 1.6534339319516944,-0.7659695603263191 1.6534339319516944,-1.7841098852409623 m2.7743616284710493,4.273234831730365 l0.6872050264102838,0 l0,-6.0920673817914555 l-0.6872050264102838,0 l0,6.0920673817914555 zM2.7761571742923965,-0.000015174522529526127 l-2.7761564381834223,6.135695064030662 l0.7048769989628736,0 l2.386061450313556,-5.335002838884215 l2.3658353254779745,5.335002838884215 l0.739668694925785,0 l-2.7761564381834223,-6.135695064030662 l-0.6441295933133457,0 z" stroke-width="0"/>
+</svg>
+
+            </div>
+        </a>
+        <!-- Language selector -->
+        <div class="language-selector">
+            
+              
+                <b class="selected">ES</b>
+              
+              
+                &nbsp;|&nbsp;
+              
+            
+              
+                <a class="unselected" href="/en/2020/07/01/parameterized-tests.html">EN</a>
+              
+              
+            
+         </div>
+    </div>
+</nav>
+<div id="publisher_id" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Arima 100% Software Design" />
+    <meta itemprop="url" content="https://arima.eu" />
+    <div itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+        <meta itemprop="url" content="https://arima.eu/img/logo.png" />
+    </div>
+</div>
+    <main aria-label="Content">        
+        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting" itemref="publisher_id">
+          <link itemprop="mainEntityOfPage" href="/es/2020/07/01/parameterized-tests.html" />
+
+          <header class="post-header">
+            <div class="post-img" itemprop="image" itemscope itemtype="http://schema.org/ImageObject" style="background-image: url('https://blog.arima.eu/assets/images/2020-06-30-parameterized-tests/header.jpg');">
+              <meta itemprop="url" content="https://blog.arima.eu/assets/images/2020-06-30-parameterized-tests/header.jpg" />
+            </div>
+            <div class="wrapper">
+              <div class="post-info__container">
+                <div class="post-info">
+                  <h1 class="post-title" itemprop="name headline">Descubriendo JUnit 5: Tests Parametrizados</h1>
+                    <div class="post-meta" itemscope itemtype="https://schema.org/Person" itemprop="author">
+                      
+                      <div class="author-photo">
+                        <img itemprop="image" src="/assets/images/authors/jessica.png" alt="">
+                      </div>
+                      <div>
+                        <span class="post-author" itemprop="name">Jessica Aguado</span>
+                      </div>
+                      <div>
+                        <span class="post-date">01 Jul 2020</span>
+                      </div>
+                    </div>
+                    <meta  itemprop="datePublished dateModified" content="01 Jul 2020" />
+                </div>
+              </div>
+            </div>
+          </header>
+          <div class="wrapper">
+            <div class="post-content" itemprop="articleBody">
+              <p>Estaba preparando el ejemplo de tests para el post <a href="https://blog.arima.eu/es/2020/05/25/mutation-testing.html" target="_blank">Mutation testing systems, mejorando la calidad de los tests</a> y me surgió una duda sobre si podría probar de forma más exhaustiva el método under test, ya que era consciente de que me dejaba algunos ejemplos sin probar.</p>
+
+<p>El método de ejemplo a testear es:</p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Override</span>
+<span class="kd">public</span> <span class="nc">DayStatusSummary</span> <span class="nf">getDayStatusSummaryForWorkerAndDay</span><span class="o">(</span><span class="nc">String</span> <span class="n">workerUserName</span><span class="o">,</span> <span class="nc">LocalDate</span> <span class="n">date</span><span class="o">)</span> <span class="o">{</span>
+
+  <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Worklog</span><span class="o">&gt;</span> <span class="n">worklogsForDay</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="na">worklogRepository</span><span class="o">.</span><span class="na">findByUsernameAndDate</span><span class="o">(</span><span class="n">workerUserName</span><span class="o">,</span> <span class="n">date</span><span class="o">);</span>
+
+  <span class="kt">int</span> <span class="n">totalDuration</span> <span class="o">=</span> <span class="n">worklogsForDay</span><span class="o">.</span><span class="na">stream</span><span class="o">().</span><span class="na">mapToInt</span><span class="o">(</span><span class="nl">Worklog:</span><span class="o">:</span><span class="n">getDuration</span><span class="o">).</span><span class="na">sum</span><span class="o">();</span>
+
+  <span class="nc">DayStatusSummary</span> <span class="n">status</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">DayStatusSummary</span><span class="o">(</span><span class="n">date</span><span class="o">,</span> <span class="n">workerUserName</span><span class="o">);</span>
+
+  <span class="k">if</span> <span class="o">(</span><span class="n">totalDuration</span> <span class="o">==</span> <span class="mi">8</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">status</span><span class="o">.</span><span class="na">addDayStatus</span><span class="o">(</span><span class="no">RIGHT_HOURS</span><span class="o">);</span>
+  <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">totalDuration</span> <span class="o">&gt;</span> <span class="mi">8</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">status</span><span class="o">.</span><span class="na">addDayStatus</span><span class="o">(</span><span class="no">EXTRA_HOURS</span><span class="o">);</span>
+  <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+    <span class="n">status</span><span class="o">.</span><span class="na">addDayStatus</span><span class="o">(</span><span class="no">MISSING_HOURS</span><span class="o">);</span>
+  <span class="o">}</span>
+
+  <span class="k">return</span> <span class="n">status</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Básicamente lo que hace es a partir de un conjunto de worklogs se encarga de sumar las duraciones y comprobarlas “contra” la jornada estándar de 8 horas. Si la suma es &gt; 8 debe indicar que hay horas extras, si es &lt; 8 faltarán por imputar horas y si es 8 todo estará OK.</p>
+
+<p>Este caso es bastante trivial, pero si lo extrapolamos a métodos más complejos, no es la primera situación de estas características que me encuentro, y normalmente termino creando varios tests con diferentes combinaciones finitas, de casos de ejemplo acotados, que normalmente podría sacar de una tabla de este tipo:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th> </th>
+      <th> </th>
+      <th>1 único worklog</th>
+      <th>lista de n worklogs (n&lt;1)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>caso 1</td>
+      <td>suma = 8</td>
+      <td>test</td>
+      <td>test</td>
+    </tr>
+    <tr>
+      <td>caso 2</td>
+      <td>suma = a (a&lt;8)</td>
+      <td>test</td>
+      <td>test</td>
+    </tr>
+    <tr>
+      <td>caso 3</td>
+      <td>suma = b (b&gt;8)</td>
+      <td>test</td>
+      <td>test</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Así a priori mi batería de tests para este método podría ser la siguiente<sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup>:</p>
+
+<p><img src="/assets/images/2020-06-30-parameterized-tests/01_test_set.png" alt="Primera aproximación del set de tests" class="center" /></p>
+
+<p>Teniendo en cuenta que <code class="highlighter-rouge">n</code>, <code class="highlighter-rouge">a</code> y <code class="highlighter-rouge">b</code> los fijaré (en este caso <code class="highlighter-rouge">n = 3</code>, <code class="highlighter-rouge">a = 7</code> y <code class="highlighter-rouge">b = 9</code>) siempre me quedo con la duda de que estoy testeando algunos ejemplos pero no otros: <code class="highlighter-rouge">suma = 7</code> pero no <code class="highlighter-rouge">suma = 0</code>o <code class="highlighter-rouge">suma = 9</code> pero no <code class="highlighter-rouge">suma = 10</code>, o listas de 1 y 3 elementos pero no de 0 o más de 3….</p>
+
+<p>En este caso en el que los casos 1 y 2 son muy acotados podría liarme la manta a la cabeza y hacer tests exhaustivos que probasen todos los casos… Por ejemplo<sup id="fnref:2"><a href="#fn:2" class="footnote">2</a></sup>:</p>
+
+<p><img src="/assets/images/2020-06-30-parameterized-tests/02_test_set.png" alt="Segunda aproximación del set de tests" class="center" /></p>
+
+<p>Pero nunca me ha parecido algo apropiado porque pensando en esfuerzo vs beneficio parece que no compensa, y porque aumentar tanto la clase de test con métodos tan “redundantes” probablemente haga que mi clase de tests termine siendo infumable. El ejemplo anterior ratificaría esta idea… y ni siquiera cubrimos todos los ejemplos que se nos podrían ocurrir… ¡sólo hemos cubierto ejemplos del <em>caso 2</em> con <em>un único worklog</em>!</p>
+
+<p>¡Otra idea!, ¿por qué no iterar <code class="highlighter-rouge">n</code> veces la ejecución del método SUT junto el assert asociado, y personalizar el mensaje de error utilizando el parámetro de la iteración?</p>
+
+<p>Algo así como el siguiente ejemplo<sup id="fnref:3"><a href="#fn:3" class="footnote">3</a></sup>:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Test</span>
+<span class="kt">void</span> <span class="nf">when_the_worklog_for_the_resquested_day_is_less_than_8_hours_the_status_is_MISSING_HOURS</span><span class="o">()</span> <span class="o">{</span>
+  <span class="nc">Worklog</span> <span class="n">wl</span> <span class="o">=</span> <span class="n">mock</span><span class="o">(</span><span class="nc">Worklog</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+
+  <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">8</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+    <span class="n">when</span><span class="o">(</span><span class="n">wl</span><span class="o">.</span><span class="na">getDuration</span><span class="o">()).</span><span class="na">thenReturn</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>
+    <span class="n">when</span><span class="o">(</span><span class="n">worklogRepository</span><span class="o">.</span><span class="na">findByUsernameAndDate</span><span class="o">(</span><span class="nc">ArgumentMatchers</span><span class="o">.</span><span class="na">anyString</span><span class="o">(),</span>
+        <span class="nc">ArgumentMatchers</span><span class="o">.</span><span class="na">any</span><span class="o">(</span><span class="nc">LocalDate</span><span class="o">.</span><span class="na">class</span><span class="o">))).</span><span class="na">thenReturn</span><span class="o">(</span><span class="nc">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="n">wl</span><span class="o">));</span>
+
+    <span class="nc">DayStatusSummary</span> <span class="n">result</span> <span class="o">=</span> <span class="n">reportsService</span><span class="o">.</span><span class="na">getDayStatusSummaryForWorkerAndDay</span><span class="o">(</span><span class="no">USERNAME</span><span class="o">,</span> <span class="no">DAY</span><span class="o">);</span>
+
+    <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">durations</span> <span class="o">=</span> <span class="nc">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>
+    <span class="nc">List</span><span class="o">&lt;</span><span class="nc">DayStatus</span><span class="o">&gt;</span> <span class="n">resultStatusList</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="na">getStatusList</span><span class="o">();</span>
+    <span class="n">assertEquals</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="n">resultStatusList</span><span class="o">.</span><span class="na">size</span><span class="o">(),</span> <span class="s">"Statuslist size failed for worklogs with duration "</span> <span class="o">+</span> <span class="n">durations</span><span class="o">);</span>
+    <span class="n">assertEquals</span><span class="o">(</span><span class="no">MISSING_HOURS</span><span class="o">,</span> <span class="n">resultStatusList</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="mi">0</span><span class="o">),</span> <span class="s">"Daystatus failed for with duration "</span> <span class="o">+</span> <span class="n">durations</span><span class="o">);</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>En este caso estaré ejecutando un único test, pero si falla para algún valor de <code class="highlighter-rouge">i</code>, el mensaje de error me indicará el ejemplo que falla.</p>
+
+<p>Vale, con esto cubro los casos más acotados….. y ¿para los menos acotados? Se me ocurre generar varios valores random y aplicar el mismo patrón<sup id="fnref:4"><a href="#fn:4" class="footnote">4</a></sup>:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Test</span>
+<span class="kt">void</span> <span class="nf">when_the_worklog_for_the_resquested_day_is_more_than_8_hours_the_status_is_EXTRA_HOURS</span><span class="o">()</span> <span class="o">{</span>
+  <span class="nc">Worklog</span> <span class="n">wl</span> <span class="o">=</span> <span class="n">mock</span><span class="o">(</span><span class="nc">Worklog</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+  <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">worklogDurations</span> <span class="o">=</span> <span class="o">(</span><span class="k">new</span> <span class="nc">Random</span><span class="o">().</span><span class="na">ints</span><span class="o">(</span><span class="mi">10</span><span class="o">,</span> <span class="mi">9</span><span class="o">,</span> <span class="nc">Integer</span><span class="o">.</span><span class="na">MAX_VALUE</span><span class="o">)).</span><span class="na">boxed</span><span class="o">()</span>
+      <span class="o">.</span><span class="na">collect</span><span class="o">(</span><span class="nc">Collectors</span><span class="o">.</span><span class="na">toList</span><span class="o">());</span>
+  <span class="k">for</span> <span class="o">(</span><span class="nc">Integer</span> <span class="n">d</span> <span class="o">:</span> <span class="n">worklogDurations</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">when</span><span class="o">(</span><span class="n">wl</span><span class="o">.</span><span class="na">getDuration</span><span class="o">()).</span><span class="na">thenReturn</span><span class="o">(</span><span class="n">d</span><span class="o">);</span>
+    <span class="n">when</span><span class="o">(</span><span class="n">worklogRepository</span><span class="o">.</span><span class="na">findByUsernameAndDate</span><span class="o">(</span><span class="nc">ArgumentMatchers</span><span class="o">.</span><span class="na">anyString</span><span class="o">(),</span>
+        <span class="nc">ArgumentMatchers</span><span class="o">.</span><span class="na">any</span><span class="o">(</span><span class="nc">LocalDate</span><span class="o">.</span><span class="na">class</span><span class="o">))).</span><span class="na">thenReturn</span><span class="o">(</span><span class="nc">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="n">wl</span><span class="o">));</span>
+
+    <span class="nc">DayStatusSummary</span> <span class="n">result</span> <span class="o">=</span> <span class="n">reportsService</span><span class="o">.</span><span class="na">getDayStatusSummaryForWorkerAndDay</span><span class="o">(</span><span class="no">USERNAME</span><span class="o">,</span> <span class="no">DAY</span><span class="o">);</span>
+
+    <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">durations</span> <span class="o">=</span> <span class="nc">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="n">d</span><span class="o">);</span>
+    <span class="nc">List</span><span class="o">&lt;</span><span class="nc">DayStatus</span><span class="o">&gt;</span> <span class="n">resultStatusList</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="na">getStatusList</span><span class="o">();</span>
+    <span class="n">assertEquals</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="n">resultStatusList</span><span class="o">.</span><span class="na">size</span><span class="o">(),</span> <span class="s">"Statuslist size failed for worklogs with duration "</span> <span class="o">+</span> <span class="n">durations</span><span class="o">);</span>
+    <span class="n">assertEquals</span><span class="o">(</span><span class="no">EXTRA_HOURS</span><span class="o">,</span> <span class="n">resultStatusList</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="mi">0</span><span class="o">),</span> <span class="s">"Daystatus failed for with duration "</span> <span class="o">+</span> <span class="n">durations</span><span class="o">);</span>
+
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Pues sí, reconozco que alguna vez (en alguno de mis sideprojects) he hecho alguna de estas “chapucillas”🤫😰. Digo chapucilla, porque a priori no suena muy bien hacer estas triquiñuelas… (pero bueno, hay tests, hay cobertura de mutantes, estoy trasteando, así practico testing…..). Excusas y más excusas. Intento engañarme a mí misma y no duermo tranquila. Amanezco, pensando en cómo podría cubrir estos “vacíos” aparentes. Es un caso sencillo… ¿no hay nada que pueda ayudarme en esto?</p>
+
+<p>La respuesta es que sí, y ¡encima lo ofrece JUnit 5 por sí mismo!: no me hace falta ninguna herramienta nueva, sólo sacarle más chicha a la que tengo. La solución: <a href="https://junit.org/junit5/docs/current/user-guide/#writing-tests-parameterized-tests" target="_blank">Parameterizered Tests</a>. Están en modo experimental para la última versión de JUnit 5, pero lo cierto es que están disponibles desde la versión 5.0 ¡y yo sin conocerlos! Vamos a probarlo.</p>
+
+<p>Lo primero es añadir en el <code class="highlighter-rouge">pom.xml</code> la dependencia correspondiente:</p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-params --&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>org.junit.jupiter<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>junit-jupiter-params<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</code></pre></div></div>
+
+<p>A continuación, modificamos el primer test utilizando la anotación y queda como sigue:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@ParameterizedTest</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">"Given a worklog for the requested day with {0} duration the status is MISSING_HOURS"</span><span class="o">)</span>
+<span class="nd">@ValueSource</span><span class="o">(</span><span class="n">ints</span> <span class="o">=</span> <span class="o">{</span> <span class="mi">0</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">,</span> <span class="mi">4</span><span class="o">,</span> <span class="mi">5</span><span class="o">,</span> <span class="mi">6</span><span class="o">,</span> <span class="mi">7</span> <span class="o">})</span>
+<span class="kt">void</span> <span class="nf">worklog_duration_for_requested_day_less_than_8</span><span class="o">(</span><span class="nc">Integer</span> <span class="n">duration</span><span class="o">)</span> <span class="o">{</span>
+  <span class="nc">Worklog</span> <span class="n">wl</span> <span class="o">=</span> <span class="n">mock</span><span class="o">(</span><span class="nc">Worklog</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+  <span class="n">when</span><span class="o">(</span><span class="n">wl</span><span class="o">.</span><span class="na">getDuration</span><span class="o">()).</span><span class="na">thenReturn</span><span class="o">(</span><span class="n">duration</span><span class="o">);</span>
+  <span class="n">when</span><span class="o">(</span><span class="n">worklogRepository</span><span class="o">.</span><span class="na">findByUsernameAndDate</span><span class="o">(</span><span class="nc">ArgumentMatchers</span><span class="o">.</span><span class="na">anyString</span><span class="o">(),</span>
+      <span class="nc">ArgumentMatchers</span><span class="o">.</span><span class="na">any</span><span class="o">(</span><span class="nc">LocalDate</span><span class="o">.</span><span class="na">class</span><span class="o">))).</span><span class="na">thenReturn</span><span class="o">(</span><span class="nc">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="n">wl</span><span class="o">));</span>
+
+  <span class="nc">DayStatusSummary</span> <span class="n">result</span> <span class="o">=</span> <span class="n">reportsService</span><span class="o">.</span><span class="na">getDayStatusSummaryForWorkerAndDay</span><span class="o">(</span><span class="no">USERNAME</span><span class="o">,</span> <span class="no">DAY</span><span class="o">);</span>
+
+  <span class="n">assertStatusEquals</span><span class="o">(</span><span class="no">MISSING_HOURS</span><span class="o">,</span> <span class="n">result</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Tras esta modificación no estamos ejecutando un sólo test, <strong>estamos ejecutando 8 tests</strong>:</p>
+
+<p><img src="/assets/images/2020-06-30-parameterized-tests/03_test_parameterized.png" alt="Ejemplo de parameterized" class="center" /></p>
+
+<p>Además, si por ejemplo, quisiéramos hacer lo mismo con el método que utilizaba valores random, podríamos conseguir algo similar haciendo:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@ParameterizedTest</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">"Given a worklog for the requested day {0} the status is EXTRA_HOURS"</span><span class="o">)</span>
+<span class="nd">@MethodSource</span>
+<span class="kt">void</span> <span class="nf">worklog_duration_for_requested_day_more_than_8</span><span class="o">(</span><span class="nc">Worklog</span> <span class="n">wl</span><span class="o">)</span> <span class="o">{</span>
+  <span class="n">when</span><span class="o">(</span><span class="n">worklogRepository</span><span class="o">.</span><span class="na">findByUsernameAndDate</span><span class="o">(</span><span class="nc">ArgumentMatchers</span><span class="o">.</span><span class="na">anyString</span><span class="o">(),</span>
+      <span class="nc">ArgumentMatchers</span><span class="o">.</span><span class="na">any</span><span class="o">(</span><span class="nc">LocalDate</span><span class="o">.</span><span class="na">class</span><span class="o">))).</span><span class="na">thenReturn</span><span class="o">(</span><span class="nc">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="n">wl</span><span class="o">));</span>
+
+  <span class="nc">DayStatusSummary</span> <span class="n">result</span> <span class="o">=</span> <span class="n">reportsService</span><span class="o">.</span><span class="na">getDayStatusSummaryForWorkerAndDay</span><span class="o">(</span><span class="no">USERNAME</span><span class="o">,</span> <span class="no">DAY</span><span class="o">);</span>
+
+  <span class="n">assertStatusEquals</span><span class="o">(</span><span class="no">EXTRA_HOURS</span><span class="o">,</span> <span class="n">result</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="kd">static</span> <span class="nc">Stream</span><span class="o">&lt;</span><span class="nc">Worklog</span><span class="o">&gt;</span> <span class="nf">worklog_duration_for_requested_day_more_than_8</span><span class="o">()</span> <span class="o">{</span>
+  <span class="c1">// since 24h/day --&gt; max value is 24</span>
+  <span class="nc">Stream</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">randomDurations</span> <span class="o">=</span> <span class="o">(</span><span class="k">new</span> <span class="nc">Random</span><span class="o">().</span><span class="na">ints</span><span class="o">(</span><span class="mi">10</span><span class="o">,</span> <span class="mi">9</span><span class="o">,</span> <span class="mi">24</span><span class="o">)).</span><span class="na">boxed</span><span class="o">();</span>
+  <span class="k">return</span> <span class="n">randomDurations</span><span class="o">.</span><span class="na">map</span><span class="o">(</span><span class="n">d</span> <span class="o">-&gt;</span> <span class="o">{</span>
+    <span class="nc">Worklog</span> <span class="n">wl</span> <span class="o">=</span> <span class="n">mock</span><span class="o">(</span><span class="nc">Worklog</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+    <span class="n">when</span><span class="o">(</span><span class="n">wl</span><span class="o">.</span><span class="na">toString</span><span class="o">()).</span><span class="na">thenReturn</span><span class="o">(</span><span class="nc">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"[with %d duration]"</span><span class="o">,</span> <span class="n">d</span><span class="o">));</span> <span class="c1">// mock info in test description</span>
+    <span class="n">when</span><span class="o">(</span><span class="n">wl</span><span class="o">.</span><span class="na">getDuration</span><span class="o">()).</span><span class="na">thenReturn</span><span class="o">(</span><span class="n">d</span><span class="o">);</span>
+    <span class="k">return</span> <span class="n">wl</span><span class="o">;</span>
+  <span class="o">});</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>En este caso en vez de devolver una lista de enteros con las duraciones hemos probado a hacer el ejemplo devolviendo directamente diferentes worklogs.</p>
+
+<p><img src="/assets/images/2020-06-30-parameterized-tests/04_test_parameterized_random.png" alt="Ejemplo de parameterized con valores ramdom" class="center" /></p>
+
+<p>Nota: Este ejemplo está disponible al completo <a href="https://github.com/wearearima/time-report-parameterized/tree/feature/04_tests_parameterizedTest" target="_blank">en Github</a>.</p>
+
+<p>Otra cosa que siempre he echado de menos de mis tiempos en Grails ha sido la posibilidad de utilizar nombres más “legibles” para los tests. Y ya que estoy de suerte, y con la anotación <code class="highlighter-rouge">@ParameterizedTest</code> puedo poner un nombre… seguro que hay algo para los tests “normales”… ¡Bingo! Otra anotación al rescate: <code class="highlighter-rouge">@Displayname</code>.</p>
+
+<p>Pues nada, ahora tengo unos tests mejores, más fáciles de entender y de mantener que los de los ejemplos 2 y 3, y más completos que los del ejemplo 1.</p>
+
+<h2 id="descubriendo-junit-5">Descubriendo JUnit 5</h2>
+<p>Nos acostumbramos a hacer las cosas de determinada manera y a veces nos cuesta levantar la mirada y ver si hay herramientas que nos faciliten la vida (que con poco esfuerzo vengan a cubrir carencias que habíamos detectado en nuestro propio código). En este caso, hemos descubierto unas anotaciones que nos ayudarán en nuestro día a día a hacer que nuestros tests sean mejores.</p>
+
+<p><code class="highlighter-rouge">@ParameterizedTest</code> para poder crear múltiples ejemplos para una misma situación de un SUT. Los parámetros de entrada pueden ser tan sencillos como una lista de valores (si sólo se necesita uno utilizando <code class="highlighter-rouge">@ValueSource</code>) o más complejos, desde múltiples parámetros para cada test, hasta tipos de parámetros más complejos (utilizando por ejemplo <code class="highlighter-rouge">@MethodSource</code>). Toda la información puede encontrarse <a href="https://junit.org/junit5/docs/current/user-guide/#writing-tests-parameterized-tests" target="_blank">en esta sección</a> de la documentación de JUnit 5.</p>
+
+<p>Además <code class="highlighter-rouge">@DisplayName</code> para poder poner nombres más legibles a los tests, algo muy útil especialmente cuando fallan: poder leer lo que está pasando de forma sencilla. Toda la información puede encontrarse <a href="https://junit.org/junit5/docs/current/user-guide/#writing-tests-display-names" target="_blank">en esta sección</a> de la documentación de JUnit 5.</p>
+
+<h2 id="más-allá">Más allá…</h2>
+<p>Sin embargo, sigo notando cierto run run: ¿qué pasa con esos casos que no puedo atacar de forma exhaustiva? ¿Podría usar <code class="highlighter-rouge">@ParameterizedTest</code>s y pasar random values de diferentes listas?
+Parece que sí, pero… en este caso que es sencillo no parece que tenga problemas. Sin embargo y ¿si tuviese más parámetros de entrada o más complejos? ¿Tendría que desarrollar mi propio “generador” de combinaciones aleatorias? ¿Cómo de frágiles serían mis tests? ¿Es posible hacer tests que no estén basados en ejemplo? 
+Investigando un poco me encuentro con un concepto que parece que puede encajar: <strong>Property Based Testing</strong>, donde en base a unos parámetros de características determinadas se verifica una propiedad/comportamiento concreto del SUT.</p>
+
+<p>No tengo claro si encajaría en este ejemplo, pero ¿quizás deba profundizar más en el tema para ver si hay algo que podamos aprender y que nos permita mejorar nuestros tests? ¡Por supuesto, allá vamos!</p>
+<div class="footnotes">
+  <ol>
+    <li id="fn:1">
+      <p>Código fuente para ejemplo de primera versión de los tests disponible <a href="https://github.com/wearearima/time-report-parameterized/tree/feature/01_tests_first_approach/src/test/java/eu/arima/tr/reports/reportsServiceImpl/GetDayStatusSummaryForWorkerAndDayTests.java" target="_blank">aquí</a> <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:2">
+      <p>Código fuente para ejemplo de tests exhaustivos disponible <a href="https://github.com/wearearima/time-report-parameterized/tree/feature/02_tests_exhaustive/src/test/java/eu/arima/tr/reports/reportsServiceImpl/GetDayStatusSummaryForWorkerAndDayTests.java" target="_blank">aquí</a> <a href="#fnref:2" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:3">
+      <p>Código fuente para ejemplo de tests iterando SUT disponible <a href="https://github.com/wearearima/time-report-parameterized/tree/feature/03_tests_tricky_exhaustive/src/test/java/eu/arima/tr/reports/reportsServiceImpl/GetDayStatusSummaryForWorkerAndDayTests.java" target="_blank">aquí</a> <a href="#fnref:3" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:4">
+      <p>Código fuente para ejemplo de tests iterando SUT con valores random disponible <a href="https://github.com/wearearima/time-report-parameterized/tree/feature/03_tests_tricky_exhaustive/src/test/java/eu/arima/tr/reports/reportsServiceImpl/GetDayStatusSummaryForWorkerAndDayTests.java" target="_blank">aquí</a> <a href="#fnref:4" class="reversefootnote">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+            </div>
+
+            
+          </div>
+        </article>
+      </div>
+    </main>
+
+    <footer>
+    <div class="wrapper">
+        <div class="footer__container">
+            <div class="footer__sello">
+                <img src="/assets/images/arima_sello_white.png" alt="" />
+            </div>
+            <div class="footer__content">
+                <div class="footer__data">
+                    <dl>
+                        <dt>web</dt>
+                        <dd><a itemprop="sameAs" href="https://www.arima.eu/es/">arima.eu</a></dd>
+                    </dl>
+                    <dl>
+                        <dt>social</dt>
+                        <dd>
+                            <a itemprop="sameAs" href="https://github.com/wearearima" class="social"><span class="icon-github"></span></a>
+                            <a itemprop="sameAs" href="https://twitter.com/wearearima" class="social"><span class="icon-twitter"></span></a>
+                            <a itemprop="sameAs" href="https://www.linkedin.com/company/arima-software-design/" class="social"><span class="icon-linkedin"></span></a>
+                            <a itemprop="sameAs" href="/es/feed.xml" class="social"><span class="icon-feed"></span></a>
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt>Privacidad</dt>
+                        <dd class="politica-cookies">
+                            <a href="/es/cookies.html">Política de cookies</a>
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+    <div class="cookies-message" id="cookies-message">
+    <h4>Este sitio web utiliza cookies</h4>
+    <p>Este sitio web utiliza cookies para mejorar la experiencia del usuario. Al utilizar nuestro sitio web, usted acepta todas las cookies de acuerdo con nuestra Política de cookies.</p>
+    <div class="buttons">
+        <a class="button" href="/es/cookies.html">Leer política de cookies</a>
+        <button class="button" id="accept-cookies">Aceptar</button>
+    </div>
+</div>
+<script>
+    (function() {
+        if(localStorage) {
+            var cookiesAccepted = localStorage.getItem("cookies-accepted");
+            if(cookiesAccepted) {
+                hideCookiesMessage();
+                
+            } else {
+                document.getElementById('accept-cookies').addEventListener("click", function() {
+                    hideCookiesMessage();
+                    localStorage.setItem("cookies-accepted", true);
+                })
+            }
+        }
+        function hideCookiesMessage() {
+            document.getElementById('cookies-message').style.display = "none";
+        }
+    })();
+</script>
+
+  </body>
+
+</html>
