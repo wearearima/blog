@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Otra forma de hacer tests: property based testing"
-date:   2020-07-07 9:00:00
+date:   2020-07-10 9:00:00
 author: jessica
 lang: es
 categories: testing, software quality, QA
