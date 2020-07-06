@@ -1,19 +1,19 @@
 ---
 layout: post
-title:  "Another way of doing tests: property based testing"
+title:  "Another way of doing tests: property-based testing"
 date:   2020-07-01 9:00:00
 author: jessica
 lang: en
 categories: testing, software quality, QA
 tags: testing, property based testing, PBT, calidad, software quality, QA, junit
-header-image:	2020-05-12-mutation-testing/header.jpg
+header-image:	post-headers/property-based-testing.jpg
 ---
 
 ## What is property-based testing?
-*Property-based testing* (from now on PBT) is an alternative (more) for development tests where the main focus, instead of being a specific example/case, becomes a property of the the use case, understanding that a property becomes something like:
+*Property-based testing* (from now on PBT) is another alternative for development tests where the main focus, instead of being a specific example/case, becomes a property of the the use case, understanding that a property becomes something like:
 
 > for all input (x,y,....)  
-> where precondition (x,y…) is met then   
+> where precondition (x,y…) is met   
 > the property (z,k....) is true
 
 Normally the properties are not too detailed, they only verify some general characteristic that must be met.
@@ -89,7 +89,7 @@ We add the dependency in the pom.xml
   <scope>test</scope>
 </dependency>
 ```
-And then we reformulate our tests in "format" PBT:
+And then we reformulate our tests to PBT "format":
 ```java
 public class GetDayStatusSummaryForWorkerAndDayPropertyTests {
 
