@@ -61,7 +61,7 @@ This check is to be executed every time.
 
 ## From theory to practice
 
-Ok and how does this apply to my use case? I review my tests, defined in [GetDayStatusSummaryForWorkerAndDayTests.java](https://github.com/jaguado-arima/time-report-pbt/blob/feature/01_tests_jqwik_property_test/src/test/java/eu/arima/tr/reports/ reportsServiceImpl/GetDayStatusSummaryForWorkerAndDayTests.java){:target="_blank"} and I think about whether any of them could be written based on method properties regardless of the "exact" values ​​of the parameters.
+Ok and how does this apply to my use case? I review my tests, defined in [GetDayStatusSummaryForWorkerAndDayTests.java](https://github.com/jaguado-arima/time-report-pbt/blob/feature/01_tests_jqwik_property_test/src/test/java/eu/arima/tr/reports/reportsServiceImpl/GetDayStatusSummaryForWorkerAndDayTests.java){:target="_blank"} and I think about whether any of them could be written based on method properties regardless of the "exact" values ​​of the parameters.
 I realize that I have two tests that are actually written in these terms:
 
 ```java
