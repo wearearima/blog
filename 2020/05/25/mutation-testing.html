@@ -221,7 +221,7 @@
 
 <p><img src="/assets/images/2020-05-12-mutation-testing/01jacocoreport.png" alt="JaCoCo report general" class="center" /></p>
 
-<p>Tenemos una cobertura de un 92% de líneas y 87% de ramas: objetivo cumplido. Pero…si nos fijamos: el primer test no fallará (casi) nunca porque siempre termina con <code class="highlighter-rouge">assert true</code>, el segundo es un poco “más completo” porque al menos está verificando que se recuperan los partes… <sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup></p>
+<p>Tenemos una cobertura de un 92% de líneas y 87% de ramas: objetivo cumplido. Pero…si nos fijamos: el primer test no fallará (casi) nunca porque siempre termina con <code class="highlighter-rouge">assert true</code>, el segundo es un poco “más completo” porque al menos está verificando que se recuperan los partes… <sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote">1</a></sup></p>
 
 <p>Pues esta era mi realidad, y mucho me temo que LA realidad, de aquella época en muchos proyectos (y quien sabe si en algunos de hoy en día). Los proyectos cumplían los requerimientos de cobertura de código, lo que distaba mucho de tener un software de calidad.</p>
 
@@ -297,7 +297,7 @@
   <span class="o">}</span>
 </code></pre></div></div>
 
-<p>Nuestros tests seguirán pasando<sup id="fnref:2"><a href="#fn:2" class="footnote">2</a></sup>. Además seguimos con un % de cobertura alto… ¡Todo perfecto!</p>
+<p>Nuestros tests seguirán pasando<sup id="fnref:2" role="doc-noteref"><a href="#fn:2" class="footnote">2</a></sup>. Además seguimos con un % de cobertura alto… ¡Todo perfecto!</p>
 
 <blockquote>
   <p>Test → <strong>sensación</strong> de seguridad</p>
@@ -387,13 +387,13 @@
 <p><strong>Mutation testing</strong> es una herramienta que nos permite evaluar y mejorar la calidad de nuestros tests. El precio a pagar es el aumento de tiempo necesario para pasarlos. Teniendo en cuenta que se basa en mutaciones de código y que aplica no sólo a tests unitarios, también a tests de integración, a medida que el código crezca y el número de tests aumente, mayor será el tiempo necesario para ejecutarlos. Es necesario, por tanto, buscar fórmulas que aseguren que en alguna fase de nuestro desarrollo todos los tests pasan: si dejamos de pasarlos porque es demasiado costoso todo el esfuerzo habrá sido en vano.</p>
 
 <p>Hemos dado un paso firme, pero nos queda recorrido en nuestro camino hacia la calidad: ¿Qué podemos hacer para buscar este equilibrio? ¿Podemos organizar de alguna forma los tests para facilitarlo? ¿Hay herramientas que nos permitan desarrollar/ejecutar tests de forma más eficiente?</p>
-<div class="footnotes">
+<div class="footnotes" role="doc-endnotes">
   <ol>
-    <li id="fn:1">
-      <p>Si quieres probar todo esto puedes descargarte el código de <a href="https://github.com/wearearima/time-report-app/tree/feature/01_tests_for_project_requirements" target="_blank">aquí</a> <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
+    <li id="fn:1" role="doc-endnote">
+      <p>Si quieres probar todo esto puedes descargarte el código de <a href="https://github.com/wearearima/time-report-app/tree/feature/01_tests_for_project_requirements" target="_blank">aquí</a> <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
-    <li id="fn:2">
-      <p>Pruébalo tu mismo, el código está disponible <a href="https://github.com/wearearima/time-report-app/tree/feature/02_tests_for_testing_purposes" target="_blank">aquí</a> <a href="#fnref:2" class="reversefootnote">&#8617;</a></p>
+    <li id="fn:2" role="doc-endnote">
+      <p>Pruébalo tu mismo, el código está disponible <a href="https://github.com/wearearima/time-report-app/tree/feature/02_tests_for_testing_purposes" target="_blank">aquí</a> <a href="#fnref:2" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
   </ol>
 </div>

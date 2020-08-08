@@ -187,13 +187,13 @@
   </tbody>
 </table>
 
-<p>Así a priori mi batería de tests para este método podría ser la siguiente<sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup>:</p>
+<p>Así a priori mi batería de tests para este método podría ser la siguiente<sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote">1</a></sup>:</p>
 
 <p><img src="/assets/images/2020-06-30-parameterized-tests/01_test_set.png" alt="Primera aproximación del set de tests" class="center" /></p>
 
 <p>Teniendo en cuenta que <code class="highlighter-rouge">n</code>, <code class="highlighter-rouge">a</code> y <code class="highlighter-rouge">b</code> los fijaré (en este caso <code class="highlighter-rouge">n = 3</code>, <code class="highlighter-rouge">a = 7</code> y <code class="highlighter-rouge">b = 9</code>) siempre me quedo con la duda de que estoy testeando algunos ejemplos pero no otros: <code class="highlighter-rouge">suma = 7</code> pero no <code class="highlighter-rouge">suma = 0</code>o <code class="highlighter-rouge">suma = 9</code> pero no <code class="highlighter-rouge">suma = 10</code>, o listas de 1 y 3 elementos pero no de 0 o más de 3….</p>
 
-<p>En este caso en el que los casos 1 y 2 son muy acotados podría liarme la manta a la cabeza y hacer tests exhaustivos que probasen todos los casos… Por ejemplo<sup id="fnref:2"><a href="#fn:2" class="footnote">2</a></sup>:</p>
+<p>En este caso en el que los casos 1 y 2 son muy acotados podría liarme la manta a la cabeza y hacer tests exhaustivos que probasen todos los casos… Por ejemplo<sup id="fnref:2" role="doc-noteref"><a href="#fn:2" class="footnote">2</a></sup>:</p>
 
 <p><img src="/assets/images/2020-06-30-parameterized-tests/02_test_set.png" alt="Segunda aproximación del set de tests" class="center" /></p>
 
@@ -201,7 +201,7 @@
 
 <p>¡Otra idea!, ¿por qué no iterar <code class="highlighter-rouge">n</code> veces la ejecución del método SUT junto el assert asociado, y personalizar el mensaje de error utilizando el parámetro de la iteración?</p>
 
-<p>Algo así como el siguiente ejemplo<sup id="fnref:3"><a href="#fn:3" class="footnote">3</a></sup>:</p>
+<p>Algo así como el siguiente ejemplo<sup id="fnref:3" role="doc-noteref"><a href="#fn:3" class="footnote">3</a></sup>:</p>
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Test</span>
 <span class="kt">void</span> <span class="nf">when_the_worklog_for_the_resquested_day_is_less_than_8_hours_the_status_is_MISSING_HOURS</span><span class="o">()</span> <span class="o">{</span>
@@ -224,7 +224,7 @@
 
 <p>En este caso estaré ejecutando un único test, pero si falla para algún valor de <code class="highlighter-rouge">i</code>, el mensaje de error me indicará el ejemplo que falla.</p>
 
-<p>Vale, con esto cubro los casos más acotados….. y ¿para los menos acotados? Se me ocurre generar varios valores random y aplicar el mismo patrón<sup id="fnref:4"><a href="#fn:4" class="footnote">4</a></sup>:</p>
+<p>Vale, con esto cubro los casos más acotados….. y ¿para los menos acotados? Se me ocurre generar varios valores random y aplicar el mismo patrón<sup id="fnref:4" role="doc-noteref"><a href="#fn:4" class="footnote">4</a></sup>:</p>
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Test</span>
 <span class="kt">void</span> <span class="nf">when_the_worklog_for_the_resquested_day_is_more_than_8_hours_the_status_is_EXTRA_HOURS</span><span class="o">()</span> <span class="o">{</span>
@@ -328,19 +328,19 @@ Parece que sí, pero… en este caso que es sencillo no parece que tenga problem
 Investigando un poco me encuentro con un concepto que parece que puede encajar: <strong>Property Based Testing</strong>, donde en base a unos parámetros de características determinadas se verifica una propiedad/comportamiento concreto del SUT.</p>
 
 <p>No tengo claro si encajaría en este ejemplo, pero ¿quizás deba profundizar más en el tema para ver si hay algo que podamos aprender y que nos permita mejorar nuestros tests? ¡Por supuesto, allá vamos!</p>
-<div class="footnotes">
+<div class="footnotes" role="doc-endnotes">
   <ol>
-    <li id="fn:1">
-      <p>Código fuente para ejemplo de primera versión de los tests disponible <a href="https://github.com/wearearima/time-report-parameterized/tree/feature/01_tests_first_approach/src/test/java/eu/arima/tr/reports/reportsServiceImpl/GetDayStatusSummaryForWorkerAndDayTests.java" target="_blank">aquí</a> <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
+    <li id="fn:1" role="doc-endnote">
+      <p>Código fuente para ejemplo de primera versión de los tests disponible <a href="https://github.com/wearearima/time-report-parameterized/tree/feature/01_tests_first_approach/src/test/java/eu/arima/tr/reports/reportsServiceImpl/GetDayStatusSummaryForWorkerAndDayTests.java" target="_blank">aquí</a> <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
-    <li id="fn:2">
-      <p>Código fuente para ejemplo de tests exhaustivos disponible <a href="https://github.com/wearearima/time-report-parameterized/tree/feature/02_tests_exhaustive/src/test/java/eu/arima/tr/reports/reportsServiceImpl/GetDayStatusSummaryForWorkerAndDayTests.java" target="_blank">aquí</a> <a href="#fnref:2" class="reversefootnote">&#8617;</a></p>
+    <li id="fn:2" role="doc-endnote">
+      <p>Código fuente para ejemplo de tests exhaustivos disponible <a href="https://github.com/wearearima/time-report-parameterized/tree/feature/02_tests_exhaustive/src/test/java/eu/arima/tr/reports/reportsServiceImpl/GetDayStatusSummaryForWorkerAndDayTests.java" target="_blank">aquí</a> <a href="#fnref:2" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
-    <li id="fn:3">
-      <p>Código fuente para ejemplo de tests iterando SUT disponible <a href="https://github.com/wearearima/time-report-parameterized/tree/feature/03_tests_tricky_exhaustive/src/test/java/eu/arima/tr/reports/reportsServiceImpl/GetDayStatusSummaryForWorkerAndDayTests.java" target="_blank">aquí</a> <a href="#fnref:3" class="reversefootnote">&#8617;</a></p>
+    <li id="fn:3" role="doc-endnote">
+      <p>Código fuente para ejemplo de tests iterando SUT disponible <a href="https://github.com/wearearima/time-report-parameterized/tree/feature/03_tests_tricky_exhaustive/src/test/java/eu/arima/tr/reports/reportsServiceImpl/GetDayStatusSummaryForWorkerAndDayTests.java" target="_blank">aquí</a> <a href="#fnref:3" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
-    <li id="fn:4">
-      <p>Código fuente para ejemplo de tests iterando SUT con valores random disponible <a href="https://github.com/wearearima/time-report-parameterized/tree/feature/03_tests_tricky_exhaustive/src/test/java/eu/arima/tr/reports/reportsServiceImpl/GetDayStatusSummaryForWorkerAndDayTests.java" target="_blank">aquí</a> <a href="#fnref:4" class="reversefootnote">&#8617;</a></p>
+    <li id="fn:4" role="doc-endnote">
+      <p>Código fuente para ejemplo de tests iterando SUT con valores random disponible <a href="https://github.com/wearearima/time-report-parameterized/tree/feature/03_tests_tricky_exhaustive/src/test/java/eu/arima/tr/reports/reportsServiceImpl/GetDayStatusSummaryForWorkerAndDayTests.java" target="_blank">aquí</a> <a href="#fnref:4" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
   </ol>
 </div>

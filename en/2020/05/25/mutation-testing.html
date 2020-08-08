@@ -221,7 +221,7 @@
 
 <p><img src="/assets/images/2020-05-12-mutation-testing/01jacocoreport.png" alt="JaCoCo report general" class="center" target="_blank" /></p>
 
-<p>We have a coverage of 92% of lines and 87% of branches: objective met. But…if you look: the first test will (almost) never fail because it always ends with <code class="highlighter-rouge">assert true</code>, the second is a bit “more complete” because at least it verifies that the hours (or part hours) are retrieved… <sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup></p>
+<p>We have a coverage of 92% of lines and 87% of branches: objective met. But…if you look: the first test will (almost) never fail because it always ends with <code class="highlighter-rouge">assert true</code>, the second is a bit “more complete” because at least it verifies that the hours (or part hours) are retrieved… <sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote">1</a></sup></p>
 
 <p>Well this was my reality, and I am very much afraid that it was THE reality of that time in many projects (and who knows if in some of today). The projects met the code coverage requirements, which was far from having quality software.</p>
 
@@ -296,7 +296,7 @@
   <span class="o">}</span>
 </code></pre></div></div>
 
-<p>Our tests will continue to pass<sup id="fnref:2"><a href="#fn:2" class="footnote">2</a></sup>. We also continue with a high % coverage… Everything is perfect!</p>
+<p>Our tests will continue to pass<sup id="fnref:2" role="doc-noteref"><a href="#fn:2" class="footnote">2</a></sup>. We also continue with a high % coverage… Everything is perfect!</p>
 
 <blockquote>
   <p>Test → <strong>feeling</strong> of security</p>
@@ -386,13 +386,13 @@
 <p><strong>Mutation testing</strong> is a tool that allows us to evaluate and improve the quality of our tests. The price to pay is the increase in time needed to do it. Taking into account that it is based on code mutations and that it applies not only to unit tests, but also to integration tests, as the code grows and the number of tests increases, it will take longer to execute them. Therefore, it is necessary to look for formulas that ensure that at some stage of our development, all tests are done: if we stop doing them because it is too costly, all the effort will have been for nothing.</p>
 
 <p>We have taken a firm step, but we are still on the path to quality: what can we do to find this balance? Can we organize the tests in some way to make things easier? Are there tools that allow us to develop/run tests more efficiently?</p>
-<div class="footnotes">
+<div class="footnotes" role="doc-endnotes">
   <ol>
-    <li id="fn:1">
-      <p>If you want to try all this then download the code from <a href="https://github.com/wearearima/time-report-app/tree/feature/01_tests_for_project_requirements" target="_blank">here</a> <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
+    <li id="fn:1" role="doc-endnote">
+      <p>If you want to try all this then download the code from <a href="https://github.com/wearearima/time-report-app/tree/feature/01_tests_for_project_requirements" target="_blank">here</a> <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
-    <li id="fn:2">
-      <p>Try it for yourself, the code is available <a href="https://github.com/wearearima/time-report-app/tree/feature/02_tests_for_testing_purposes" target="_blank">here</a> <a href="#fnref:2" class="reversefootnote">&#8617;</a></p>
+    <li id="fn:2" role="doc-endnote">
+      <p>Try it for yourself, the code is available <a href="https://github.com/wearearima/time-report-app/tree/feature/02_tests_for_testing_purposes" target="_blank">here</a> <a href="#fnref:2" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
   </ol>
 </div>
