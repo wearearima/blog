@@ -19,7 +19,7 @@ Al leer sobre buenas prácticas a seguir a la hora de lanzar contenedores, una d
 
 ## ¿Qué es el modo privilegiado?
 
-Los contenedores se inician con una serie de capacidades de Linux por defecto. Además de las que vienen por defecto, hay muchas otras que se pueden añadir a nuestro contenedor con la opción `--cap-add=`. La lista completa de las capacidades y lo que hacen se puede ver en la [documentación oficial](https://docs.docker.com/engine/reference/run/#runtime-privilege-and-linux-capabilities). Al iniciar el contenedor en modo privilegiado, se le otorgan todas las capacidades, además de acceso a todos los dispositivos del *host* y se hacen ciertos cambios a AppArmor o SELinux, todo esto para darle al contenedor un acceso similar al que tienen el resto de procesos en el *host*.
+Los contenedores se inician con una serie de capacidades de Linux por defecto. Además de las que vienen por defecto, hay muchas otras que se pueden añadir a nuestro contenedor con la opción `--cap-add=`. La lista completa de las capacidades y lo que hacen se puede ver en la [documentación oficial](https://docs.docker.com/engine/reference/run/#runtime-privilege-and-linux-capabilities){:target="_blank"}. Al iniciar el contenedor en modo privilegiado, se le otorgan todas las capacidades, además de acceso a todos los dispositivos del *host* y se hacen ciertos cambios a AppArmor o SELinux, todo esto para darle al contenedor un acceso similar al que tienen el resto de procesos en el *host*.
 
 <p align="center">
     <img src="/assets/images/2020-09-01-deberias-utilizar-contenedores-privilegiados/no-devices.png">
@@ -54,11 +54,11 @@ Sin embargo, es común encontrarse imágenes (y crearlas) donde el usuario por d
 
 <label style="text-align: center; display: block;">Las cinco imágenes más populares de Docker Hub tienen un usuario privilegiado por defecto</label>
 
-Además, también se han encontrado vulnerabilidades ([CVE-2019-5736 detectado en febrero de 2019](https://blog.dragonsector.pl/2019/02/cve-2019-5736-escape-from-docker-and.html)) donde un usuario sin privilegios es capaz de explotar las capacidades de un contenedor privilegiado y acceder al anfitrión. Aunque mucho menos común que el caso de los usuarios privilegiados, es un riesgo a tener en cuenta, porque si ha habido una, pueden detectarse más.
+Además, también se han encontrado vulnerabilidades ([CVE-2019-5736 detectado en febrero de 2019](https://blog.dragonsector.pl/2019/02/cve-2019-5736-escape-from-docker-and.html){:target="_blank"}) donde un usuario sin privilegios es capaz de explotar las capacidades de un contenedor privilegiado y acceder al anfitrión. Aunque mucho menos común que el caso de los usuarios privilegiados, es un riesgo a tener en cuenta, porque si ha habido una, pueden detectarse más.
 
 ## ¿Existe alguna manera de evitar que se lancen contenedores privilegiados?
 
-Existen *plugin*s que se instalan en el Docker daemon que permiten extender las funcionalidades del proceso. Para este caso en concreto, nos interesan los [*plugin*s de autorización](https://docs.docker.com/engine/extend/plugins_authorization/). Como dicen en la documentación de Docker, la autorización por defecto de `dockerd` es "todo o nada", es decir, o se tiene acceso al daemon y es posible hacer cualquier cosa, o no se tiene acceso a él.
+Existen *plugin*s que se instalan en el Docker daemon que permiten extender las funcionalidades del proceso. Para este caso en concreto, nos interesan los [*plugin*s de autorización](https://docs.docker.com/engine/extend/plugins_authorization/){:target="_blank"}. Como dicen en la documentación de Docker, la autorización por defecto de `dockerd` es "todo o nada", es decir, o se tiene acceso al daemon y es posible hacer cualquier cosa, o no se tiene acceso a él.
 
 > Nota: Docker daemon o `dockerd` es un proceso que se ejecuta en el anfitrión y que se encarga de gestionar los contenedores del mismo.
 
@@ -66,7 +66,7 @@ Con los *plugin*s de autorización tenemos la libertad de definir políticas que
 
 Bien, cada *plugin* trabaja de una manera diferente, pero todos acaban haciendo lo mismo: interceptan la llamada a la API del daemon y comprueban si esa llamada tiene permiso de ser ejecutada o no, según las políticas que hayamos definido. Es decir, podremos **permitir que solo se ejecuten las llamadas que NO intenten lanzar contenedores privilegiados**.
 
-Para hacer una demostración hemos escogido el *plugin* [opa-docker-authz](https://github.com/open-policy-agent/opa-docker-authz), que permite de manera sencilla y muy visual definir esta regla en concreto.
+Para hacer una demostración hemos escogido el *plugin* [opa-docker-authz](https://github.com/open-policy-agent/opa-docker-authz){:target="_blank"}, que permite de manera sencilla y muy visual definir esta regla en concreto.
 
 ```rego
  package docker.authz
@@ -90,7 +90,7 @@ El documento `input` corresponde al cuerpo de la llamada hecha a la API de Docke
 
 Como hemos visto antes, el mayor riesgo de seguridad viene al permitir utilizar el modo privilegiado de los contenedores, por lo que con un *plugin* como este podríamos securizar nuestra instalación en gran medida. 
 
-> Deberíamos añadir esto?: Instalar un *plugin* así en un Docker daemon en un cluster Kubernetes puede ser más complicado, por lo que podéis ver un ejemplo en este [repositorio](https://github.com/UrkoLekuona/unprivilegedDinD), donde creo dos imágenes, una con el daemon ya configurado y otra con un cliente (servidor jenkins con docker cli instalado) que utiliza el docker daemon.
+> Deberíamos añadir esto?: Instalar un *plugin* así en un Docker daemon en un cluster Kubernetes puede ser más complicado, por lo que podéis ver un ejemplo en este [repositorio](https://github.com/UrkoLekuona/unprivilegedDinD){:target="_blank"}, donde creo dos imágenes, una con el daemon ya configurado y otra con un cliente (servidor jenkins con docker cli instalado) que utiliza el docker daemon.
 
 ## Conclusiones
 
