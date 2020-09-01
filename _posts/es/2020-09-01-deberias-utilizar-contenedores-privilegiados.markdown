@@ -6,7 +6,7 @@ author: urko
 lang: es
 categories: docker
 tags: docker
-header-image: 2020-04-21-buenas-practicas-para-escribir-un-dockerfile/skyline.jpg
+header-image: 2020-09-01-deberias-utilizar-contenedores-privilegiados/lock.jpg
 ---
 
 Al trabajar con contenedores es importante tener siempre en cuenta la seguridad del contenedor, o más importante, de la máquina que lo ejecuta. Una mala decisión a la hora de desplegar un contenedor puede otorgarle acceso total sobre el *host*, y esto puede tener consecuencias negativas si este contenedor tiene un propósito malicioso o si una persona no autorizada consigue acceso a él.
