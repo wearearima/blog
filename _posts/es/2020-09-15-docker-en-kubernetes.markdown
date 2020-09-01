@@ -49,7 +49,7 @@ Aún así, también tiene sus problemas:
 
 * Mantenemos los riesgos de seguridad, ya que al tener acceso al socket de Docker, podemos arrancar un contenedor privilegiado que nos dará acceso al *host* de manera sencilla.
 * Montar directorios del nodo en un *pod* es una mala práctica. De hecho, en este caso en concreto, no podemos asumir que el socket de Docker vaya a existir en el nodo. Según el *container runtime* del cluster, puede que no exista, por lo que esta solución no se podría aplicar
-  > Nota: A día de hoy (abril 2020), los tres mayores proveedores cloud de Kubernetes (AWS, Azure y Google Cloud) proveen nodos con el container runtime Docker, que sí que tiene socket de Docker. TODO: actualizar a septiembre
+  > Nota: A fecha de publicación, los tres mayores proveedores cloud de Kubernetes (AWS, Azure y Google Cloud) proveen nodos con el container runtime Docker, que sí que tiene socket de Docker.
 * Al estar usando el demonio del nodo, todos los contenedores que lancemos son hermanos del contenedor desde que los lanzamos. Esto trae riesgos de por sí, ya que pueden ocurrir problemas al dar nombres a los contenedores (nombrar dos contenedores igual, o dos volúmenes). Además, los contenedores que no se han ejecutado desde Kubernetes no están gestionados por Kubernetes, por lo que podemos llegar a problemas de asignación de recursos (el contenedor utiliza recursos del nodo pero Kubernetes no se da cuenta).
 
 <p align="center">
