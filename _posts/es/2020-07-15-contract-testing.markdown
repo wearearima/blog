@@ -81,7 +81,7 @@ public class WorklogController {
 ```
 El _producer_ tiene un entry point para la url `/worklogs/worker/username?day=fecha` y hace una consulta a base de datos para recuperar los partes de horas del usuario en una fecha fecha y los devuelve.
 
-Este código al completo, así como el resto que utilicemos en los diferentes ejemplos está disponible en [Github](){:target="_blank"}.
+Este código al completo, así como el resto que utilicemos en los diferentes ejemplos está disponible en [Github](https://github.com/wearearima/time-report-contractTesting){:target="_blank"}.
 
 ## Back to testing
 
