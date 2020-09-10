@@ -1,19 +1,19 @@
 ---
 layout: post
 title:  "¿Deberías utilizar contenedores privilegiados?"
-date:   2020-08-01 9:00:00
+date:   2020-09-10 9:00:00
 author: urko
 lang: es
 categories: docker
 tags: docker
-header-image: 2020-09-01-deberias-utilizar-contenedores-privilegiados/lock.jpg
+header-image: 2020-09-10-deberias-utilizar-contenedores-privilegiados/lock.jpg
 ---
 
 Al trabajar con contenedores es importante tener siempre en cuenta la seguridad del contenedor, o más importante, de la máquina que lo ejecuta. Una mala decisión a la hora de desplegar un contenedor puede otorgarle acceso total sobre el *host*, y esto puede tener consecuencias negativas si este contenedor tiene un propósito malicioso o si una persona no autorizada consigue acceso a él.
 
 Al leer sobre buenas prácticas a seguir a la hora de lanzar contenedores, una de las recomendaciones más comunes es: "*No ejecutes el contenedor en modo privilegiado y dale únicamente las capacidades que necesite, a poder ser ninguna*". Es una buena recomendación, pero surgen algunas preguntas:
 * ¿Qué es el modo privilegiado? 
-* ¿Por qué no se recomienda no utilizarlo y qué es posible hacer con un contenedor privilegiado?
+* ¿Por qué se recomienda no utilizarlo y qué es posible hacer con un contenedor privilegiado?
 * ¿Es necesario ser un usuario privilegiado (*root*) o cualquier usuario dentro de un contenedor privilegiado es peligroso?
 * ¿Existe alguna manera de evitar que se lancen contenedores privilegiados?
 
@@ -22,18 +22,18 @@ Al leer sobre buenas prácticas a seguir a la hora de lanzar contenedores, una d
 Los contenedores se inician con una serie de capacidades de Linux por defecto. Además de las que vienen por defecto, hay muchas otras que se pueden añadir a nuestro contenedor con la opción `--cap-add=`. La lista completa de las capacidades y lo que hacen se puede ver en la [documentación oficial](https://docs.docker.com/engine/reference/run/#runtime-privilege-and-linux-capabilities){:target="_blank"}. Al iniciar el contenedor en modo privilegiado, se le otorgan todas las capacidades, además de acceso a todos los dispositivos del *host* y se hacen ciertos cambios a AppArmor o SELinux, todo esto para darle al contenedor un acceso similar al que tienen el resto de procesos en el *host*.
 
 <p align="center">
-    <img src="/assets/images/2020-09-01-deberias-utilizar-contenedores-privilegiados/no-devices.png">
+    <img src="/assets/images/2020-09-10-deberias-utilizar-contenedores-privilegiados/no-devices.png">
 </p>
 
 <label style="text-align: center; display: block;">Lista de dispositivos de un contenedor</label>
 
 <p align="center">
-    <img src="/assets/images/2020-09-01-deberias-utilizar-contenedores-privilegiados/devices.png">
+    <img src="/assets/images/2020-09-10-deberias-utilizar-contenedores-privilegiados/devices.png">
 </p>
 
 <label style="text-align: center; display: block;">Lista de dispositivos de un contenedor **en modo privilegiado**</label>
 
-## ¿Por qué no se recomienda no utilizarlo y qué es posible hacer con un contenedor privilegiado?
+## ¿Por qué se recomienda no utilizarlo y qué es posible hacer con un contenedor privilegiado?
 
 Por definición, un contenedor debe estar aislado del anfitrión donde se está ejecutando. Esto implica que debe tener un árbol de directorios diferente, usuarios y grupos propios, dispositivos propios..., hasta los recursos *hardware* de la máquina pueden ser diferentes. Todo esto para que un proceso ejecutándose en un contenedor no sepa que existe un anfitrión, y que ese contenedor y sus procesos no dependan del anfitrión.
 
@@ -49,7 +49,7 @@ En principio, todas las acciones que hemos listado requieren de privilegios de a
 Sin embargo, es común encontrarse imágenes (y crearlas) donde el usuario por defecto es un usuario con privilegios (normalmente *root*). Muchas veces esto es así por desconocimiento del creador de la imágen, porque el creador prefiere delegar la responsabilidad de modificar el usuario, o porque la imagen necesita ejecutar un proceso con un usuario privilegiado.
 
 <p align="center">
-    <img src="/assets/images/2020-09-01-deberias-utilizar-contenedores-privilegiados/top5.png" height="420">
+    <img src="/assets/images/2020-09-10-deberias-utilizar-contenedores-privilegiados/top5.png" height="420">
 </p>
 
 <label style="text-align: center; display: block;">Las cinco imágenes más populares de Docker Hub tienen un usuario privilegiado por defecto</label>
