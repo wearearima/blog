@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Introducción a Contract Testing, estableciendo el contexto "
-date:   2020-07-15 8:00:00
+date:   2020-10-03 8:00:00
 author: jessica
 lang: es
 categories: testing, software quality, QA
