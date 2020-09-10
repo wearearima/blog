@@ -6,6 +6,23 @@
     <link>https://blog.arima.eu</link>
     
     <post>
+        <title>¿Deberías utilizar contenedores privilegiados?</title>
+        <summary>&lt;p&gt;Al trabajar con contenedores es importante tener siempre en cuenta la seguridad del contenedor, o más importante, de la máquina que lo ejecuta. Una mala decisión a la hora de desplegar un contenedor puede otorgarle acceso total sobre el &lt;em&gt;host&lt;/em&gt;, y esto puede tener consecuencias negativas si este contenedor tiene un propósito malicioso o si una persona no autorizada consigue acceso a él.&lt;/p&gt;
+</summary>
+        <pubDate>Thu, 10 Sep 2020 09:00:00 +0000</pubDate>
+        <link>https://blog.arima.eu/2020/09/10/deberias-utilizar-contenedores-privilegiados.html</link>
+        <guid isPermaLink="true">https://blog.arima.eu//2020/09/10/deberias-utilizar-contenedores-privilegiados.html</guid>
+        <headerImage>https://blog.arima.eu/assets/images/2020-09-10-deberias-utilizar-contenedores-privilegiados/lock.jpg</headerImage>
+        
+        
+        
+        
+        
+
+      <author>Urko Lekuona</author>
+    </post>
+    
+    <post>
         <title>Another way of doing tests: property-based testing</title>
         <summary>&lt;h2 id=&quot;what-is-property-based-testing&quot;&gt;What is property-based testing?&lt;/h2&gt;
 </summary>
@@ -30,23 +47,6 @@
         <link>https://blog.arima.eu/2020/07/01/parameterized-tests.html</link>
         <guid isPermaLink="true">https://blog.arima.eu//2020/07/01/parameterized-tests.html</guid>
         <headerImage>https://blog.arima.eu/assets/images/2020-06-30-parameterized-tests/header.jpg</headerImage>
-        
-        
-        
-        
-        
-
-      <author>Jessica Aguado</author>
-    </post>
-    
-    <post>
-        <title>Mutation testing systems, improving the quality of tests</title>
-        <summary>&lt;p&gt;Professionally I label myself as a developer, although I don’t like labels very much and I prefer to say that the reason for my work is: to create quality software. But what is &lt;strong&gt;quality software&lt;/strong&gt;? I like to define it as follows:&lt;/p&gt;
-</summary>
-        <pubDate>Mon, 25 May 2020 09:00:00 +0000</pubDate>
-        <link>https://blog.arima.eu/2020/05/25/mutation-testing.html</link>
-        <guid isPermaLink="true">https://blog.arima.eu//2020/05/25/mutation-testing.html</guid>
-        <headerImage>https://blog.arima.eu/assets/images/2020-05-12-mutation-testing/header.jpg</headerImage>
         
         
         

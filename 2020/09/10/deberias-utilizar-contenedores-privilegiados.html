@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="es" itemscope itemtype="http://schema.org/Blog">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>¿Deberías utilizar contenedores privilegiados?</title>
+  <meta name="description" content="Al trabajar con contenedores es importante tener siempre en cuenta la seguridad del contenedor, o más importante, de la máquina que lo ejecuta. Una mala deci...">
+  
+  <meta name="keywords" content="docker">
+  
+
+  <!-- Twitter cards -->
+  <meta name="twitter:site"    content="@wearearima">
+  <meta name="twitter:creator" content="@urko">
+  <meta name="twitter:title"   content="¿Deberías utilizar contenedores privilegiados?">
+
+  
+  <meta name="twitter:description" content="">
+  
+
+  
+  <meta name="twitter:card"  content="summary_large_image">
+  <meta name="twitter:image" content="https://blog.arima.eu/assets/images/2020-09-10-deberias-utilizar-contenedores-privilegiados/lock.jpg">
+  
+  <!-- end of Twitter cards -->
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="https://blog.arima.eu/2020/09/10/deberias-utilizar-contenedores-privilegiados.html">
+  <link rel="alternate" type="application/rss+xml" title="ARIMA" href="/feed.xml">
+
+  <!-- SEO Recipes (http://polyglot.untra.io/seo/) -->
+  <meta http-equiv="Content-Language" content="es">
+  <link rel="alternate"
+      hreflang="es"
+      href="https://blog.arima.eu/2020/09/10/deberias-utilizar-contenedores-privilegiados.html" />
+  
+  
+  <link rel="alternate"
+      hreflang="es"
+      href="https://blog.arima.eu/es/2020/09/10/deberias-utilizar-contenedores-privilegiados.html" />
+  
+  
+  <link rel="alternate"
+      hreflang="en"
+      href="https://blog.arima.eu/en/2020/09/10/deberias-utilizar-contenedores-privilegiados.html" />
+  
+
+  
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-120217722-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-120217722-1');
+</script>
+  
+</head>
+
+  <body>
+    <nav class="toolbar">
+    <div class="wrapper">    
+        <a href="/">
+            <div class="toolbar__logo">
+                <svg xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" version="1.1" width="100%" height="100%" viewBox="0 0 33 6">
+    <path id="path24" d="m30.346988508615652,-0.000015174522529526127 l-0.6439224998849951,0 l-2.7763635316117727,6.135695064030662 l0.7050150612484405,0 l2.3859233880279893,-5.335002838884215 l2.3660424189063254,5.335002838884215 l0.739668694925785,0 L30.346988508615652,-0.000015174522529526127 zm-8.274141805179609,3.3681675186951847 l-2.2194202716340565,-3.324608867598761 l-0.6962481061149294,0 l0,6.092136412934239 l0.6700853029999622,0 l0,-4.926062349034439 l2.2194202716340565,3.2553706313868567 l0.034929758248478535,0 l2.2192131782057056,-3.2639304930920168 l0,4.934622210739599 l0.6873430886958508,0 l0,-6.092136412934239 l-0.6961100438293623,0 l-2.2192131782057056,3.324608867598761 zm-9.143036799396208,-1.5057072863948877 c0,-1.0964906719739773 -0.8613705996531913,-1.8189015812038738 -2.201748299081466,-1.8189015812038738 l-2.619662837493104,0 l0,6.092136412934239 l0.6876192132669849,0 l0,-5.456842805897188 l1.8799251114245357,0 c0.9833486289517317,0 1.5576187057681203,0.4525681720889824 1.5576187057681203,1.2097017461390067 c0,0.7919252700129356 -0.7831583148794242,1.2620273523689407 -1.6968545207625496,1.2620273523689407 l0,0.6178287279128115 l1.7665759749739396,2.3672849794764295 l0.8442508762428699,0 l-1.8711581562910244,-2.4891249464894027 c0.9571858258367647,-0.17416557324290774 1.6534339319516944,-0.7659695603263191 1.6534339319516944,-1.7841098852409623 m2.7743616284710493,4.273234831730365 l0.6872050264102838,0 l0,-6.0920673817914555 l-0.6872050264102838,0 l0,6.0920673817914555 zM2.7761571742923965,-0.000015174522529526127 l-2.7761564381834223,6.135695064030662 l0.7048769989628736,0 l2.386061450313556,-5.335002838884215 l2.3658353254779745,5.335002838884215 l0.739668694925785,0 l-2.7761564381834223,-6.135695064030662 l-0.6441295933133457,0 z" stroke-width="0"/>
+</svg>
+
+            </div>
+        </a>
+        <!-- Language selector -->
+        <div class="language-selector">
+            
+              
+                <b class="selected">ES</b>
+              
+              
+                &nbsp;|&nbsp;
+              
+            
+              
+                <a class="unselected" href="/en/2020/09/10/deberias-utilizar-contenedores-privilegiados.html">EN</a>
+              
+              
+            
+         </div>
+    </div>
+</nav>
+<div id="publisher_id" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Arima 100% Software Design" />
+    <meta itemprop="url" content="https://arima.eu" />
+    <div itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+        <meta itemprop="url" content="https://arima.eu/img/logo.png" />
+    </div>
+</div>
+    <main aria-label="Content">        
+        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting" itemref="publisher_id">
+          <link itemprop="mainEntityOfPage" href="/2020/09/10/deberias-utilizar-contenedores-privilegiados.html" />
+
+          <header class="post-header">
+            <div class="post-img" itemprop="image" itemscope itemtype="http://schema.org/ImageObject" style="background-image: url('https://blog.arima.eu/assets/images/2020-09-10-deberias-utilizar-contenedores-privilegiados/lock.jpg');">
+              <meta itemprop="url" content="https://blog.arima.eu/assets/images/2020-09-10-deberias-utilizar-contenedores-privilegiados/lock.jpg" />
+            </div>
+            <div class="wrapper">
+              <div class="post-info__container">
+                <div class="post-info">
+                  <h1 class="post-title" itemprop="name headline">¿Deberías utilizar contenedores privilegiados?</h1>
+                    <div class="post-meta" itemscope itemtype="https://schema.org/Person" itemprop="author">
+                      
+                      <div class="author-photo">
+                        <img itemprop="image" src="/assets/images/authors/urko.png" alt="">
+                      </div>
+                      <div>
+                        <span class="post-author" itemprop="name">Urko Lekuona</span>
+                      </div>
+                      <div>
+                        <span class="post-date">10 Sep 2020</span>
+                      </div>
+                    </div>
+                    <meta  itemprop="datePublished dateModified" content="10 Sep 2020" />
+                </div>
+              </div>
+            </div>
+          </header>
+          <div class="wrapper">
+            <div class="post-content" itemprop="articleBody">
+              <p>Al trabajar con contenedores es importante tener siempre en cuenta la seguridad del contenedor, o más importante, de la máquina que lo ejecuta. Una mala decisión a la hora de desplegar un contenedor puede otorgarle acceso total sobre el <em>host</em>, y esto puede tener consecuencias negativas si este contenedor tiene un propósito malicioso o si una persona no autorizada consigue acceso a él.</p>
+
+<p>Al leer sobre buenas prácticas a seguir a la hora de lanzar contenedores, una de las recomendaciones más comunes es: “<em>No ejecutes el contenedor en modo privilegiado y dale únicamente las capacidades que necesite, a poder ser ninguna</em>”. Es una buena recomendación, pero surgen algunas preguntas:</p>
+<ul>
+  <li>¿Qué es el modo privilegiado?</li>
+  <li>¿Por qué se recomienda no utilizarlo y qué es posible hacer con un contenedor privilegiado?</li>
+  <li>¿Es necesario ser un usuario privilegiado (<em>root</em>) o cualquier usuario dentro de un contenedor privilegiado es peligroso?</li>
+  <li>¿Existe alguna manera de evitar que se lancen contenedores privilegiados?</li>
+</ul>
+
+<h2 id="qué-es-el-modo-privilegiado">¿Qué es el modo privilegiado?</h2>
+
+<p>Los contenedores se inician con una serie de capacidades de Linux por defecto. Además de las que vienen por defecto, hay muchas otras que se pueden añadir a nuestro contenedor con la opción <code class="highlighter-rouge">--cap-add=</code>. La lista completa de las capacidades y lo que hacen se puede ver en la <a href="https://docs.docker.com/engine/reference/run/#runtime-privilege-and-linux-capabilities" target="_blank">documentación oficial</a>. Al iniciar el contenedor en modo privilegiado, se le otorgan todas las capacidades, además de acceso a todos los dispositivos del <em>host</em> y se hacen ciertos cambios a AppArmor o SELinux, todo esto para darle al contenedor un acceso similar al que tienen el resto de procesos en el <em>host</em>.</p>
+
+<p align="center">
+    <img src="/assets/images/2020-09-10-deberias-utilizar-contenedores-privilegiados/no-devices.png" />
+</p>
+
+<p><label style="text-align: center; display: block;">Lista de dispositivos de un contenedor</label></p>
+
+<p align="center">
+    <img src="/assets/images/2020-09-10-deberias-utilizar-contenedores-privilegiados/devices.png" />
+</p>
+
+<p><label style="text-align: center; display: block;">Lista de dispositivos de un contenedor <strong>en modo privilegiado</strong></label></p>
+
+<h2 id="por-qué-se-recomienda-no-utilizarlo-y-qué-es-posible-hacer-con-un-contenedor-privilegiado">¿Por qué se recomienda no utilizarlo y qué es posible hacer con un contenedor privilegiado?</h2>
+
+<p>Por definición, un contenedor debe estar aislado del anfitrión donde se está ejecutando. Esto implica que debe tener un árbol de directorios diferente, usuarios y grupos propios, dispositivos propios…, hasta los recursos <em>hardware</em> de la máquina pueden ser diferentes. Todo esto para que un proceso ejecutándose en un contenedor no sepa que existe un anfitrión, y que ese contenedor y sus procesos no dependan del anfitrión.</p>
+
+<p>Al ejecutar un contenedor privilegiado, rompemos este aislamiento, ya que el contenedor consigue acceso a los recursos y dispositivos del anfitrión, y además tiene todos los permisos posibles para tratar con ellos. Esto permite, entre otras cosas, realizar acciones como:</p>
+<ul>
+  <li>Modificar el sistema de ficheros del anfitrión.</li>
+  <li>Control sobre los procesos del anfitrión.</li>
+  <li>Permisos para asignación de recursos del anfitrión.</li>
+</ul>
+
+<h2 id="es-necesario-ser-un-usuario-privilegiado-root-o-cualquier-usuario-dentro-de-un-contenedor-privilegiado-es-peligroso">¿Es necesario ser un usuario privilegiado (<em>root</em>) o cualquier usuario dentro de un contenedor privilegiado es peligroso?</h2>
+
+<p>En principio, todas las acciones que hemos listado requieren de privilegios de administrador dentro del contenedor para realizarse. Esto hace que, en teoría, un usuario no privilegiado dentro de un contenedor privilegiado no sea capaz de romper este aislamiento.</p>
+
+<p>Sin embargo, es común encontrarse imágenes (y crearlas) donde el usuario por defecto es un usuario con privilegios (normalmente <em>root</em>). Muchas veces esto es así por desconocimiento del creador de la imágen, porque el creador prefiere delegar la responsabilidad de modificar el usuario, o porque la imagen necesita ejecutar un proceso con un usuario privilegiado.</p>
+
+<p align="center">
+    <img src="/assets/images/2020-09-10-deberias-utilizar-contenedores-privilegiados/top5.png" height="420" />
+</p>
+
+<p><label style="text-align: center; display: block;">Las cinco imágenes más populares de Docker Hub tienen un usuario privilegiado por defecto</label></p>
+
+<p>Además, también se han encontrado vulnerabilidades (<a href="https://blog.dragonsector.pl/2019/02/cve-2019-5736-escape-from-docker-and.html" target="_blank">CVE-2019-5736 detectado en febrero de 2019</a>) donde un usuario sin privilegios es capaz de explotar las capacidades de un contenedor privilegiado y acceder al anfitrión. Aunque mucho menos común que el caso de los usuarios privilegiados, es un riesgo a tener en cuenta, porque si ha habido una, pueden detectarse más.</p>
+
+<h2 id="existe-alguna-manera-de-evitar-que-se-lancen-contenedores-privilegiados">¿Existe alguna manera de evitar que se lancen contenedores privilegiados?</h2>
+
+<p>Existen <em>plugin</em>s que se instalan en el Docker daemon que permiten extender las funcionalidades del proceso. Para este caso en concreto, nos interesan los <a href="https://docs.docker.com/engine/extend/plugins_authorization/" target="_blank"><em>plugin</em>s de autorización</a>. Como dicen en la documentación de Docker, la autorización por defecto de <code class="highlighter-rouge">dockerd</code> es “todo o nada”, es decir, o se tiene acceso al daemon y es posible hacer cualquier cosa, o no se tiene acceso a él.</p>
+
+<blockquote>
+  <p>Nota: Docker daemon o <code class="highlighter-rouge">dockerd</code> es un proceso que se ejecuta en el anfitrión y que se encarga de gestionar los contenedores del mismo.</p>
+</blockquote>
+
+<p>Con los <em>plugin</em>s de autorización tenemos la libertad de definir políticas que permiten regular el acceso de manera granular, dando permiso, por ejemplo, a un usuario en concreto a realizar ciertas acciones que otros no pueden. Y, ¿qué tiene esto que ver con los privilegios de un contenedor?</p>
+
+<p>Bien, cada <em>plugin</em> trabaja de una manera diferente, pero todos acaban haciendo lo mismo: interceptan la llamada a la API del daemon y comprueban si esa llamada tiene permiso de ser ejecutada o no, según las políticas que hayamos definido. Es decir, podremos <strong>permitir que solo se ejecuten las llamadas que NO intenten lanzar contenedores privilegiados</strong>.</p>
+
+<p>Para hacer una demostración hemos escogido el <em>plugin</em> <a href="https://github.com/open-policy-agent/opa-docker-authz" target="_blank">opa-docker-authz</a>, que permite de manera sencilla y muy visual definir esta regla en concreto.</p>
+
+<pre><code class="language-rego"> package docker.authz
+
+ default allow = false
+
+ allow {
+     not deny
+ }
+
+ deny {
+     privileged
+ }
+
+ privileged {
+     input.Body.HostConfig.Privileged == true
+ }
+</code></pre>
+
+<p>El documento <code class="highlighter-rouge">input</code> corresponde al cuerpo de la llamada hecha a la API de Docker. Es decir, si este cuerpo contiene un atributo llamado <code class="highlighter-rouge">Body.HostConfig.Privileged</code> con valor <code class="highlighter-rouge">true</code>, denegaremos la llamada. Esto es solo un ejemplo, se pueden crear políticas mucho más elaboradas para cada caso en concreto.</p>
+
+<p>Como hemos visto antes, el mayor riesgo de seguridad viene al permitir utilizar el modo privilegiado de los contenedores, por lo que con un <em>plugin</em> como este podríamos securizar nuestra instalación en gran medida.</p>
+
+<blockquote>
+  <p>Deberíamos añadir esto?: Instalar un <em>plugin</em> así en un Docker daemon en un cluster Kubernetes puede ser más complicado, por lo que podéis ver un ejemplo en este <a href="https://github.com/UrkoLekuona/unprivilegedDinD" target="_blank">repositorio</a>, donde creo dos imágenes, una con el daemon ya configurado y otra con un cliente (servidor jenkins con docker cli instalado) que utiliza el docker daemon.</p>
+</blockquote>
+
+<h2 id="conclusiones">Conclusiones</h2>
+
+<p><strong>Utilizar un usuario privilegiado o darle capacidades de Linux a un contenedor es siempre poco recomendable</strong>. Dicho esto, hay ocasiones en las que no queda alternativa. Hay que intentar otorgar el mínimo número de prioridades posibles a un contenedor, las suficientes para que cumpla su función y ninguna más.</p>
+
+<p>El modo privilegiado de un contenedor debería usarse lo menos posible, en entornos cerrados donde sabemos qué personas van a tener acceso a ese contenedor y confiamos en ellas. En caso de que haya riesgo de que un usuario en el que no confiemos acceda al contenedor, deberíamos descartar el modo privilegiado, para prevenir problemas. Si es necesario otorgar permisos a un usuario para crear contenedores, se recomienda securizar el <code class="highlighter-rouge">dockerd</code> del anfitrión con un plugin de autorización.</p>
+
+            </div>
+
+            
+          </div>
+        </article>
+      </div>
+    </main>
+
+    <footer>
+    <div class="wrapper">
+        <div class="footer__container">
+            <div class="footer__sello">
+                <img src="/assets/images/arima_sello_white.png" alt="" />
+            </div>
+            <div class="footer__content">
+                <div class="footer__data">
+                    <dl>
+                        <dt>web</dt>
+                        <dd><a itemprop="sameAs" href="https://www.arima.eu/es/">arima.eu</a></dd>
+                    </dl>
+                    <dl>
+                        <dt>social</dt>
+                        <dd>
+                            <a itemprop="sameAs" href="https://github.com/wearearima" class="social"><span class="icon-github"></span></a>
+                            <a itemprop="sameAs" href="https://twitter.com/wearearima" class="social"><span class="icon-twitter"></span></a>
+                            <a itemprop="sameAs" href="https://www.linkedin.com/company/arima-software-design/" class="social"><span class="icon-linkedin"></span></a>
+                            <a itemprop="sameAs" href="/feed.xml" class="social"><span class="icon-feed"></span></a>
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt>Privacidad</dt>
+                        <dd class="politica-cookies">
+                            <a href="/cookies.html">Política de cookies</a>
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+    <div class="cookies-message" id="cookies-message">
+    <h4>Este sitio web utiliza cookies</h4>
+    <p>Este sitio web utiliza cookies para mejorar la experiencia del usuario. Al utilizar nuestro sitio web, usted acepta todas las cookies de acuerdo con nuestra Política de cookies.</p>
+    <div class="buttons">
+        <a class="button" href="/cookies.html">Leer política de cookies</a>
+        <button class="button" id="accept-cookies">Aceptar</button>
+    </div>
+</div>
+<script>
+    (function() {
+        if(localStorage) {
+            var cookiesAccepted = localStorage.getItem("cookies-accepted");
+            if(cookiesAccepted) {
+                hideCookiesMessage();
+                
+            } else {
+                document.getElementById('accept-cookies').addEventListener("click", function() {
+                    hideCookiesMessage();
+                    localStorage.setItem("cookies-accepted", true);
+                })
+            }
+        }
+        function hideCookiesMessage() {
+            document.getElementById('cookies-message').style.display = "none";
+        }
+    })();
+</script>
+
+  </body>
+
+</html>
