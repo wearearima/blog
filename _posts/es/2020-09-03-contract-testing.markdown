@@ -1,12 +1,12 @@
 ---
 layout: post
 title:  "Introducción a Contract Testing, estableciendo el contexto "
-date:   2020-10-03 8:00:00
+date:   2020-09-03 8:00:00
 author: jessica
 lang: es
 categories: testing, software quality, QA
 tags: testing, calidad, software quality, QA, contract testing, consumer-driven contract, consumer driven contract
-header-image: 2020-07-15-contract-testing/header_recortado.png
+header-image: 2020-09-03-contract-testing/header_recortado.png
 ---
 
 El desarrollo de aplicaciones ha evolucionado, y por tanto han surgido nuevas necesidades a la hora de hacer testing y nuevas herramientas para hacerles frente ¡Vamos a verlo!
@@ -15,11 +15,11 @@ Hemos pasado de tener arquitecturas monolíticas a aplicaciones basadas en (micr
 
 Imaginemos una aplicación para la gestión de partes de horas, las tareas, los informes de partes de horas…. El esquema de dicha aplicación basada en servicios podría verse reflejado en el siguiente esquema.
 
-![Ejemplo del esquema para aplicaciones basadas en servicios](/assets/images/2020-07-15-contract-testing/01_schema_apps.jpg){: .center }
+![Ejemplo del esquema para aplicaciones basadas en servicios](/assets/images/2020-09-03-contract-testing/01_schema_apps.jpg){: .center }
 
 El ejemplo que se muestra en la imagen anterior, es bastante sencillo. Tendríamos 2 aplicaciones (una para la generación de informes y otra para la gestión de tareas y partes de horas) y ambas tendrían por un lado su implementación de aplicación web y su aplicación móvil. Los 4 servicios consumirían un servicio transversal encargado de la gestión en bruto de tareas y worklogs. Podríamos tener ejemplos más complejos, donde un servicio consumiese otro que a su vez fuese consumido por un tercero, etc.  Pero para poder entender mejor el concepto, en lugar de añadir complejidad, vamos a simplificar aún más la foto haciendo zoom sobre la imagen anterior. 
 
-![Zoom de una parte del esquema](/assets/images/2020-07-15-contract-testing/02_schema_app_simplificado.jpg){: .center }
+![Zoom de una parte del esquema](/assets/images/2020-09-03-contract-testing/02_schema_app_simplificado.jpg){: .center }
 
 Como se muestra en la imagen, hemos reducido el ejemplo a una aplicación web que se encarga de hacer informes sobre los partes de horas y que accede a un API REST para obtener información. Vamos a establecer la terminología que utilizaremos de aquí en adelante:
 - **CONSUMER**: Nos referiremos así a la aplicación web o lo que es lo mismo, el servicio en su papel de consumir otro servicio
