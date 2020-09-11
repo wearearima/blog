@@ -214,10 +214,6 @@
 
 <p>Como hemos visto antes, el mayor riesgo de seguridad viene al permitir utilizar el modo privilegiado de los contenedores, por lo que con un <em>plugin</em> como este podríamos securizar nuestra instalación en gran medida.</p>
 
-<blockquote>
-  <p>Deberíamos añadir esto?: Instalar un <em>plugin</em> así en un Docker daemon en un cluster Kubernetes puede ser más complicado, por lo que podéis ver un ejemplo en este <a href="https://github.com/UrkoLekuona/unprivilegedDinD" target="_blank">repositorio</a>, donde creo dos imágenes, una con el daemon ya configurado y otra con un cliente (servidor jenkins con docker cli instalado) que utiliza el docker daemon.</p>
-</blockquote>
-
 <h2 id="conclusiones">Conclusiones</h2>
 
 <p><strong>Utilizar un usuario privilegiado o darle capacidades de Linux a un contenedor es siempre poco recomendable</strong>. Dicho esto, hay ocasiones en las que no queda alternativa. Hay que intentar otorgar el mínimo número de prioridades posibles a un contenedor, las suficientes para que cumpla su función y ninguna más.</p>
