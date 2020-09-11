@@ -88,9 +88,7 @@ Para hacer una demostración hemos escogido el *plugin* [opa-docker-authz](https
 
 El documento `input` corresponde al cuerpo de la llamada hecha a la API de Docker. Es decir, si este cuerpo contiene un atributo llamado `Body.HostConfig.Privileged` con valor `true`, denegaremos la llamada. Esto es solo un ejemplo, se pueden crear políticas mucho más elaboradas para cada caso en concreto.
 
-Como hemos visto antes, el mayor riesgo de seguridad viene al permitir utilizar el modo privilegiado de los contenedores, por lo que con un *plugin* como este podríamos securizar nuestra instalación en gran medida. 
-
-> Deberíamos añadir esto?: Instalar un *plugin* así en un Docker daemon en un cluster Kubernetes puede ser más complicado, por lo que podéis ver un ejemplo en este [repositorio](https://github.com/UrkoLekuona/unprivilegedDinD){:target="_blank"}, donde creo dos imágenes, una con el daemon ya configurado y otra con un cliente (servidor jenkins con docker cli instalado) que utiliza el docker daemon.
+Como hemos visto antes, el mayor riesgo de seguridad viene al permitir utilizar el modo privilegiado de los contenedores, por lo que con un *plugin* como este podríamos securizar nuestra instalación en gran medida.
 
 ## Conclusiones
 
