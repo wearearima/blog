@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="es" itemscope itemtype="http://schema.org/Blog">
+<html lang="en" itemscope itemtype="http://schema.org/Blog">
 
   <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>¿Deberías utilizar contenedores privilegiados?</title>
-  <meta name="description" content="Al trabajar con contenedores es importante tener siempre en cuenta la seguridad del contenedor, o más importante, de la máquina que lo ejecuta. Una mala deci...">
+  <title>Should you use privileged containers?</title>
+  <meta name="description" content="When working with containers it is important to always keep in mind the security of the container, or more importantly, of the machine that runs it. A bad de...">
   
   <meta name="keywords" content="docker">
   
@@ -15,7 +15,7 @@
   <!-- Twitter cards -->
   <meta name="twitter:site"    content="@wearearima">
   <meta name="twitter:creator" content="@urko">
-  <meta name="twitter:title"   content="¿Deberías utilizar contenedores privilegiados?">
+  <meta name="twitter:title"   content="Should you use privileged containers?">
 
   
   <meta name="twitter:description" content="">
@@ -108,7 +108,7 @@
             <div class="wrapper">
               <div class="post-info__container">
                 <div class="post-info">
-                  <h1 class="post-title" itemprop="name headline">¿Deberías utilizar contenedores privilegiados?</h1>
+                  <h1 class="post-title" itemprop="name headline">Should you use privileged containers?</h1>
                     <div class="post-meta" itemscope itemtype="https://schema.org/Person" itemprop="author">
                       
                       <div class="author-photo">
@@ -128,70 +128,68 @@
           </header>
           <div class="wrapper">
             <div class="post-content" itemprop="articleBody">
-              <p>Al trabajar con contenedores es importante tener siempre en cuenta la seguridad del contenedor, o más importante, de la máquina que lo ejecuta. Una mala decisión a la hora de desplegar un contenedor puede otorgarle acceso total sobre el <em>host</em>, y esto puede tener consecuencias negativas si este contenedor tiene un propósito malicioso o si una persona no autorizada consigue acceso a él.</p>
+              <p>When working with containers it is important to always keep in mind the security of the container, or more importantly, of the machine that runs it. A bad decision to deploy a container can grant you full access to the host, and this can have negative consequences if this container has a malicious purpose or if an unauthorized person gains access to it.</p>
 
-<p>Al leer sobre buenas prácticas a seguir a la hora de lanzar contenedores, una de las recomendaciones más comunes es: “<em>No ejecutes el contenedor en modo privilegiado y dale únicamente las capacidades que necesite, a poder ser ninguna</em>”. Es una buena recomendación, pero surgen algunas preguntas:</p>
+<p>When reading about good practices to follow when running containers, one of the most common recommendations is: “<em>Do not run the container in privileged mode and give it only the capabilities it needs, if possible none</em>”. It is a good recommendation, but some questions arise:</p>
 <ul>
-  <li>¿Qué es el modo privilegiado?</li>
-  <li>¿Por qué se recomienda no utilizarlo y qué es posible hacer con un contenedor privilegiado?</li>
-  <li>¿Es necesario ser un usuario privilegiado (<em>root</em>) o cualquier usuario dentro de un contenedor privilegiado es peligroso?</li>
-  <li>¿Existe alguna manera de evitar que se lancen contenedores privilegiados?</li>
+  <li>What is privileged mode?</li>
+  <li>Why is it not recommended to use it and what is it possible to do with a privileged container?</li>
+  <li>Is it necessary to be a privileged user (<em>root</em>) or is any user inside a privileged container dangerous?</li>
+  <li>Is there a way to prevent privileged containers from running?</li>
 </ul>
 
-<h2 id="qué-es-el-modo-privilegiado">¿Qué es el modo privilegiado?</h2>
+<h2 id="what-is-privileged-mode">What is privileged mode?</h2>
 
-<p>Los contenedores se inician con una serie de capacidades de Linux por defecto. Además de las que vienen por defecto, hay muchas otras que se pueden añadir a nuestro contenedor con la opción <code class="highlighter-rouge">--cap-add=</code>. La lista completa de las capacidades y lo que hacen se puede ver en la <a href="https://docs.docker.com/engine/reference/run/#runtime-privilege-and-linux-capabilities" target="_blank">documentación oficial</a>. Al iniciar el contenedor en modo privilegiado, se le otorgan todas las capacidades, además de acceso a todos los dispositivos del <em>host</em> y se hacen ciertos cambios a AppArmor o SELinux, todo esto para darle al contenedor un acceso similar al que tienen el resto de procesos en el <em>host</em>.</p>
-
+<p>Containers start with a number of Linux capabilities by default. In addition to the ones that come by default, there are many others that can be added to our container with the <code class="highlighter-rouge">--cap-add =</code> option. The full list of capabilities and what they do can be seen in the <a href="https://docs.docker.com/engine/reference/run/#runtime-privilege-and-linux-capabilities" target="_blank">official documentation</a>. By starting the container in privileged mode, it is granted all capabilities, as well as access to all devices on the host and certain changes are made to AppArmor or SELinux in order to give the container similar access to those the other processes on the host have.</p>
 <p align="center">
     <img src="/assets/images/2020-09-10-deberias-utilizar-contenedores-privilegiados/no-devices.png" />
 </p>
 
-<p><label style="text-align: center; display: block;">Lista de dispositivos de un contenedor</label></p>
+<p><label style="text-align: center; display: block;">List of devices in a container</label></p>
 
 <p align="center">
     <img src="/assets/images/2020-09-10-deberias-utilizar-contenedores-privilegiados/devices.png" />
 </p>
 
-<p><label style="text-align: center; display: block;">Lista de dispositivos de un contenedor <strong>en modo privilegiado</strong></label></p>
+<p><label style="text-align: center; display: block;">List of devices in a container <strong>in privileged mode</strong></label></p>
 
-<h2 id="por-qué-se-recomienda-no-utilizarlo-y-qué-es-posible-hacer-con-un-contenedor-privilegiado">¿Por qué se recomienda no utilizarlo y qué es posible hacer con un contenedor privilegiado?</h2>
+<h2 id="why-is-it-not-recommended-to-use-it-and-what-is-it-possible-to-do-with-a-privileged-container">Why is it not recommended to use it and what is it possible to do with a privileged container?</h2>
 
-<p>Por definición, un contenedor debe estar aislado del anfitrión donde se está ejecutando. Esto implica que debe tener un árbol de directorios diferente, usuarios y grupos propios, dispositivos propios…, hasta los recursos <em>hardware</em> de la máquina pueden ser diferentes. Todo esto para que un proceso ejecutándose en un contenedor no sepa que existe un anfitrión, y que ese contenedor y sus procesos no dependan del anfitrión.</p>
+<p>By definition, a container must be isolated from the host where it is running. This implies that it must have a different directory tree, its own users and groups, its own devices … even the hardware resources of the machine may be different. This is so that a process running in a container does not know that a host exists, and that the container and its processes do not depend on the host.</p>
 
-<p>Al ejecutar un contenedor privilegiado, rompemos este aislamiento, ya que el contenedor consigue acceso a los recursos y dispositivos del anfitrión, y además tiene todos los permisos posibles para tratar con ellos. Esto permite, entre otras cosas, realizar acciones como:</p>
+<p>By running a privileged container, we break this isolation, since the container gains access to the host’s resources and devices, and also has all possible permissions to use them. Among other things, this allows it to perform actions such as:</p>
 <ul>
-  <li>Modificar el sistema de ficheros del anfitrión.</li>
-  <li>Control sobre los procesos del anfitrión.</li>
-  <li>Permisos para asignación de recursos del anfitrión.</li>
+  <li>Modifying the host’s filesystem.</li>
+  <li>Controlling host processes.</li>
+  <li>Granting permissions for host resource allocation.</li>
 </ul>
 
-<h2 id="es-necesario-ser-un-usuario-privilegiado-root-o-cualquier-usuario-dentro-de-un-contenedor-privilegiado-es-peligroso">¿Es necesario ser un usuario privilegiado (<em>root</em>) o cualquier usuario dentro de un contenedor privilegiado es peligroso?</h2>
+<h2 id="is-it-necessary-to-be-a-privileged-user-root-or-is-any-user-inside-a-privileged-container-dangerous">Is it necessary to be a privileged user (<em>root</em>) or is any user inside a privileged container dangerous?</h2>
 
-<p>En principio, todas las acciones que hemos listado requieren de privilegios de administrador dentro del contenedor para realizarse. Esto hace que, en teoría, un usuario no privilegiado dentro de un contenedor privilegiado no sea capaz de romper este aislamiento.</p>
+<p>In principle, all the actions that we have listed require administrator privileges within the container for them to be carried out. This means that, in theory, a non-privileged user inside a privileged container is not able to break this isolation.</p>
 
-<p>Sin embargo, es común encontrarse imágenes (y crearlas) donde el usuario por defecto es un usuario con privilegios (normalmente <em>root</em>). Muchas veces esto es así por desconocimiento del creador de la imágen, porque el creador prefiere delegar la responsabilidad de modificar el usuario, o porque la imagen necesita ejecutar un proceso con un usuario privilegiado.</p>
-
+<p>However, it is common to find images (and build them) where the default user is a privileged user (usually <em>root</em>). This is often the case due to the image creator’s ignorance, because the creator prefers to delegate the responsibility of modifying the user, or because the image needs to execute a process with a privileged user.</p>
 <p align="center">
     <img src="/assets/images/2020-09-10-deberias-utilizar-contenedores-privilegiados/top5.png" height="420" />
 </p>
 
-<p><label style="text-align: center; display: block;">Las cinco imágenes más populares de Docker Hub tienen un usuario privilegiado por defecto</label></p>
+<p><label style="text-align: center; display: block;">The five most popular images in Docker Hub have a privileged user by default</label></p>
 
-<p>Además, también se han encontrado vulnerabilidades (<a href="https://blog.dragonsector.pl/2019/02/cve-2019-5736-escape-from-docker-and.html" target="_blank">CVE-2019-5736 detectado en febrero de 2019</a>) donde un usuario sin privilegios es capaz de explotar las capacidades de un contenedor privilegiado y acceder al anfitrión. Aunque mucho menos común que el caso de los usuarios privilegiados, es un riesgo a tener en cuenta, porque si ha habido una, pueden detectarse más.</p>
+<p>Additionally, vulnerabilities have also been found (<a href="https://blog.dragonsector.pl/2019/02/cve-2019-5736-escape-from-docker-and.html" target="_blank">CVE-2019-5736 detected in February 2019</a>) where an unprivileged user is able to exploit the capabilities of a privileged container and access the host. Although much less common than the case of privileged users, it is a risk to bear in mind, because if there has been one, then more could be detected.</p>
 
-<h2 id="existe-alguna-manera-de-evitar-que-se-lancen-contenedores-privilegiados">¿Existe alguna manera de evitar que se lancen contenedores privilegiados?</h2>
+<h2 id="is-there-a-way-to-prevent-privileged-containers-from-running">Is there a way to prevent privileged containers from running?</h2>
 
-<p>Existen <em>plugin</em>s que se instalan en el Docker daemon que permiten extender las funcionalidades del proceso. Para este caso en concreto, nos interesan los <a href="https://docs.docker.com/engine/extend/plugins_authorization/" target="_blank"><em>plugin</em>s de autorización</a>. Como dicen en la documentación de Docker, la autorización por defecto de <code class="highlighter-rouge">dockerd</code> es “todo o nada”, es decir, o se tiene acceso al daemon y es posible hacer cualquier cosa, o no se tiene acceso a él.</p>
+<p>There are <em>plugins</em> installed in the Docker daemon that allow functionalities to be extended. For this specific case, we are interested in the <a href="https://docs.docker.com/engine/extend/plugins_authorization/" target="_blank"><em>authorization plugin</em>s</a>. As they say in the Docker documentation, the default authorization of <code class="highlighter-rouge">dockerd</code> is “all or nothing”, in other words, either you have access to the daemon and you can do anything, or you don’t have access to it at all.</p>
 
 <blockquote>
-  <p>Nota: Docker daemon o <code class="highlighter-rouge">dockerd</code> es un proceso que se ejecuta en el anfitrión y que se encarga de gestionar los contenedores del mismo.</p>
+  <p>Note: Docker daemon or <code class="highlighter-rouge">dockerd</code> is a process that runs on the host and is in charge of managing its containers.</p>
 </blockquote>
 
-<p>Con los <em>plugin</em>s de autorización tenemos la libertad de definir políticas que permiten regular el acceso de manera granular, dando permiso, por ejemplo, a un usuario en concreto a realizar ciertas acciones que otros no pueden. Y, ¿qué tiene esto que ver con los privilegios de un contenedor?</p>
+<p>With authorization <em>plugin</em>s we have the freedom to define policies that allow us to regulate access in a granular way, giving permission, for example, to a specific user to perform certain actions that others cannot. And what does this have to do with the privileges of a container?</p>
 
-<p>Bien, cada <em>plugin</em> trabaja de una manera diferente, pero todos acaban haciendo lo mismo: interceptan la llamada a la API del daemon y comprueban si esa llamada tiene permiso de ser ejecutada o no, según las políticas que hayamos definido. Es decir, podremos <strong>permitir que solo se ejecuten las llamadas que NO intenten lanzar contenedores privilegiados</strong>.</p>
+<p>Well, each <em>plugin</em> works in a different way, but they all end up doing the same thing: they intercept the daemon’s API call and check if that call is allowed or not, depending on the policies we have defined. That means <strong>only calls that DO NOT attempt to run privileged containers will be executed</strong>.</p>
 
-<p>Para hacer una demostración hemos escogido el <em>plugin</em> <a href="https://github.com/open-policy-agent/opa-docker-authz" target="_blank">opa-docker-authz</a>, que permite de manera sencilla y muy visual definir esta regla en concreto.</p>
+<p>To demonstrate, we have chosen the <em>plugin</em> <a href="https://github.com/open-policy-agent/opa-docker-authz" target="_blank">opa-docker-authz</a>, which in a simple and very visual way, lets us define this specific rule.</p>
 
 <pre><code class="language-rego"> package docker.authz
 
@@ -210,15 +208,15 @@
  }
 </code></pre>
 
-<p>El documento <code class="highlighter-rouge">input</code> corresponde al cuerpo de la llamada hecha a la API de Docker. Es decir, si este cuerpo contiene un atributo llamado <code class="highlighter-rouge">Body.HostConfig.Privileged</code> con valor <code class="highlighter-rouge">true</code>, denegaremos la llamada. Esto es solo un ejemplo, se pueden crear políticas mucho más elaboradas para cada caso en concreto.</p>
+<p>The <code class="highlighter-rouge">input</code> document corresponds to the body of the call made to the Docker API. So, if this body contains an attribute called <code class="highlighter-rouge">Body.HostConfig.Privileged</code> with value <code class="highlighter-rouge">true</code>, we will deny the call. This is just an example, but much more elaborate policies can be created for each specific case.</p>
 
-<p>Como hemos visto antes, el mayor riesgo de seguridad viene al permitir utilizar el modo privilegiado de los contenedores, por lo que con un <em>plugin</em> como este podríamos securizar nuestra instalación en gran medida.</p>
+<p>As we have seen before, the greatest security risk comes from allowing the use of privileged mode for containers, so with a <em>plugin</em> like this, we could secure our installation to a great extent.</p>
 
-<h2 id="conclusiones">Conclusiones</h2>
+<h2 id="conclusions">Conclusions</h2>
 
-<p><strong>Utilizar un usuario privilegiado o darle capacidades de Linux a un contenedor es siempre poco recomendable</strong>. Dicho esto, hay ocasiones en las que no queda alternativa. Hay que intentar otorgar el mínimo número de prioridades posibles a un contenedor, las suficientes para que cumpla su función y ninguna más.</p>
+<p><strong>Using a privileged user or giving a container Linux capabilities is never to be recommended</strong>. That said, there are times when there is no alternative, but we should try to grant the minimum number of possible priorities to a container, enough for it to fulfill its function and no more.</p>
 
-<p>El modo privilegiado de un contenedor debería usarse lo menos posible, en entornos cerrados donde sabemos qué personas van a tener acceso a ese contenedor y confiamos en ellas. En caso de que haya riesgo de que un usuario en el que no confiemos acceda al contenedor, deberíamos descartar el modo privilegiado, para prevenir problemas. Si es necesario otorgar permisos a un usuario para crear contenedores, se recomienda securizar el <code class="highlighter-rouge">dockerd</code> del anfitrión con un plugin de autorización.</p>
+<p>Privileged mode should be used for containers as little as possible, in closed environments where we know the people who are going to have access to that container and can trust them. Where there is a risk that a user we do not trust could access the container, we should discard privileged mode to prevent problems. If it is necessary to grant a user permissions to create containers, it is recommended to secure the host’s dockerd with an authorization plugin.</p>
 
             </div>
 

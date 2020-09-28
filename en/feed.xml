@@ -6,8 +6,8 @@
     <link>https://blog.arima.eu</link>
     
     <post>
-        <title>¿Deberías utilizar contenedores privilegiados?</title>
-        <summary>&lt;p&gt;Al trabajar con contenedores es importante tener siempre en cuenta la seguridad del contenedor, o más importante, de la máquina que lo ejecuta. Una mala decisión a la hora de desplegar un contenedor puede otorgarle acceso total sobre el &lt;em&gt;host&lt;/em&gt;, y esto puede tener consecuencias negativas si este contenedor tiene un propósito malicioso o si una persona no autorizada consigue acceso a él.&lt;/p&gt;
+        <title>Should you use privileged containers?</title>
+        <summary>&lt;p&gt;When working with containers it is important to always keep in mind the security of the container, or more importantly, of the machine that runs it. A bad decision to deploy a container can grant you full access to the host, and this can have negative consequences if this container has a malicious purpose or if an unauthorized person gains access to it.&lt;/p&gt;
 </summary>
         <pubDate>Thu, 10 Sep 2020 09:00:00 +0000</pubDate>
         <link>https://blog.arima.eu/2020/09/10/deberias-utilizar-contenedores-privilegiados.html</link>
