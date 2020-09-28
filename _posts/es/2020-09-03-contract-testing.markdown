@@ -6,7 +6,7 @@ author: jessica
 lang: es
 categories: testing, software quality, QA
 tags: testing, calidad, software quality, QA, contract testing, consumer-driven contract, consumer driven contract
-header-image: 2020-09-03-contract-testing/header_recortado.png
+header-image: 2020-09-03-contract-testing/header_recortado.jpg
 ---
 
 El desarrollo de aplicaciones ha evolucionado, y por tanto han surgido nuevas necesidades a la hora de hacer testing y nuevas herramientas para hacerles frente ¡Vamos a verlo!
