@@ -85,7 +85,7 @@ This complete code, as well as the rest that we use in the different examples, i
 
 So far then, a little introduction or snapshot of the evolution of application architecture and a context to define some concepts that we will use throughout the article. Now let's go back to what interests us: quality and testing. How would we test our application? What testing “tools” do we have at our disposal to test an application of this type?
 
-As we have said, the _consumer_ remains a web application that accesses another application, which offers us its services through a REST API, the _producer_. We have a backpack full of tools and resources that can help us to test each of these two components in a watertight way: unit tests, integration tests, [parameterized tests](https://blog.arima.eu/2020/07/01/parameterized-tests.html){:target="_blank"}, JUnit 5, TestContainers, Mockito, [Pitest](https://blog.arima.eu/2020/05/25/mutation-testing.html){:target="_blank"}...
+As we have said, the _consumer_ remains a web application that accesses another application, which offers us its services through a REST API, the _producer_. We have a backpack full of tools and resources that can help us to test each of these two components in a watertight way: unit tests, integration tests, parameterized tests, JUnit 5, TestContainers, Mockito, [Pitest](https://blog.arima.eu/en/2020/05/25/mutation-testing.html){:target="_blank"}...
 
 For example, in the _consumer_ we could test the services that include the calls to the REST API by mocking/stubbing the responses from the server. Let's see what some of those tests might look like.
 
@@ -137,7 +137,7 @@ public class ReportsServiceWithMockWebServerTest {
 }
 ```
 
-This is just an example of a test that we could do. We have used the example to test [MockWebServer](https://github.com/square/okhttp/tree/master/mockwebserver){:target="_blank"}, but we could have directly mocked Webclient or used one of the other alternatives which exist such as [Wiremock](http://wiremock.org/){:target="_blank"}, [TestContainers](https://www.testcontainers.org/modules/mockserver/){:target="_blank"}....(in the not too distant future we’ll meet them again for sure;)).
+This is just an example of a test that we could do. We have used the example to test [MockWebServer](https://github.com/square/okhttp/tree/master/mockwebserver){:target="_blank"}, but we could have directly mocked Webclient or used one of the other alternatives which exist such as [Wiremock](http://wiremock.org/){:target="_blank"}, [TestContainers](https://www.testcontainers.org/modules/mockserver/){:target="_blank"}....(in the not too distant future we’ll meet them again for sure ;)).
 
 In the _producer_ we could also test the REST API using the tools offered by SpringBoot. Let's look at it too through an example.
 
