@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="es" itemscope itemtype="http://schema.org/Blog">
+<html lang="en" itemscope itemtype="http://schema.org/Blog">
 
   <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Introducción a Contract Testing, estableciendo el contexto </title>
-  <meta name="description" content="El desarrollo de aplicaciones ha evolucionado, y por tanto han surgido nuevas necesidades a la hora de hacer testing y nuevas herramientas para hacerles fren...">
+  <title>Introduction to Contract Testing, setting the context </title>
+  <meta name="description" content="Application development has evolved, and therefore new needs have arisen when it comes to testing and new tools to deal with them. Let’s take a look!">
   
   <meta name="keywords" content="testing,calidad,softwarequality,QA,contracttesting,consumer-drivencontract,consumerdrivencontract">
   
@@ -15,7 +15,7 @@
   <!-- Twitter cards -->
   <meta name="twitter:site"    content="@wearearima">
   <meta name="twitter:creator" content="@jessica">
-  <meta name="twitter:title"   content="Introducción a Contract Testing, estableciendo el contexto ">
+  <meta name="twitter:title"   content="Introduction to Contract Testing, setting the context ">
 
   
   <meta name="twitter:description" content="">
@@ -23,7 +23,7 @@
 
   
   <meta name="twitter:card"  content="summary_large_image">
-  <meta name="twitter:image" content="https://blog.arima.eu/assets/images/2020-09-03-contract-testing/header_recortado.jpg">
+  <meta name="twitter:image" content="https://blog.arima.eu/assets/images/2020-09-03-contract-testing/header_recortado.png">
   
   <!-- end of Twitter cards -->
 
@@ -102,13 +102,13 @@
           <link itemprop="mainEntityOfPage" href="/en/2020/09/03/contract-testing.html" />
 
           <header class="post-header">
-            <div class="post-img" itemprop="image" itemscope itemtype="http://schema.org/ImageObject" style="background-image: url('https://blog.arima.eu/assets/images/2020-09-03-contract-testing/header_recortado.jpg');">
-              <meta itemprop="url" content="https://blog.arima.eu/assets/images/2020-09-03-contract-testing/header_recortado.jpg" />
+            <div class="post-img" itemprop="image" itemscope itemtype="http://schema.org/ImageObject" style="background-image: url('https://blog.arima.eu/assets/images/2020-09-03-contract-testing/header_recortado.png');">
+              <meta itemprop="url" content="https://blog.arima.eu/assets/images/2020-09-03-contract-testing/header_recortado.png" />
             </div>
             <div class="wrapper">
               <div class="post-info__container">
                 <div class="post-info">
-                  <h1 class="post-title" itemprop="name headline">Introducción a Contract Testing, estableciendo el contexto </h1>
+                  <h1 class="post-title" itemprop="name headline">Introduction to Contract Testing, setting the context </h1>
                     <div class="post-meta" itemscope itemtype="https://schema.org/Person" itemprop="author">
                       
                       <div class="author-photo">
@@ -128,29 +128,27 @@
           </header>
           <div class="wrapper">
             <div class="post-content" itemprop="articleBody">
-              <p>El desarrollo de aplicaciones ha evolucionado, y por tanto han surgido nuevas necesidades a la hora de hacer testing y nuevas herramientas para hacerles frente ¡Vamos a verlo!</p>
+              <p>Application development has evolved, and therefore new needs have arisen when it comes to testing and new tools to deal with them. Let’s take a look!</p>
 
-<p>Hemos pasado de tener arquitecturas monolíticas a aplicaciones basadas en (micro)servicios. ¿Por qué digo (micro)servicios en lugar de microservicios? Porque aunque la literatura habla de la evolución del desarrollo desde aplicaciones monolíticas a aplicaciones basadas en microservicios, en la realidad nos encontramos muchas veces con la integración de servicios (tal cual, sin necesidad de que sean micro). El concepto que nos ocupa aplica igual de bien al concepto de microservicios que al de servicios, así que de aquí en adelante simplificaremos utilizando el término servicios.</p>
+<p>We have gone from having monolithic architectures to applications based on (micro) services. Why do I say (micro) services instead of microservices? Because although the literature talks about the evolution of development from monolithic applications to applications based on microservices, in reality we often find ourselves with the integration of services (as is, without the need for them to be micro). The concept at hand applies equally well to the concept of microservices as it does to services, so from here on we will simplify using the term services.</p>
 
-<p>Imaginemos una aplicación para la gestión de partes de horas, las tareas, los informes de partes de horas…. El esquema de dicha aplicación basada en servicios podría verse reflejado en el siguiente esquema.</p>
+<p>Let’s imagine an application for managing worklogs, tasks, worklog reports…. The scheme of this said service-based application could be reflected in the following scheme.</p>
 
-<p><img src="/assets/images/2020-09-03-contract-testing/01_schema_apps.jpg" alt="Ejemplo del esquema para aplicaciones basadas en servicios" class="center" /></p>
+<p><img src="/assets/images/2020-09-03-contract-testing/01_schema_apps.jpg" alt="Example for service based applicactions scheme" class="center" /></p>
 
-<p>El ejemplo que se muestra en la imagen anterior, es bastante sencillo. Tendríamos 2 aplicaciones (una para la generación de informes y otra para la gestión de tareas y partes de horas) y ambas tendrían por un lado su implementación de aplicación web y su aplicación móvil. Los 4 servicios consumirían un servicio transversal encargado de la gestión en bruto de tareas y worklogs. Podríamos tener ejemplos más complejos, donde un servicio consumiese otro que a su vez fuese consumido por un tercero, etc.  Pero para poder entender mejor el concepto, en lugar de añadir complejidad, vamos a simplificar aún más la foto haciendo zoom sobre la imagen anterior.</p>
+<p>The example shown in the previous image is quite simple. We would have two applications (one for the generation of reports and another for managing tasks and worklogs) and both would have on one side their implementation of a web application and their mobile application. The 4 services would consume a common service in charge of the overall management of tasks and worklogs. We could have more complex examples, where a service consumes another that in turn is consumed by a third party, etc. but in order to better understand the concept, instead of adding complexity, we are going to simplify it even more by zooming in on the previous image.</p>
 
-<p><img src="/assets/images/2020-09-03-contract-testing/02_schema_app_simplificado.jpg" alt="Zoom de una parte del esquema" class="center" /></p>
+<p><img src="/assets/images/2020-09-03-contract-testing/02_schema_app_simplificado.jpg" alt="Zoom of a portion of the scheme" class="center" /></p>
 
-<p>Como se muestra en la imagen, hemos reducido el ejemplo a una aplicación web que se encarga de hacer informes sobre los partes de horas y que accede a un API REST para obtener información. Vamos a establecer la terminología que utilizaremos de aquí en adelante:</p>
+<p>As shown in the image, we have reduced the example to a web application that is responsible for making work log reports and that accesses a REST API to obtain information. We are going to establish the terminology that we will use from here on:</p>
 <ul>
-  <li><strong>CONSUMER</strong>: Nos referiremos así a la aplicación web o lo que es lo mismo, el servicio en su papel de consumir otro servicio</li>
-  <li><strong>PRODUCER</strong>: Con este término haremos referencia al API REST o lo que es lo mismo, el servicio en su papel de ofrecer su funcionalidad.</li>
+  <li><strong>CONSUMER</strong>: We will refer to the web application or equivalent service in its role of consuming another service</li>
+  <li><strong>PRODUCER</strong>: With this term we will refer to the REST API or equivalent service in its role of offering its functionality.</li>
 </ul>
 
-<p>Utilizaremos los nombres en inglés ya que su traducción al castellano (consumidor y productor o proveedor) no me termina de convencer.</p>
+<p>Having clarified these two concepts, we’ll make the most of using <strong>SERVICE</strong> to refer to each one of the functionalities offered by the <em>producer</em>.</p>
 
-<p>Teniendo claros estos dos conceptos, aprovecharemos para denominar <strong>SERVICIO</strong> a cada una de las funcionalidades ofertadas por el <em>producer</em>.</p>
-
-<p>Vamos a ver unos fragmentos de código de cómo podrían ser ambos:</p>
+<p>Let’s see some possible code snippets of each:</p>
 
 <h5 id="consumer--reportsservicejava">Consumer | ReportsService.java</h5>
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Service</span>
@@ -181,7 +179,7 @@
 
 <span class="o">}</span>
 </code></pre></div></div>
-<p>El <em>consumer</em> hace una petición a <code class="highlighter-rouge">/worklogs/worker/username?day=fecha</code> con un nombre de usuario y una fecha concretos y en base a los worklogs recibidos calcula el estado.</p>
+<p>The <em>consumer</em> makes a request to <code class="highlighter-rouge">/worklogs/worker/username?day=date</code> with a specific username and date and calculates the status based on the worklogs received.</p>
 
 <h5 id="producer--worklogcontrollerjava">Producer | WorklogController.java</h5>
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@RestController</span>
@@ -198,17 +196,17 @@
 
 <span class="o">}</span>
 </code></pre></div></div>
-<p>El <em>producer</em> tiene un entry point para la url <code class="highlighter-rouge">/worklogs/worker/username?day=fecha</code> y hace una consulta a base de datos para recuperar los partes de horas del usuario en una fecha fecha y los devuelve.</p>
+<p>The <em>producer</em> has an entry point for the url <code class="highlighter-rouge">/worklogs/worker/username?day=date</code> and makes a database query to retrieve the user’s worklogs on a specific date and returns them.</p>
 
-<p>Este código al completo, así como el resto que utilicemos en los diferentes ejemplos está disponible en <a href="https://github.com/wearearima/time-report-contractTesting" target="_blank">Github</a>.</p>
+<p>This complete code, as well as the rest that we use in the different examples, is available at <a href="https://github.com/wearearima/time-report-contractTesting" target="_blank">Github</a>.</p>
 
 <h2 id="back-to-testing">Back to testing</h2>
 
-<p>Hasta aquí una pequeña introducción o fotografía sobre la evolución de arquitectura de las aplicaciones y una puesta en contexto para definir algunos conceptos que utilizaremos a lo largo del artículo. Volvamos a lo que nos interesa: calidad y testing. ¿Cómo testearíamos nuestra aplicación? ¿Qué “herramientas” de testing tenemos a nuestro alcance para testear una aplicación de este tipo?</p>
+<p>So far then, a little introduction or snapshot of the evolution of application architecture and a context to define some concepts that we will use throughout the article. Now let’s go back to what interests us: quality and testing. How would we test our application? What testing “tools” do we have at our disposal to test an application of this type?</p>
 
-<p>Como hemos dicho el <em>consumer</em> no deja de ser una aplicación web que accede a otra aplicación, que nos ofrece sus servicios mediante un API REST, el <em>producer</em>. Tenemos la mochila llena de herramientas y recursos que nos pueden servir para testear de forma estanca cada uno de estos dos componentes: test unitarios, tests de integración, <a href="https://blog.arima.eu/en/2020/07/01/parameterized-tests.html" target="_blank">tests parametrizados</a>, JUnit 5, TestContainers, Mockito, <a href="https://blog.arima.eu/en/2020/05/25/mutation-testing.html" target="_blank">Pitest</a>…</p>
+<p>As we have said, the <em>consumer</em> remains a web application that accesses another application, which offers us its services through a REST API, the <em>producer</em>. We have a backpack full of tools and resources that can help us to test each of these two components in a watertight way: unit tests, integration tests, parameterized tests, JUnit 5, TestContainers, Mockito, <a href="https://blog.arima.eu/en/2020/05/25/mutation-testing.html" target="_blank">Pitest</a>…</p>
 
-<p>Por ejemplo, en el <em>consumer</em> podríamos testear los servicios que incluyen las llamadas al API REST mockeando/stubbeando las respuestas del servidor. Vamos a ver cómo podría ser alguno de los tests que podríamos tener.</p>
+<p>For example, in the <em>consumer</em> we could test the services that include the calls to the REST API by mocking/stubbing the responses from the server. Let’s see what some of those tests might look like.</p>
 
 <h5 id="consumer--reportsservicewithmockwebservertestjava">Consumer | ReportsServiceWithMockWebServerTest.java</h5>
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ReportsServiceWithMockWebServerTest</span> <span class="o">{</span>
@@ -257,9 +255,9 @@
 <span class="o">}</span>
 </code></pre></div></div>
 
-<p>Este no es más que un ejemplo de test que podríamos hacer. Hemos aprovechado el ejemplo para probar <a href="https://github.com/square/okhttp/tree/master/mockwebserver" target="_blank">MockWebServer</a>, pero podríamos haber mockeado directamente Webclient o utilizar alguna de las otras alternativas que existen como <a href="http://wiremock.org/" target="_blank">Wiremock</a>, <a href="https://www.testcontainers.org/modules/mockserver/" target="_blank">TestContainers</a>…. (en un futuro no muy lejano seguro que nos volvemos a encontrar con ellas ;)).</p>
+<p>This is just an example of a test that we could do. We have used the example to test <a href="https://github.com/square/okhttp/tree/master/mockwebserver" target="_blank">MockWebServer</a>, but we could have directly mocked Webclient or used one of the other alternatives which exist such as <a href="http://wiremock.org/" target="_blank">Wiremock</a>, <a href="https://www.testcontainers.org/modules/mockserver/" target="_blank">TestContainers</a>….(in the not too distant future we’ll meet them again for sure ;)).</p>
 
-<p>En el <em>producer</em> podríamos testear el API REST también mediante las herramientas que nos ofrece SpringBoot. Veámoslo también mediante un ejemplo.</p>
+<p>In the <em>producer</em> we could also test the REST API using the tools offered by SpringBoot. Let’s look at it too through an example.</p>
 
 <h5 id="producer--worklogcontrollermockedtestsjava">Producer | WorklogControllerMockedTests.java</h5>
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@WebMvcTest</span>
@@ -304,7 +302,7 @@
   <span class="o">}</span>
 
   <span class="nd">@Test</span>
-  <span class="nd">@DisplayName</span><span class="o">(</span><span class="s">"When no date is request it returns status 400"</span><span class="o">)</span>
+  <span class="nd">@DisplayName</span><span class="o">(</span><span class="s">"When no date is requested it returns status 400"</span><span class="o">)</span>
   <span class="kt">void</span> <span class="nf">response_400_for_request_with_no_date</span><span class="o">()</span> <span class="kd">throws</span> <span class="nc">Exception</span> <span class="o">{</span>
 
     <span class="n">mvc</span><span class="o">.</span><span class="na">perform</span><span class="o">(</span><span class="n">get</span><span class="o">(</span><span class="s">"/worklogs/worker/"</span> <span class="o">+</span> <span class="no">USERNAME</span><span class="o">).</span><span class="na">contentType</span><span class="o">(</span><span class="no">APPLICATION_JSON</span><span class="o">))</span>
@@ -316,7 +314,7 @@
 <span class="o">}</span>
 </code></pre></div></div>
 
-<p>Con estos (y otros tests) podríamos tener un <em>consumer</em> y un <em>producer</em> bien testeados, pero nos falta una parte importante: asegurar que juntos funcionan correctamente. ¿Qué sucedería si hay un cambio en el <em>producer</em>? Supongamos algo tan sencillo como el cambio del nombre de un parámetro (por ejemplo en lugar de <strong>day</strong> que se renombrase a <strong>date</strong>).</p>
+<p>With these (and other tests) we could have a well-tested <em>consumer</em> and <em>producer</em>, but we are missing an important part: ensuring that they work together correctly. What might happen if there were a change in the <em>producer</em>? Let’s suppose something as simple as changing the name of a parameter (for example, instead of <strong>day</strong> it is renamed <strong>date</strong>).</p>
 
 <h5 id="producer--worklogcontrollerjava-1">Producer | WorklogController.java</h5>
 <div class="language-diff highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">@RestController</span>
@@ -336,7 +334,7 @@
 }
 </code></pre></div></div>
 
-<p>Corregiríamos los tests que fuese necesario de nuestro <em>producer</em>.</p>
+<p>We would make the necessary corrections to the tests for our <em>producer</em>.</p>
 
 <div class="language-diff highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">@WebMvcTest</span>
 public class WorklogControllerMockedTests {
@@ -350,14 +348,14 @@ public class WorklogControllerMockedTests {
 <span class="err">}</span>
 </code></pre></div></div>
 
-<p>Y ¡perfecto! los tests seguirán funcionando tanto en un componente como en el otro.</p>
+<p>And perfect! the tests will continue to work on one component as well as the other.</p>
 
-<p>Pruébalo tu mismo. Descarga el <a href="https://github.com/wearearima/time-report-contractTesting" target="_blank">código</a> y haz las modificaciones anteriores. Verás que los tests vuelven a funcionar correctamente tanto en el <em>consumer</em> como en el <em>producer</em>.
-Pero prueba algo más… pon en marcha la aplicación y prueba a <a href="http://localhost:8080/reports/report-worker-day" target="_blank">solicitar el informe para un usuario y una fecha</a> desde la aplicación. ¡Ups! Error. La aplicación falla. ¿Esto qué quiere decir?, que ¡sólo seremos capaces de detectar que algo se ha roto cuando la aplicación falle 😱 ! Demasiado tarde, ¿no crees? 😖</p>
+<p>Try it yourself. Download the <a href="https://github.com/wearearima/time-report-contractTesting" target="_blank">code</a> and make the above modifications. You will see that the tests again work correctly in both the <em>consumer</em> and <em>producer</em>.
+But try something else… start the application and try <a href="http://localhost:8080/reports/report-worker-day" target="_blank">request the report for a user and a date</a> from the application. Whoops! Error. The application crashes. What does this mean? That we will only be able to detect that something has broken when the application crashes 😱 ? Too late, don’t you think? 😖</p>
 
-<p>Es obvio que esto debemos evitarlo, ¿podemos? Si volvemos a revisar nuestra mochila (a la que me gusta llamar <em>testing toolbox</em>) encontramos los tests funcionales o test end-to-end. Si a todo lo anterior, añadimos unos tests de este tipo ya tendríamos testeada la integración de todo el sistema y seríamos capaces de detectar el problema anterior antes de llegar a producción.</p>
+<p>It is obvious that we must avoid this, but can we? If we go back to look in our backpack (which I like to call <em>testing toolbox</em>) we find the functional tests or end-to-end tests. If we had added some of these tests to all of the above, then we would have tested the integration of the entire system and we would be able to detect the previous problem before reaching production.</p>
 
-<p>Aunque esta es una solución, la realidad nos hace ver que este tipo de tests no son sencillos de realizar/mantener porque son más complejos, porque nos obligan a tener <em>consumer</em> y <em>producer</em> en marcha (con lo que conlleva la puesta en marcha de todo el sistema) o incluso porque nos obliga a tener 100% implementadas las funcionalidades en ambos componentes para poder realizar las pruebas. Y eso en este ejemplo que es sencillo, en uno más complejo… Entonces, ¿no hay alguna forma de simplificar el testeo de la comunicación entre <em>consumer-producer</em>? La lógica de negocio de cada uno de ellos está testeada de forma estanca, por lo tanto, en realidad sería necesario (y suficiente) asegurarnos que ambos cumplen una especificación concreta… verificar que existe un <strong>acuerdo</strong> entre <em>consumer</em> y <em>producer</em> y que ambos lo cumplen, nada más (y nada menos). ¿Tenemos algo que nos ayude en este propósito? ¡Cómo no! Tenemos una herramienta cuyo objetivo es este, su nombre <strong>Contract Testing</strong>. En breve publicaremos un nuevo post con un ejemplo práctico, stay tuned!</p>
+<p>Although this is a solution, reality shows us that this type of test is not easy to carry out/maintain because it is more complex, forcing us to have <em>consumer</em> and <em>producer</em> running (which entails the start-up of the entire system) or it forces us to have 100% implemented the functionalities in both components to be able to carry out the tests. And while that’s simple in this example, in a more complex one… So, isn’t there some way of simplifying the communication test between <em>consumer-producer</em>? The business logic of each of them is tested in a watertight manner, therefore, it would actually be necessary (and sufficient) to ensure that both meet a particular specification… to verify that there is an <strong>agreement</strong> between <em>consumer</em> and <em>producer</em> and that both keep to it, nothing more (and nothing less). Do we have anything to help us do this? Of course! We have a tool whose objective is just this, called <strong>Contract Testing</strong>. Soon we will publish a new post with a practical example. Stay tuned!</p>
 
             </div>
 

@@ -23,13 +23,13 @@
     </post>
     
     <post>
-        <title>Introducción a Contract Testing, estableciendo el contexto </title>
-        <summary>&lt;p&gt;El desarrollo de aplicaciones ha evolucionado, y por tanto han surgido nuevas necesidades a la hora de hacer testing y nuevas herramientas para hacerles frente ¡Vamos a verlo!&lt;/p&gt;
+        <title>Introduction to Contract Testing, setting the context </title>
+        <summary>&lt;p&gt;Application development has evolved, and therefore new needs have arisen when it comes to testing and new tools to deal with them. Let’s take a look!&lt;/p&gt;
 </summary>
         <pubDate>Thu, 03 Sep 2020 08:00:00 +0000</pubDate>
         <link>https://blog.arima.eu/2020/09/03/contract-testing.html</link>
         <guid isPermaLink="true">https://blog.arima.eu//2020/09/03/contract-testing.html</guid>
-        <headerImage>https://blog.arima.eu/assets/images/2020-09-03-contract-testing/header_recortado.jpg</headerImage>
+        <headerImage>https://blog.arima.eu/assets/images/2020-09-03-contract-testing/header_recortado.png</headerImage>
         
         
         
