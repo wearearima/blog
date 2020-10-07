@@ -36,7 +36,7 @@ Sin embargo, y en base al tipo de proyectos que tenía en mente, no me terminaba
 
 ¿Por qué no? El nombre no deja lugar a dudas: en un caso la definición del contrato nace en el _consumer_ y en el otro del _producer_. La verdad es que hubo un momento en que _Producer Driven Contract Testing_ parecía que fuese invención mía (no hay más que ver la búsqueda en Google de este término o de provider-driven...), pero encontré una referencia a ese término (como veremos un poquito más adelante) lo cual me dió pie a continuar con mi esquema mental.
 
-El concepto base, en ambos casos, no deja de ser el mismo. Sin embargo dependiendo del enfoque que se ajuste mejor a nuestro proyecto habrá herramientas del mercado que se ajusten más o menos, y que nos ofrezcan las alternativas que cubran nuestras necesidades. 
+El concepto base, en ambos casos, no deja de ser el mismo. Sin embargo dependiendo del enfoque que encaje mejor con nuestro proyecto habrá herramientas del mercado que se ajusten más o menos, y que nos ofrezcan los recursos que cubran nuestras necesidades. 
 
 Basándonos en el ejemplo presentado al inicio (y sabiendo que es un proyecto Spring Boot gestionado con Maven), las herramientas más populares que hemos encontrado que podríamos utilizar en nuestro proyecto son:
 
@@ -53,14 +53,16 @@ Basándonos en el ejemplo presentado al inicio (y sabiendo que es un proyecto Sp
   Aunque en su [descripción](https://spring.io/projects/spring-cloud-contract){:target="_blank"} dice:
   > Spring Cloud Contract is an umbrella project holding solutions that help users in successfully implementing the Consumer Driven Contracts approach. Currently Spring Cloud Contract consists of the Spring Cloud Contract Verifier project. 
 
-  Puede utilizarse tanto en un sentido como en otro. De hecho, en la documentación [Pact](https://docs.pact.io/getting_started/comparisons/#how-does-pact-differ-from-spring-cloud-contract){:target="_blank"} indican que esta nació con el enfoque provider-driven.
+  Puede utilizarse tanto en un sentido como en otro. De hecho, en la documentación [Pact](https://docs.pact.io/getting_started/comparisons/#how-does-pact-differ-from-spring-cloud-contract){:target="_blank"} indican que Spring Cloud Contract nació con el enfoque provider-driven.
   > Pact has always been a consumer-driven contract testing framework whereas Spring Cloud Contract started as provider-driven.
 
   ¡Parece que no me he inventado el término!, tampoco estaré tan desencaminada ¿no?  
-  Esta será la herramienta que utilizaremos en nuestros ejemplo. Ya veremos cómo nos ofrece ambas posibilidades.
+  Esta es la herramienta que hemos decidido utilizar en nuestro ejemplo.
 
-Personalmente me ha resultado más sencillo utilizar un enfoque _Producer Driven_ para llegar comprender bien el concepto, e incluso para entender mejor un escenario _Consumer Driven_. Es decir, que sea quien ofrece los servicios quien defina el acuerdo. 
-Probablemente sea porque en los proyectos que ha me han tocado de cerca, la casuística ha sido la de un _producer_ transversal a varias aplicaciones, que no conoce a sus _consumers_, y a quienes les oferta unos servicios determinados. 
+Personalmente me ha resultado más sencillo utilizar un enfoque _Producer Driven_ para llegar comprender bien el concepto, e incluso para entender mejor un escenario _Consumer Driven_.
+
+Probablemente sea porque en los proyectos que he conocido de cerca, la casuística ha sido la de un _producer_ transversal a varias aplicaciones, que no conoce a sus _consumers_, y a quienes les oferta unos servicios determinados. 
+
 Lo más común es encontrar ejemplos _Consumer Driven_ en la literatura, pero puede haber gente a la que como a mí, le más sea útil la aproximación _Producer Driven_ para comprender esta herramienta. Así que para toda esa gente (y para mi yo del futuro) utilizando la aplicación sobre los partes de horas (que siempre utilizo como ejemplo), vamos a implementar un pequeño ejemplo de cómo hacer **Contract Testing** utilizando **Spring Cloud Contract**.
 
 # Ejemplo utilizando Spring Cloud Contract
