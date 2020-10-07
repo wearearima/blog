@@ -63,7 +63,7 @@ Personalmente me ha resultado más sencillo utilizar un enfoque _Producer Driven
 
 Probablemente sea porque en los proyectos que he conocido de cerca, la casuística ha sido la de un _producer_ transversal a varias aplicaciones, que no conoce a sus _consumers_, y a quienes les oferta unos servicios determinados. 
 
-Lo más común es encontrar ejemplos _Consumer Driven_ en la literatura, pero puede haber gente a la que como a mí, le más sea útil la aproximación _Producer Driven_ para comprender esta herramienta. Así que para toda esa gente (y para mi yo del futuro) utilizando la aplicación sobre los partes de horas (que siempre utilizo como ejemplo), vamos a implementar un pequeño ejemplo de cómo hacer **Contract Testing** utilizando **Spring Cloud Contract**.
+Lo más común es encontrar ejemplos _Consumer Driven_ en la literatura, pero puede haber gente a la que como a mí, le más sea útil la aproximación _Producer Driven_ para comprender esta herramienta. Así que para toda esa gente (y para mi yo del futuro) utilizando la aplicación sobre los partes de horas (que siempre utilizo como ejemplo), vamos a implementar un pequeño ejemplo de cómo hacer **Contract Testing** utilizando **Spring Cloud Contract**. Como siempre, el código está disponible en [Github](https://github.com/wearearima/time-report-contractTesting-02){:target="_blank"}.
 
 # Ejemplo utilizando Spring Cloud Contract
 
@@ -94,9 +94,9 @@ response:
       Content-Type: "application/json"
    bodyFromFile: worklogsForJessiOn20200505Response.json
 ```
-En este caso, caso en concreto estamos estableciendo una única situación: si se hace una petición con el nombre de usuario y una fecha (establecemos el formato de cada uno de los parámetros aceptados), la respuesta será `status 200` y además devolverá un `JSON`. En este caso concreto establecemos cuál va a ser la respuesta mediante un [fichero](/src/test/resources/contracts/worklogs/worklogsForJessiOn20200505Response.json){:target="_blank"}. 
+En este caso, caso en concreto estamos estableciendo una única situación: si se hace una petición con el nombre de usuario y una fecha (establecemos el formato de cada uno de los parámetros aceptados), la respuesta será `status 200` y además devolverá un `JSON`. En este caso concreto establecemos cuál va a ser la respuesta mediante un [fichero](https://github.com/wearearima/time-report-contractTesting-02/blob/master/timeReports-producer/src/test/resources/contracts/worklogs/worklogsForJessiOn20200505Response.json){:target="_blank"}. 
 
-Este contrato debe estar accesible para el producer (independientemente que sea él quien lo defina o el consumer ;) ). En este caso y por simplificar estará en la carpeta `/test/resources/contracts/worklogs` del producer.
+Este contrato debe estar accesible para el producer (independientemente que sea él quien lo defina o el consumer). En este caso y por simplificar estará en la carpeta `/test/resources/contracts/worklogs` del producer.
 
 ## Producer: configurar las dependencias en el pom.xml
 Modificamos el pom.xml para añadir la dependiencia de Spring Cloud Contract Verifier y el plugin spring-cloud-contract-maven-plugin. Con este último conseguiremos que de forma automática:
