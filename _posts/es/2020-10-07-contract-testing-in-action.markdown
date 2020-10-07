@@ -12,13 +12,13 @@ En un [post anterior](https://blog.arima.eu/es/2020/09/03/contract-testing.html)
 Hemos presentado un ejemplo sencillo de una aplicación, que nos ha servido para establecer algunos conceptos (como _consumer_, _producer_, _servicio_) y que nos ha permitido poner en evidencia una nueva necesidad: tan importante como testear las funcionalidades en _consumer_ y _producer_ de forma independiente lo es asegurar que la interacción entre ambos es correcta. Esta necesidad podemos abordarla mediante test _end-to-end_, pero si bien estos tests ya resultan complejos de implementar/ejecutar en aplicaciones monolíticas en aquellas que no los son la complejidad es mayor. En este punto surge una idea: podría ser suficiente con verificar entre _consumer_ y _producer_  que existe un acuerdo que ambos cumplen. Aquí es donde descubrimos un nuevo concepto: **Contract Testing**.
 
 ¿Qué es **Contract Testing**? En la documentación de Pact encontramos la siguiente [definición](https://docs.pact.io/#what-is-contract-testing){:target="_blank"}
-> Es una técnica que nos permite probar la integración de varias aplicaciones, verificando en cada una de ellas que los mensajes que envía o recibe (dependiendo de su rol consumer/producer) se ajustan a un acuerdo que está documentado en un contrato.
+> Es una técnica que nos permite probar la integración de varias aplicaciones, verificando en cada una de ellas que los mensajes que envía o recibe (dependiendo de su rol _consumer/producer_) se ajustan a un acuerdo que está documentado en un contrato.
 
 Este concepto podríamos desgranarlo y traducirlo (a nive práctico) en los siguientes puntos:
 - En el _consumer_, en los test las peticiones las haremos a un “stub” del _producer_ que cumple con un acuerdo concreto preestablecido y que ambos conocen. 
 - En el _producer_, habrá test donde se realizarán peticiones basadas de igual modo en dicho acuerdo.
 
-Dependiendo de la herramienta/framework que tomemos como referencia, el concepto de “acuerdo entre consumer y producer” recibe el nombre de **pacto** o **contrato**. Pero no dejan de ser diferentes nombres para el mismo concepto: una especificación de cómo deben ser las llamadas y respuestas para consumir los servicios ofertados por el _producer_.
+Dependiendo de la herramienta/framework que tomemos como referencia, el concepto de “acuerdo entre _consumer_ y _producer_” recibe el nombre de **pacto** o **contrato**. Pero no dejan de ser diferentes nombres para el mismo concepto: una especificación de cómo deben ser las llamadas y respuestas para consumir los servicios ofertados por el _producer_.
 
 Volviendo al mismo ejemplo que hemos utilizado en el post anterior esta idea podríamos representarla como sigue: 
 
@@ -42,7 +42,7 @@ Basándonos en el ejemplo presentado al inicio (y sabiendo que es un proyecto Sp
 
 - **Pact**
 
-  Esta herramienta está fuertemente acoplada con _Consumer Driven Contract Testing_, básicamente porque los pactos estarán siempre en la parte consumer. En la [documentación](https://docs.pact.io/#consumer-driven-contracts){:target="_blank"} podemos leer: 
+  Esta herramienta está fuertemente acoplada con _Consumer Driven Contract Testing_, básicamente porque los pactos estarán siempre en la parte _consumer_. En la [documentación](https://docs.pact.io/#consumer-driven-contracts){:target="_blank"} podemos leer: 
   
   > Pact is a code-first consumer-driven contract testing tool, .... 
   The contract is generated during the execution of the automated consumer tests
@@ -96,11 +96,11 @@ response:
 ```
 En este caso, caso en concreto estamos estableciendo una única situación: si se hace una petición con el nombre de usuario y una fecha (establecemos el formato de cada uno de los parámetros aceptados), la respuesta será `status 200` y además devolverá un `JSON`. En este caso concreto establecemos cuál va a ser la respuesta mediante un [fichero](https://github.com/wearearima/time-report-contractTesting-02/blob/master/timeReports-producer/src/test/resources/contracts/worklogs/worklogsForJessiOn20200505Response.json){:target="_blank"}. 
 
-Este contrato debe estar accesible para el producer (independientemente que sea él quien lo defina o el consumer). En este caso y por simplificar estará en la carpeta `/test/resources/contracts/worklogs` del producer.
+Este contrato debe estar accesible para el _producer_ (independientemente que sea él quien lo defina o el _consumer_). En este caso y por simplificar estará en la carpeta `/test/resources/contracts/worklogs` del _producer_.
 
 ## Producer: configurar las dependencias en el pom.xml
 Modificamos el pom.xml para añadir la dependiencia de Spring Cloud Contract Verifier y el plugin spring-cloud-contract-maven-plugin. Con este último conseguiremos que de forma automática:
-- Se generen los tests que verifiquen que nuestro producer cumple el contrato
+- Se generen los tests que verifiquen que nuestro _producer_ cumple el contrato
 - Se cree un stub que permitirá al consumidor generar un wiremock (que cumplirá el contrato) contra el que ejecutar sus tests
 
 #### Producer | pom.xml
@@ -145,7 +145,7 @@ Modificamos el pom.xml para añadir la dependiencia de Spring Cloud Contract Ver
 </dependencyManagement>
 ...
 ```
-Además de las dependencias, hay que crear una clase base de test para que la extiendan los tests autogenerados del producer y añadirla en la configuración del plugin en el pom.xml. Además de la clase base de test, se pueden personalizar diferentes aspectos como se explica en la [documentación del plugin](https://cloud.spring.io/spring-cloud-contract/spring-cloud-contract-maven-plugin/index.html){:target="_blank"}, como por ejemplo sobre dónde están los contratos, cómo generar los diferentes elementos etc.
+Además de las dependencias, hay que crear una clase base de test para que la extiendan los tests autogenerados del _producer_ y añadirla en la configuración del plugin en el pom.xml. Además de la clase base de test, se pueden personalizar diferentes aspectos como se explica en la [documentación del plugin](https://cloud.spring.io/spring-cloud-contract/spring-cloud-contract-maven-plugin/index.html){:target="_blank"}, como por ejemplo sobre dónde están los contratos, cómo generar los diferentes elementos etc.
 En nuestro ejemplo, lugar de especificar una clase base para los tests  concreta, hemos configurado el paquete en el que deben estar todas las clases "base" (podría haber diferentes). 
 
 Nuestra clase deberá estar en el paquete eu.arima.tr (porque así lo hemos configurado). Además, como el contrato lo hemos definido en la carpeta "contracts/worklogs", por lo tanto (en base a la documentación que indica que el nombre se infiere en base a los nombres de las dos últimas carpetas), la clase deberá llamarse WorklogsBase.java.
@@ -167,8 +167,8 @@ public abstract class WorklogsBase {
 } 
 ```
 ## Producer: crear y ejecutar los tests
-Como mencionabamos en el apartado anterior, con este plugin podemos generar automáticamente los tests que aseguren que el produce cumple el conrato. Vamos a verlo. Para ello hacemos `./mvnw clean test` (en el producer) y vemos que:
-- Se generan las clases de test del producer
+Como mencionabamos en el apartado anterior, con este plugin podemos generar automáticamente los tests que aseguren que el produce cumple el conrato. Vamos a verlo. Para ello hacemos `./mvnw clean test` (en el _producer_) y vemos que:
+- Se generan las clases de test del _producer_
 - Se ejecutan los tests
 - Además se crea un .jar (que de momento dejamos aparcado)
 
@@ -230,8 +230,8 @@ Yo utilizo eclipse en mis desarrollos, así que me interesa poder ejecutarlos de
 ![Configuración del buildpath para ejecutar los tests desde eclipse](/assets/images/2020-10-07-contract-testing/02_buildpath_config.png){: .center }
 
 ## Consumer: configurar las dependencias
-A diferencia del producer, los tests en el consumer no se generan de forma automática, sin embargo, desde el producer hemos generado un .jar con el stub que nos permitirá simular las llamadas al producer. En nuestro caso, el jar es: timeReports-producer-0.0.1-SNAPSHOT-stubs.jar que podemos encontrarlo en la carpeta target del producer.
-En nuestro ejemplo, al tener ambos proyectos en local, si en lugar de hacer ./mvnw clean test (en el producer) hacemos ./mvnw clean install tendremos dicho jar directamente en nuestro repositorio local de maven, con lo cual, podremos configurar nuestro consumer para que acceda a él.
+A diferencia del _producer_, los tests en el _consumer_ no se generan de forma automática, sin embargo, desde el _producer_ hemos generado un .jar con el stub que nos permitirá simular las llamadas al _producer_. En nuestro caso, el jar es: `timeReports-producer-0.0.1-SNAPSHOT-stubs.jar` que podemos encontrarlo en la carpeta target del _producer_.
+En nuestro ejemplo, al tener ambos proyectos en local, si en lugar de hacer `./mvnw clean test` (en el _producer_) hacemos ./mvnw clean install tendremos dicho jar directamente en nuestro repositorio local de maven, con lo cual, podremos configurar nuestro _consumer_ para que acceda a él.
 
 Para acceder a él añadimos la siguiente dependencia en el pom.xml:
 
@@ -371,9 +371,9 @@ public void validate_worklogsForWokerAndDay_success() throws Exception {
         .get("/worklogs/worker/JESSI");
 ```
 
-Como hemos cambiado el contrato debemos hacer llegar al consumer la actualización, así que hacemos `./mvnw clean install` en el producer y pasamos los tests del consumer con `./mvnw clean test`. ¿Qué sucede? Si bien, los tests unitarios que teníamos siguen pasando correctamente, el nuevo test añadido falla: nos hace ver que algo ha cambiado en el contrato y la aplicación en su conjunto no va a funcionar. ¡Bien! Objetivo conseguido: hemos detectado el problema antes del despliegue en producción.
+Como hemos cambiado el contrato debemos hacer llegar al _consumer_ la actualización, así que hacemos `./mvnw clean install` en el _producer_ y pasamos los tests del _consumer_ con `./mvnw clean test`. ¿Qué sucede? Si bien, los tests unitarios que teníamos siguen pasando correctamente, el nuevo test añadido falla: nos hace ver que algo ha cambiado en el contrato y la aplicación en su conjunto no va a funcionar. ¡Bien! Objetivo conseguido: hemos detectado el problema antes del despliegue en producción.
 
-Modificamos la implementación del consumer:
+Modificamos la implementación del _consumer_:
 
 #### Consumer | ReportsService.java
 ```diff
@@ -392,8 +392,8 @@ Pasamos los tests, y vemos que al cambiar la implementación los tests han dejad
 Como vemos en el ejemplo, es importante que cuando cambia el contrato el consumer reciba la nueva especificación a través del stub (si no, los test seguirán pasando). En nuestro ejemplo es sencillo porque lo tenemos todo en local. Nos sirve para explicar el concepto de forma sencilla pero no nos olvidamos de que no refleja la realidad, donde muchas veces diferentes personas están trabajando en uno o en el otro sin necesidad de tener los proyectos en local.
 Existen muchas formas de organizar el código y por lo tanto existen diferentes soluciones, que habría que analizar en función del proyecto y sus necesidades. Las preguntas más importantes a las que habría que dar respuesta sería:
 - **¿Dónde ubicamos los contratos?** ¿Podrían estar en el propio proyecto (como en el ejemplo) o quizás seríamejor que estuviesen en su propio repositorio de github?
-- **¿Cómo gestionamos el stub del producer?** ¿Podríamos desplegarlo en un repo de maven?
-- **¿Cómo gestionamos el versionado?** ¿Será el mismo que el del producer o será independiente?
+- **¿Cómo gestionamos el stub del _producer_?** ¿Podríamos desplegarlo en un repo de maven?
+- **¿Cómo gestionamos el versionado?** ¿Será el mismo que el del _producer_ o será independiente?
 
 No vamos a entrar a valorar estas y otras muchas cosas, que habría que tener en cuenta a la hora de ponerlo en práctica porque la respuesta será *depende*. Depende del proyecto, de la organización de los equipos,... En la documentación tanto de Spring Cloud Contract como de Pact hay diferentes recomendaciones, ejemplos, que pueden sernos de utilidad.
 
