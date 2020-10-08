@@ -316,7 +316,7 @@ public class ReportsServiceContractTest {
 ```
 Con esto ya tendríamos la comunicación entre ambos testeada, asegurándonos que si en algún momento en alguno de los dos componentes hubiese una modificación en el contrato los tests del otro fallarían. ¿Lo vemos?
 
-## ¿Somos capaces de detectar la modificación antes de llegar a producción? 
+## ¿Somos capaces de desplegar en producción con la certeza de que todo funciona? 
 Este era el problema que nos encontramos en el [post anterior](https://blog.arima.eu/es/2020/09/03/contract-testing.html){:target="_blank"}: pese a tener testeados _consumer_ y _producer_, no éramos capaces de saber que algo no iba bien hasta llegar a producción. ¿Seremos capaces de detectarlo ahora?
 
 Supongamos, que realizamos el mismo cambio que propusimos en el post anterior:
