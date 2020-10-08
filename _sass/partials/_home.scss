@@ -82,6 +82,22 @@ $logo-color: white;
       }   
     }
   }
+  /* Language selector */
+  .language-selector {
+    position: absolute;
+    right: 1em;
+    top: 0em;
+    color: white;
+    font-size: 12px;
+    .selected {
+      font-family: $bold-font-family;
+    }
+    .unselected {
+      color: inherit;
+      text-decoration: none;
+      font-family: $thin-font-family;
+    }
+  }
 }
 
 .home-coverX{

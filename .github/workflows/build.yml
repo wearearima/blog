@@ -1,0 +1,37 @@
+name: Build jekyll site and push to gh-pages
+
+on:
+  push:
+    branches: 
+      - master
+    
+jobs:
+  jekyll:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+
+    # Use GitHub Actions' cache to shorten build times and decrease load on servers
+    # Doesn't work?? No _site after building
+    #- uses: actions/cache@v1
+    #  with:
+    #    path: vendor/bundle
+    #    key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
+    #    restore-keys: |
+    #      ${{ runner.os }}-gems-
+
+    # Build Jekyll into _site
+    - uses:  lemonarc/jekyll-action@1.0.0
+      env:
+        JEKYLL_ENV: 'production'
+    # Check for build
+    - name: Check
+      run: ls _site
+
+    # Push to gh-pages
+    - name: Deploy
+      uses: JamesIves/github-pages-deploy-action@releases/v3
+      with:
+        ACCESS_TOKEN: ${{ secrets.GH_PAGES_TOKEN }}
+        BRANCH: gh-pages # The branch the action should deploy to.
+        FOLDER: _site # The folder the action should deploy.
