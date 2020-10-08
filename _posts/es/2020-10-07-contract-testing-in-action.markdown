@@ -8,13 +8,13 @@ categories: testing, software quality, QA
 tags: testing, calidad, software quality, QA, contract testing, consumer-driven contract, consumer driven contract
 header-image: 2020-10-07-contract-testing/header_recortado.jpg
 ---
-En un [post anterior](https://blog.arima.eu/es/2020/09/03/contract-testing.html){:target="_blank"} hemos visto cómo surgen nuevas necesidades en el ámbito del testing derivadas de la evolución de las arquitecturas de las aplicaciones. En él, hablamos de cómo con el paso de los años hemos pasado de desarrollar aplicaciones basadas en una arquitectura monolítica a aplicaciones basadas en (micro)servicios. Donde antes teníamos tests centralizados en una única aplicación, ahora pasamos a tenerlos divididos en varias de forma que tendremos testeadas cada una de ellas de forma independiente y estanca. 
+En un [post anterior](https://blog.arima.eu/es/2020/09/03/contract-testing.html){:target="_blank"} hemos visto cómo surgen nuevas necesidades en el ámbito del testing derivadas de la evolución de las arquitecturas de las aplicaciones. En él, hablamos de cómo con el paso de los años hemos pasado de desarrollar aplicaciones basadas en una arquitectura monolítica a aplicaciones basadas en (micro)servicios. Donde antes teníamos tests centralizados en una única aplicación, ahora pasamos a tenerlos divididos en varias, de forma que tendremos testeadas cada una de ellas de forma independiente y estanca. 
 Hemos presentado un ejemplo sencillo de una aplicación, que nos ha servido para establecer algunos conceptos (como _consumer_, _producer_, _servicio_) y que nos ha permitido poner en evidencia una nueva necesidad: tan importante como testear las funcionalidades en _consumer_ y _producer_ de forma independiente lo es asegurar que la interacción entre ambos es correcta. Esta necesidad podemos abordarla mediante test _end-to-end_, pero si bien estos tests ya resultan complejos de implementar/ejecutar en aplicaciones monolíticas en aquellas que no los son la complejidad es mayor. En este punto surge una idea: podría ser suficiente con verificar entre _consumer_ y _producer_  que existe un acuerdo que ambos cumplen. Aquí es donde descubrimos un nuevo concepto: **Contract Testing**.
 
 ¿Qué es **Contract Testing**? En la documentación de Pact encontramos la siguiente [definición](https://docs.pact.io/#what-is-contract-testing){:target="_blank"}
 > Es una técnica que nos permite probar la integración de varias aplicaciones, verificando en cada una de ellas que los mensajes que envía o recibe (dependiendo de su rol _consumer/producer_) se ajustan a un acuerdo que está documentado en un contrato.
 
-Este concepto podríamos desgranarlo y traducirlo (a nive práctico) en los siguientes puntos:
+Este concepto podríamos desgranarlo y traducirlo (a nivel práctico) en los siguientes puntos:
 - En el _consumer_, en los test las peticiones las haremos a un “stub” del _producer_ que cumple con un acuerdo concreto preestablecido y que ambos conocen. 
 - En el _producer_, habrá test donde se realizarán peticiones basadas de igual modo en dicho acuerdo.
 
@@ -27,16 +27,16 @@ Volviendo al mismo ejemplo que hemos utilizado en el post anterior esta idea pod
 Una vez presentado el concepto detrás de _Contract Testing_ en términos generales, vamos a profundizar un poco más viendo los enfoques y herramientas existentes. Posteriormente (como para mi la única forma de aprender/entender es haciendo) veremos cómo materializar la teoría mediante un pequeño ejemplo. 
 
 # Enfoques y herramientas
-En la literatura principalmente encontramos la relación **_Contract Testing_** &rarr; **_Consumer Driven Contract Testing_**, algo que en un inicio hizo que me resultase más difícil comprender el concepto subyacente. Entiendo que el motivo deriva de la idea de que un _servicio_ de un _producer_ carece de sentido si no hay alguna aplicación utilizándolo (_consumer_). Por tanto, parece lógico que quien establezca qué acuerdo debe cumplirse sea el _consumer_, mientras que en el _producer_ debería recaer la responsabilidad de satisfacer las necesidades fijadas por _consumer_ (de ahí la coletilla de "Consumer Driven").
-
-Sin embargo, y en base al tipo de proyectos que tenía en mente, no me terminaba de encajar. Se me hizo necesario verlo en perspectiva. Tuve que dar un paso atrás para primero, entender el concepto que hay detrás (y que ya hemos explicado). Después de leer y profundizar un poco llegué a la conclusión de que en realidad podríamos encontrarnos con dos situaciones en función del proyecto que tuviésemos entre manos (diferentes en forma pero iguales en concepto) y así dependiendo de quién sea el que define el acuerdo podríamos tener dos enfoques:
+En la literatura principalmente encontramos la relación **_Contract Testing_** &rarr; **_Consumer Driven Contract Testing_**. Esto al principio hizo que me resultase más difícil comprender el concepto subyacente. Tras leer varios post, documentación.... llegué a la conclusión de que el motivo de esta asociación parte de la idea de que un _servicio_ de un _producer_ carece de sentido si no hay alguna aplicación utilizándolo (_consumer_). Por tanto, parece lógico que quien establezca qué acuerdo debe cumplirse sea el _consumer_, mientras que en el _producer_ debería recaer la responsabilidad de satisfacer las necesidades fijadas por _consumer_ (de ahí la coletilla de "Consumer Driven").
+Vale, bien, pero en los proyectos que he conocido de cerca, la casuística no ha sido precisamente esa. El escenario ha sido el de un _producer_ transversal a varias aplicaciones, que no conoce a sus _consumers_, y a quienes les oferta unos servicios determinados. 
+Así que, no me terminaba de encajar. Tuve que dar un paso atrás y verlo en perspectiva para llegar a entender que, en realidad, podríamos encontrarnos con dos situaciones en función del proyecto que tuviésemos entre manos (diferentes en forma pero iguales en concepto) y así dependiendo de quién sea el que define el acuerdo podríamos tener dos enfoques:
 
 - **_Consumer Driven_ Contract Testing**
 - **_Producer Driven_ Contract Testing**
 
 ¿Por qué no? El nombre no deja lugar a dudas: en un caso la definición del contrato nace en el _consumer_ y en el otro del _producer_. La verdad es que hubo un momento en que _Producer Driven Contract Testing_ parecía que fuese invención mía (no hay más que ver la búsqueda en Google de este término o de provider-driven...), pero encontré una referencia a ese término (como veremos un poquito más adelante) lo cual me dió pie a continuar con mi esquema mental.
 
-El concepto base, en ambos casos, no deja de ser el mismo. Sin embargo dependiendo del enfoque que encaje mejor con nuestro proyecto habrá herramientas del mercado que se ajusten más o menos, y que nos ofrezcan los recursos que cubran nuestras necesidades. 
+El concepto base, en ambos casos, no deja de ser el mismo. Sin embargo dependiendo del enfoque que encaje mejor con nuestro proyecto podremos decantarnos por uno u otro. Lo mismo sucede a la hora de elegir las herramientas para hacerlo: dependiendo de nuestras necesidades podremos elegir entra las diferentes herramientas que han nacido con este propósito.
 
 Basándonos en el ejemplo presentado al inicio (y sabiendo que es un proyecto Spring Boot gestionado con Maven), las herramientas más populares que hemos encontrado que podríamos utilizar en nuestro proyecto son:
 
@@ -60,8 +60,6 @@ Basándonos en el ejemplo presentado al inicio (y sabiendo que es un proyecto Sp
   Esta es la herramienta que hemos decidido utilizar en nuestro ejemplo.
 
 Personalmente me ha resultado más sencillo utilizar un enfoque _Producer Driven_ para llegar comprender bien el concepto, e incluso para entender mejor un escenario _Consumer Driven_.
-
-Probablemente sea porque en los proyectos que he conocido de cerca, la casuística ha sido la de un _producer_ transversal a varias aplicaciones, que no conoce a sus _consumers_, y a quienes les oferta unos servicios determinados. 
 
 Lo más común es encontrar ejemplos _Consumer Driven_ en la literatura, pero puede haber gente a la que como a mí, le más sea útil la aproximación _Producer Driven_ para comprender esta herramienta. Así que para toda esa gente (y para mi yo del futuro) utilizando la aplicación sobre los partes de horas (que siempre utilizo como ejemplo), vamos a implementar un pequeño ejemplo de cómo hacer **Contract Testing** utilizando **Spring Cloud Contract**. Como siempre, el código está disponible en [Github](https://github.com/wearearima/time-report-contractTesting-02){:target="_blank"}.
 
@@ -166,6 +164,7 @@ public abstract class WorklogsBase {
   } 
 } 
 ```
+
 ## Producer: crear y ejecutar los tests
 Como mencionabamos en el apartado anterior, con este plugin podemos generar automáticamente los tests que aseguren que el produce cumple el conrato. Vamos a verlo. Para ello hacemos `./mvnw clean test` (en el _producer_) y vemos que:
 - Se generan las clases de test del _producer_
