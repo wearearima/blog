@@ -339,7 +339,7 @@ Modificamos la implementación del _consumer_:
 public DayStatusSummary getDayStatusSummaryForWorkerAndDay(String workerUserName, LocalDate date) {
   // retrieve worklogs for worker and day
   List<WorklogInfo> worklogsForDay = webClient.get().uri(uriBuilder -> uriBuilder
--	    .path("/worklogs/worker/{workerUserName}").queryParam("date", date).build(workerUserName)).retrieve()
+-	    .path("/worklogs/worker/{workerUserName}").queryParam("day", date).build(workerUserName)).retrieve()
 +	    .path("/worklogs/worker/{workerUserName}").queryParam("date", date).build(workerUserName)).retrieve()
       .bodyToFlux(WorklogInfo.class).collectList().block();
 
