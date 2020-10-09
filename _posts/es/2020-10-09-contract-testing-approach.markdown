@@ -5,7 +5,7 @@ date:   2020-10-09 8:00:00
 author: jessica
 lang: es
 categories: testing, software quality, QA
-tags: testing, calidad, software quality, QA, contract testing, consumer-driven contract, consumer driven contract
+tags: testing, calidad, software quality, QA, contract testing, consumer-driven contract, consumer driven contract, pack, spring cloud contract
 header-image: 2020-10-09-contract-testing/header_recortado.jpg
 ---
 En un [post anterior](https://blog.arima.eu/es/2020/09/03/contract-testing.html){:target="_blank"} hemos visto cómo surgen nuevas necesidades en el ámbito del testing derivadas de la evolución de las arquitecturas de las aplicaciones. En él, hablamos de cómo con el paso de los años hemos pasado de desarrollar aplicaciones basadas en una arquitectura monolítica a aplicaciones basadas en (micro)servicios. Donde antes teníamos tests centralizados en una única aplicación, ahora pasamos a tenerlos divididos en varias, de forma que tendremos testeadas cada una de ellas de forma independiente y estanca.
