@@ -5,14 +5,15 @@ date:   2020-10-07 8:00:00
 author: jessica
 lang: es
 categories: testing, software quality, QA
-tags: testing, calidad, software quality, QA, contract testing, consumer-driven contract, consumer driven contract
+tags: testing, calidad, software quality, QA, contract testing, provider driven contract testing, spring cloud contract
 header-image: 2020-10-15-contract-testing/header_recortado.jpg
 ---
-En un [post anterior](https://blog.arima.eu/es/2020/09/03/contract-testing.html){:target="_blank"} hemos visto cómo surgen nuevas necesidades en el ámbito del testing derivadas de la evolución de las arquitecturas de las aplicaciones. 
-Mediante un ejemplo sencillo hemos asentado conceptos como _consumer_, _producer_, _servicio_ y hemos puesto en evidencia que tan importante como testear las funcionalidades en _consumer_ y _producer_ de forma independiente lo es asegurar que la interacción entre ambos es correcta. 
-Hemos introducido el concepto de **Contract Testing**, en el que hemos profundizado en otro [post](){:target="_blank"} lo que nos ha permitido conocer los diferentes enfoques y herramientas.
-Ahora, con toda la información en nuestras manos es hora de materializar todas esas ideas en código. Lo haremos paso a paso, partiendo del ejemplo del primer post, cuyo código podemos descargar de [aquí](//TODO){:target="_blank"}. Recordemos que con él pusimos en evidencia el problema que podríamos encontrarnos: una aplicación que falla en producción pese a tener todos los tests pasando. 
-Hemos elegido el enfoque **producer driven** y como herramienta utilizaremos **Spring Cloud Contract**. El código está disponible en [Github](//TODO){:target="_blank"} ¡Vamos allá!
+En un [post anterior](https://blog.arima.eu/es/2020/09/03/contract-testing.html){:target="_blank"} hemos visto cómo surgen nuevas necesidades en el ámbito del testing derivadas de la evolución de las arquitecturas de las aplicaciones.  
+Mediante un ejemplo sencillo hemos asentado conceptos como _consumer_, _producer_, _servicio_ y hemos puesto en evidencia que tan importante como testear las funcionalidades en _consumer_ y _producer_ de forma independiente lo es asegurar que la interacción entre ambos es correcta.  
+Hemos introducido el concepto de **Contract Testing**, en el que hemos profundizado en otro [post](https://blog.arima.eu/es/2020/10/09/contract-testing-approach.html){:target="_blank"} lo que nos ha permitido conocer los diferentes enfoques y herramientas.
+
+Ahora, con toda la información en nuestras manos es hora de materializar todas esas ideas en código. Lo haremos paso a paso, partiendo del ejemplo del primer post, cuyo código podemos descargar de [aquí](https://github.com/wearearima/time-report-contractTesting){:target="_blank"}. Recordemos que con él pusimos en evidencia el problema que podríamos encontrarnos: una aplicación que falla en producción pese a tener todos los tests pasando.  
+Hemos elegido el enfoque **producer driven** y como herramienta utilizaremos [**Spring Cloud Contract**](https://spring.io/projects/spring-cloud-contract){:target="_blank"}. El código está disponible en [Github](https://github.com/wearearima/time-report-contractTesting-02){:target="_blank"} ¡Vamos allá!
 
 
 # 1. Definir el contrato
@@ -46,12 +47,12 @@ En este caso, caso en concreto estamos estableciendo el siguiente acuerdo: si se
 
 Este contrato debe estar accesible para el _producer_. En este caso y por simplificar estará en la carpeta `/test/resources/contracts/worklogs` del _producer_.
 
-Una vez que hemos definido el contrato tendremos que hacer la implementación que lo cumpla y los tests necesarios que lo verifiquen. En este ejemplo, partíamos de la implementación, así que ¡vamos con los test!
+Una vez que hemos definido el contrato tendremos que hacer la implementación que lo cumpla y los tests necesarios que lo verifiquen. En este ejemplo ya partíamos de la implementación, así que ¡vamos con los test!
 
 # 2. Producer: configurar las dependencias en el pom.xml
 Modificamos el `pom.xml` para añadir la dependiencia de Spring Cloud Contract Verifier y el plugin `spring-cloud-contract-maven-plugin`. Con este último conseguiremos que de forma automática:
 - Se generen los tests que verifiquen que nuestro _producer_ cumple el contrato
-- Se cree un stub que permitirá al _consumrt_ generar un wiremock (que cumplirá el contrato) contra el que ejecutar sus tests
+- Se cree un stub que permitirá al _consumer_ generar un [WireMock](http://wiremock.org/){:target="_blank"} (que cumplirá el contrato) contra el que ejecutar sus tests
 
 #### Producer | pom.xml
 ```xml
@@ -95,15 +96,16 @@ Modificamos el `pom.xml` para añadir la dependiencia de Spring Cloud Contract V
 </dependencyManagement>
 ...
 ```
-Además de las dependencias, hay que crear una clase base de test para que la extiendan los tests autogenerados del _producer_ y añadirla en la configuración del plugin en el `pom.xml`. Además de la clase base de test, se pueden personalizar diferentes aspectos como se explica en la [documentación del plugin](https://cloud.spring.io/spring-cloud-contract/spring-cloud-contract-maven-plugin/index.html){:target="_blank"}, como por ejemplo dónde están los contratos, cómo generar los diferentes elementos etc.
-En nuestro ejemplo, en lugar de especificar una clase base concreta para los tests, hemos configurado el paquete en el que deben estar todas las clases "base" (podría haber diferentes). 
-
-Nuestra clase deberá estar en el paquete `eu.arima.tr` (porque así lo hemos configurado). Además, el contrato lo hemos definido en la carpeta `contracts/worklogs`, por lo tanto (en base a la documentación que indica que el nombre se infiere en base a los nombres de las dos últimas carpetas), la clase deberá llamarse `WorklogsBase.java`.
+Además de las dependencias, hay que crear una clase base de test para que la extiendan los tests autogenerados del _producer_ y añadirla en la configuración del plugin en el `pom.xml`. Además de la clase base de test, se pueden personalizar diferentes aspectos como se explica en la [documentación del plugin](https://cloud.spring.io/spring-cloud-contract/spring-cloud-contract-maven-plugin/index.html){:target="_blank"}, como por ejemplo: dónde están los contratos, cómo generar los diferentes elementos etc.
+En nuestro ejemplo, en lugar de especificar una clase base concreta para los tests, hemos configurado el paquete en el que deben estar todas las clases "base" (ya que podría haber diferentes): `eu.arima.tr`.
+Además, el contrato lo hemos definido en la carpeta `contracts/worklogs`, por lo tanto (en base a la documentación que indica que el nombre se infiere en base a los nombres de las dos últimas carpetas), la clase deberá llamarse `WorklogsBase.java`.
 
 A continuación mostramos cómo es la clase base, que hemos utilizado en nuestro ejemplo:
 
 #### Producer | WorklogsBase.java
 ```java
+package eu.arima.tr;
+
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
 public abstract class WorklogsBase {
@@ -118,7 +120,7 @@ public abstract class WorklogsBase {
 ```
 
 # 3. Producer: crear y ejecutar los tests
-Como mencionabamos en el apartado anterior, con este plugin podemos generar automáticamente los tests que aseguren que el _producer_ cumple el conrato. Vamos a verlo. Para ello hacemos `./mvnw clean test` y vemos que:
+Como mencionábamos en el apartado anterior, con este plugin podemos generar automáticamente los tests que aseguren que el _producer_ cumple el conrato. Para ello hacemos `./mvnw clean test` y vemos que:
 - Se generan las clases de test del _producer_
 - Se ejecutan los tests
 - Además se crea un `.jar` (que de momento dejamos aparcado)
@@ -172,18 +174,18 @@ public class WorklogsTest extends WorklogsBase {
 
 }
 ```
-Como vemos hay un método de test para la definición del contrato. Si tuviésemos más de una, en ese caso tendríamos un test por cada uno de ellos. En ambos vemos como se hace un `assert` para comprobar que el `statusCode` de la response es la esperada. Además vemos cómo se verifica que el tipo de respuesta sea un `json` y cómo se ha parseado el fichero `.json` (al que hacíamos referencia en la especificación) para hacer los `assert`s necesarios que aseguran que la respuesta es la esperada.
+Como vemos hay un método de test para la definición del contrato. Si tuviésemos más de una, en ese caso tendríamos un test por cada uno de ellos.  
+En el test que se ha generado vemos como se hace un `assert` para comprobar que el `statusCode` de la response es el esperado. Además vemos cómo se verifica que el tipo de respuesta sea un `json` y cómo se ha parseado el fichero `.json` (al que hacíamos referencia en la especificación) para hacer los `assert`s necesarios que aseguran que la respuesta es la esperada.
 
-**¿Y desde eclipse?**
+**¿Y desde eclipse?**  
+Personalmente utilizo eclipse en mis desarrollos, así que me interesa poder ejecutarlos desde el IDE. Obviamente primero necesitamos que se generen, esto ya hemos visto cómo debemos hacerlo mediante `clean test`. Pero si no he cambiado el contrato y no hace falta que se regeneren los test y además estoy desarrollando y quiero pasar todos los tests, ¿cómo lo hago? Como son clases autogeneradas, es necesario añadir las carpetas de `generated-test-sources` al buildpath. Por ejemplo, en este caso:
 
-Yo utilizo eclipse en mis desarrollos, así que me interesa poder ejecutarlos desde el IDE. Obviamente primero necesitamos que se generen, esto ya hemos visto cómo debemos hacerlo mediante clean test. Pero si no he cambiado el contrato y no hace falta que se regeneren los test y además estoy desarrollando y quiero pasar todos los tests, ¿cómo lo hago? Como son clases autogeneradas, es necesario añadir las carpetas de `generated-test-sources` al buildpath. En nuestro ejemplo lo hacemos como sigue.
-
-![Configuración del buildpath para ejecutar los tests desde eclipse](/assets/images/2020-10-15-contract-testing/02_buildpath_config.png){: .center }
+![Configuración del buildpath para ejecutar los tests desde eclipse](/assets/images/2020-10-15-playing-with-spring-cloud-contract/buildpath_config.png){: .center }
 
 # 4. Consumer: configurar las dependencias
 A diferencia del _producer_, los tests en el _consumer_ relacionados con el contrato no se generan de forma automática. Pero no estamos solos: recordemos que al mismo tiempo que se han creado los tests del _producer_ también se ha generado un `.jar` con el stub que nos permitirá simular las llamadas al _producer_ desde los tests del _consumer_. 
-En nuestro caso, el jar es: `timeReports-producer-0.0.1-SNAPSHOT-stubs.jar` que podemos encontrarlo en la carpeta target del _producer_.
-En nuestro ejemplo, al tener ambos proyectos en local, si en lugar de hacer `./mvnw clean test` (en el _producer_) hacemos `./mvnw clean install` tendremos dicho jar directamente en nuestro repositorio local de maven, con lo cual, podremos configurar nuestro _consumer_ para que acceda a él.
+En nuestro caso, el jar es: `timeReports-producer-0.0.1-SNAPSHOT-stubs.jar` que podemos encontrarlo en la carpeta `target `del _producer_.
+En este caso, al tener ambos proyectos en local, si en lugar de hacer `./mvnw clean test` (en el _producer_) hacemos `./mvnw clean install` tendremos dicho jar directamente en nuestro repositorio local de maven, con lo cual, podremos configurar nuestro _consumer_ para que acceda a él.
 
 Para poder tener acceso a él añadimos la siguiente dependencia en el `pom.xml`:
 
@@ -242,7 +244,7 @@ Además, no debemos olvidarnos de dependencia de Spring Cloud Contract para pode
 
 # 5. Consumer: crear y ejecutar los tests
 
-Una vez añadidas las dependencias ya podemos crear el wiremock basado en ese stub y crear nuestros tests. Un ejemplo podría ser:
+Una vez añadidas las dependencias ya podemos crear el WireMock basado en ese stub y crear nuestros tests. Un ejemplo podría ser:
 
 ##### Consumer | ReportsServiceContractTest.java
 ```java
@@ -343,12 +345,13 @@ public DayStatusSummary getDayStatusSummaryForWorkerAndDay(String workerUserName
   int totalDuration = worklogsForDay.stream().mapToInt(WorklogInfo::getDuration).sum();
 ```
 
-Pasamos los tests, y vemos que al cambiar la implementación los tests unitarios también han dejado de funcionar. Sólo nos quedará por lo tanto, corregirlos.
+Pasamos los tests, y vemos que al cambiar la implementación los tests unitarios también han dejado de funcionar (lógicamente). Sólo nos quedará por lo tanto, corregirlos.
 
-Como vemos en el ejemplo, es importante que cuando cambia el contrato el _consumer_ reciba la nueva especificación a través del stub (si no, los test seguirán pasando). En nuestro ejemplo es sencillo porque lo tenemos todo en local. Nos sirve para explicar el concepto de forma sencilla pero no nos olvidamos de que no refleja la realidad, donde muchas veces diferentes personas están trabajando en uno o en el otro sin necesidad de tener los proyectos en local.
+Como hemos visto en el ejemplo, es importante que cuando cambia el contrato tanto _consumer_ como _producer_ estén al tanto del cambio.  
+En este caso como es desde el _producer_ desde donde se realiza el cambio, es importante que el _consumer_ reciba la nueva especificación a través del stub (si no, los test seguirán pasando). En nuestro ejemplo es sencillo porque lo tenemos todo en local. Nos sirve para explicar el concepto de forma sencilla pero no nos olvidamos de que no refleja la realidad, donde muchas veces diferentes personas están trabajando en uno o en el otro sin necesidad de tener los proyectos en local.  
 Existen muchas formas de organizar el código y por lo tanto existen diferentes soluciones, que habría que analizar en función del proyecto y sus necesidades. Las preguntas más importantes a las que habría que dar respuesta sería:
 - **¿Dónde ubicamos los contratos?** ¿Podrían estar en el propio proyecto (como en el ejemplo) o quizás seríamejor que estuviesen en su propio repositorio de github?
 - **¿Cómo gestionamos el stub del _producer_?** ¿Podríamos desplegarlo en un repo de maven?
 - **¿Cómo gestionamos el versionado?** ¿Será el mismo que el del _producer_ o será independiente?
 
-No vamos a entrar a valorar estas y otras muchas cosas, que habría que tener en cuenta a la hora de ponerlo en práctica porque la respuesta será *depende*. Depende del proyecto, de la organización de los equipos,... En la documentación tanto de Spring Cloud Contract como de Pact hay diferentes recomendaciones, ejemplos, que pueden sernos de utilidad.
+No vamos a entrar a valorar estas y otras muchas cosas, que habría que tener en cuenta a la hora de ponerlo en práctica porque la respuesta será *depende*. Depende del proyecto, de la organización de los equipos,... En la documentación de Spring Cloud Contract hay diferentes recomendaciones y ejemplos que pueden sernos de utilidad.
