@@ -6,6 +6,23 @@
     <link>https://blog.arima.eu</link>
     
     <post>
+        <title>Estrategia de Contract Testing: Producer driven o Consumer driven</title>
+        <summary>&lt;p&gt;En un &lt;a href=&quot;https://blog.arima.eu/es/2020/09/03/contract-testing.html&quot; target=&quot;_blank&quot;&gt;post anterior&lt;/a&gt; hemos visto cómo surgen nuevas necesidades en el ámbito del testing derivadas de la evolución de las arquitecturas de las aplicaciones. En él, hablamos de cómo con el paso de los años hemos pasado de desarrollar aplicaciones basadas en una arquitectura monolítica a aplicaciones basadas en (micro)servicios. Donde antes teníamos tests centralizados en una única aplicación, ahora pasamos a tenerlos divididos en varias, de forma que tendremos testeadas cada una de ellas de forma independiente y estanca.&lt;/p&gt;
+</summary>
+        <pubDate>Fri, 09 Oct 2020 08:00:00 +0000</pubDate>
+        <link>https://blog.arima.eu/2020/10/09/contract-testing-approach.html</link>
+        <guid isPermaLink="true">https://blog.arima.eu//2020/10/09/contract-testing-approach.html</guid>
+        <headerImage>https://blog.arima.eu/assets/images/2020-10-09-contract-testing/header_recortado.jpg</headerImage>
+        
+        
+        
+        
+        
+
+      <author>Jessica Aguado</author>
+    </post>
+    
+    <post>
         <title>¿Deberías utilizar contenedores privilegiados?</title>
         <summary>&lt;p&gt;Al trabajar con contenedores es importante tener siempre en cuenta la seguridad del contenedor, o más importante, de la máquina que lo ejecuta. Una mala decisión a la hora de desplegar un contenedor puede otorgarle acceso total sobre el &lt;em&gt;host&lt;/em&gt;, y esto puede tener consecuencias negativas si este contenedor tiene un propósito malicioso o si una persona no autorizada consigue acceso a él.&lt;/p&gt;
 </summary>
@@ -30,23 +47,6 @@
         <link>https://blog.arima.eu/2020/09/03/contract-testing.html</link>
         <guid isPermaLink="true">https://blog.arima.eu//2020/09/03/contract-testing.html</guid>
         <headerImage>https://blog.arima.eu/assets/images/2020-09-03-contract-testing/header_recortado.jpg</headerImage>
-        
-        
-        
-        
-        
-
-      <author>Jessica Aguado</author>
-    </post>
-    
-    <post>
-        <title>Another way of doing tests: property-based testing</title>
-        <summary>&lt;h2 id=&quot;what-is-property-based-testing&quot;&gt;What is property-based testing?&lt;/h2&gt;
-</summary>
-        <pubDate>Mon, 06 Jul 2020 09:00:00 +0000</pubDate>
-        <link>https://blog.arima.eu/2020/07/06/property-based-testing.html</link>
-        <guid isPermaLink="true">https://blog.arima.eu//2020/07/06/property-based-testing.html</guid>
-        <headerImage>https://blog.arima.eu/assets/images/post-headers/property-based-testing.jpg</headerImage>
         
         
         
