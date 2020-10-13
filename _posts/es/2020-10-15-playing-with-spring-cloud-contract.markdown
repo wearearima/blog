@@ -6,7 +6,7 @@ author: jessica
 lang: es
 categories: testing, software quality, QA
 tags: testing, calidad, software quality, QA, contract testing, provider driven contract testing, spring cloud contract
-header-image: 2020-10-15-contract-testing/header_recortado.jpg
+header-image: 2020-10-15-playing-with-spring-cloud-contract/header.jpg
 ---
 En un [post anterior](https://blog.arima.eu/es/2020/09/03/contract-testing.html){:target="_blank"} hemos visto cómo surgen nuevas necesidades en el ámbito del testing derivadas de la evolución de las arquitecturas de las aplicaciones.  
 Mediante un ejemplo sencillo hemos asentado conceptos como _consumer_, _producer_, _servicio_ y hemos puesto en evidencia que tan importante como testear las funcionalidades en _consumer_ y _producer_ de forma independiente lo es asegurar que la interacción entre ambos es correcta.  
