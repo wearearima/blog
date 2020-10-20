@@ -6,6 +6,23 @@
     <link>https://blog.arima.eu</link>
     
     <post>
+        <title>Exprimiendo tu Data Lake (Parte I, Hudi)</title>
+        <summary>&lt;p&gt;Desde que surgieron las primeras bases de datos en los años 70, siempre se ha buscado la forma de explotar esa información tratando de extraer indicadores que ayuden en la toma de decisiones. Así es como nacieron las herramientas conocidas como Data Warehouse que estaban dirigidas a almacenar y explotar la información. Muchas de estas herramientas están compuestas por &lt;a href=&quot;https://en.wikipedia.org/wiki/Column-oriented_DBMS&quot; target=&quot;_blank&quot;&gt;bases de datos columnares&lt;/a&gt; que permiten realizar consultas analíticas de una forma mucho más eficiente que las bases de datos orientadas a fila utilizadas habitualmente en las bases de datos operacionales.&lt;/p&gt;
+</summary>
+        <pubDate>Tue, 20 Oct 2020 09:00:00 +0000</pubDate>
+        <link>https://blog.arima.eu/2020/10/20/exprimiendo-tu-data-lake-parte-I-hudi.html</link>
+        <guid isPermaLink="true">https://blog.arima.eu//2020/10/20/exprimiendo-tu-data-lake-parte-I-hudi.html</guid>
+        <headerImage>https://blog.arima.eu/assets/images/2020-10-20-exprimiendo-tu-data-lake-parte-I-hudi/post-header.jpg</headerImage>
+        
+        
+        
+        
+        
+
+      <author>Juan Barberio</author>
+    </post>
+    
+    <post>
         <title>Estrategia de Contract Testing: Producer driven o Consumer driven</title>
         <summary>&lt;p&gt;En un &lt;a href=&quot;https://blog.arima.eu/es/2020/09/03/contract-testing.html&quot; target=&quot;_blank&quot;&gt;post anterior&lt;/a&gt; hemos visto cómo surgen nuevas necesidades en el ámbito del testing derivadas de la evolución de las arquitecturas de las aplicaciones. En él, hablamos de cómo con el paso de los años hemos pasado de desarrollar aplicaciones basadas en una arquitectura monolítica a aplicaciones basadas en (micro)servicios. Donde antes teníamos tests centralizados en una única aplicación, ahora pasamos a tenerlos divididos en varias, de forma que tendremos testeadas cada una de ellas de forma independiente y estanca.&lt;/p&gt;
 </summary>
@@ -37,23 +54,6 @@
         
 
       <author>Urko Lekuona</author>
-    </post>
-    
-    <post>
-        <title>Introduction to Contract Testing, setting the context </title>
-        <summary>&lt;p&gt;Application development has evolved, and therefore new needs have arisen when it comes to testing and new tools to deal with them. Let’s take a look!&lt;/p&gt;
-</summary>
-        <pubDate>Thu, 03 Sep 2020 08:00:00 +0000</pubDate>
-        <link>https://blog.arima.eu/2020/09/03/contract-testing.html</link>
-        <guid isPermaLink="true">https://blog.arima.eu//2020/09/03/contract-testing.html</guid>
-        <headerImage>https://blog.arima.eu/assets/images/2020-09-03-contract-testing/header_recortado.png</headerImage>
-        
-        
-        
-        
-        
-
-      <author>Jessica Aguado</author>
     </post>
     
   </channel>
