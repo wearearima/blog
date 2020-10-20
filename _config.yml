@@ -19,7 +19,7 @@ description: ""
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://blog.arima.eu" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: wearearima
-github_username:  wearearima
+github_username: wearearima
 permalink: /:year/:month/:day/:title:output_ext #Remove categories from urls
 # Polyglot
 languages: ["es", "en"]
@@ -31,45 +31,47 @@ lang_from_path: true
 markdown: kramdown
 theme: minima
 gems:
-  - jekyll-feed 
+  - jekyll-feed
   - jekyll-sitemap
   - jekyll-polyglot
 exclude:
   - Gemfile
   - Gemfile.lock
 sass:
-    # Required for Polyglot
-    sourcemap: never
-    sass_dir: _sass
-    style: compressed
+  # Required for Polyglot
+  sourcemap: never
+  sass_dir: _sass
+  style: compressed
 authors:
   telle:
     display_name: Iñigo Telleria
-    bio: 
+    bio:
   aritz:
     display_name: Aritz Berasarte
-    bio: 
+    bio:
   ugaitz:
     display_name: Ugaitz Urien
-    bio: 
+    bio:
   arkaitz:
     display_name: Arkaitz Osa
-    bio: 
+    bio:
   alberto:
     display_name: Alberto Calvo
     bio:
   fernando:
     display_name: Fernando Lozano
-    bio:      
+    bio:
   urko:
     display_name: Urko Lekuona
     bio:
   jessica:
     display_name: Jessica Aguado
     bio:
+  juan:
+    display_name: Juan Barberio
+    bio:
 # Google Analytics
 google_analytics: UA-120217722-1
 plugins:
   - jekyll-sitemap
   - jekyll-polyglot
-  
