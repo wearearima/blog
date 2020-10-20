@@ -1,12 +1,12 @@
 ---
 layout: post
 title:  "Exprimiendo tu Data Lake (Parte I, Hudi)"
-date:   2020-10-14 9:00:00
+date:   2020-10-20 9:00:00
 author: juan
 lang: es
 categories: big data, data lake, apache hudi
 tags: big data, data lake, apache hudi, docker, data warehouse, parquet, avro, orc, delta lake, iceberg
-header-image: 2020-10-14-exprimiendo-tu-data-lake-parte-I-hudi/post-header.jpg
+header-image: 2020-10-20-exprimiendo-tu-data-lake-parte-I-hudi/post-header.jpg
 ---
 
 Desde que surgieron las primeras bases de datos en los años 70, siempre se ha buscado la forma de explotar esa información tratando de extraer indicadores que ayuden en la toma de decisiones. Así es como nacieron las herramientas conocidas como Data Warehouse que estaban dirigidas a almacenar y explotar la información. Muchas de estas herramientas están compuestas por [bases de datos columnares](https://en.wikipedia.org/wiki/Column-oriented_DBMS){:target="_blank"} que permiten realizar consultas analíticas de una forma mucho más eficiente que las bases de datos orientadas a fila utilizadas habitualmente en las bases de datos operacionales.
@@ -22,13 +22,13 @@ El disponer de un sistema de archivos distribuido como HDFS, posibilitó que muc
 Esta aproximación que resultó atractiva para muchas organizaciones, entrañaba también un peligro evidente. Almacenar la información sin ningún criterio puede provocar que nuestro Data Lake se convierta en un cajón de sastre, donde encontrar y organizar la información sea bastante complicado y por lo tanto, nunca se llegue a sacar ningún provecho de la misma.
 
 <p align="center">
-    <img src="/assets/images/2020-10-14-exprimiendo-tu-data-lake-parte-I-hudi/messy-room.png">
+    <img src="/assets/images/2020-10-20-exprimiendo-tu-data-lake-parte-I-hudi/messy-room.png">
 </p>
 
 Otro de los inconvenientes de Hadoop, es que era necesario tener conocimientos de programación para poder realizar operaciones analíticas sobre los datos almacenados en el sistema de archivos distribuido. Esto hacía que para algunos perfiles directivos o analistas fuese imposible realizar las exploraciones por sí mismos sin la ayuda de un(a) programador(a). Por este motivo, empezaron a surgir multitud de proyectos como Apache Hive que añadían capas SQL sobre este tipo de sistemas de archivos distribuidos. Estas capas SQL vinieron acompañadas de nuevos formatos de almacenamiento que eran más eficientes y se asemejaban a las utilizadas en bases de datos tradicionales ya que algunos estaban orientados a fila (Avro) y otros a columna (Parquet, ORC).
 
 <p align="center">
-    <img src="/assets/images/2020-10-14-exprimiendo-tu-data-lake-parte-I-hudi/parquet-orc-avro.png">
+    <img src="/assets/images/2020-10-20-exprimiendo-tu-data-lake-parte-I-hudi/parquet-orc-avro.png">
 </p>
 
 Disponer de Data Lakes capaces de almacenar información de manera eficiente y accesible mediante SQL, puede llevarnos a pensar que estos pueden reemplazar completamente los Data Warehouse más tradicionales. A pesar de que la línea que los separa es cada vez más fina, hay ciertas características que los Data Lakes no tienen y que con el tiempo se ha visto que son necesarias:
@@ -47,7 +47,7 @@ En los últimos años han aparecido algunas soluciones que pretenden cubrir esta
 En este artículo vamos a hablar sobre Apache Hudi, pero probablemente hablaremos sobre Delta Lake y Iceberg en futuras entradas.
 
 <p align="center">
-    <img src="/assets/images/2020-10-14-exprimiendo-tu-data-lake-parte-I-hudi/apache-hudi.png">
+    <img src="/assets/images/2020-10-20-exprimiendo-tu-data-lake-parte-I-hudi/apache-hudi.png">
 </p>
 
 <i>Apache Hudi</i> es un proyecto open source destinado a crear data lakes eficientes y a almacenar grandes conjuntos de datos en sistemas de archivos HDFS o sistemas de archivos en la nube como S3. El propio nombre del proyecto es una declaración de intenciones de las características que proporciona: Hudi (<b>H</b>adoop <b>U</b>psert <b>D</b>elete and <b>I</b>ncremental).
