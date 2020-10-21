@@ -20,7 +20,7 @@ Hemos elegido el enfoque **producer driven** y como herramienta utilizaremos [**
 
 # 1. Definir el contrato
 
-Empezaremos definiendo el acuerdo: escribiremos la especificación que tienen que cumplir _consumer_ y _producer_ para que la comunicación funcione correctamente. En Spring Cloud Contract se utiliza el término **contrato**. Se puede definir de diferentes formas (groovy, yaml, java, kotlin), nosotros hemos elegido yaml porque nos parece fácil de escribir/leer. 
+Empezaremos definiendo el acuerdo: escribiremos la especificación que tienen que cumplir _consumer_ y _producer_ para que la comunicación funcione correctamente. En Spring Cloud Contract se utiliza el término **contrato**. Se puede definir de diferentes formas (groovy, yaml, java, kotlin), nosotros hemos elegido `yaml` porque para este ejemplo nos parecía que podría resultar fácil de leer.
 
 Para nuestro caso de uso definimos el siguiente contrato:
 
@@ -48,7 +48,8 @@ response:
    bodyFromFile: worklogsForJessiOn20200505Response.json
 ```
 
-En este caso estamos estableciendo el siguiente acuerdo: si se hace una petición con un nombre de usuario y una fecha (establecemos el formato de cada uno de los parámetros aceptados), la respuesta será `status 200` y además devolverá un `JSON`. Asimismo, también establecemos cuál va a ser la respuesta mediante un [fichero](https://github.com/wearearima/time-report-contractTesting-02/blob/master/timeReports-producer/src/test/resources/contracts/worklogs/worklogsForJessiOn20200505Response.json){:target="_blank"}, pero se puede especificar de otras formas.
+En este caso estamos estableciendo el siguiente acuerdo:  
+  _Para una **petición** con: un nombre de usuario y una fecha (cuyo formato también especificamos), la **respuesta** será: `status 200` y un `JSON` (cuyo contenido establecemos mediante un [fichero](https://github.com/wearearima/time-report-contractTesting-02/blob/master/timeReports-producer/src/test/resources/contracts/worklogs/worklogsForJessiOn20200505Response.json){:target="_blank"})._
 
 Este contrato debe estar accesible para el _producer_. En este caso y por simplificar estará en la carpeta `/test/resources/contracts/worklogs` del _producer_.
 
@@ -105,13 +106,12 @@ Modificamos el `pom.xml` para añadir la dependiencia de Spring Cloud Contract V
 ...
 ```
 
-Además de las dependencias, hay que crear una clase base de test para que la extiendan los tests autogenerados del _producer_ y añadirla en la configuración del plugin en el `pom.xml`. Además de la clase base de test, se pueden personalizar diferentes aspectos como se explica en la [documentación del plugin](https://cloud.spring.io/spring-cloud-contract/spring-cloud-contract-maven-plugin/index.html){:target="_blank"}, como por ejemplo: dónde están los contratos, cómo generar los diferentes elementos, etc.
+Como se muestra en el `pom.xml`además de las dependencias hemos configurado algunas de las propiedades del plugin:
+-  Hemos indicado que el framework de test será JUnit 5
+-  Hemos indicado que el paquete que contendrá la _clase base de test_ será `eu.arima.tr`
 
-En nuestro ejemplo, en lugar de especificar una clase base concreta para los tests, hemos configurado el paquete en el que deben estar todas las clases "base" (ya que podría haber diferentes): `eu.arima.tr`.
-
-Además, el contrato lo hemos definido en la carpeta `contracts/worklogs`, por lo tanto (en base a la documentación que indica que el nombre se infiere en base a los nombres de las dos últimas carpetas), la clase deberá llamarse `WorklogsBase.java`.
-
-A continuación mostramos cómo es la clase base, que hemos utilizado en nuestro ejemplo:
+¿Qué es esto de la _clase base de test_? Según la especificación debemos generar una clase base que los test autogenerados extenderán. Esta clase debe contener toda la información necesaria para ejecutarlos (por ejemplo, podríamos configurar mocks de algunos beans, popular la base de datos con datos específicos para los tests...).  
+Para este ejemplo hemos creado una clase base muy sencilla cuya única responsabilidad será levantar el contexto. El contrato lo hemos definido en la carpeta `contracts/worklogs`, por lo tanto (en base a la documentación que indica que el nombre se infiere en base a los nombres de las dos últimas carpetas), la clase se llama `WorklogsBase.java`.
 
 #### Producer | WorklogsBase.java
 
@@ -130,6 +130,9 @@ public abstract class WorklogsBase {
   } 
 } 
 ```
+
+El plugin admite la configuración de otros parámetros como se explica en la [documentación del plugin](https://cloud.spring.io/spring-cloud-contract/spring-cloud-contract-maven-plugin/index.html){:target="_blank"}, como por ejemplo: dónde están los contratos, cómo generar los diferentes elementos, etc.
+
 
 # 3. Producer: crear y ejecutar los tests
 
