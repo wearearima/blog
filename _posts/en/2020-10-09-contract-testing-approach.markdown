@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Estrategia de Contract Testing: Producer driven o Consumer driven"
+title:  "Contract Testing strategy: Producer driven or Consumer driven"
 date:   2020-10-09 8:00:00
 author: jessica - translated by Janice
 lang: en
@@ -9,7 +9,7 @@ tags: testing, calidad, software quality, QA, contract testing, consumer-driven 
 header-image: 2020-10-09-contract-testing/header_recortado.jpg
 ---
 
-In a [previous post](https://blog.arima.eu/es/2020/09/03/contract-testing.html){:target="_blank"} we saw how new needs arise in the field of testing derived from the evolution of application architectures. We talked about how over the years we have gone from developing applications based on a monolithic architecture to applications based on (micro) services. Where before we had centralized tests in a single application, we now have them divided between several, so we have to ensure that each of them is tested independently and securely.
+In a [previous post](https://blog.arima.eu/en/2020/09/03/contract-testing.html){:target="_blank"} we saw how new needs arise in the field of testing derived from the evolution of application architectures. We talked about how over the years we have gone from developing applications based on a monolithic architecture to applications based on (micro) services. Where before we had centralized tests in a single application, we now have them divided between several, so we have to ensure that each of them is tested independently and securely.
 
 We presented a simple example of an application, which helped us to establish some concepts (such as _consumer_, _producer_, _service_) and which allowed us to highlight a new need: as important as testing the functionalities in _consumer_ and _producer_ independently is, so it is to ensure that the interaction between the two is right. We can address this need by means of _end-to-end_ tests, but while these tests are already complex to implement/execute in monolithic applications, they are even more so in other types of applications. 
 
@@ -23,7 +23,7 @@ We could explain this concept and translate it (at a practical level) through th
 - In the _consumer_, we will have tests where the requests will be made to a "stub" of the _producer_ which will comply with the defined agreement.
 - In the _producer_, we will have tests where requests based on the defined agreement will be made.
 
-Depending on the tool/framework that we take as a reference, the concept of "agreement between _consumer_ and _producer_" is called **pact** or **contract**, but they are just different names for the same concept: a specification of what the calls and responses should be like to consume the services offered by the _producer_.
+Depending on the tool/framework that we take as a reference, the concept of "agreement between _consumer_ and _producer_" is called **pact** or **contract**, but they are just different names for the same concept: a specification of what the requests and responses should be like to consume the services offered by the _producer_.
 
 Going back to the same example we used in the previous post, this idea could be represented as follows:
 
@@ -45,18 +45,18 @@ And why not? The name leaves no room for doubt: in one case the definition of th
 
 The basic concept, in both cases, is still the same. However, depending on the approach that best fits our project, we can choose one or the other. The same applies when choosing the tools: depending on our needs, we can choose between the various existing ones.
 
-#Tools
+# Tools
 
 Based on the example presented at the beginning (and knowing that it is a Spring Boot project managed with Maven), the most popular tools we have come across that we could use are:
 
 - **Pact**
 
-   This tool is strongly connected to _Consumer Driven Contract Testing_, basically because the pacts will always be in the _consumer_ part. In the [documentation] (https://docs.pact.io/#consumer-driven-contracts){:target="_blank"} we can read:
+   This tool is strongly connected to _Consumer Driven Contract Testing_, basically because the pacts will always be in the _consumer_ part. In the [documentation](https://docs.pact.io/#consumer-driven-contracts){:target="_blank"} we can read:
   
    > Pact is a code-first consumer-driven contract testing tool, ....
    The contract is generated during the execution of the automated consumer tests
   
-- ** Spring Cloud Contract **
+- **Spring Cloud Contract**
 
   Although in its [description](https://spring.io/projects/spring-cloud-contract){:target="_blank"} it says...
   > Spring Cloud Contract is an umbrella project holding solutions that help users in successfully implementing the Consumer Driven Contracts approach. Currently Spring Cloud Contract consists of the Spring Cloud Contract Verifier project.
