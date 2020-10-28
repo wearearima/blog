@@ -226,12 +226,6 @@ Para poder tener acceso a él añadimos la siguiente dependencia en el `pom.xml`
         <classifier>stubs</classifier>
         <version>0.0.1-SNAPSHOT</version>
         <scope>test</scope>
-        <exclusions>
-            <exclusion>
-                <groupId>*</groupId>
-                <artifactId>*</artifactId>
-            </exclusion>
-        </exclusions>
     </dependency>
   ...
   </dependencies>
