@@ -2,7 +2,7 @@
 layout: post
 title:  "Contract Testing strategy: Producer driven or Consumer driven"
 date:   2020-10-09 8:00:00
-author: jessica - translated by Janice
+author: jessica
 lang: en
 categories: testing, software quality, QA
 tags: testing, calidad, software quality, QA, contract testing, consumer-driven contract, consumer driven contract, pact, spring cloud contract
@@ -61,10 +61,10 @@ Based on the example presented at the beginning (and knowing that it is a Spring
   Although in its [description](https://spring.io/projects/spring-cloud-contract){:target="_blank"} it says...
   > Spring Cloud Contract is an umbrella project holding solutions that help users in successfully implementing the Consumer Driven Contracts approach. Currently Spring Cloud Contract consists of the Spring Cloud Contract Verifier project.
 
-...it can be used in both ways. In fact, in the documentation [Pact](https://docs.pact.io/getting_started/comparisons/#how-does-pact-differ-from-spring-cloud-contract){:target="_blank"} it indicates that Spring Cloud Contract originated from the provider-driven approach.
+  ...it can be used in both ways. In fact, in the documentation [Pact](https://docs.pact.io/getting_started/comparisons/#how-does-pact-differ-from-spring-cloud-contract){:target="_blank"} it indicates that Spring Cloud Contract originated from the provider-driven approach.
   > Pact has always been a consumer-driven contract testing framework whereas Spring Cloud Contract started as provider-driven.
 
   So it seems that I didn’t invent the term after all!
 
-  So far, this is the process I followed until I understood that behind **Contract Testing** there is not only one approach, there are also multiple tools. As always, choosing what suits us best will depend on the project we have in hand.
+So far, this is the process I followed until I understood that behind **Contract Testing** there is not only one approach, there are also multiple tools. As always, choosing what suits us best will depend on the project we have in hand.
 But this is all just a load of talk, right? And if, like me, to really learn/understand something, you need to put it into practice, don’t worry, as we’re not finished here: shortly I’m going to publish a brief example using **Spring Cloud Contract**.
