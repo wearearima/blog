@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Jugando con Spring Cloud Contract"
-date:   2020-10-13 8:00:00
+date:   2020-10-28 8:00:00
 author: jessica
 lang: es
 categories: testing, software quality, QA
