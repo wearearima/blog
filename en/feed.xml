@@ -23,8 +23,8 @@
     </post>
     
     <post>
-        <title>Estrategia de Contract Testing: Producer driven o Consumer driven</title>
-        <summary>&lt;p&gt;En un &lt;a href=&quot;https://blog.arima.eu/es/2020/09/03/contract-testing.html&quot; target=&quot;_blank&quot;&gt;post anterior&lt;/a&gt; hemos visto cómo surgen nuevas necesidades en el ámbito del testing derivadas de la evolución de las arquitecturas de las aplicaciones. En él, hablamos de cómo con el paso de los años hemos pasado de desarrollar aplicaciones basadas en una arquitectura monolítica a aplicaciones basadas en (micro)servicios. Donde antes teníamos tests centralizados en una única aplicación, ahora pasamos a tenerlos divididos en varias, de forma que tendremos testeadas cada una de ellas de forma independiente y estanca.&lt;/p&gt;
+        <title>Contract Testing strategy: Producer driven or Consumer driven</title>
+        <summary>&lt;p&gt;In a &lt;a href=&quot;https://blog.arima.eu/en/2020/09/03/contract-testing.html&quot; target=&quot;_blank&quot;&gt;previous post&lt;/a&gt; we saw how new needs arise in the field of testing derived from the evolution of application architectures. We talked about how over the years we have gone from developing applications based on a monolithic architecture to applications based on (micro) services. Where before we had centralized tests in a single application, we now have them divided between several, so we have to ensure that each of them is tested independently and securely.&lt;/p&gt;
 </summary>
         <pubDate>Fri, 09 Oct 2020 08:00:00 +0000</pubDate>
         <link>https://blog.arima.eu/2020/10/09/contract-testing-approach.html</link>

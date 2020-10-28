@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="es" itemscope itemtype="http://schema.org/Blog">
+<html lang="en" itemscope itemtype="http://schema.org/Blog">
 
   <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Estrategia de Contract Testing: Producer driven o Consumer driven</title>
-  <meta name="description" content="En un post anterior hemos visto cómo surgen nuevas necesidades en el ámbito del testing derivadas de la evolución de las arquitecturas de las aplicaciones. E...">
+  <title>Contract Testing strategy: Producer driven or Consumer driven</title>
+  <meta name="description" content="In a previous post we saw how new needs arise in the field of testing derived from the evolution of application architectures. We talked about how over the y...">
   
   <meta name="keywords" content="testing,calidad,softwarequality,QA,contracttesting,consumer-drivencontract,consumerdrivencontract,pact,springcloudcontract">
   
@@ -15,7 +15,7 @@
   <!-- Twitter cards -->
   <meta name="twitter:site"    content="@wearearima">
   <meta name="twitter:creator" content="@jessica">
-  <meta name="twitter:title"   content="Estrategia de Contract Testing: Producer driven o Consumer driven">
+  <meta name="twitter:title"   content="Contract Testing strategy: Producer driven or Consumer driven">
 
   
   <meta name="twitter:description" content="">
@@ -108,7 +108,7 @@
             <div class="wrapper">
               <div class="post-info__container">
                 <div class="post-info">
-                  <h1 class="post-title" itemprop="name headline">Estrategia de Contract Testing: Producer driven o Consumer driven</h1>
+                  <h1 class="post-title" itemprop="name headline">Contract Testing strategy: Producer driven or Consumer driven</h1>
                     <div class="post-meta" itemscope itemtype="https://schema.org/Person" itemprop="author">
                       
                       <div class="author-photo">
@@ -128,82 +128,82 @@
           </header>
           <div class="wrapper">
             <div class="post-content" itemprop="articleBody">
-              <p>En un <a href="https://blog.arima.eu/es/2020/09/03/contract-testing.html" target="_blank">post anterior</a> hemos visto cómo surgen nuevas necesidades en el ámbito del testing derivadas de la evolución de las arquitecturas de las aplicaciones. En él, hablamos de cómo con el paso de los años hemos pasado de desarrollar aplicaciones basadas en una arquitectura monolítica a aplicaciones basadas en (micro)servicios. Donde antes teníamos tests centralizados en una única aplicación, ahora pasamos a tenerlos divididos en varias, de forma que tendremos testeadas cada una de ellas de forma independiente y estanca.</p>
+              <p>In a <a href="https://blog.arima.eu/en/2020/09/03/contract-testing.html" target="_blank">previous post</a> we saw how new needs arise in the field of testing derived from the evolution of application architectures. We talked about how over the years we have gone from developing applications based on a monolithic architecture to applications based on (micro) services. Where before we had centralized tests in a single application, we now have them divided between several, so we have to ensure that each of them is tested independently and securely.</p>
 
-<p>Hemos presentado un ejemplo sencillo de una aplicación, que nos ha servido para establecer algunos conceptos (como <em>consumer</em>, <em>producer</em>, <em>servicio</em>) y que nos ha permitido poner en evidencia una nueva necesidad: tan importante como testear las funcionalidades en <em>consumer</em> y <em>producer</em> de forma independiente lo es asegurar que la interacción entre ambos es correcta. Esta necesidad podemos abordarla mediante test <em>end-to-end</em>, pero si bien estos tests ya resultan complejos de implementar/ejecutar en aplicaciones monolíticas en aquellas que no los son la complejidad es mayor.</p>
+<p>We presented a simple example of an application, which helped us to establish some concepts (such as <em>consumer</em>, <em>producer</em>, <em>service</em>) and which allowed us to highlight a new need: as important as testing the functionalities in <em>consumer</em> and <em>producer</em> independently is, so it is to ensure that the interaction between the two is right. We can address this need by means of <em>end-to-end</em> tests, but while these tests are already complex to implement/execute in monolithic applications, they are even more so in other types of applications.</p>
 
-<p>En este punto surge una idea: podría ser suficiente con verificar entre <em>consumer</em> y <em>producer</em>  que existe un acuerdo que ambos cumplen. Aquí es donde descubrimos un nuevo concepto: <strong>Contract Testing</strong>.</p>
+<p>At this point an idea comes up: it could be enough to verify between <em>consumer</em> and <em>producer</em>  that there is an agreement they both keep to. This is where we discover a new concept: <strong>Contract Testing</strong>.</p>
 
-<p>Y ¿qué es <strong>Contract Testing</strong>? En la documentación de Pact encontramos la siguiente <a href="https://docs.pact.io/#what-is-contract-testing" target="_blank">definición</a></p>
+<p>And what is <strong>Contract Testing</strong>? In the Pact documentation we find the following <a href="https://docs.pact.io/#what-is-contract-testing" target="_blank">definition</a></p>
 <blockquote>
-  <p>Es una técnica que nos permite probar la integración de varias aplicaciones, verificando en cada una de ellas que los mensajes que envía o recibe (dependiendo de su rol <em>consumer/producer</em>) se ajustan a un acuerdo que está documentado en un contrato.</p>
+  <p>It is a technique that allows us to test the integration of several applications, verifying in each one of them that the messages sent or received (depending on their role <em>consumer/producer</em>) conform to an agreement that is documented in a contract.</p>
 </blockquote>
 
-<p>Este concepto podríamos desgranarlo y traducirlo (a nivel práctico) en los siguientes puntos:</p>
+<p>We could explain this concept and translate it (at a practical level) through the following points:</p>
 <ul>
-  <li>Existirá un acuerdo concreto definido al que tanto <em>consumer</em> como <em>producer</em> tendrán acceso.</li>
-  <li>En el <em>consumer</em>, tendremos tests donde las peticiones se harán a un “stub” del <em>producer</em> que cumplirá el acuerdo definido.</li>
-  <li>En el <em>producer</em>, tendremos tests donde se realizarán peticiones basadas en el acuerdo definido.</li>
+  <li>There will be a specific agreement defined to which both <em>consumer</em> and <em>producer</em> will have access.</li>
+  <li>In the <em>consumer</em>, we will have tests where the requests will be made to a “stub” of the <em>producer</em> which will comply with the defined agreement.</li>
+  <li>In the <em>producer</em>, we will have tests where requests based on the defined agreement will be made.</li>
 </ul>
 
-<p>Dependiendo de la herramienta/framework que tomemos como referencia, el concepto de “acuerdo entre <em>consumer</em> y <em>producer</em>” recibe el nombre de <strong>pacto</strong> o <strong>contrato</strong>. Pero no dejan de ser diferentes nombres para el mismo concepto: una especificación de cómo deben ser las llamadas y respuestas para consumir los servicios ofertados por el <em>producer</em>.</p>
+<p>Depending on the tool/framework that we take as a reference, the concept of “agreement between <em>consumer</em> and <em>producer</em>” is called <strong>pact</strong> or <strong>contract</strong>, but they are just different names for the same concept: a specification of what the requests and responses should be like to consume the services offered by the <em>producer</em>.</p>
 
-<p>Volviendo al mismo ejemplo que hemos utilizado en el post anterior esta idea podríamos representarla como sigue:</p>
+<p>Going back to the same example we used in the previous post, this idea could be represented as follows:</p>
 
-<p><img src="/assets/images/2020-10-09-contract-testing/01_schema_app_simplificado_agreement.jpg" alt="Ejemplo del esquema de una aplicacion con consumer-producer donde se resalta la parte en la que se centra el Contract Testing" class="center" /></p>
+<p><img src="/assets/images/2020-10-09-contract-testing/01_schema_app_simplificado_agreement.jpg" alt="Example of the scheme of an application with consumer-producer where the part in which the Contract Testing is focused is highlighted" class="center" /></p>
 
-<p>Una vez presentado el concepto detrás de <em>Contract Testing</em> en términos generales, vamos a profundizar un poco más viendo los enfoques y herramientas existentes.</p>
+<p>Having presented the concept behind <em>Contract Testing</em> in general terms, let’s dig a little deeper by looking at the existing approaches and tools.</p>
 
-<h1 id="enfoques">Enfoques</h1>
-<p>En la literatura principalmente encontramos la relación <strong><em>Contract Testing</em></strong> → <strong><em>Consumer Driven Contract Testing</em></strong>. Esto al principio hizo que me resultase más difícil comprender el concepto subyacente. Tras leer varios post, documentación…. llegué a la conclusión de que el motivo de esta asociación parte de la idea de que un <em>servicio</em> de un <em>producer</em> carece de sentido si no hay alguna aplicación utilizándolo (<em>consumer</em>). Por tanto, parece lógico que quien establezca qué acuerdo debe cumplirse sea el <em>consumer</em>, mientras que en el <em>producer</em> debería recaer la responsabilidad de satisfacer las necesidades fijadas por <em>consumer</em> (de ahí la coletilla de “Consumer Driven”).</p>
+<h1 id="approaches">Approaches</h1>
+<p>In the literature we mainly find the connection <strong><em>Contract Testing</em></strong> → <strong><em>Consumer Driven Contract Testing</em></strong>. This at first made it more difficult for me to understand the underlying concept. After reading several posts, documentation…. I came to the conclusion that the reason for this association starts from the idea that a <em>service</em> from a <em>producer</em> is meaningless if there is no application using it (<em>consumer</em>). Therefore, it seems logical that it is the <em>consumer</em> who establishes which agreement must be complied with, while the <em>producer</em> should be responsible for satisfying the requirements set by the <em>consumer</em> (hence the tagline “Consumer Driven”).</p>
 
-<p>Vale, bien, pero en los proyectos que he conocido de cerca, la casuística no ha sido precisamente esa. El escenario ha sido el de un <em>producer</em> transversal a varias aplicaciones, que no conoce a sus <em>consumers</em>, y a quienes les oferta unos servicios determinados.</p>
+<p>Okay, fine, but in the projects that I have been closely involved with, this has not exactly been the case. The scenario has been that of a <em>producer</em> across several applications, unaware of its <em>consumers</em> and to whom it offers certain services.</p>
 
-<p>Así que, no me terminaba de encajar. Tuve que dar un paso atrás y verlo en perspectiva para llegar a entender que, en realidad, podríamos encontrarnos con dos situaciones en función del proyecto que tuviésemos entre manos (diferentes en forma pero iguales en concepto) y así dependiendo de quién sea el que define el acuerdo podríamos tener dos enfoques:</p>
+<p>So, I couldn’t quite make it fit together. I had to take a step back and see it in perspective to understand that, in reality, we could encounter two different situations, according to the project that we had in hand (different in form but the same in concept) and depending on who it is that defines the agreement, there might be two approaches:</p>
 
 <ul>
   <li><strong><em>Consumer Driven</em> Contract Testing</strong></li>
   <li><strong><em>Producer Driven</em> Contract Testing</strong></li>
 </ul>
 
-<p>¿Por qué no? El nombre no deja lugar a dudas: en un caso la definición del contrato nace en el <em>consumer</em> y en el otro del <em>producer</em>. La verdad es que hubo un momento en que <em>Producer Driven Contract Testing</em> parecía que fuese invención mía (no hay más que ver la búsqueda en Google de este término o de provider-driven…), pero encontré una referencia a ese término (como veremos un poquito más adelante) lo cual me dió pie a continuar con mi esquema mental.</p>
+<p>And why not? The name leaves no room for doubt: in one case the definition of the contract comes from the <em>consumer</em> and in the other from the <em>producer</em>. The truth is that there was a moment when <em>Producer Driven Contract Testing</em> seemed like it was my own invention (just look at the Google search for this term or provider-driven…), but I found a reference to the term (as we’ll see a little later) which gave me the base to continue with my mental schema.</p>
 
-<p>El concepto base, en ambos casos, no deja de ser el mismo. Sin embargo dependiendo del enfoque que encaje mejor con nuestro proyecto podremos decantarnos por uno u otro. Lo mismo sucede a la hora de elegir las herramientas para hacerlo: dependiendo de nuestras necesidades podremos elegir entra las diferentes herramientas existentes.</p>
+<p>The basic concept, in both cases, is still the same. However, depending on the approach that best fits our project, we can choose one or the other. The same applies when choosing the tools: depending on our needs, we can choose between the various existing ones.</p>
 
-<h1 id="herramientas">Herramientas</h1>
+<h1 id="tools">Tools</h1>
 
-<p>Basándonos en el ejemplo presentado al inicio (y sabiendo que es un proyecto Spring Boot gestionado con Maven), las herramientas más populares que hemos encontrado que podríamos utilizar en nuestro proyecto son:</p>
+<p>Based on the example presented at the beginning (and knowing that it is a Spring Boot project managed with Maven), the most popular tools we have come across that we could use are:</p>
 
 <ul>
   <li>
     <p><strong>Pact</strong></p>
 
-    <p>Esta herramienta está fuertemente acoplada con <em>Consumer Driven Contract Testing</em>, básicamente porque los pactos estarán siempre en la parte <em>consumer</em>. En la <a href="https://docs.pact.io/#consumer-driven-contracts" target="_blank">documentación</a> podemos leer:</p>
+    <p>This tool is strongly connected to <em>Consumer Driven Contract Testing</em>, basically because the pacts will always be in the <em>consumer</em> part. In the <a href="https://docs.pact.io/#consumer-driven-contracts" target="_blank">documentation</a> we can read:</p>
 
     <blockquote>
-      <p>Pact is a code-first consumer-driven contract testing tool, …. 
-The contract is generated during the execution of the automated consumer tests</p>
+      <p>Pact is a code-first consumer-driven contract testing tool, ….
+ The contract is generated during the execution of the automated consumer tests</p>
     </blockquote>
   </li>
   <li>
     <p><strong>Spring Cloud Contract</strong></p>
 
-    <p>Aunque en su <a href="https://spring.io/projects/spring-cloud-contract" target="_blank">descripción</a> dice:</p>
+    <p>Although in its <a href="https://spring.io/projects/spring-cloud-contract" target="_blank">description</a> it says…</p>
     <blockquote>
       <p>Spring Cloud Contract is an umbrella project holding solutions that help users in successfully implementing the Consumer Driven Contracts approach. Currently Spring Cloud Contract consists of the Spring Cloud Contract Verifier project.</p>
     </blockquote>
 
-    <p>Puede utilizarse tanto en un sentido como en otro. De hecho, en la documentación <a href="https://docs.pact.io/getting_started/comparisons/#how-does-pact-differ-from-spring-cloud-contract" target="_blank">Pact</a> indican que Spring Cloud Contract nació con el enfoque provider-driven.</p>
+    <p>…it can be used in both ways. In fact, in the documentation <a href="https://docs.pact.io/getting_started/comparisons/#how-does-pact-differ-from-spring-cloud-contract" target="_blank">Pact</a> it indicates that Spring Cloud Contract originated from the provider-driven approach.</p>
     <blockquote>
       <p>Pact has always been a consumer-driven contract testing framework whereas Spring Cloud Contract started as provider-driven.</p>
     </blockquote>
 
-    <p>¡Parece que no me he inventado el término!, tampoco estaré tan desencaminada ¿no?</p>
+    <p>So it seems that I didn’t invent the term after all!</p>
   </li>
 </ul>
 
-<p>Hasta aquí el proceso que seguí hasta llegar a comprender que detrás <strong>Contract Testing</strong> hay más de un enfoque y múltiples herramientas. Como siempre, dependerá del proyecto que tengamos entre manos para elegir lo que más nos encaje.<br />
- Mucha chapa y poco código, ¿verdad? Yo soy de las que para aprender/entender realmente algo tengo que ponerlo en práctica…. así que si te pasa lo mismo que a mí, no te preocupes, aquí no terminamos: en breve publicaré un pequeño ejemplo utilizando <strong>Spring Cloud Contract</strong>.</p>
+<p>So far, this is the process I followed until I understood that behind <strong>Contract Testing</strong> there is not only one approach, there are also multiple tools. As always, choosing what suits us best will depend on the project we have in hand.
+But this is all just a load of talk, right? And if, like me, to really learn/understand something, you need to put it into practice, don’t worry, as we’re not finished here: shortly I’m going to publish a brief example using <strong>Spring Cloud Contract</strong>.</p>
 
             </div>
 
