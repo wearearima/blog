@@ -49,7 +49,7 @@ response:
 ```
 
 En este caso estamos estableciendo el siguiente acuerdo:  
-  _Para una **petición** con: un nombre de usuario y una fecha (cuyo formato también especificamos), la **respuesta** será: `status 200` y un `JSON` (cuyo contenido establecemos mediante un [fichero](https://github.com/wearearima/time-report-contractTesting-02/blob/master/timeReports-producer/src/test/resources/contracts/worklogs/worklogsForJessiOn20200505Response.json){:target="_blank"})._
+_Para una **petición** con: un nombre de usuario y una fecha (cuyo formato también especificamos), la **respuesta** será: `status 200` y un `JSON` (cuyo contenido establecemos mediante un [fichero](https://github.com/wearearima/time-report-contractTesting-02/blob/master/timeReports-producer/src/test/resources/contracts/worklogs/worklogsForJessiOn20200505Response.json){:target="_blank"})._
 
 Este contrato debe estar accesible para el _producer_. En este caso y por simplificar estará en la carpeta `/test/resources/contracts/worklogs` del _producer_.
 
