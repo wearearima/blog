@@ -265,7 +265,7 @@ Además, no debemos olvidarnos de dependencia de Spring Cloud Contract para pode
 
 # 5. Consumer: crear y ejecutar los tests
 
-Una vez añadidas las dependencias ya podemos crear el WireMock basado en ese stub y crear nuestros tests. Un ejemplo podría ser:
+Una vez añadidas las dependencias ya podemos crear el WireMock basado en ese stub y crear nuestros tests. Nosotros lo haremos mediante la anotación `@AutoConfigureStubRunner` donde indicamos nuestro stub para que sea automáticamente descargado y registrado en el Wiremock. Un ejemplo podría ser:
 
 ##### Consumer | ReportsServiceContractTest.java
 
@@ -290,10 +290,9 @@ public class ReportsServiceContractTest {
 
 }
 ```
-Mediante la anotación `@AutoConfigureStubRunner` indicamos nuestro stub para que sea automáticamente registrado en el Wiremock.  
 Con esto ya tendríamos la comunicación entre ambos testeada, asegurándonos que si en algún momento en alguno de los dos componentes hubiese una modificación en el contrato los tests del otro fallarían. ¿Lo vemos?
 
-# ¿Somos capaces de desplegar en producción con la certeza de que todo funciona? 
+## ¿Somos capaces de desplegar en producción con la certeza de que todo funciona? 
 
 Este era el problema que nos encontramos en el [post anterior](https://blog.arima.eu/es/2020/09/03/contract-testing.html){:target="_blank"}: pese a tener testeados _consumer_ y _producer_, no éramos capaces de saber que algo no iba bien hasta llegar a producción. ¿Seremos capaces de detectarlo ahora?
 
