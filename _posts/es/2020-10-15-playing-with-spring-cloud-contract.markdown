@@ -271,8 +271,8 @@ Una vez añadidas las dependencias ya podemos crear el WireMock basado en ese st
 
 ```java
 @ExtendWith(SpringExtension.class)
-@SpringBootTest(properties = { "server.url=http://localhost:8083" })
-@AutoConfigureStubRunner(ids = { "eu.arima.tr:timeReports-producer:+:stubs:8083" })
+@SpringBootTest
+@AutoConfigureStubRunner(ids = { "eu.arima.tr:timeReports-producer:+:stubs:" })
 public class ReportsServiceContractTest {
 
   @Autowired
@@ -290,7 +290,7 @@ public class ReportsServiceContractTest {
 
 }
 ```
-
+Mediante la anotación `@AutoConfigureStubRunner` indicamos nuestro stub para que sea automáticamente registrado en el Wiremock.  
 Con esto ya tendríamos la comunicación entre ambos testeada, asegurándonos que si en algún momento en alguno de los dos componentes hubiese una modificación en el contrato los tests del otro fallarían. ¿Lo vemos?
 
 # ¿Somos capaces de desplegar en producción con la certeza de que todo funciona? 
