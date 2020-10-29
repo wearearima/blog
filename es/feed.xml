@@ -6,6 +6,23 @@
     <link>https://blog.arima.eu</link>
     
     <post>
+        <title>Jugando con Spring Cloud Contract</title>
+        <summary>&lt;p&gt;En un &lt;a href=&quot;https://blog.arima.eu/es/2020/09/03/contract-testing.html&quot; target=&quot;_blank&quot;&gt;post anterior&lt;/a&gt; hemos visto cómo surgen nuevas necesidades en el ámbito del testing derivadas de la evolución de las arquitecturas de las aplicaciones.&lt;/p&gt;
+</summary>
+        <pubDate>Thu, 29 Oct 2020 08:00:00 +0000</pubDate>
+        <link>https://blog.arima.eu/2020/10/29/playing-with-spring-cloud-contract.html</link>
+        <guid isPermaLink="true">https://blog.arima.eu//2020/10/29/playing-with-spring-cloud-contract.html</guid>
+        <headerImage>https://blog.arima.eu/assets/images/2020-10-15-playing-with-spring-cloud-contract/header.jpg</headerImage>
+        
+        
+        
+        
+        
+
+      <author>Jessica Aguado</author>
+    </post>
+    
+    <post>
         <title>Exprimiendo tu Data Lake (Parte I, Hudi)</title>
         <summary>&lt;p&gt;Desde que surgieron las primeras bases de datos en los años 70, siempre se ha buscado la forma de explotar esa información tratando de extraer indicadores que ayuden en la toma de decisiones. Así es como nacieron las herramientas conocidas como Data Warehouse que estaban dirigidas a almacenar y explotar la información. Muchas de estas herramientas están compuestas por &lt;a href=&quot;https://en.wikipedia.org/wiki/Column-oriented_DBMS&quot; target=&quot;_blank&quot;&gt;bases de datos columnares&lt;/a&gt; que permiten realizar consultas analíticas de una forma mucho más eficiente que las bases de datos orientadas a fila utilizadas habitualmente en las bases de datos operacionales.&lt;/p&gt;
 </summary>
@@ -37,23 +54,6 @@
         
 
       <author>Jessica Aguado</author>
-    </post>
-    
-    <post>
-        <title>¿Deberías utilizar contenedores privilegiados?</title>
-        <summary>&lt;p&gt;Al trabajar con contenedores es importante tener siempre en cuenta la seguridad del contenedor, o más importante, de la máquina que lo ejecuta. Una mala decisión a la hora de desplegar un contenedor puede otorgarle acceso total sobre el &lt;em&gt;host&lt;/em&gt;, y esto puede tener consecuencias negativas si este contenedor tiene un propósito malicioso o si una persona no autorizada consigue acceso a él.&lt;/p&gt;
-</summary>
-        <pubDate>Thu, 10 Sep 2020 09:00:00 +0000</pubDate>
-        <link>https://blog.arima.eu/2020/09/10/deberias-utilizar-contenedores-privilegiados.html</link>
-        <guid isPermaLink="true">https://blog.arima.eu//2020/09/10/deberias-utilizar-contenedores-privilegiados.html</guid>
-        <headerImage>https://blog.arima.eu/assets/images/2020-09-10-deberias-utilizar-contenedores-privilegiados/lock.jpg</headerImage>
-        
-        
-        
-        
-        
-
-      <author>Urko Lekuona</author>
     </post>
     
   </channel>
