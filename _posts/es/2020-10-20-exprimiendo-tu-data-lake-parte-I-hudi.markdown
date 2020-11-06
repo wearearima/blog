@@ -70,7 +70,7 @@ df.write.format("hudi") \
 .options(**hudi_options).mode("overwrite").save(basePath)
 ```
 
-No obstante, dispone de otro módulo llamado <i>DeltaStreamer</i> con el que se puede trabajar con fuentes de streaming, como puede ser Apache Kakfa. Más información [aquí](https://hudi.apache.org/docs/writing_data.html){:target="_blank"}.
+No obstante, dispone de otro módulo llamado <i>DeltaStreamer</i> con el que se puede trabajar con fuentes de streaming, como puede ser Apache Kafka. Más información [aquí](https://hudi.apache.org/docs/writing_data.html){:target="_blank"}.
 
 
 ## Conclusiones
