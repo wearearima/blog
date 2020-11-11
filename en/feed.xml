@@ -6,6 +6,23 @@
     <link>https://blog.arima.eu</link>
     
     <post>
+        <title>Utilizando Docker dentro de Kubernetes</title>
+        <summary>&lt;p&gt;En un &lt;a href=&quot;/2020/09/10/deberias-utilizar-contenedores-privilegiados.html&quot; target=&quot;_blank&quot;&gt;post anterior&lt;/a&gt; hablé sobre el problema de otorgar privilegios a un contenedor y los riesgos que esto supone. Hoy quiero presentaros un caso concreto en el que se otorgan privilegios a un contenedor y algunas alternativas.&lt;/p&gt;
+</summary>
+        <pubDate>Wed, 11 Nov 2020 09:00:00 +0000</pubDate>
+        <link>https://blog.arima.eu/2020/11/11/docker-en-kubernetes.html</link>
+        <guid isPermaLink="true">https://blog.arima.eu//2020/11/11/docker-en-kubernetes.html</guid>
+        <headerImage>https://blog.arima.eu/assets/images/2020-11-11-docker-en-kubernetes/whale.jpg</headerImage>
+        
+        
+        
+        
+        
+
+      <author>Urko Lekuona</author>
+    </post>
+    
+    <post>
         <title>Jugando con Spring Cloud Contract</title>
         <summary>&lt;p&gt;En un &lt;a href=&quot;https://blog.arima.eu/es/2020/09/03/contract-testing.html&quot; target=&quot;_blank&quot;&gt;post anterior&lt;/a&gt; hemos visto cómo surgen nuevas necesidades en el ámbito del testing derivadas de la evolución de las arquitecturas de las aplicaciones.&lt;/p&gt;
 </summary>
@@ -37,23 +54,6 @@
         
 
       <author>Juan Barberio</author>
-    </post>
-    
-    <post>
-        <title>Contract Testing strategy: Producer driven or Consumer driven</title>
-        <summary>&lt;p&gt;In a &lt;a href=&quot;https://blog.arima.eu/en/2020/09/03/contract-testing.html&quot; target=&quot;_blank&quot;&gt;previous post&lt;/a&gt; we saw how new needs arise in the field of testing derived from the evolution of application architectures. We talked about how over the years we have gone from developing applications based on a monolithic architecture to applications based on (micro) services. Where before we had centralized tests in a single application, we now have them divided between several, so we have to ensure that each of them is tested independently and securely.&lt;/p&gt;
-</summary>
-        <pubDate>Fri, 09 Oct 2020 08:00:00 +0000</pubDate>
-        <link>https://blog.arima.eu/2020/10/09/contract-testing-approach.html</link>
-        <guid isPermaLink="true">https://blog.arima.eu//2020/10/09/contract-testing-approach.html</guid>
-        <headerImage>https://blog.arima.eu/assets/images/2020-10-09-contract-testing/header_recortado.jpg</headerImage>
-        
-        
-        
-        
-        
-
-      <author>Jessica Aguado</author>
     </post>
     
   </channel>

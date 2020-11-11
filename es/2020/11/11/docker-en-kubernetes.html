@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="es" itemscope itemtype="http://schema.org/Blog">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Utilizando Docker dentro de Kubernetes</title>
+  <meta name="description" content="En un post anterior hablé sobre el problema de otorgar privilegios a un contenedor y los riesgos que esto supone. Hoy quiero presentaros un caso concreto en ...">
+  
+  <meta name="keywords" content="docker,kubernetes,k8s,jenkins,privileged">
+  
+
+  <!-- Twitter cards -->
+  <meta name="twitter:site"    content="@wearearima">
+  <meta name="twitter:creator" content="@urko">
+  <meta name="twitter:title"   content="Utilizando Docker dentro de Kubernetes">
+
+  
+  <meta name="twitter:description" content="">
+  
+
+  
+  <meta name="twitter:card"  content="summary_large_image">
+  <meta name="twitter:image" content="https://blog.arima.eu/assets/images/2020-11-11-docker-en-kubernetes/whale.jpg">
+  
+  <!-- end of Twitter cards -->
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="https://blog.arima.eu/es/2020/11/11/docker-en-kubernetes.html">
+  <link rel="alternate" type="application/rss+xml" title="ARIMA" href="/es/feed.xml">
+
+  <!-- SEO Recipes (http://polyglot.untra.io/seo/) -->
+  <meta http-equiv="Content-Language" content="es">
+  <link rel="alternate"
+      hreflang="es"
+      href="https://blog.arima.eu/es/2020/11/11/docker-en-kubernetes.html" />
+  
+  
+  <link rel="alternate"
+      hreflang="es"
+      href="https://blog.arima.eu/es/2020/11/11/docker-en-kubernetes.html" />
+  
+  
+  <link rel="alternate"
+      hreflang="en"
+      href="https://blog.arima.eu/en/2020/11/11/docker-en-kubernetes.html" />
+  
+
+  
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-120217722-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-120217722-1');
+</script>
+  
+</head>
+
+  <body>
+    <nav class="toolbar">
+    <div class="wrapper">    
+        <a href="/es/">
+            <div class="toolbar__logo">
+                <svg xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" version="1.1" width="100%" height="100%" viewBox="0 0 33 6">
+    <path id="path24" d="m30.346988508615652,-0.000015174522529526127 l-0.6439224998849951,0 l-2.7763635316117727,6.135695064030662 l0.7050150612484405,0 l2.3859233880279893,-5.335002838884215 l2.3660424189063254,5.335002838884215 l0.739668694925785,0 L30.346988508615652,-0.000015174522529526127 zm-8.274141805179609,3.3681675186951847 l-2.2194202716340565,-3.324608867598761 l-0.6962481061149294,0 l0,6.092136412934239 l0.6700853029999622,0 l0,-4.926062349034439 l2.2194202716340565,3.2553706313868567 l0.034929758248478535,0 l2.2192131782057056,-3.2639304930920168 l0,4.934622210739599 l0.6873430886958508,0 l0,-6.092136412934239 l-0.6961100438293623,0 l-2.2192131782057056,3.324608867598761 zm-9.143036799396208,-1.5057072863948877 c0,-1.0964906719739773 -0.8613705996531913,-1.8189015812038738 -2.201748299081466,-1.8189015812038738 l-2.619662837493104,0 l0,6.092136412934239 l0.6876192132669849,0 l0,-5.456842805897188 l1.8799251114245357,0 c0.9833486289517317,0 1.5576187057681203,0.4525681720889824 1.5576187057681203,1.2097017461390067 c0,0.7919252700129356 -0.7831583148794242,1.2620273523689407 -1.6968545207625496,1.2620273523689407 l0,0.6178287279128115 l1.7665759749739396,2.3672849794764295 l0.8442508762428699,0 l-1.8711581562910244,-2.4891249464894027 c0.9571858258367647,-0.17416557324290774 1.6534339319516944,-0.7659695603263191 1.6534339319516944,-1.7841098852409623 m2.7743616284710493,4.273234831730365 l0.6872050264102838,0 l0,-6.0920673817914555 l-0.6872050264102838,0 l0,6.0920673817914555 zM2.7761571742923965,-0.000015174522529526127 l-2.7761564381834223,6.135695064030662 l0.7048769989628736,0 l2.386061450313556,-5.335002838884215 l2.3658353254779745,5.335002838884215 l0.739668694925785,0 l-2.7761564381834223,-6.135695064030662 l-0.6441295933133457,0 z" stroke-width="0"/>
+</svg>
+
+            </div>
+        </a>
+        <!-- Language selector -->
+        <div class="language-selector">
+            
+              
+                <b class="selected">ES</b>
+              
+              
+                &nbsp;|&nbsp;
+              
+            
+              
+                <a class="unselected" href="/en/2020/11/11/docker-en-kubernetes.html">EN</a>
+              
+              
+            
+         </div>
+    </div>
+</nav>
+<div id="publisher_id" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Arima 100% Software Design" />
+    <meta itemprop="url" content="https://arima.eu" />
+    <div itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+        <meta itemprop="url" content="https://arima.eu/img/logo.png" />
+    </div>
+</div>
+    <main aria-label="Content">        
+        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting" itemref="publisher_id">
+          <link itemprop="mainEntityOfPage" href="/es/2020/11/11/docker-en-kubernetes.html" />
+
+          <header class="post-header">
+            <div class="post-img" itemprop="image" itemscope itemtype="http://schema.org/ImageObject" style="background-image: url('https://blog.arima.eu/assets/images/2020-11-11-docker-en-kubernetes/whale.jpg');">
+              <meta itemprop="url" content="https://blog.arima.eu/assets/images/2020-11-11-docker-en-kubernetes/whale.jpg" />
+            </div>
+            <div class="wrapper">
+              <div class="post-info__container">
+                <div class="post-info">
+                  <h1 class="post-title" itemprop="name headline">Utilizando Docker dentro de Kubernetes</h1>
+                    <div class="post-meta" itemscope itemtype="https://schema.org/Person" itemprop="author">
+                      
+                      <div class="author-photo">
+                        <img itemprop="image" src="/assets/images/authors/urko.png" alt="">
+                      </div>
+                      <div>
+                        <span class="post-author" itemprop="name">Urko Lekuona</span>
+                      </div>
+                      <div>
+                        <span class="post-date">11 Nov 2020</span>
+                      </div>
+                    </div>
+                    <meta  itemprop="datePublished dateModified" content="11 Nov 2020" />
+                </div>
+              </div>
+            </div>
+          </header>
+          <div class="wrapper">
+            <div class="post-content" itemprop="articleBody">
+              <p>En un <a href="/es/2020/09/10/deberias-utilizar-contenedores-privilegiados.html" target="_blank">post anterior</a> hablé sobre el problema de otorgar privilegios a un contenedor y los riesgos que esto supone. Hoy quiero presentaros un caso concreto en el que se otorgan privilegios a un contenedor y algunas alternativas.</p>
+
+<p>Una de las herramientas de Integración Contínua más populares es <a href="https://www.jenkins.io/" target="_blank">Jenkins</a>. Destaca por la cantidad de <em>plugins</em> que su comunidad pone a disposición de los usuarios y la libertad que otorga para crear <em>pipelines</em>. Además, nos ofrece imágenes con las que podremos desplegarlo en contenedores, ¡incluso en un cluster Kubernetes!</p>
+
+<p>Y hacer esto deberia ser sencillo, ¿no? Escribes un despliegue que tenga un pod con la imagen de Jenkins y ya lo tienes (aparte de instalar plugins y configurarlo). Pero, ¿y si quiero hacer <em>building</em> de imágenes dentro de un <em>pipeline</em>?</p>
+
+<p>Entonces necesitas Docker CLI o <a href="https://plugins.jenkins.io/docker-plugin/" target="_blank">Docker plugin for Jenkins</a>. Pero estos a su vez necesitan que exista un Docker daemon al que poder hacer las peticiones que corresponda. La cosa se complica.</p>
+
+<p>En este post vamos a explorar, paso a paso, diferentes planteamientos para desplegar Jenkins con Docker en Kubernetes, y explicar la evolución que hay en cada uno.</p>
+
+<h2 id="despliegues">Despliegues</h2>
+
+<h3 id="1-docker-in-docker">1. Docker in Docker</h3>
+
+<p>El despliegue más obvio es: ¿Que necesito un Docker daemon? Pues lo instalo. Coges la imagen base de Jenkins, instalas Docker Engine y creas una imagen personalizada con ambos programas.</p>
+
+<p>Esto es posible, lo puedes probar y funciona. Pero tiene ciertas implicaciones que lo hacen una mala opción:</p>
+
+<ul>
+  <li><strong>Drivers de almacenamiento</strong>: Este problema surge por las incompatibilidades entre diferentes sistemas de ficheros de contenedores. Sin entrar en detalle, los contenedores utilizan sistemas de ficheros propios (AUFS, BTRFS, Device Mapper, …) y estos pueden no ser compatibles entre sí. Según el tipo de sistema que utilice el <em>container runtime</em> del nodo y el que utilice el Docker daemon del contenedor, pueden ocasionarse problemas. Probablemente estas incompatibilidades se vayan solucionando según se publiquen nuevas versiones de DinD (Docker in Docker), pero el riesgo sigue latente.</li>
+  <li><strong>Cache</strong>: Si quieres usar la cache de Docker, que seguramente quieras, y quieres que esta caché sea accesible entre diferentes replicas, deberás montar <code class="highlighter-rouge">/var/lib/docker</code> como un volumen en cada contenedor. Pero Docker está pensado para tener acceso exclusivo a este directorio, y que dos o más daemons accedan a la vez puede acarrear problemas de corrupción de datos.</li>
+  <li><strong>Seguridad</strong>: Para poder ejecutar el Docker daemon dentro de un contenedor, es necesario ejecutarlo con privilegios (<code class="highlighter-rouge">--privileged</code> en Docker o <code class="highlighter-rouge">securityContext.privileged: true</code> en Kubernetes). <strong>Es un requisito</strong>. Eso implica serios riesgos de serguridad, que explicamos en <a href="/es/2020/09/10/deberias-utilizar-contenedores-privilegiados.html" target="_blank">este post</a>.</li>
+</ul>
+
+<p align="center">
+    <img src="/assets/images/2020-11-11-docker-en-kubernetes/dind.png" />
+</p>
+
+<h3 id="2-docker-out-of-docker">2. Docker out of Docker</h3>
+
+<p>En esta variante, se utiliza el Docker Daemon del nodo del cluster. Para ello, hay que utilizar una imagen con Jenkins y Docker CLI, montar el socket desde el nodo al contenedor, y ejecutar el contenedor con un grupo que tenga acceso al socket.</p>
+
+<p>Ventajas sobre Docker in Docker:</p>
+
+<ul>
+  <li>Soluciona los problemas del driver de almacenamiento y de la cache, que son inherentes de Docker in Docker.</li>
+  <li>No creamos más Docker daemons y reutilizamos el ya existente, lo que minimiza el uso de recursos.</li>
+  <li>Evita utilizar contenedores privilegiados.</li>
+</ul>
+
+<p>Aún así, también tiene sus problemas:</p>
+
+<ul>
+  <li>Mantenemos los riesgos de seguridad, ya que al tener acceso al socket de Docker, podemos arrancar un contenedor privilegiado que nos dará acceso al <em>host</em> de manera sencilla.</li>
+  <li>Montar directorios del nodo en un <em>pod</em> es una mala práctica. De hecho, en este caso en concreto, no podemos asumir que el socket de Docker vaya a existir en el nodo. Según el <em>container runtime</em> del cluster, puede que no exista, por lo que esta solución no se podría aplicar
+    <blockquote>
+      <p>Nota: A fecha de publicación, los tres mayores proveedores cloud de Kubernetes (AWS, Azure y Google Cloud) proveen nodos con el container runtime Docker, que sí que tiene socket de Docker.</p>
+    </blockquote>
+  </li>
+  <li>Al estar usando el demonio del nodo, todos los contenedores que lancemos son hermanos del contenedor desde que los lanzamos. Esto trae riesgos de por sí, ya que pueden ocurrir problemas al dar nombres a los contenedores (nombrar dos contenedores igual, o dos volúmenes). Además, los contenedores que no se han ejecutado desde Kubernetes no están gestionados por Kubernetes, por lo que podemos llegar a problemas de asignación de recursos (el contenedor utiliza recursos del nodo pero Kubernetes no se da cuenta).</li>
+</ul>
+
+<p align="center">
+    <img src="/assets/images/2020-11-11-docker-en-kubernetes/dood.png" />
+</p>
+
+<h3 id="3-docker-in-docker-sidecar">3. Docker in Docker sidecar</h3>
+
+<p>La última alternativa, consiste en desplegar dos contenedores en el mismo pod, uno con Jenkins y Docker CLI (igual que en Docker out of Docker) y otro con Docker Engine, y utilizar el socket TCP, ya que la red en el mismo pod es compartida.</p>
+
+<p>Aunque en principio parezca que es dar un paso atrás, tiene una explicación: somos capaces de modificar las opciones del Docker daemon. ¿Y para que queremos eso? Podemos instalar <em>plugins</em> de autorización que impidan lanzar contenedores privilegiados en ese daemon (se explica en más detalle <a href="/es/2020/09/10/deberias-utilizar-contenedores-privilegiados.html" target="_blank">en el post anterior</a>).</p>
+
+<p>Ventajas sobre Docker out of Docker:</p>
+
+<ul>
+  <li>Resolvemos los problemas de seguridad. Al no tener permisos para lanzar contenedores privilegiados ni se monta ningún directorio del nodo, el nodo está aislado del pod.</li>
+</ul>
+
+<p>Desventajas:</p>
+
+<ul>
+  <li>Damos un paso atrás y retomamos los posibles problemas de cache y de drivers de almacenamiento.</li>
+  <li>El contenedor con Docker Engine tendrá que ser ejecutado en modo privilegiado.</li>
+</ul>
+
+<p align="center">
+    <img src="/assets/images/2020-11-11-docker-en-kubernetes/dind-sidecar.png" />
+</p>
+
+<h2 id="conclusión">Conclusión</h2>
+
+<p>Ninguno de los métodos para desplegar Jenkins en Kubernetes es bueno. Todos conllevan riesgos de seguridad y ciertas pegas, y habrá que decidir cuál de ellas preferimos para nuestro despliegue. Si sirve de algo, en el <a href="https://github.com/helm/charts/tree/master/stable/jenkins" target="_blank">Helm chart oficial</a> lo resuelven utilizando el método de montar el <em>socket</em> del nodo (DooD) y sin lanzar contenedores privilegiados, pero como hemos explicado, esto sigue teniendo riesgos de seguridad.</p>
+
+<p>La recomendación es no usar Docker como herramienta de <em>building</em> de imágenes en Jenkins. Existen soluciones <em>daemonless</em> que evitan los problemas descritos en este documento sobre las que hablaremos en un futuro post.</p>
+
+            </div>
+
+            
+          </div>
+        </article>
+      </div>
+    </main>
+
+    <footer>
+    <div class="wrapper">
+        <div class="footer__container">
+            <div class="footer__sello">
+                <img src="/assets/images/arima_sello_white.png" alt="" />
+            </div>
+            <div class="footer__content">
+                <div class="footer__data">
+                    <dl>
+                        <dt>web</dt>
+                        <dd><a itemprop="sameAs" href="https://www.arima.eu/es/">arima.eu</a></dd>
+                    </dl>
+                    <dl>
+                        <dt>social</dt>
+                        <dd>
+                            <a itemprop="sameAs" href="https://github.com/wearearima" class="social"><span class="icon-github"></span></a>
+                            <a itemprop="sameAs" href="https://twitter.com/wearearima" class="social"><span class="icon-twitter"></span></a>
+                            <a itemprop="sameAs" href="https://www.linkedin.com/company/arima-software-design/" class="social"><span class="icon-linkedin"></span></a>
+                            <a itemprop="sameAs" href="/es/feed.xml" class="social"><span class="icon-feed"></span></a>
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt>Privacidad</dt>
+                        <dd class="politica-cookies">
+                            <a href="/es/cookies.html">Política de cookies</a>
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+    <div class="cookies-message" id="cookies-message">
+    <h4>Este sitio web utiliza cookies</h4>
+    <p>Este sitio web utiliza cookies para mejorar la experiencia del usuario. Al utilizar nuestro sitio web, usted acepta todas las cookies de acuerdo con nuestra Política de cookies.</p>
+    <div class="buttons">
+        <a class="button" href="/es/cookies.html">Leer política de cookies</a>
+        <button class="button" id="accept-cookies">Aceptar</button>
+    </div>
+</div>
+<script>
+    (function() {
+        if(localStorage) {
+            var cookiesAccepted = localStorage.getItem("cookies-accepted");
+            if(cookiesAccepted) {
+                hideCookiesMessage();
+                
+            } else {
+                document.getElementById('accept-cookies').addEventListener("click", function() {
+                    hideCookiesMessage();
+                    localStorage.setItem("cookies-accepted", true);
+                })
+            }
+        }
+        function hideCookiesMessage() {
+            document.getElementById('cookies-message').style.display = "none";
+        }
+    })();
+</script>
+
+  </body>
+
+</html>
