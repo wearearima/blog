@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="es" itemscope itemtype="http://schema.org/Blog">
+<html lang="en" itemscope itemtype="http://schema.org/Blog">
 
   <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Exprimiendo tu Data Lake (Parte I, Hudi)</title>
-  <meta name="description" content="Desde que surgieron las primeras bases de datos en los años 70, siempre se ha buscado la forma de explotar esa información tratando de extraer indicadores qu...">
+  <title>Squeezing the most out of your Data Lake (Part I, Hudi)</title>
+  <meta name="description" content="Since the first databases emerged in the 70s, a way to fully utilize this information has always been sought by trying to extract indicators that help in dec...">
   
   <meta name="keywords" content="bigdata,datalake,apachehudi,docker,datawarehouse,parquet,avro,orc,deltalake,iceberg">
   
@@ -15,7 +15,7 @@
   <!-- Twitter cards -->
   <meta name="twitter:site"    content="@wearearima">
   <meta name="twitter:creator" content="@juan">
-  <meta name="twitter:title"   content="Exprimiendo tu Data Lake (Parte I, Hudi)">
+  <meta name="twitter:title"   content="Squeezing the most out of your Data Lake (Part I, Hudi)">
 
   
   <meta name="twitter:description" content="">
@@ -108,7 +108,7 @@
             <div class="wrapper">
               <div class="post-info__container">
                 <div class="post-info">
-                  <h1 class="post-title" itemprop="name headline">Exprimiendo tu Data Lake (Parte I, Hudi)</h1>
+                  <h1 class="post-title" itemprop="name headline">Squeezing the most out of your Data Lake (Part I, Hudi)</h1>
                     <div class="post-meta" itemscope itemtype="https://schema.org/Person" itemprop="author">
                       
                       <div class="author-photo">
@@ -128,38 +128,38 @@
           </header>
           <div class="wrapper">
             <div class="post-content" itemprop="articleBody">
-              <p>Desde que surgieron las primeras bases de datos en los años 70, siempre se ha buscado la forma de explotar esa información tratando de extraer indicadores que ayuden en la toma de decisiones. Así es como nacieron las herramientas conocidas como Data Warehouse que estaban dirigidas a almacenar y explotar la información. Muchas de estas herramientas están compuestas por <a href="https://en.wikipedia.org/wiki/Column-oriented_DBMS" target="_blank">bases de datos columnares</a> que permiten realizar consultas analíticas de una forma mucho más eficiente que las bases de datos orientadas a fila utilizadas habitualmente en las bases de datos operacionales.</p>
+              <p>Since the first databases emerged in the 70s, a way to fully utilize this information has always been sought by trying to extract indicators that help in decision-making. This is how the tools known as Data Warehouse were born, which were aimed at storing and getting the most out of this information. Many of these tools are made up of <a href="https://en.wikipedia.org/wiki/Column-oriented_DBMS" target="_blank">columnar databases</a> that allow analytical queries to be made in a much more efficient way than the row-oriented databases commonly used in operational databases.</p>
 
-<p>Con el tiempo, las necesidades y volúmenes de información con las que las empresas trabajan han crecido de forma exponencial. En los últimos 15 años, hemos visto a empresas como Google, Microsoft, Amazon, Facebook, Uber, Netflix o Twitter manejando inmensas cantidades de volúmenes de datos y tráfico. Los Data Warehouse tradicionales no eran capaces de manejar estos volúmenes en un periodo de tiempo razonable y en muchos casos necesitaban de varios días para poder ejecutar las consultas.</p>
+<p>Over time, the needs and volumes of information with which companies work have grown exponentially. In the last 15 years, we have seen companies such as Google, Microsoft, Amazon, Facebook, Uber, Netflix or Twitter handling huge volumes of data and traffic. Traditional Data Warehouses were not capable of handling these volumes in a reasonable period of time and in many cases they needed several days to be able to execute the queries.</p>
 
-<p>Esta situación forzó a estas empresas a liderar un cambio lanzando papers y nuevas herramientas que les permitieran analizar ingentes cantidades de información de manera más eficiente. El pistoletazo de salida lo dió Google publicando los papers <a href="https://static.googleusercontent.com/media/research.google.com/en//archive/gfs-sosp2003.pdf" target="_blank">Google File System</a> (2003) y <a href="https://static.googleusercontent.com/media/research.google.com/en//archive/mapreduce-osdi04.pdf" target="_blank">Map Reduce</a> (2004). Pocos años después (2006), Yahoo hizo público el proyecto open source Hadoop que estaba basado en los papers de Google mencionados. Hadoop cambió la industria de la analítica de datos tal y como la conocíamos hasta entonces y dió inicio al movimiento denominado “Big Data”.</p>
+<p>This situation forced these companies to lead a change by launching papers and new tools that would allow them to analyze vast amounts of information more efficiently. The starting gun was fired by Google publishing the papers <a href="https://static.googleusercontent.com/media/research.google.com/en//archive/gfs-sosp2003.pdf" target="_blank">Google File System</a> (2003) and <a href="https://static.googleusercontent.com/media/research.google.com/en//archive/mapreduce-osdi04.pdf" target="_blank">Map Reduce</a> (2004). A few years later (2006), Yahoo published the open source project Hadoop, which was based on the  previously mentioned Google papers. Hadoop changed the data analytics industry as we had known it until then and started the movement called “Big Data”.</p>
 
-<p>El stack Hadoop básicamente permitía almacenar (<a href="https://hadoop.apache.org/docs/r1.2.1/hdfs_design.html" target="_blank">HDFS</a>) y procesar (<a href="https://static.googleusercontent.com/media/research.google.com/en//archive/mapreduce-osdi04.pdf" target="_blank">Map Reduce</a>) la información de forma distribuida. Esto aumentaba la capacidad de procesamiento ya que se podía escalar horizontalmente añadiendo más máquinas al sistema.</p>
+<p>The Hadoop stack basically allowed us to store (<a href="https://hadoop.apache.org/docs/r1.2.1/hdfs_design.html" target="_blank">HDFS</a>) and process (<a href="https://static.googleusercontent.com/media/research.google.com/en//archive/mapreduce-osdi04.pdf" target="_blank">Map Reduce</a>) the information in a distributed way. This increased the processing capacity as it could be scaled horizontally by adding more machines to the system.</p>
 
-<p>El disponer de un sistema de archivos distribuido como HDFS, posibilitó que muchas organizaciones comenzasen a almacenar datos que antes tenían que desechar. Esta tendencia se hizo todavía más notoria con el nacimiento de productos como Amazon S3 que permiten almacenar cualquier tipo de información de forma económica en la nube. Esta nueva realidad, llevó a James Dixon (fundador de Pentaho) a acuñar el concepto Data Lake en 2010. Los Data Lake se presentaban como almacenes de datos en los que se puede encontrar la información en crudo tal cual ha sido recibida y sin ningún tipo de procesamiento. De esta forma, se podía empezar a almacenar información con la expectativa de que algún día se pudiera explotar de alguna manera.</p>
+<p>Having a distributed file system like HDFS made it possible for many organizations to start storing data that they previously had to discard. This trend became even more prominent with the birth of products such as Amazon S3, which allowed the storage of any type of information cheaply in the cloud. This new reality led James Dixon (founder of Pentaho) to conceive the idea of Data Lake in 2010. Data Lakes were presented as data stores in which you could find raw information as it had been received and without any type of processing. In this way, you could start storing information with the expectation that one day it might be of use.</p>
 
-<p>Esta aproximación que resultó atractiva para muchas organizaciones, entrañaba también un peligro evidente. Almacenar la información sin ningún criterio puede provocar que nuestro Data Lake se convierta en un cajón de sastre, donde encontrar y organizar la información sea bastante complicado y por lo tanto, nunca se llegue a sacar ningún provecho de la misma.</p>
+<p>This approach, which was attractive to many organizations, also involved an obvious danger. Storing the information without any criteria could cause our Data Lake to become a mess, where finding and organizing the information could be quite complicated and therefore, you would never get any benefit from it.</p>
 
 <p align="center">
     <img src="/assets/images/2020-10-20-exprimiendo-tu-data-lake-parte-I-hudi/messy-room.png" />
 </p>
 
-<p>Otro de los inconvenientes de Hadoop, es que era necesario tener conocimientos de programación para poder realizar operaciones analíticas sobre los datos almacenados en el sistema de archivos distribuido. Esto hacía que para algunos perfiles directivos o analistas fuese imposible realizar las exploraciones por sí mismos sin la ayuda de un(a) programador(a). Por este motivo, empezaron a surgir multitud de proyectos como Apache Hive que añadían capas SQL sobre este tipo de sistemas de archivos distribuidos. Estas capas SQL vinieron acompañadas de nuevos formatos de almacenamiento que eran más eficientes y se asemejaban a las utilizadas en bases de datos tradicionales ya que algunos estaban orientados a fila (Avro) y otros a columna (Parquet, ORC).</p>
+<p>Another disadvantage of Hadoop is that it was necessary to have programming knowledge to be able to perform analytical operations on the data stored in the distributed file system. This made it impossible for some managers or analysts to carry out the tasks on their own without the help of a programmer. For this reason, a multitude of projects began to emerge, such as Apache Hive, which added SQL layers on top of this type of distributed file system. These SQL layers were accompanied by new storage formats that were more efficient and resembled those used in traditional databases since some were row oriented (Avro) and others column oriented (Parquet, ORC).</p>
 
 <p align="center">
     <img src="/assets/images/2020-10-20-exprimiendo-tu-data-lake-parte-I-hudi/parquet-orc-avro.png" />
 </p>
 
-<p>Disponer de Data Lakes capaces de almacenar información de manera eficiente y accesible mediante SQL, puede llevarnos a pensar que estos pueden reemplazar completamente los Data Warehouse más tradicionales. A pesar de que la línea que los separa es cada vez más fina, hay ciertas características que los Data Lakes no tienen y que con el tiempo se ha visto que son necesarias:</p>
+<p>Having Data Lakes capable of storing information in an efficient and accessible way through SQL, might lead us to think that these could completely replace the more traditional Data Warehouses. Although the line that separates them is getting thinner, there are certain characteristics that Data Lakes do not have and that over time have been seen to be necessary:</p>
 
 <ul>
-  <li>Poder realizar actualizaciones de manera eficiente. Formatos como Parquet, por defecto, no están preparados para ser actualizados y requieren de procesos manuales que son pesados y poco eficientes.</li>
-  <li>Transacciones ACID con las que poder asegurar la atomicidad, consistencia, aislamiento y durabilidad de las operaciones.</li>
-  <li><i>Lineage</i> o seguimiento, para saber qué modificaciones han tenido los datos a lo largo del tiempo.</li>
-  <li>Evolución del esquema o estructura.</li>
+  <li>Being able to perform updates efficiently. Formats such as Parquet, by default, are not prepared to be updated and require manual processes which are lengthy and not very efficient.</li>
+  <li>ACID transactions with which to ensure the atomicity, consistency, isolation and durability of operations.</li>
+  <li><i>Lineage</i> or tracking, to know what modifications have been made to data over time.</li>
+  <li>Evolution of the scheme or structure.</li>
 </ul>
 
-<p>En los últimos años han aparecido algunas soluciones que pretenden cubrir estas necesidades, como por ejemplo:</p>
+<p>In recent years, some solutions have appeared that seek to meet these needs, such as:</p>
 
 <ul>
   <li>Apache hudi</li>
@@ -167,38 +167,37 @@
   <li>Apache Iceberg</li>
 </ul>
 
-<p>En este artículo vamos a hablar sobre Apache Hudi, pero probablemente hablaremos sobre Delta Lake y Iceberg en futuras entradas.</p>
+<p>In this article we are going to talk about Apache Hudi, but we will probably talk about Delta Lake and Iceberg in future posts.</p>
 
 <p align="center">
     <img src="/assets/images/2020-10-20-exprimiendo-tu-data-lake-parte-I-hudi/apache-hudi.png" />
 </p>
 
-<p><i>Apache Hudi</i> es un proyecto open source destinado a crear data lakes eficientes y a almacenar grandes conjuntos de datos en sistemas de archivos HDFS o sistemas de archivos en la nube como S3. El propio nombre del proyecto es una declaración de intenciones de las características que proporciona: Hudi (<b>H</b>adoop <b>U</b>psert <b>D</b>elete and <b>I</b>ncremental).</p>
+<p><i>Apache Hudi</i> is an open source project aimed at creating efficient data lakes and storing large data sets on HDFS file systems or cloud file systems such as S3. The very name of the project is a statement of intent for the features it provides: Hudi (<b>H</b>adoop <b>U</b>psert <b>D</b>elete and <b>I</b>ncremental).</p>
 
-<p><i>Hudi</i> por tanto, permite aplicar actualizaciones de forma eficiente sobre archivos Parquet almacenados en sistemas de archivos distribuidos ocupándose de aspectos como la compactación y otorgando capacidades ACID. Además, permite hacer consultas incrementales de forma que se pueden obtener todas las modificaciones que se hayan llevado a cabo desde un momento determinado. Esto abre la puerta a poder realizar analíticas en streaming sin tener que implantar infraestructuras complejas como las propuestas en la <a href="http://lambda-architecture.net" target="_blank">arquitectura lambda</a>.</p>
+<p><i>Hudi</i> therefore, allows you to apply updates efficiently on Parquet files stored in distributed file systems, taking care of aspects such as compaction and granting ACID capabilities. In addition, it allows you to make incremental queries so that you can obtain all the modifications that have been carried out from a given moment. This opens the door to being able to perform streaming analytics without having to introduce complex infrastructures such as those proposed in the <a href="http://lambda-architecture.net" target="_blank">lambda architecture</a>.</p>
 
-<p>Hudi tiene dos modos de funcionamiento, siendo cada uno de ellos más indicado en función de la frecuencia con la que se lleven a cabo lecturas o escrituras sobre los datos:</p>
+<p>Hudi has two operating modes, each of which is more suitable depending on the frequency with which data is read or written:</p>
 
 <ul>
   <li>Copy on Write (CoW)</li>
   <li>Merge on Read (MoR)</li>
 </ul>
 
-<p>Las diferencias entre estos dos modos se pueden encontrar en la <a href="https://hudi.apache.org/docs/concepts.html#table-types--queries" target="_blank">documentación oficial</a>.</p>
+<p>The differences between these two modes can be found in the <a href="https://hudi.apache.org/docs/concepts.html#table-types--queries" target="_blank">official documentation</a>.</p>
 
-<p>En el <a href="https://github.com/wearearima/hudi-exercise" target="_blank">siguiente</a> repositorio de Github tenemos implementado un ejemplo en el que se puede ver cómo se utiliza Hudi, así como algunas de sus capacidades. En él se procesan entradas de la Wikipedia con Apache Spark, identificando aquellas que se corresponden con celebridades. El resultado se almacena en HDFS con formato Parquet haciendo uso de la herramienta Hudi. Una vez se ha completado esta operación se llevan a cabo nuevos procesos que provocan actualizaciones sobre los datos. En ellos veremos como HUDI gestiona automáticamente la creación y compactación de los nuevos archivos Parquet, guardando <i>commits</i> en cada una de la operaciones con las que se puede comprobar el <i>lineage</i> de lo datos.</p>
+<p>In the <a href="https://github.com/wearearima/hudi-exercise" target="_blank">following</a> Github repository we have implemented an example in which you can see how Hudi is used, as well as some of its capabilities. In this example, Wikipedia entries are processed with Apache Spark, identifying those that correspond to celebrities. The result is stored in HDFS with Parquet format using the Hudi tool. Once this operation has been completed, new processes are carried out that trigger updates to the data. In these, we will see how HUDI automatically manages the creation and compaction of the new Parquet files, saving <i>commits</i> in each of the operations with which the <i>lineage</i> of the data can be checked .</p>
 
-<p>Utilizaremos el módulo <code class="highlighter-rouge">hudi-spark</code> que ofrece una <i>API Datasource</i> con el que se puede escribir (y leer) un Dataframe de Spark en una tabla Hudi, de la siguiente manera:</p>
+<p>We will use the <code class="highlighter-rouge">hudi-spark</code> module that offers a <i>Datasource API</i> with which a Spark Dataframe can be written (and read) in a Hudi table, as follows:</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">df</span><span class="o">.</span><span class="n">write</span><span class="o">.</span><span class="nb">format</span><span class="p">(</span><span class="s">"hudi"</span><span class="p">)</span> \
 <span class="o">.</span><span class="n">options</span><span class="p">(</span><span class="o">**</span><span class="n">hudi_options</span><span class="p">)</span><span class="o">.</span><span class="n">mode</span><span class="p">(</span><span class="s">"overwrite"</span><span class="p">)</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">basePath</span><span class="p">)</span>
 </code></pre></div></div>
+<p>However, it has another module called <i>DeltaStreamer</i> which you can use to work with streaming sources, such as Apache Kafka. More information <a href="https://hudi.apache.org/docs/writing_data.html" target="_blank">here</a>.</p>
 
-<p>No obstante, dispone de otro módulo llamado <i>DeltaStreamer</i> con el que se puede trabajar con fuentes de streaming, como puede ser Apache Kafka. Más información <a href="https://hudi.apache.org/docs/writing_data.html" target="_blank">aquí</a>.</p>
+<h2 id="conclusions">Conclusions</h2>
 
-<h2 id="conclusiones">Conclusiones</h2>
-
-<p>En este artículo hemos visto cuál fue la motivación que llevó al nacimiento de los almacenes de datos conocidos como Data Lake. Hemos mencionado también algunas de las carencias e inconvenientes que tienen las mismas y cómo han aparecido herramientas que pretenden paliarlas. ¿Significa esto que los Data Lake van a evolucionar lo suficiente como para poder convertirse en nuestra única fuente de datos? Quizás es pronto para hacer una afirmación así pero lo que sí parece seguro es que estamos en un momento de cambios en el ecosistema big data y que los próximos años se presentan apasionantes en este sector.</p>
+<p>In this article we have seen the motivation that led to the birth of the data stores known as Data Lake. We have also mentioned some of the shortcomings and drawbacks they have and how tools have appeared that seek to alleviate them. Does this mean that Data Lakes are going to evolve enough to become our only source of data? Perhaps it is too early to make such a statement, but what does seem certain is that we are in a time of change in the big data ecosystem and that the next few years will be exciting in this sector.</p>
 
             </div>
 

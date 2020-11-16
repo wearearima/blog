@@ -40,8 +40,8 @@
     </post>
     
     <post>
-        <title>Exprimiendo tu Data Lake (Parte I, Hudi)</title>
-        <summary>&lt;p&gt;Desde que surgieron las primeras bases de datos en los años 70, siempre se ha buscado la forma de explotar esa información tratando de extraer indicadores que ayuden en la toma de decisiones. Así es como nacieron las herramientas conocidas como Data Warehouse que estaban dirigidas a almacenar y explotar la información. Muchas de estas herramientas están compuestas por &lt;a href=&quot;https://en.wikipedia.org/wiki/Column-oriented_DBMS&quot; target=&quot;_blank&quot;&gt;bases de datos columnares&lt;/a&gt; que permiten realizar consultas analíticas de una forma mucho más eficiente que las bases de datos orientadas a fila utilizadas habitualmente en las bases de datos operacionales.&lt;/p&gt;
+        <title>Squeezing the most out of your Data Lake (Part I, Hudi)</title>
+        <summary>&lt;p&gt;Since the first databases emerged in the 70s, a way to fully utilize this information has always been sought by trying to extract indicators that help in decision-making. This is how the tools known as Data Warehouse were born, which were aimed at storing and getting the most out of this information. Many of these tools are made up of &lt;a href=&quot;https://en.wikipedia.org/wiki/Column-oriented_DBMS&quot; target=&quot;_blank&quot;&gt;columnar databases&lt;/a&gt; that allow analytical queries to be made in a much more efficient way than the row-oriented databases commonly used in operational databases.&lt;/p&gt;
 </summary>
         <pubDate>Tue, 20 Oct 2020 09:00:00 +0000</pubDate>
         <link>https://blog.arima.eu/2020/10/20/exprimiendo-tu-data-lake-parte-I-hudi.html</link>
