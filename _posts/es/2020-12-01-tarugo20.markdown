@@ -2,7 +2,7 @@
 layout: post
 title:  "He asistido a una conferencia en tiempos de pandemia: Tarugoconf"
 date:   2020-12-01 9:00:00
-author: Jessica
+author: jessica
 lang: es
 categories: conferencia, tarugoconf
 tags: conferencia, tarugo, tarugoconf, bonilla
