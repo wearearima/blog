@@ -6,6 +6,25 @@
     <link>https://blog.arima.eu</link>
     
     <post>
+        <title>He asistido a una conferencia en tiempos de pandemia: Tarugoconf</title>
+        <summary>&lt;blockquote&gt;
+  &lt;p&gt;Hoy anunciaremos que el próximo 23 de octubre se celebrará la #tarugo5&lt;/p&gt;
+&lt;/blockquote&gt;
+</summary>
+        <pubDate>Tue, 01 Dec 2020 09:00:00 +0000</pubDate>
+        <link>https://blog.arima.eu/2020/12/01/tarugo20.html</link>
+        <guid isPermaLink="true">https://blog.arima.eu//2020/12/01/tarugo20.html</guid>
+        <headerImage>https://blog.arima.eu/assets/images/2020-12-01-tarugo20/header.jpeg</headerImage>
+        
+        
+        
+        
+        
+
+      <author></author>
+    </post>
+    
+    <post>
         <title>Utilizando Docker dentro de Kubernetes</title>
         <summary>&lt;p&gt;En un &lt;a href=&quot;/2020/09/10/deberias-utilizar-contenedores-privilegiados.html&quot; target=&quot;_blank&quot;&gt;post anterior&lt;/a&gt; hablé sobre el problema de otorgar privilegios a un contenedor y los riesgos que esto supone. Hoy quiero presentaros un caso concreto en el que se otorgan privilegios a un contenedor y algunas alternativas.&lt;/p&gt;
 </summary>
@@ -37,23 +56,6 @@
         
 
       <author>Jessica Aguado</author>
-    </post>
-    
-    <post>
-        <title>Exprimiendo tu Data Lake (Parte I, Hudi)</title>
-        <summary>&lt;p&gt;Desde que surgieron las primeras bases de datos en los años 70, siempre se ha buscado la forma de explotar esa información tratando de extraer indicadores que ayuden en la toma de decisiones. Así es como nacieron las herramientas conocidas como Data Warehouse que estaban dirigidas a almacenar y explotar la información. Muchas de estas herramientas están compuestas por &lt;a href=&quot;https://en.wikipedia.org/wiki/Column-oriented_DBMS&quot; target=&quot;_blank&quot;&gt;bases de datos columnares&lt;/a&gt; que permiten realizar consultas analíticas de una forma mucho más eficiente que las bases de datos orientadas a fila utilizadas habitualmente en las bases de datos operacionales.&lt;/p&gt;
-</summary>
-        <pubDate>Tue, 20 Oct 2020 09:00:00 +0000</pubDate>
-        <link>https://blog.arima.eu/2020/10/20/exprimiendo-tu-data-lake-parte-I-hudi.html</link>
-        <guid isPermaLink="true">https://blog.arima.eu//2020/10/20/exprimiendo-tu-data-lake-parte-I-hudi.html</guid>
-        <headerImage>https://blog.arima.eu/assets/images/2020-10-20-exprimiendo-tu-data-lake-parte-I-hudi/post-header.jpg</headerImage>
-        
-        
-        
-        
-        
-
-      <author>Juan Barberio</author>
     </post>
     
   </channel>

@@ -6,6 +6,25 @@
     <link>https://blog.arima.eu</link>
     
     <post>
+        <title>He asistido a una conferencia en tiempos de pandemia: Tarugoconf</title>
+        <summary>&lt;blockquote&gt;
+  &lt;p&gt;Hoy anunciaremos que el próximo 23 de octubre se celebrará la #tarugo5&lt;/p&gt;
+&lt;/blockquote&gt;
+</summary>
+        <pubDate>Tue, 01 Dec 2020 09:00:00 +0000</pubDate>
+        <link>https://blog.arima.eu/2020/12/01/tarugo20.html</link>
+        <guid isPermaLink="true">https://blog.arima.eu//2020/12/01/tarugo20.html</guid>
+        <headerImage>https://blog.arima.eu/assets/images/2020-12-01-tarugo20/header.jpeg</headerImage>
+        
+        
+        
+        
+        
+
+      <author></author>
+    </post>
+    
+    <post>
         <title>Utilizando Docker dentro de Kubernetes</title>
         <summary>&lt;p&gt;En un &lt;a href=&quot;/2020/09/10/deberias-utilizar-contenedores-privilegiados.html&quot; target=&quot;_blank&quot;&gt;post anterior&lt;/a&gt; hablé sobre el problema de otorgar privilegios a un contenedor y los riesgos que esto supone. Hoy quiero presentaros un caso concreto en el que se otorgan privilegios a un contenedor y algunas alternativas.&lt;/p&gt;
 </summary>
@@ -37,23 +56,6 @@
         
 
       <author>Jessica Aguado</author>
-    </post>
-    
-    <post>
-        <title>Squeezing the most out of your Data Lake (Part I, Hudi)</title>
-        <summary>&lt;p&gt;Since the first databases emerged in the 70s, a way to fully utilize this information has always been sought by trying to extract indicators that help in decision-making. This is how the tools known as Data Warehouse were born, which were aimed at storing and getting the most out of this information. Many of these tools are made up of &lt;a href=&quot;https://en.wikipedia.org/wiki/Column-oriented_DBMS&quot; target=&quot;_blank&quot;&gt;columnar databases&lt;/a&gt; that allow analytical queries to be made in a much more efficient way than the row-oriented databases commonly used in operational databases.&lt;/p&gt;
-</summary>
-        <pubDate>Tue, 20 Oct 2020 09:00:00 +0000</pubDate>
-        <link>https://blog.arima.eu/2020/10/20/exprimiendo-tu-data-lake-parte-I-hudi.html</link>
-        <guid isPermaLink="true">https://blog.arima.eu//2020/10/20/exprimiendo-tu-data-lake-parte-I-hudi.html</guid>
-        <headerImage>https://blog.arima.eu/assets/images/2020-10-20-exprimiendo-tu-data-lake-parte-I-hudi/post-header.jpg</headerImage>
-        
-        
-        
-        
-        
-
-      <author>Juan Barberio</author>
     </post>
     
   </channel>
