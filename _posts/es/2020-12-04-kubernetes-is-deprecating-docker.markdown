@@ -9,7 +9,7 @@ tags: kubernetes, docker, cri, containerd, cri-o
 header-image: 2020-12-04-kubernetes-is-deprecating-docker/autum.jpg
 ---
 
-Recientemente se ha anunciado a través del [changelog de Kubernetes](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.20.md#deprecation) que se depreca el soporte a Docker en la próxima versión, v1.20, y que en futuras versiones será eliminado. 
+Recientemente se ha anunciado a través del [changelog de Kubernetes](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.20.md#deprecation){:target="_blank"} que se depreca el soporte a Docker en la próxima versión, v1.20, y que en futuras versiones será eliminado. 
 
 ![Anuncio de Kubernetes deprecando Docker](/assets/images/2020-12-04-kubernetes-is-deprecating-docker/changelog.png){: .center }
 
@@ -17,7 +17,7 @@ El anuncio ya nos adelanta que la solución consiste en migrar Docker a un Conta
 
 Este post intenta aportar su granito de arena para despejar las dudas que hayan podido surgir, pero para ello previamente necesitamos explicar algunos conceptos del anuncio que nos pueden resultar desconocidos, como CRI y DockerShim. 
 
-Kubernetes es un orquestador de contenedores y una de sus tareas es descargar imágenes de contenedores, arrancar y parar contenedores. El elemento que se ocupa de esta tarea en Kubernetes se llama Container Runtime y el que utilizaba Kubernetes en sus inicios era [Docker](https://docs.docker.com/engine/). Sin embargo, en la comunidad existían otros Container Runtimes además de Docker, como por ejemplo [Rkt de Coreos](https://coreos.com/rkt/). 
+Kubernetes es un orquestador de contenedores y una de sus tareas es descargar imágenes de contenedores, arrancar y parar contenedores. El elemento que se ocupa de esta tarea en Kubernetes se llama Container Runtime y el que utilizaba Kubernetes en sus inicios era [Docker](https://docs.docker.com/engine/){:target="_blank"}. Sin embargo, en la comunidad existían otros Container Runtimes además de Docker, como por ejemplo [Rkt de Coreos](https://coreos.com/rkt/){:target="_blank"}. 
 
 Con el objetivo de lograr que Kubernetes pudiera trabajar con otros Container Runtimes, no sólo con Docker, crearon el API “Container Runtime Interface” (CRI) y se incluyó en Kubernetes en la versión 1.5, allá por el año 2016. Mediante CRI, Kubernetes se abstrae del Container Runtime que se utiliza en el cluster y le permite integrarse con múltiples Container Runtimes de manera transparente, por ejemplo ContainerD, CRI-O, etc. 
 
@@ -45,7 +45,7 @@ Sí. La desaparición de Docker es sólo dentro de Kubernetes. Puedes seguir uti
 
 - ***¿A qué implementación de CRI debería migrar?***
 
-Dependerá de cada caso y el proveedor de Kubernetes que se esté utilizando. Si utilizas OpenShift probablemente la recomendación sea utilizar CRI-O. En el resto de los casos, lo más fácil será migrar a Containerd porque el propio engine de [Docker utiliza internamente Containerd](https://kubernetes.io/blog/2018/05/24/kubernetes-containerd-integration-goes-ga/#what-about-docker-engine) desde la versión 1.11 (en la gráfica anterior he hecho una pequeña trampa porque he omitido una flecha que nace en Docker y apunta a Containerd para simplificar y no confundir :-). 
+Dependerá de cada caso y el proveedor de Kubernetes que se esté utilizando. Si utilizas OpenShift probablemente la recomendación sea utilizar CRI-O. En el resto de los casos, lo más fácil será migrar a Containerd porque el propio engine de [Docker utiliza internamente Containerd](https://kubernetes.io/blog/2018/05/24/kubernetes-containerd-integration-goes-ga/#what-about-docker-engine){:target="_blank"} desde la versión 1.11 (en la gráfica anterior he hecho una pequeña trampa porque he omitido una flecha que nace en Docker y apunta a Containerd para simplificar y no confundir :-). 
 
 - ***Pero entonces, ¿por qué tanto revuelo con esta noticia?***
 
@@ -59,7 +59,7 @@ El anuncio supone que todos estos usuarios del runtime de Docker tendrán que mi
 
 En principio, para la mayoría de usuarios de Kubernetes el cambio se supone que va a ser transparente porque las implementaciones de CRI también soportan las imágenes Docker. Sin embargo, sí puede haber situaciones donde la migración a CRI tenga impacto y suponga cambios en la infraestructura. 
 
-Por ejemplo, instalaciones de Kubernetes con contenedores que acceden al daemon de Docker del host mediante técnicas “Docker out of Docker” sí se verán afectadas. Este tipo de técnicas ya no serán posibles ya que el demonio de Docker ya no existirá en las instalaciones de Kubernetes. Si tenéis curiosidad sobre cómo funciona “Docker out of Docker” y otras técnicas similares, podéis consultar [este post de Urko](https://blog.arima.eu/2020/11/11/docker-en-kubernetes.html). 
+Por ejemplo, instalaciones de Kubernetes con contenedores que acceden al daemon de Docker del host mediante técnicas “Docker out of Docker” sí se verán afectadas. Este tipo de técnicas ya no serán posibles ya que el demonio de Docker ya no existirá en las instalaciones de Kubernetes. Si tenéis curiosidad sobre cómo funciona “Docker out of Docker” y otras técnicas similares, podéis consultar [este post de Urko](https://blog.arima.eu/2020/11/11/docker-en-kubernetes.html){:target="_blank"}. 
 
 Por tanto, **Docker no ha muerto**, lo único que va a ocurrir es que Docker (y su daemon) no  van a estar disponibles en las próximas versiones de Kubernetes. Por el momento este cambio sólo va a suponer un aviso en los logs pero tenemos que ir migrando a una implementación de CRI compliant (o quedarnos estancados en una versión obsoleta de Kubernetes, cosa que no os recomendamos). 
 
