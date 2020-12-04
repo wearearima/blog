@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="es" itemscope itemtype="http://schema.org/Blog">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Kubernetes ha deprecado Docker</title>
+  <meta name="description" content="Recientemente se ha anunciado a través del changelog de Kubernetes que se depreca el soporte a Docker en la próxima versión, v1.20, y que en futuras versione...">
+  
+  <meta name="keywords" content="kubernetes,docker,cri,containerd,cri-o">
+  
+
+  <!-- Twitter cards -->
+  <meta name="twitter:site"    content="@wearearima">
+  <meta name="twitter:creator" content="@telle">
+  <meta name="twitter:title"   content="Kubernetes ha deprecado Docker">
+
+  
+  <meta name="twitter:description" content="">
+  
+
+  
+  <meta name="twitter:card"  content="summary_large_image">
+  <meta name="twitter:image" content="https://blog.arima.eu/assets/images/2020-12-04-kubernetes-is-deprecating-docker/autum.jpg">
+  
+  <!-- end of Twitter cards -->
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="https://blog.arima.eu/es/2020/12/04/kubernetes-is-deprecating-docker.html">
+  <link rel="alternate" type="application/rss+xml" title="ARIMA" href="/es/feed.xml">
+
+  <!-- SEO Recipes (http://polyglot.untra.io/seo/) -->
+  <meta http-equiv="Content-Language" content="es">
+  <link rel="alternate"
+      hreflang="es"
+      href="https://blog.arima.eu/es/2020/12/04/kubernetes-is-deprecating-docker.html" />
+  
+  
+  <link rel="alternate"
+      hreflang="es"
+      href="https://blog.arima.eu/es/2020/12/04/kubernetes-is-deprecating-docker.html" />
+  
+  
+  <link rel="alternate"
+      hreflang="en"
+      href="https://blog.arima.eu/en/2020/12/04/kubernetes-is-deprecating-docker.html" />
+  
+
+  
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-120217722-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-120217722-1');
+</script>
+  
+</head>
+
+  <body>
+    <nav class="toolbar">
+    <div class="wrapper">    
+        <a href="/es/">
+            <div class="toolbar__logo">
+                <svg xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" version="1.1" width="100%" height="100%" viewBox="0 0 33 6">
+    <path id="path24" d="m30.346988508615652,-0.000015174522529526127 l-0.6439224998849951,0 l-2.7763635316117727,6.135695064030662 l0.7050150612484405,0 l2.3859233880279893,-5.335002838884215 l2.3660424189063254,5.335002838884215 l0.739668694925785,0 L30.346988508615652,-0.000015174522529526127 zm-8.274141805179609,3.3681675186951847 l-2.2194202716340565,-3.324608867598761 l-0.6962481061149294,0 l0,6.092136412934239 l0.6700853029999622,0 l0,-4.926062349034439 l2.2194202716340565,3.2553706313868567 l0.034929758248478535,0 l2.2192131782057056,-3.2639304930920168 l0,4.934622210739599 l0.6873430886958508,0 l0,-6.092136412934239 l-0.6961100438293623,0 l-2.2192131782057056,3.324608867598761 zm-9.143036799396208,-1.5057072863948877 c0,-1.0964906719739773 -0.8613705996531913,-1.8189015812038738 -2.201748299081466,-1.8189015812038738 l-2.619662837493104,0 l0,6.092136412934239 l0.6876192132669849,0 l0,-5.456842805897188 l1.8799251114245357,0 c0.9833486289517317,0 1.5576187057681203,0.4525681720889824 1.5576187057681203,1.2097017461390067 c0,0.7919252700129356 -0.7831583148794242,1.2620273523689407 -1.6968545207625496,1.2620273523689407 l0,0.6178287279128115 l1.7665759749739396,2.3672849794764295 l0.8442508762428699,0 l-1.8711581562910244,-2.4891249464894027 c0.9571858258367647,-0.17416557324290774 1.6534339319516944,-0.7659695603263191 1.6534339319516944,-1.7841098852409623 m2.7743616284710493,4.273234831730365 l0.6872050264102838,0 l0,-6.0920673817914555 l-0.6872050264102838,0 l0,6.0920673817914555 zM2.7761571742923965,-0.000015174522529526127 l-2.7761564381834223,6.135695064030662 l0.7048769989628736,0 l2.386061450313556,-5.335002838884215 l2.3658353254779745,5.335002838884215 l0.739668694925785,0 l-2.7761564381834223,-6.135695064030662 l-0.6441295933133457,0 z" stroke-width="0"/>
+</svg>
+
+            </div>
+        </a>
+        <!-- Language selector -->
+        <div class="language-selector">
+            
+              
+                <b class="selected">ES</b>
+              
+              
+                &nbsp;|&nbsp;
+              
+            
+              
+                <a class="unselected" href="/en/2020/12/04/kubernetes-is-deprecating-docker.html">EN</a>
+              
+              
+            
+         </div>
+    </div>
+</nav>
+<div id="publisher_id" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Arima 100% Software Design" />
+    <meta itemprop="url" content="https://arima.eu" />
+    <div itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+        <meta itemprop="url" content="https://arima.eu/img/logo.png" />
+    </div>
+</div>
+    <main aria-label="Content">        
+        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting" itemref="publisher_id">
+          <link itemprop="mainEntityOfPage" href="/es/2020/12/04/kubernetes-is-deprecating-docker.html" />
+
+          <header class="post-header">
+            <div class="post-img" itemprop="image" itemscope itemtype="http://schema.org/ImageObject" style="background-image: url('https://blog.arima.eu/assets/images/2020-12-04-kubernetes-is-deprecating-docker/autum.jpg');">
+              <meta itemprop="url" content="https://blog.arima.eu/assets/images/2020-12-04-kubernetes-is-deprecating-docker/autum.jpg" />
+            </div>
+            <div class="wrapper">
+              <div class="post-info__container">
+                <div class="post-info">
+                  <h1 class="post-title" itemprop="name headline">Kubernetes ha deprecado Docker</h1>
+                    <div class="post-meta" itemscope itemtype="https://schema.org/Person" itemprop="author">
+                      
+                      <div class="author-photo">
+                        <img itemprop="image" src="/assets/images/authors/telle.png" alt="">
+                      </div>
+                      <div>
+                        <span class="post-author" itemprop="name">Iñigo Telleria</span>
+                      </div>
+                      <div>
+                        <span class="post-date">04 Dec 2020</span>
+                      </div>
+                    </div>
+                    <meta  itemprop="datePublished dateModified" content="04 Dec 2020" />
+                </div>
+              </div>
+            </div>
+          </header>
+          <div class="wrapper">
+            <div class="post-content" itemprop="articleBody">
+              <p>Recientemente se ha anunciado a través del <a href="https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.20.md#deprecation" target="_blank">changelog de Kubernetes</a> que se depreca el soporte a Docker en la próxima versión, v1.20, y que en futuras versiones será eliminado.</p>
+
+<p><img src="/assets/images/2020-12-04-kubernetes-is-deprecating-docker/changelog.png" alt="Anuncio de Kubernetes deprecando Docker" class="center" /></p>
+
+<p>El anuncio ya nos adelanta que la solución consiste en migrar Docker a un Container Runtime que implemente CRI de manera nativa. Parece un cambio de mucho calado y entre los usuarios de Kubernetes han surgido dudas y cuestiones sobre el impacto que este cambio puede suponer: ¿van a dejar de funcionar mis imágenes Docker? o ¿puedo seguir construyendo mis imágenes con Docker?</p>
+
+<p>Este post intenta aportar su granito de arena para despejar las dudas que hayan podido surgir, pero para ello previamente necesitamos explicar algunos conceptos del anuncio que nos pueden resultar desconocidos, como CRI y DockerShim.</p>
+
+<p>Kubernetes es un orquestador de contenedores y una de sus tareas es descargar imágenes de contenedores, arrancar y parar contenedores. El elemento que se ocupa de esta tarea en Kubernetes se llama Container Runtime y el que utilizaba Kubernetes en sus inicios era <a href="https://docs.docker.com/engine/" target="_blank">Docker</a>. Sin embargo, en la comunidad existían otros Container Runtimes además de Docker, como por ejemplo <a href="https://coreos.com/rkt/" target="_blank">Rkt de Coreos</a>.</p>
+
+<p>Con el objetivo de lograr que Kubernetes pudiera trabajar con otros Container Runtimes, no sólo con Docker, crearon el API “Container Runtime Interface” (CRI) y se incluyó en Kubernetes en la versión 1.5, allá por el año 2016. Mediante CRI, Kubernetes se abstrae del Container Runtime que se utiliza en el cluster y le permite integrarse con múltiples Container Runtimes de manera transparente, por ejemplo ContainerD, CRI-O, etc.</p>
+
+<p>El siguiente diagrama explica de manera gráfica y a alto nivel cómo es la comunicación de Kubernetes a través de CRI.</p>
+
+<p><img src="/assets/images/2020-12-04-kubernetes-is-deprecating-docker/cri-implementations.png" alt="Implementaciones de CRI" class="center" /></p>
+
+<p>ContainerD y CRI-O implementan CRI de manera nativa. Sin embargo, Docker no es CRI compliant y por eso se desarrolló el componente docker-shim. Este componente hace de interlocutor entre las dos partes para que sea posible utilizar Docker dentro de Kubernetes.</p>
+
+<p>Este nuevo anuncio sobre deprecar Docker en Kubernetes, implica que en el futuro se eliminarán los elementos DockerShim y Docker dentro de Kubernetes y sólo estarán disponibles los elementos que son CRI compliant de manera nativa, como por ejemplo ContainerD o CRI-O.</p>
+
+<p>Una vez explicado algunos conceptos de Kubernetes, las respuestas a las dudas y preguntas del inicio son:</p>
+
+<ul>
+  <li><strong><em>¿Las imágenes con formato Docker seguirán funcionando a partir de la versión 1.20 de Kubernetes?</em></strong></li>
+</ul>
+
+<p>Sí. Todas las implementaciones de CRI que existen actualmente soportan imágenes con formato Docker y OCI.</p>
+
+<ul>
+  <li><strong><em>¿Puedo continuar utilizando Docker para crear las imágenes de contenedores?</em></strong></li>
+</ul>
+
+<p>Sí. Puedes seguir creando las imágenes de manera tradicional con el CLI de Docker y el fichero Dockerfile.</p>
+
+<ul>
+  <li><strong><em>¿Puedo utilizar el stack de Docker para el desarrollo en local?</em></strong></li>
+</ul>
+
+<p>Sí. La desaparición de Docker es sólo dentro de Kubernetes. Puedes seguir utilizando Docker y sus herramientas, como docker-compose, para tus pruebas y desarrollos en tu equipo o servidor CICD como hasta ahora.</p>
+
+<ul>
+  <li><strong><em>¿A qué implementación de CRI debería migrar?</em></strong></li>
+</ul>
+
+<p>Dependerá de cada caso y el proveedor de Kubernetes que se esté utilizando. Si utilizas OpenShift probablemente la recomendación sea utilizar CRI-O. En el resto de los casos, lo más fácil será migrar a Containerd porque el propio engine de <a href="https://kubernetes.io/blog/2018/05/24/kubernetes-containerd-integration-goes-ga/#what-about-docker-engine" target="_blank">Docker utiliza internamente Containerd</a> desde la versión 1.11 (en la gráfica anterior he hecho una pequeña trampa porque he omitido una flecha que nace en Docker y apunta a Containerd para simplificar y no confundir :-).</p>
+
+<ul>
+  <li><strong><em>Pero entonces, ¿por qué tanto revuelo con esta noticia?</em></strong></li>
+</ul>
+
+<p>Primero, por el susto que uno se lleva cuando lee que Docker está deprecado. Pero eso ya hemos explicado que está deprecado sólo en Kubernetes y que podemos seguir utilizándolo para desarrollo sin problemas como hasta ahora.</p>
+
+<p>Y segundo, porque Docker es el Container Runtime más utilizado en Kubernetes, a pesar de que CRI y sus implementaciones están disponibles desde hace mucho tiempo. Estos son datos de un informe del 2019:</p>
+
+<p><img src="/assets/images/2020-12-04-kubernetes-is-deprecating-docker/report-result.png" alt="Resultado del informe 2019" class="center" /></p>
+
+<p>El anuncio supone que todos estos usuarios del runtime de Docker tendrán que migrar a una solución CRI compliant y las migraciones generalmente implican trabajo.</p>
+
+<p>En principio, para la mayoría de usuarios de Kubernetes el cambio se supone que va a ser transparente porque las implementaciones de CRI también soportan las imágenes Docker. Sin embargo, sí puede haber situaciones donde la migración a CRI tenga impacto y suponga cambios en la infraestructura.</p>
+
+<p>Por ejemplo, instalaciones de Kubernetes con contenedores que acceden al daemon de Docker del host mediante técnicas “Docker out of Docker” sí se verán afectadas. Este tipo de técnicas ya no serán posibles ya que el demonio de Docker ya no existirá en las instalaciones de Kubernetes. Si tenéis curiosidad sobre cómo funciona “Docker out of Docker” y otras técnicas similares, podéis consultar <a href="https://blog.arima.eu/es/2020/11/11/docker-en-kubernetes.html" target="_blank">este post de Urko</a>.</p>
+
+<p>Por tanto, <strong>Docker no ha muerto</strong>, lo único que va a ocurrir es que Docker (y su daemon) no  van a estar disponibles en las próximas versiones de Kubernetes. Por el momento este cambio sólo va a suponer un aviso en los logs pero tenemos que ir migrando a una implementación de CRI compliant (o quedarnos estancados en una versión obsoleta de Kubernetes, cosa que no os recomendamos).</p>
+
+<p>Espero que el post haya servido de ayuda para resolver las dudas sobre Docker en Kubernetes. ¡Buena suerte con la migración! :-)</p>
+
+            </div>
+
+            
+          </div>
+        </article>
+      </div>
+    </main>
+
+    <footer>
+    <div class="wrapper">
+        <div class="footer__container">
+            <div class="footer__sello">
+                <img src="/assets/images/arima_sello_white.png" alt="" />
+            </div>
+            <div class="footer__content">
+                <div class="footer__data">
+                    <dl>
+                        <dt>web</dt>
+                        <dd><a itemprop="sameAs" href="https://www.arima.eu/es/">arima.eu</a></dd>
+                    </dl>
+                    <dl>
+                        <dt>social</dt>
+                        <dd>
+                            <a itemprop="sameAs" href="https://github.com/wearearima" class="social"><span class="icon-github"></span></a>
+                            <a itemprop="sameAs" href="https://twitter.com/wearearima" class="social"><span class="icon-twitter"></span></a>
+                            <a itemprop="sameAs" href="https://www.linkedin.com/company/arima-software-design/" class="social"><span class="icon-linkedin"></span></a>
+                            <a itemprop="sameAs" href="/es/feed.xml" class="social"><span class="icon-feed"></span></a>
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt>Privacidad</dt>
+                        <dd class="politica-cookies">
+                            <a href="/es/cookies.html">Política de cookies</a>
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+    <div class="cookies-message" id="cookies-message">
+    <h4>Este sitio web utiliza cookies</h4>
+    <p>Este sitio web utiliza cookies para mejorar la experiencia del usuario. Al utilizar nuestro sitio web, usted acepta todas las cookies de acuerdo con nuestra Política de cookies.</p>
+    <div class="buttons">
+        <a class="button" href="/es/cookies.html">Leer política de cookies</a>
+        <button class="button" id="accept-cookies">Aceptar</button>
+    </div>
+</div>
+<script>
+    (function() {
+        if(localStorage) {
+            var cookiesAccepted = localStorage.getItem("cookies-accepted");
+            if(cookiesAccepted) {
+                hideCookiesMessage();
+                
+            } else {
+                document.getElementById('accept-cookies').addEventListener("click", function() {
+                    hideCookiesMessage();
+                    localStorage.setItem("cookies-accepted", true);
+                })
+            }
+        }
+        function hideCookiesMessage() {
+            document.getElementById('cookies-message').style.display = "none";
+        }
+    })();
+</script>
+
+  </body>
+
+</html>

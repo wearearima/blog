@@ -6,6 +6,23 @@
     <link>https://blog.arima.eu</link>
     
     <post>
+        <title>Kubernetes ha deprecado Docker</title>
+        <summary>&lt;p&gt;Recientemente se ha anunciado a través del &lt;a href=&quot;https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.20.md#deprecation&quot; target=&quot;_blank&quot;&gt;changelog de Kubernetes&lt;/a&gt; que se depreca el soporte a Docker en la próxima versión, v1.20, y que en futuras versiones será eliminado.&lt;/p&gt;
+</summary>
+        <pubDate>Fri, 04 Dec 2020 09:00:00 +0000</pubDate>
+        <link>https://blog.arima.eu/2020/12/04/kubernetes-is-deprecating-docker.html</link>
+        <guid isPermaLink="true">https://blog.arima.eu//2020/12/04/kubernetes-is-deprecating-docker.html</guid>
+        <headerImage>https://blog.arima.eu/assets/images/2020-12-04-kubernetes-is-deprecating-docker/autum.jpg</headerImage>
+        
+        
+        
+        
+        
+
+      <author>Iñigo Telleria</author>
+    </post>
+    
+    <post>
         <title>He asistido a una conferencia en tiempos de pandemia: Tarugoconf</title>
         <summary>&lt;blockquote&gt;
   &lt;p&gt;Hoy anunciaremos que el próximo 23 de octubre se celebrará la #tarugo5&lt;/p&gt;
@@ -39,23 +56,6 @@
         
 
       <author>Urko Lekuona</author>
-    </post>
-    
-    <post>
-        <title>Jugando con Spring Cloud Contract</title>
-        <summary>&lt;p&gt;En un &lt;a href=&quot;https://blog.arima.eu/es/2020/09/03/contract-testing.html&quot; target=&quot;_blank&quot;&gt;post anterior&lt;/a&gt; hemos visto cómo surgen nuevas necesidades en el ámbito del testing derivadas de la evolución de las arquitecturas de las aplicaciones.&lt;/p&gt;
-</summary>
-        <pubDate>Thu, 29 Oct 2020 08:00:00 +0000</pubDate>
-        <link>https://blog.arima.eu/2020/10/29/playing-with-spring-cloud-contract.html</link>
-        <guid isPermaLink="true">https://blog.arima.eu//2020/10/29/playing-with-spring-cloud-contract.html</guid>
-        <headerImage>https://blog.arima.eu/assets/images/2020-10-15-playing-with-spring-cloud-contract/header.jpg</headerImage>
-        
-        
-        
-        
-        
-
-      <author>Jessica Aguado</author>
     </post>
     
   </channel>
