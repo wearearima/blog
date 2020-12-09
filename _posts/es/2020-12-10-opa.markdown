@@ -85,4 +85,4 @@ Lo que nos aporta respecto al OPA con kube-mgmt:
 OPA Gatekeeper todavía está en versión beta.
 
 ## Conclusión
-Open Policy Agent tiene mucho potencial debido a que permite desacoplar el software de las políticas. Lo que me hubiese gustado para es que el propio OPA proporcionase más ejemplos de políticas para los diferentes sistemas ya que personalmente se me hace difícil crear las políticas con Rego.
+Open Policy Agent tiene mucho potencial debido a que permite desacoplar el software de las políticas. Lo que me hubiese gustado es que el propio OPA proporcionase más ejemplos de políticas para los diferentes sistemas ya que personalmente se me hace difícil crear las políticas con Rego.
