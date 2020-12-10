@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="es" itemscope itemtype="http://schema.org/Blog">
+<html lang="en" itemscope itemtype="http://schema.org/Blog">
 
   <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Jugando con Spring Cloud Contract</title>
-  <meta name="description" content="En un post anterior hemos visto cómo surgen nuevas necesidades en el ámbito del testing derivadas de la evolución de las arquitecturas de las aplicaciones.">
+  <title>Playing with Spring Cloud Contract</title>
+  <meta name="description" content="In a previous post we saw how new needs arose in the field of testing derived from the evolution of application architectures. Through a simple example we es...">
   
   <meta name="keywords" content="testing,calidad,softwarequality,QA,contracttesting,providerdrivencontracttesting,springcloudcontract">
   
@@ -15,7 +15,7 @@
   <!-- Twitter cards -->
   <meta name="twitter:site"    content="@wearearima">
   <meta name="twitter:creator" content="@jessica">
-  <meta name="twitter:title"   content="Jugando con Spring Cloud Contract">
+  <meta name="twitter:title"   content="Playing with Spring Cloud Contract">
 
   
   <meta name="twitter:description" content="">
@@ -108,7 +108,7 @@
             <div class="wrapper">
               <div class="post-info__container">
                 <div class="post-info">
-                  <h1 class="post-title" itemprop="name headline">Jugando con Spring Cloud Contract</h1>
+                  <h1 class="post-title" itemprop="name headline">Playing with Spring Cloud Contract</h1>
                     <div class="post-meta" itemscope itemtype="https://schema.org/Person" itemprop="author">
                       
                       <div class="author-photo">
@@ -128,21 +128,21 @@
           </header>
           <div class="wrapper">
             <div class="post-content" itemprop="articleBody">
-              <p>En un <a href="https://blog.arima.eu/es/2020/09/03/contract-testing.html" target="_blank">post anterior</a> hemos visto cómo surgen nuevas necesidades en el ámbito del testing derivadas de la evolución de las arquitecturas de las aplicaciones.</p>
+              <p>In a <a href="https://blog.arima.eu/en/2020/09/03/contract-testing.html" target="_blank">previous post</a> we saw how new needs arose in the field of testing derived from the evolution of application architectures.</p>
 
-<p>Mediante un ejemplo sencillo hemos asentado conceptos como <em>consumer</em>, <em>producer</em>, <em>servicio</em> y hemos puesto en evidencia que tan importante como testear las funcionalidades en <em>consumer</em> y <em>producer</em> de forma independiente lo es asegurar que la interacción entre ambos es correcta.</p>
+<p>Through a simple example we established concepts such as <em>consumer</em>, <em>producer</em>, <em>service</em> and showed that just as important as testing the functionalities in <em>consumer</em> and <em>producer</em> independently is, so also is ensuring that the interaction between them both is right.</p>
 
-<p>Hemos introducido el concepto de <strong>Contract Testing</strong>, en el que hemos profundizado en otro <a href="https://blog.arima.eu/es/2020/10/09/contract-testing-approach.html" target="_blank">post</a> lo que nos ha permitido conocer los diferentes enfoques y herramientas.</p>
+<p>We introduced the concept of <strong>Contract Testing</strong>, which we delved into in another <a href="https://blog.arima.eu/en/2020/10/09/contract-testing-approach.html" target="_blank">post</a> which allowed us to get familiar with the different approaches and tools.</p>
 
-<p>Ahora, con toda la información en nuestras manos es hora de materializar todas esas ideas en código. Lo haremos paso a paso, partiendo del ejemplo del primer post, cuyo código podemos descargar de <a href="https://github.com/wearearima/time-report-contractTesting" target="_blank">aquí</a>. Recordemos que con él pusimos en evidencia el problema que podríamos encontrarnos: una aplicación que falla en producción pese a tener todos los tests unitarios y de integración pasando.</p>
+<p>Now, with all the information to hand, it’s time to put all those ideas into code. We will do it step by step, starting from the example in the first post, which we can download from <a href="https://github.com/wearearima/time-report-contractTesting" target="_blank">here</a>. Remember that here we highlighted the problem that we might encounter: an application that fails in production despite passing all the unit and integration tests.</p>
 
-<p>Hemos elegido el enfoque <strong>producer driven</strong> y como herramienta utilizaremos <a href="https://spring.io/projects/spring-cloud-contract" target="_blank"><strong>Spring Cloud Contract</strong></a>. El código está disponible en <a href="https://github.com/wearearima/time-report-contractTesting-02" target="_blank">Github</a> ¡Vamos allá!</p>
+<p>We have chosen the <strong>producer driven</strong> approach and as a tool we will use <a href="https://spring.io/projects/spring-cloud-contract" target="_blank"><strong>Spring Cloud Contract</strong></a>. The code is available on <a href="https://github.com/wearearima/time-report-contractTesting-02" target="_blank">Github</a>. Let’s go!</p>
 
-<h1 id="1-definir-el-contrato">1. Definir el contrato</h1>
+<h1 id="1-define-the-contract">1. Define the contract</h1>
 
-<p>Empezaremos definiendo el acuerdo: escribiremos la especificación que tienen que cumplir <em>consumer</em> y <em>producer</em> para que la comunicación funcione correctamente. En Spring Cloud Contract se utiliza el término <strong>contrato</strong>. Se puede definir de diferentes formas (groovy, yaml, java, kotlin), nosotros hemos elegido <code class="highlighter-rouge">yaml</code> porque para este ejemplo nos parecía que podría resultar fácil de leer.</p>
+<p>We will start by defining the agreement: we will write the specification that <em>consumer</em> and <em>producer</em> have to comply with for the communication to work properly. In Spring Cloud Contract the term <strong>contract</strong> is used. It can be defined in different ways (groovy, yaml, java, kotlin) and we have chosen <code class="highlighter-rouge">yaml</code> because for this example, we thought it would be easy to read.</p>
 
-<p>Para nuestro caso de uso definimos el siguiente contrato:</p>
+<p>For our use case we define the following contract:</p>
 
 <h5 id="worklogsforworkeranddayyaml">worklogsForWorkerAndDay.yaml</h5>
 
@@ -167,20 +167,20 @@
    <span class="na">bodyFromFile</span><span class="pi">:</span> <span class="s">worklogsForJessiOn20200505Response.json</span>
 </code></pre></div></div>
 
-<p>En este caso estamos estableciendo el siguiente acuerdo:<br />
-<em>Para una <strong>petición</strong> con: un nombre de usuario y una fecha (cuyo formato también especificamos), la <strong>respuesta</strong> será: <code class="highlighter-rouge">status 200</code> y un <code class="highlighter-rouge">JSON</code> (cuyo contenido establecemos mediante un <a href="https://github.com/wearearima/time-report-contractTesting-02/blob/master/timeReports-producer/src/test/resources/contracts/worklogs/worklogsForJessiOn20200505Response.json" target="_blank">fichero</a>).</em></p>
+<p>In this case we are establishing the following agreement:<br />
+<em>For a <strong>request</strong> with: a username and a date (whose format we also specify), the <strong>response</strong> will be: <code class="highlighter-rouge">status 200</code> and a <code class="highlighter-rouge">JSON</code> (whose content we establish through a <a href="https://github.com/wearearima/time-report-contractTesting-02/blob/master/timeReports-producer/src/test/resources/contracts/worklogs/worklogsForJessiOn20200505Response.json" target="_blank">file</a>).</em></p>
 
-<p>Este contrato debe estar accesible para el <em>producer</em>. En este caso y por simplificar estará en la carpeta <code class="highlighter-rouge">/test/resources/contracts/worklogs</code> del <em>producer</em>.</p>
+<p>This contract must be accessible to the <em>producer</em>. In this case, and for simplicity, it will be in the <em>producer</em> folder <code class="highlighter-rouge">/test/resources/contracts/worklogs</code>.</p>
 
-<p>Una vez que hemos definido el contrato tendremos que hacer la implementación que lo cumpla y los tests necesarios que lo verifiquen. En este ejemplo ya partíamos de la implementación, así que ¡vamos con los test!</p>
+<p>Once we have defined the contract, we will have to complete the implementation that complies with it and the necessary tests to verify it. In this example we were already starting from the implementation, so let’s get on with the tests!</p>
 
-<h1 id="2-producer-configurar-las-dependencias-en-el-pomxml">2. Producer: configurar las dependencias en el pom.xml</h1>
+<h1 id="2-producer-configure-dependencies-in-the-pomxml">2. Producer: configure dependencies in the pom.xml</h1>
 
-<p>Modificamos el <code class="highlighter-rouge">pom.xml</code> para añadir la dependiencia de Spring Cloud Contract Verifier y el plugin <code class="highlighter-rouge">spring-cloud-contract-maven-plugin</code>. Con este último conseguiremos que de forma automática:</p>
+<p>We modify the <code class="highlighter-rouge">pom.xml</code> by adding the Spring Cloud Contract Verifier dependency and the <code class="highlighter-rouge">spring-cloud-contract-maven-plugin</code>. With the latter we will automatically achieve:</p>
 
 <ul>
-  <li>Se generen los tests que verifiquen que nuestro <em>producer</em> cumple el contrato</li>
-  <li>Se cree un stub que permitirá al <em>consumer</em> generar un <a href="http://wiremock.org/" target="_blank">WireMock</a> (que cumplirá el contrato) contra el que ejecutar sus tests</li>
+  <li>Generation of tests that verify that our <em>producer</em> complies with the contract</li>
+  <li>Creation of a stub that will allow the <em>consumer</em> to generate a <a href="http://wiremock.org/" target="_blank">WireMock</a> (which will comply with the contract) against which to run its tests</li>
 </ul>
 
 <h4 id="producer--pomxml">Producer | pom.xml</h4>
@@ -226,14 +226,14 @@
 ...
 </code></pre></div></div>
 
-<p>Como se muestra en el <code class="highlighter-rouge">pom.xml</code>además de las dependencias hemos configurado algunas de las propiedades del plugin:</p>
+<p>As shown in the <code class="highlighter-rouge">pom.xml</code> in addition to the dependencies, we have configured some of the plugin properties:</p>
 <ul>
-  <li>Hemos indicado que el framework de test será JUnit 5</li>
-  <li>Hemos indicado que el paquete que contendrá la <em>clase base de test</em> será <code class="highlighter-rouge">eu.arima.tr</code></li>
+  <li>We have indicated that the test framework will be JUnit 5</li>
+  <li>We have indicated that the package that will contain the <em>test base class</em> will be <code class="highlighter-rouge">eu.arima.tr</code></li>
 </ul>
 
-<p>¿Qué es esto de la <em>clase base de test</em>? Según la especificación debemos generar una clase base que los test autogenerados extenderán. Esta clase debe contener toda la información necesaria para ejecutarlos (por ejemplo, podríamos configurar mocks de algunos beans, popular la base de datos con datos específicos para los tests…).<br />
-Para este ejemplo hemos creado una clase base muy sencilla cuya única responsabilidad será levantar el contexto. El contrato lo hemos definido en la carpeta <code class="highlighter-rouge">contracts/worklogs</code>, por lo tanto (en base a la documentación que indica que el nombre se infiere en base a los nombres de las dos últimas carpetas), la clase se llama <code class="highlighter-rouge">WorklogsBase.java</code>.</p>
+<p>What’s this about the <em>test base class</em>? According to the specification, we must generate a base class for the autogenerated tests to extend. This class must contain all the information necessary for executing the tests (for example, we could configure mocks of some beans, populate the database with specific data for tests …).<br />
+For this example we have created a very simple base class whose only responsibility will be to start up the application context. We have defined the contract in the <code class="highlighter-rouge">contracts/worklogs</code> folder, therefore (based on the documentation that indicates that the name is inferred from the names of the last two folders), the class is called <code class="highlighter-rouge">WorklogsBase.java</code>.</p>
 
 <h4 id="producer--worklogsbasejava">Producer | WorklogsBase.java</h4>
 
@@ -252,19 +252,19 @@ Para este ejemplo hemos creado una clase base muy sencilla cuya única responsab
 <span class="o">}</span> 
 </code></pre></div></div>
 
-<p>El plugin admite la configuración de otros parámetros como se explica en la <a href="https://cloud.spring.io/spring-cloud-contract/spring-cloud-contract-maven-plugin/index.html" target="_blank">documentación del plugin</a>, como por ejemplo: dónde están los contratos, cómo generar los diferentes elementos, etc.</p>
+<p>The plugin supports the configuration of other parameters as explained in the <a href="https://cloud.spring.io/spring-cloud-contract/spring-cloud-contract-maven-plugin/index.html" target="_blank">plugin documentation</a>, such as: where the contracts are, how to generate the different elements, etc.</p>
 
-<h1 id="3-producer-crear-y-ejecutar-los-tests">3. Producer: crear y ejecutar los tests</h1>
+<h1 id="3-producer-create-and-run-tests">3. Producer: create and run tests</h1>
 
-<p>Como mencionábamos en el apartado anterior, con este plugin podemos generar automáticamente los tests que aseguren que el <em>producer</em> cumple el conrato. Para ello hacemos <code class="highlighter-rouge">./mvnw clean test</code> y vemos que:</p>
+<p>As we mentioned in the previous section, with this plugin we can automatically generate the tests that ensure that the <em>producer</em> complies with the contract. To do this we execute the command <code class="highlighter-rouge">./mvnw clean test</code> and we see that:</p>
 
 <ul>
-  <li>Se generan las clases de test del <em>producer</em></li>
-  <li>Se ejecutan los tests</li>
-  <li>Además se crea un <code class="highlighter-rouge">.jar</code> (que de momento dejamos aparcado)</li>
+  <li>The <em>producer</em> test classes are generated</li>
+  <li>The tests are run</li>
+  <li>In addition, a <code class="highlighter-rouge">.jar</code> is created (which for now we leave parked)</li>
 </ul>
 
-<p>¿Cómo son los tests que se autogeneran? Están en la carpeta <code class="highlighter-rouge">generated-test-sources</code>. En este caso en concreto, como tenemos una única carpeta, se genera una única clase:</p>
+<p>What about the self-generated tests? They are in the <code class="highlighter-rouge">generated-test-sources</code> folder. In this specific case, as we have a single folder, a single class is generated:</p>
 
 <h4 id="producer--worklogstestjava">Producer | WorklogsTest.java</h4>
 
@@ -314,25 +314,25 @@ Para este ejemplo hemos creado una clase base muy sencilla cuya única responsab
 <span class="o">}</span>
 </code></pre></div></div>
 
-<p>Como vemos hay un método de test para la definición del contrato. Si tuviésemos más de una, en ese caso tendríamos un test por cada uno de ellos.</p>
+<p>As we can see, there is a test method for the definition of the contract. If we had more than one, then we would have a test for each of them.</p>
 
-<p>En el test que se ha generado vemos como se hace un <code class="highlighter-rouge">assert</code> para comprobar que el <code class="highlighter-rouge">statusCode</code> de la response es el esperado. Además vemos cómo se verifica que el tipo de respuesta sea un <code class="highlighter-rouge">json</code> y cómo se ha parseado el fichero <code class="highlighter-rouge">.json</code> (al que hacíamos referencia en la especificación) para hacer los <code class="highlighter-rouge">assert</code>s necesarios que aseguran que la respuesta es la esperada.</p>
+<p>In the test that has been generated, we see how an <code class="highlighter-rouge">assert</code> is made to check that the response <code class="highlighter-rouge">statusCode</code> is as expected. We also see how it is verified that the type of response is a <code class="highlighter-rouge">json</code> and how the <code class="highlighter-rouge">.json</code> file has been parsed (which we referenced in the specification) to make the necessary <code class="highlighter-rouge">asserts</code> that ensure the response is as expected.</p>
 
-<p><strong>¿Y desde eclipse?</strong></p>
+<p><strong>And from eclipse?</strong></p>
 
-<p>Personalmente utilizo eclipse en mis desarrollos, así que me interesa poder ejecutarlos desde el IDE. Obviamente primero necesitamos que se generen, esto ya hemos visto cómo debemos hacerlo mediante <code class="highlighter-rouge">./mvnw clean test</code>. Pero si no he cambiado el contrato y no hace falta que se regeneren los test y además estoy desarrollando y quiero pasar todos los tests, ¿cómo lo hago? Como son clases autogeneradas, es necesario añadir las carpetas de <code class="highlighter-rouge">generated-test-sources</code> al buildpath. Por ejemplo, en este caso:</p>
+<p>I personally use eclipse in my development, so I am interested in being able to run it from the IDE. Obviously we need it to be generated first and we have already seen how we should do it through <code class="highlighter-rouge">./mvnw clean test</code>. But if I have not changed the contract and it is not necessary to regenerate the tests and I am also developing and I want to pass all the tests, how do I do it? As they are autogenerated classes, it is necessary to add the <code class="highlighter-rouge">generated-test-sources</code> folders to the buildpath. For example, in this case:</p>
 
-<p><img src="/assets/images/2020-10-15-playing-with-spring-cloud-contract/buildpath_config.png" alt="Configuración del buildpath para ejecutar los tests desde eclipse" class="center" /></p>
+<p><img src="/assets/images/2020-10-15-playing-with-spring-cloud-contract/buildpath_config.png" alt="Configuration of the buildpath to run the tests from eclipse" class="center" /></p>
 
-<h1 id="4-consumer-configurar-las-dependencias">4. Consumer: configurar las dependencias</h1>
+<h1 id="4-consumer-configure-dependencies">4. Consumer: configure dependencies</h1>
 
-<p>A diferencia del <em>producer</em>, los tests en el <em>consumer</em> relacionados con el contrato no se generan de forma automática. Pero no estamos solos: recordemos que al mismo tiempo que se han creado los tests del <em>producer</em> también se ha generado un <code class="highlighter-rouge">.jar</code> con el stub que nos permitirá simular las llamadas al <em>producer</em> desde los tests del <em>consumer</em>.</p>
+<p>Unlike the <em>producer</em>, the tests in the <em>consumer</em> related to the contract are not generated automatically. But we are not alone: ​​remember that at the same time that the <em>producer</em> tests were created, a <code class="highlighter-rouge">.jar</code> was also generated with the stub that will allow us to simulate the calls to the <em>producer</em> from the <em>consumer</em> tests.</p>
 
-<p>En nuestro caso, el jar es: <code class="highlighter-rouge">timeReports-producer-0.0.1-SNAPSHOT-stubs.jar</code> que podemos encontrarlo en la carpeta <code class="highlighter-rouge">target </code>del <em>producer</em>.</p>
+<p>In our case, the jar is: <code class="highlighter-rouge">timeReports-producer-0.0.1-SNAPSHOT-stubs.jar</code> which we can find in the <em>producer</em> <code class="highlighter-rouge">target</code>folder.</p>
 
-<p>En este caso, al tener ambos proyectos en local, si en lugar de hacer <code class="highlighter-rouge">./mvnw clean test</code> (en el <em>producer</em>) hacemos <code class="highlighter-rouge">./mvnw clean install</code> tendremos dicho jar directamente en nuestro repositorio local de maven, con lo cual, podremos configurar nuestro <em>consumer</em> para que acceda a él.</p>
+<p>In this case, having both projects locally, if instead of executing the command <code class="highlighter-rouge">./mvnw clean test</code> (in the <em>producer</em>) we run <code class="highlighter-rouge">./mvnw clean install</code> we will have the said jar directly in our local maven repository, with which we can configure our <em>consumer</em> to access it.</p>
 
-<p>Para poder tener acceso a él añadimos la siguiente dependencia en el <code class="highlighter-rouge">pom.xml</code>:</p>
+<p>In order to have access to it, we add the following dependency in the <code class="highlighter-rouge">pom.xml</code>:</p>
 
 <h4 id="consumer--pomxml">Consumer | pom.xml</h4>
 
@@ -352,7 +352,7 @@ Para este ejemplo hemos creado una clase base muy sencilla cuya única responsab
 ...  
 </code></pre></div></div>
 
-<p>Además, no debemos olvidarnos de dependencia de Spring Cloud Contract para poder ejecutar el stub añadido.</p>
+<p>Also, we must not forget the Spring Cloud Contract dependency to be able to execute the added stub.</p>
 
 <h4 id="consumer--pomxml-1">Consumer | pom.xml</h4>
 
@@ -382,9 +382,9 @@ Para este ejemplo hemos creado una clase base muy sencilla cuya única responsab
 ...  
 </code></pre></div></div>
 
-<h1 id="5-consumer-crear-y-ejecutar-los-tests">5. Consumer: crear y ejecutar los tests</h1>
+<h1 id="5-consumer-create-and-run-tests">5. Consumer: create and run tests</h1>
 
-<p>Una vez añadidas las dependencias ya podemos crear el WireMock basado en ese stub y crear nuestros tests. Nosotros lo haremos mediante la anotación <code class="highlighter-rouge">@AutoConfigureStubRunner</code> donde indicamos nuestro stub para que sea automáticamente descargado y registrado en el Wiremock. Un ejemplo podría ser:</p>
+<p>Once the dependencies are added, we can create the WireMock based on that stub and create our tests. We will do it with the annotation <code class="highlighter-rouge">@AutoConfigureStubRunner</code> where we indicate our stub so it will be downloaded and registered automatically in the Wiremock. An example might be:</p>
 
 <h5 id="consumer--reportsservicecontracttestjava">Consumer | ReportsServiceContractTest.java</h5>
 
@@ -408,13 +408,13 @@ Para este ejemplo hemos creado una clase base muy sencilla cuya única responsab
 
 <span class="o">}</span>
 </code></pre></div></div>
-<p>Con esto ya tendríamos la comunicación entre ambos testeada, asegurándonos que si en algún momento en alguno de los dos componentes hubiese una modificación en el contrato los tests del otro fallarían. ¿Lo vemos?</p>
+<p>With this, we would already have the communication between the two tested, making sure that if at any time there was a modification of the contract in either of the two components, the tests of the other would fail. Let’s see it.</p>
 
-<h2 id="somos-capaces-de-desplegar-en-producción-con-la-certeza-de-que-todo-funciona">¿Somos capaces de desplegar en producción con la certeza de que todo funciona?</h2>
+<h2 id="are-we-able-to-deploy-in-production-with-the-certainty-that-everything-works">Are we able to deploy in production with the certainty that everything works?</h2>
 
-<p>Este era el problema que nos encontramos en el <a href="https://blog.arima.eu/es/2020/09/03/contract-testing.html" target="_blank">post anterior</a>: pese a tener testeados <em>consumer</em> y <em>producer</em>, no éramos capaces de saber que algo no iba bien hasta llegar a producción. ¿Seremos capaces de detectarlo ahora?</p>
+<p>This was the problem we encountered in the <a href="https://blog.arima.eu/en/2020/09/03/contract-testing.html" target="_blank">previous post</a>: despite having tested <em>consumer</em> and <em>producer</em>, we were not able to know if anything was wrong until we reached production. Will we be able to detect it now?</p>
 
-<p>Supongamos, que realizamos el mismo cambio que proponíamos en aquel post:</p>
+<p>Suppose we make the same change that we proposed in that post:</p>
 
 <h5 id="producer--worklogcontrollerjava">Producer | WorklogController.java</h5>
 
@@ -435,7 +435,7 @@ Para este ejemplo hemos creado una clase base muy sencilla cuya única responsab
 }
 </code></pre></div></div>
 
-<p>Pasamos los tests y efectivamente fallan: tanto el unitario que tenemos como el autogenerado. ¿Y esto por qué? Porque en realidad hemos modificado el contrato. Actualizamos el contrato y corregimos los tests que fallan:</p>
+<p>We run the tests and indeed they fail: both the unitary one we have and the self-generated one. And why is this? Because we have actually modified the contract. We update the contract and correct the tests that fail:</p>
 
 <h5 id="worklogsforworkeranddayyaml-1">worklogsForWorkerAndDay.yaml</h5>
 <div class="language-diff highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">request:
@@ -454,7 +454,7 @@ Para este ejemplo hemos creado una clase base muy sencilla cuya única responsab
         value: "(\\d\\d\\d\\d)-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])"
 </code></pre></div></div>
 
-<p>Hacemos <code class="highlighter-rouge">./mvnw clean test</code> y ahora ya pasan todos nuestros tests. ¡Bien! Vemos cómo ha cambiado el test autogenerado.</p>
+<p>We run <code class="highlighter-rouge">./mvnw clean test</code> and now all our tests pass. Right! Let’s see how the autogenerated test has changed.</p>
 
 <h5 id="producer--worklogstestjava-1">Producer | WorklogsTest.java</h5>
 
@@ -470,11 +470,11 @@ public void validate_worklogsForWokerAndDay_success() throws Exception {
 </span>        .get("/worklogs/worker/JESSI");
 </code></pre></div></div>
 
-<p>Como hemos cambiado el contrato debemos hacer llegar al <em>consumer</em> la actualización, así que hacemos <code class="highlighter-rouge">./mvnw clean install</code> en el <em>producer</em> y pasamos los tests del <em>consumer</em> con <code class="highlighter-rouge">./mvnw clean test</code>.</p>
+<p>As we have changed the contract, we must send the update to the <em>consumer</em>, so we execute <code class="highlighter-rouge">./mvnw clean install</code> in the <em>producer</em> and run the <em>consumer</em> tests with <code class="highlighter-rouge">./mvnw clean test</code>.</p>
 
-<p>¿Qué sucede? Si bien los tests unitarios que teníamos siguen pasando correctamente, el nuevo test añadido falla: nos hace ver que algo ha cambiado en el contrato, así que la aplicación no va a funcionar. ¡Bien! <strong>Objetivo conseguido: hemos detectado el problema antes del despliegue en producción</strong>.</p>
+<p>What’s going on? Although the unit tests from before continue to work correctly, the new added test fails: it shows us that something has changed in the contract, so the application will not work. Right! <strong>Goal achieved: we have detected the problem before deployment to production</strong>.</p>
 
-<p>Modificamos la implementación del <em>consumer</em>:</p>
+<p>We modify the <em>consumer</em> implementation:</p>
 
 <h4 id="consumer--reportsservicejava">Consumer | ReportsService.java</h4>
 
@@ -488,20 +488,20 @@ public void validate_worklogsForWokerAndDay_success() throws Exception {
   int totalDuration = worklogsForDay.stream().mapToInt(WorklogInfo::getDuration).sum();
 </code></pre></div></div>
 
-<p>Pasamos los tests, y vemos que al cambiar la implementación los tests unitarios también han dejado de funcionar (lógicamente). Sólo nos quedará por lo tanto, corregirlos.</p>
+<p>We run the tests, and we see that when changing the implementation, the unit tests have also stopped working (logically). Therefore, all we need to do is correct them.</p>
 
-<p>Como hemos visto en el ejemplo, es importante que cuando cambia el contrato tanto <em>consumer</em> como <em>producer</em> estén al tanto del cambio.</p>
+<p>As we have seen in the example, it is important that when the contract changes, both <em>consumer</em> and <em>producer</em> are aware of that change.</p>
 
-<p>En este caso como es desde el <em>producer</em> desde donde se realiza el cambio, es importante que el <em>consumer</em> reciba la nueva especificación a través del stub (si no, los test seguirán pasando). En nuestro ejemplo es sencillo porque lo tenemos todo en local. Nos sirve para explicar el concepto de forma sencilla pero no nos olvidamos de que no refleja la realidad, donde muchas veces diferentes personas están trabajando en uno o en el otro sin necesidad de tener los proyectos en local.<br />
-Existen muchas formas de organizar el código y por lo tanto existen diferentes soluciones, que habría que analizar en función del proyecto y sus necesidades. Las preguntas más importantes a las que habría que dar respuesta sería:</p>
+<p>In this case, as it is from the <em>producer</em> where the change is made, it is important that the <em>consumer</em> receives the new specification through the stub (if not, the tests will continue to pass). In our example it is simple because we have everything locally. It helps us to explain the concept in a simple way, but we should not forget that it does not reflect reality, where often, different people are working on one or the other, without needing to have projects locally.
+There are many ways to organize the code and therefore there are different solutions, which should be analyzed depending on the project and its requirements. The most important questions to be answered would be:</p>
 
 <ul>
-  <li><strong>¿Dónde ubicamos los contratos?</strong> ¿Podrían estar en el propio proyecto (como en el ejemplo) o quizás seríamejor que estuviesen en su propio repositorio de github?</li>
-  <li><strong>¿Cómo gestionamos el stub del <em>producer</em>?</strong> ¿Podríamos desplegarlo en un repo de maven?</li>
-  <li><strong>¿Cómo gestionamos el versionado?</strong> ¿Será el mismo que el del <em>producer</em> o será independiente?</li>
+  <li><strong>Where do we place the contracts?</strong> Could they be in the project itself (as in the example) or maybe it would be better if they were in their own github repository?</li>
+  <li><strong>How do we manage the <em>producer</em> stub?</strong> Could we deploy it in a maven repo?</li>
+  <li><strong>How do we manage versioning?</strong> Will it be the same as that of the <em>producer</em> or will it be independent?</li>
 </ul>
 
-<p>No vamos a entrar a valorar estas y otras muchas cosas, que habría que tener en cuenta a la hora de ponerlo en práctica porque la respuesta será <em>depende</em>. Depende del proyecto, de la organización de los equipos,… En la documentación de Spring Cloud Contract hay diferentes recomendaciones y ejemplos que pueden sernos de utilidad.</p>
+<p>We are not going to go into evaluating these and many other things, which should be taken into account when putting it into practice because the answer will be <em>it depends</em>. It depends on the project, on the organization of the teams, … In the Spring Cloud Contract documentation there are different recommendations and examples that could be useful.</p>
 
             </div>
 
