@@ -14,9 +14,9 @@ Through a simple example we established concepts such as _consumer_, _producer_,
 
 We introduced the concept of **Contract Testing**, which we delved into in another [post](https://blog.arima.eu/en/2020/10/09/contract-testing-approach.html){:target="_blank"} which allowed us to get familiar with the different approaches and tools.
 
-Now, with all the information to hand, it's time to put all those ideas into code. We will do it step by step, starting from the example in the first post, which we can download from [here](https://github.com/wearearima/time-report-contractTesting){:target="_blank"}. We remember that here we highlighted the problem that we might encounter: an application that fails in production despite having passed all the unit and integration tests.
+Now, with all the information to hand, it's time to put all those ideas into code. We will do it step by step, starting from the example in the first post, which we can download from [here](https://github.com/wearearima/time-report-contractTesting){:target="_blank"}. Remember that here we highlighted the problem that we might encounter: an application that fails in production despite all the unit and integration tests pass.
 
-We have chosen the **producer driven** approach and as a tool we will use [**Spring Cloud Contract**](https://spring.io/projects/spring-cloud-contract){:target="_blank"}. The code is available on [Github](https://github.com/wearearima/time-report-contractTesting-02){:target="_blank"} Let's go!
+We have chosen the **producer driven** approach and as a tool we will use [**Spring Cloud Contract**](https://spring.io/projects/spring-cloud-contract){:target="_blank"}. The code is available on [Github](https://github.com/wearearima/time-report-contractTesting-02){:target="_blank"}. Let's go!
 
 # 1. Define the contract
 
