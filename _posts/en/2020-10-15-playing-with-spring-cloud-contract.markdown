@@ -2,7 +2,7 @@
 layout: post
 title:  “Playing with Spring Cloud Contract"
 date:   2020-10-29 8:00:00
-author: jessica - translated by Janice
+author: jessica
 lang: en
 categories: testing, software quality, QA
 tags: testing, calidad, software quality, QA, contract testing, provider driven contract testing, spring cloud contract
