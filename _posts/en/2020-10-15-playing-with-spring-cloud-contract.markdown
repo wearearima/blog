@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  “Playing with Spring Cloud Contract"
+title:  Playing with Spring Cloud Contract
 date:   2020-10-29 8:00:00
 author: jessica
 lang: en
@@ -8,11 +8,11 @@ categories: testing, software quality, QA
 tags: testing, calidad, software quality, QA, contract testing, provider driven contract testing, spring cloud contract
 header-image: 2020-10-15-playing-with-spring-cloud-contract/header.jpg
 ---
-In a [previous post](https://blog.arima.eu/es/2020/09/03/contract-testing.html){:target="_blank"} we saw how new needs arose in the field of testing derived from the evolution of application architectures.
+In a [previous post](https://blog.arima.eu/en/2020/09/03/contract-testing.html){:target="_blank"} we saw how new needs arose in the field of testing derived from the evolution of application architectures.
   
-Through a simple example we established concepts such as _consumer_, _producer_, _service_ and showed that just as important as testing the functionalities in _consumer_and_producer_ independently is, so also is ensuring that the interaction between them both is right.
+Through a simple example we established concepts such as _consumer_, _producer_, _service_ and showed that just as important as testing the functionalities in _consumer_ and _producer_ independently is, so also is ensuring that the interaction between them both is right.
 
-We introduced the concept of **Contract Testing**, which we delved into in another [post](https://blog.arima.eu/es/2020/10/09/contract-testing-approach.html){:target="_blank"} which allowed us to get familiar with the different approaches and tools.
+We introduced the concept of **Contract Testing**, which we delved into in another [post](https://blog.arima.eu/en/2020/10/09/contract-testing-approach.html){:target="_blank"} which allowed us to get familiar with the different approaches and tools.
 
 Now, with all the information to hand, it's time to put all those ideas into code. We will do it step by step, starting from the example in the first post, which we can download from [here](https://github.com/wearearima/time-report-contractTesting){:target="_blank"}. We remember that here we highlighted the problem that we might encounter: an application that fails in production despite having passed all the unit and integration tests.
 
@@ -294,7 +294,7 @@ With this, we would already have the communication between the two tested, makin
 
 ## Are we able to deploy in production with the certainty that everything works?
 
-This was the problem we encountered in the [previous post](https://blog.arima.eu/es/2020/09/03/contract-testing.html){:target="_blank"}: despite having tested _consumer_ and _producer_, we were not able to know if anything was wrong until we reached production. Will we be able to detect it now?
+This was the problem we encountered in the [previous post](https://blog.arima.eu/en/2020/09/03/contract-testing.html){:target="_blank"}: despite having tested _consumer_ and _producer_, we were not able to know if anything was wrong until we reached production. Will we be able to detect it now?
 
 Suppose we make the same change that we proposed in that post:
 
