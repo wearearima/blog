@@ -6,6 +6,23 @@
     <link>https://blog.arima.eu</link>
     
     <post>
+        <title>CVE-2020-8554: Man in the Middle - Vulnerabilidad en Kubernetes</title>
+        <summary>&lt;p&gt;Cada día se descubren nuevas vulnerabilidades que afectan a las librerías y productos que utilizamos a diario. Hoy le ha tocado a Kubernetes.&lt;/p&gt;
+</summary>
+        <pubDate>Sat, 12 Dec 2020 09:00:00 +0000</pubDate>
+        <link>https://blog.arima.eu/2020/12/12/CVE-2020-8554-kubernetes.html</link>
+        <guid isPermaLink="true">https://blog.arima.eu//2020/12/12/CVE-2020-8554-kubernetes.html</guid>
+        <headerImage>https://blog.arima.eu/assets/images/2020-12-12-cve-kubernetes/header.jpg</headerImage>
+        
+        
+        
+        
+        
+
+      <author>Fernando Lozano</author>
+    </post>
+    
+    <post>
         <title>Kubernetes ha deprecado Docker</title>
         <summary>&lt;p&gt;Recientemente se ha anunciado a través del &lt;a href=&quot;https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.20.md#deprecation&quot; target=&quot;_blank&quot;&gt;changelog de Kubernetes&lt;/a&gt; que se depreca el soporte a Docker en la próxima versión, v1.20, y que en futuras versiones será eliminado.&lt;/p&gt;
 </summary>
@@ -39,23 +56,6 @@
         
 
       <author>Jessica Aguado</author>
-    </post>
-    
-    <post>
-        <title>Utilizando Docker dentro de Kubernetes</title>
-        <summary>&lt;p&gt;En un &lt;a href=&quot;/2020/09/10/deberias-utilizar-contenedores-privilegiados.html&quot; target=&quot;_blank&quot;&gt;post anterior&lt;/a&gt; hablé sobre el problema de otorgar privilegios a un contenedor y los riesgos que esto supone. Hoy quiero presentaros un caso concreto en el que se otorgan privilegios a un contenedor y algunas alternativas.&lt;/p&gt;
-</summary>
-        <pubDate>Wed, 11 Nov 2020 09:00:00 +0000</pubDate>
-        <link>https://blog.arima.eu/2020/11/11/docker-en-kubernetes.html</link>
-        <guid isPermaLink="true">https://blog.arima.eu//2020/11/11/docker-en-kubernetes.html</guid>
-        <headerImage>https://blog.arima.eu/assets/images/2020-11-11-docker-en-kubernetes/whale.jpg</headerImage>
-        
-        
-        
-        
-        
-
-      <author>Urko Lekuona</author>
     </post>
     
   </channel>
