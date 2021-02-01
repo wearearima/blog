@@ -23,6 +23,23 @@
     </post>
     
     <post>
+        <title>Aumentando la calidad de nuestras infraestructuras de Kubernetes: Open Policy Agent</title>
+        <summary>&lt;p&gt;No hay que irse muy lejos para ver que Kubernetes continúa creciendo como la tecnología líder en el ecosistema nativo de la nube. En una reciente encuesta de la &lt;a href=&quot;https://www.cncf.io/blog/2020/05/04/the-state-of-cloud-native-development-a-new-survey-report/&quot; target=&quot;_blank&quot;&gt;CNCF&lt;/a&gt; muestra que el 78% de los participantes están usando Kubernetes en producción. Con este panorama donde hay muchos proyectos con diferentes tecnologías, no hay que perder de vista la calidad de la infraestructura de Kubernetes.&lt;/p&gt;
+</summary>
+        <pubDate>Tue, 08 Dec 2020 09:00:00 +0000</pubDate>
+        <link>https://blog.arima.eu/2020/12/08/opa.html</link>
+        <guid isPermaLink="true">https://blog.arima.eu//2020/12/08/opa.html</guid>
+        <headerImage>https://blog.arima.eu/assets/images/2020-12-10-opa/mountains.jpg</headerImage>
+        
+        
+        
+        
+        
+
+      <author>Fernando Lozano</author>
+    </post>
+    
+    <post>
         <title>Kubernetes ha deprecado Docker</title>
         <summary>&lt;p&gt;Recientemente se ha anunciado a través del &lt;a href=&quot;https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.20.md#deprecation&quot; target=&quot;_blank&quot;&gt;changelog de Kubernetes&lt;/a&gt; que se depreca el soporte a Docker en la próxima versión, v1.20, y que en futuras versiones será eliminado.&lt;/p&gt;
 </summary>
@@ -37,25 +54,6 @@
         
 
       <author>Iñigo Telleria</author>
-    </post>
-    
-    <post>
-        <title>He asistido a una conferencia en tiempos de pandemia: Tarugoconf</title>
-        <summary>&lt;blockquote&gt;
-  &lt;p&gt;Hoy anunciaremos que el próximo 23 de octubre se celebrará la #tarugo5&lt;/p&gt;
-&lt;/blockquote&gt;
-</summary>
-        <pubDate>Tue, 01 Dec 2020 09:00:00 +0000</pubDate>
-        <link>https://blog.arima.eu/2020/12/01/tarugo20.html</link>
-        <guid isPermaLink="true">https://blog.arima.eu//2020/12/01/tarugo20.html</guid>
-        <headerImage>https://blog.arima.eu/assets/images/2020-12-01-tarugo20/header.jpeg</headerImage>
-        
-        
-        
-        
-        
-
-      <author>Jessica Aguado</author>
     </post>
     
   </channel>
