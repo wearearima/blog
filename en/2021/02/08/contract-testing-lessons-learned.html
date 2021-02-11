@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="es" itemscope itemtype="http://schema.org/Blog">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Lecciones aprendidas sobre Contract Testing</title>
+  <meta name="description" content="A lo largo de varios posts, hemos ido viendo cómo a consecuencia de la evolución de las arquitecturas de las aplicaciones surgen nuevas necesidades en el ámb...">
+  
+  <meta name="keywords" content="testing,calidad,softwarequality,QA,contracttesting,consumer-drivencontracttesting,consumerdrivencontracttesting,provider-drivencontracttesting,providerdrivencontracttesting">
+  
+
+  <!-- Twitter cards -->
+  <meta name="twitter:site"    content="@wearearima">
+  <meta name="twitter:creator" content="@jessica">
+  <meta name="twitter:title"   content="Lecciones aprendidas sobre Contract Testing">
+
+  
+  <meta name="twitter:description" content="">
+  
+
+  
+  <meta name="twitter:card"  content="summary_large_image">
+  <meta name="twitter:image" content="https://blog.arima.eu/assets/images/2021-02-08-contract-testing/header.jpg">
+  
+  <!-- end of Twitter cards -->
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="https://blog.arima.eu/en/2021/02/08/contract-testing-lessons-learned.html">
+  <link rel="alternate" type="application/rss+xml" title="ARIMA" href="/en/feed.xml">
+
+  <!-- SEO Recipes (http://polyglot.untra.io/seo/) -->
+  <meta http-equiv="Content-Language" content="en">
+  <link rel="alternate"
+      hreflang="es"
+      href="https://blog.arima.eu/en/2021/02/08/contract-testing-lessons-learned.html" />
+  
+  
+  <link rel="alternate"
+      hreflang="es"
+      href="https://blog.arima.eu/es/2021/02/08/contract-testing-lessons-learned.html" />
+  
+  
+  <link rel="alternate"
+      hreflang="en"
+      href="https://blog.arima.eu/en/2021/02/08/contract-testing-lessons-learned.html" />
+  
+
+  
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-120217722-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-120217722-1');
+</script>
+  
+</head>
+
+  <body>
+    <nav class="toolbar">
+    <div class="wrapper">    
+        <a href="/en/">
+            <div class="toolbar__logo">
+                <svg xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" version="1.1" width="100%" height="100%" viewBox="0 0 33 6">
+    <path id="path24" d="m30.346988508615652,-0.000015174522529526127 l-0.6439224998849951,0 l-2.7763635316117727,6.135695064030662 l0.7050150612484405,0 l2.3859233880279893,-5.335002838884215 l2.3660424189063254,5.335002838884215 l0.739668694925785,0 L30.346988508615652,-0.000015174522529526127 zm-8.274141805179609,3.3681675186951847 l-2.2194202716340565,-3.324608867598761 l-0.6962481061149294,0 l0,6.092136412934239 l0.6700853029999622,0 l0,-4.926062349034439 l2.2194202716340565,3.2553706313868567 l0.034929758248478535,0 l2.2192131782057056,-3.2639304930920168 l0,4.934622210739599 l0.6873430886958508,0 l0,-6.092136412934239 l-0.6961100438293623,0 l-2.2192131782057056,3.324608867598761 zm-9.143036799396208,-1.5057072863948877 c0,-1.0964906719739773 -0.8613705996531913,-1.8189015812038738 -2.201748299081466,-1.8189015812038738 l-2.619662837493104,0 l0,6.092136412934239 l0.6876192132669849,0 l0,-5.456842805897188 l1.8799251114245357,0 c0.9833486289517317,0 1.5576187057681203,0.4525681720889824 1.5576187057681203,1.2097017461390067 c0,0.7919252700129356 -0.7831583148794242,1.2620273523689407 -1.6968545207625496,1.2620273523689407 l0,0.6178287279128115 l1.7665759749739396,2.3672849794764295 l0.8442508762428699,0 l-1.8711581562910244,-2.4891249464894027 c0.9571858258367647,-0.17416557324290774 1.6534339319516944,-0.7659695603263191 1.6534339319516944,-1.7841098852409623 m2.7743616284710493,4.273234831730365 l0.6872050264102838,0 l0,-6.0920673817914555 l-0.6872050264102838,0 l0,6.0920673817914555 zM2.7761571742923965,-0.000015174522529526127 l-2.7761564381834223,6.135695064030662 l0.7048769989628736,0 l2.386061450313556,-5.335002838884215 l2.3658353254779745,5.335002838884215 l0.739668694925785,0 l-2.7761564381834223,-6.135695064030662 l-0.6441295933133457,0 z" stroke-width="0"/>
+</svg>
+
+            </div>
+        </a>
+        <!-- Language selector -->
+        <div class="language-selector">
+            
+              
+                <a class="unselected" href="/es/2021/02/08/contract-testing-lessons-learned.html">ES</a>
+              
+              
+                &nbsp;|&nbsp;
+              
+            
+              
+                <b class="selected">EN</b>
+              
+              
+            
+         </div>
+    </div>
+</nav>
+<div id="publisher_id" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Arima 100% Software Design" />
+    <meta itemprop="url" content="https://arima.eu" />
+    <div itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+        <meta itemprop="url" content="https://arima.eu/img/logo.png" />
+    </div>
+</div>
+    <main aria-label="Content">        
+        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting" itemref="publisher_id">
+          <link itemprop="mainEntityOfPage" href="/en/2021/02/08/contract-testing-lessons-learned.html" />
+
+          <header class="post-header">
+            <div class="post-img" itemprop="image" itemscope itemtype="http://schema.org/ImageObject" style="background-image: url('https://blog.arima.eu/assets/images/2021-02-08-contract-testing/header.jpg');">
+              <meta itemprop="url" content="https://blog.arima.eu/assets/images/2021-02-08-contract-testing/header.jpg" />
+            </div>
+            <div class="wrapper">
+              <div class="post-info__container">
+                <div class="post-info">
+                  <h1 class="post-title" itemprop="name headline">Lecciones aprendidas sobre Contract Testing</h1>
+                    <div class="post-meta" itemscope itemtype="https://schema.org/Person" itemprop="author">
+                      
+                      <div class="author-photo">
+                        <img itemprop="image" src="/assets/images/authors/jessica.png" alt="">
+                      </div>
+                      <div>
+                        <span class="post-author" itemprop="name">Jessica Aguado</span>
+                      </div>
+                      <div>
+                        <span class="post-date">08 Feb 2021</span>
+                      </div>
+                    </div>
+                    <meta  itemprop="datePublished dateModified" content="08 Feb 2021" />
+                </div>
+              </div>
+            </div>
+          </header>
+          <div class="wrapper">
+            <div class="post-content" itemprop="articleBody">
+              <p>A lo largo de varios posts, hemos ido viendo cómo a consecuencia de la evolución de las arquitecturas de las aplicaciones surgen nuevas necesidades en el ámbito del testing. Nos hemos centrado en una concreta: tan importante como testear las funcionalidades en <em>consumer</em> y <em>producer</em> de forma independiente lo es asegurar que <a href="https://blog.arima.eu/es/2020/09/03/contract-testing.html" target="_blank">la interacción entre ambos es correcta</a>. Hemos visto que tenemos a nuestro alcance <strong>Contract Testing</strong>, con <a href="https://blog.arima.eu/es/2020/10/09/contract-testing-approach.html" target="_blank">diferentes enfoques y herramientas</a> que nos permiten abordar esta necesidad en concreto. Además utilizando el enfoque <strong>producer driven</strong> y <a href="https://spring.io/projects/spring-cloud-contract" target="_blank"><strong>Spring Cloud Contract</strong></a> hemos <a href="https://blog.arima.eu/en/2020/10/29/playing-with-spring-cloud-contract.html" target="_blank">llevado a la práctica</a> todo lo aprendido.</p>
+
+<p>Estaba pensando en cómo terminar esta serie de posts, con una recopilación de lecciones aprendidas… Algo así como un minipost resumiendo todo lo que hemos visto hasta ahora en cuatro o cinco titulares.<br />
+Haciendo este ejercicio de reflexión, he recordado que en mi proceso de aprendizaje hubo una lección que destacó frente al resto. Puede que haya gente para la que resulte obvia pero seguro que hay alguien por ahí que puede meterse en el mismo callejón que me metí yo en su momento… Así que, para ese “alguien” 😉 aquí mi granito de arena:</p>
+<blockquote>
+  <p>Hacer Contract Testing <strong>no</strong> te exime de hacer Unit Testing o Integration Testing.</p>
+</blockquote>
+
+<p>Vale, ya sé que esto es lo que pone en todos los sitios, que no estoy diciendo nada nuevo…. pero bueno, yo estuve tentada de hacerlo… quizás tú que me lees también…. y ya sabéis mi mantra: <em>materializar para entender</em> 😊.<br />
+Vamos a partir del ejemplo en el que hemos utilizado Spring Cloud Contract. Ya sabemos de qué va y controlamos el ejemplo.</p>
+
+<p>Viendo los tests del <em>consumer</em>, podríamos pensar…</p>
+
+<p>💡 Ey! Sería genial tener las casuísticas que necesito para mi lógica representadas en el stub así me ahorraría el test unitario donde tengo mockeadas todas esas situaciones</p>
+
+<p>¡Qué buena idea!</p>
+
+<p>🤔 Ya pero el <em>producer</em> no tiene por qué conocer mis casuísticas y es quien ha creado el contrato.</p>
+
+<p>Prf! Es verdad… ¿cómo se me habrá ocurrido? ¿En qué estaría pensando …..?</p>
+
+<p>💡 Wait! ¡Lo que necesito son <em>consumer driven contracts</em>!</p>
+
+<p>Puedo crear los contratos desde el <em>consumer</em> con la información que necesito y hacer que los contratos estén disponibles en el <em>producer</em> mediante pull-request (por ejemplo). Como los tests del <em>producer</em> son autogenerados no se va a enterar… ¡Perfecto! ¡Enacaja! ¡Manos a la obra!</p>
+
+<p>Si echamos un vistazo a los tests del <em>consumer</em> vemos que básicamente queremos probar tres situaciones: cuando la duración de los worklogs es de 8 horas, de más de 8 horas y de menos de 8 horas.</p>
+
+<p>Generamos por tanto los nuevos contratos y los dejamos para que estén accesibles desde el <em>producer</em>. A continuación mostramos cómo podría ser (el código completo de todos los pasos que daremos, junto con los .json, está en <a href="https://github.com/wearearima/time-report-ContractTesting-03" target="_blank">Github</a>).</p>
+
+<h4 id="worklogsforworkeranddayyaml">worklogsForWorkerAndDay.yaml</h4>
+<div class="language-yml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">description</span><span class="pi">:</span> <span class="s">Given a worker's username and a day it returns worklogs with 8 hours</span>
+<span class="na">name</span><span class="pi">:</span> <span class="s">worklogsForWokerAndDay_with_8hours_worklogs</span>
+<span class="na">request</span><span class="pi">:</span>
+   <span class="na">url</span><span class="pi">:</span> <span class="s">/worklogs/worker/JESSI</span>
+   <span class="na">queryParameters</span><span class="pi">:</span>
+      <span class="na">day</span><span class="pi">:</span> <span class="s2">"</span><span class="s">2020-05-01"</span>
+   <span class="na">method</span><span class="pi">:</span> <span class="s">GET</span>
+   <span class="na">matchers</span><span class="pi">:</span>
+    <span class="na">url</span><span class="pi">:</span>
+      <span class="na">regex</span><span class="pi">:</span> <span class="s">/worklogs/worker/([a-zA-Z]*)</span>    
+<span class="na">response</span><span class="pi">:</span>
+   <span class="na">status</span><span class="pi">:</span> <span class="m">200</span>
+   <span class="na">headers</span><span class="pi">:</span>
+      <span class="na">Content-Type</span><span class="pi">:</span> <span class="s2">"</span><span class="s">application/json"</span>
+   <span class="na">bodyFromFile</span><span class="pi">:</span> <span class="s">worklogs_8hours.json</span>
+
+<span class="nn">---</span>   
+<span class="na">description</span><span class="pi">:</span> <span class="s">Given a worker's username and a day it returns worklogs that sum more than 8 hours</span>
+<span class="na">name</span><span class="pi">:</span> <span class="s">worklogsForWokerAndDay_with_moreThan8hours_worklogs</span>
+<span class="na">request</span><span class="pi">:</span>
+   <span class="na">url</span><span class="pi">:</span> <span class="s">/worklogs/worker/JESSI</span>
+   <span class="na">queryParameters</span><span class="pi">:</span>
+      <span class="na">day</span><span class="pi">:</span> <span class="s2">"</span><span class="s">2020-05-05"</span>
+   <span class="na">method</span><span class="pi">:</span> <span class="s">GET</span>
+   <span class="na">matchers</span><span class="pi">:</span>
+    <span class="na">url</span><span class="pi">:</span>
+      <span class="na">regex</span><span class="pi">:</span> <span class="s">/worklogs/worker/([a-zA-Z]*)</span>    
+<span class="na">response</span><span class="pi">:</span>
+   <span class="na">status</span><span class="pi">:</span> <span class="m">200</span>
+   <span class="na">headers</span><span class="pi">:</span>
+      <span class="na">Content-Type</span><span class="pi">:</span> <span class="s2">"</span><span class="s">application/json"</span>
+   <span class="na">bodyFromFile</span><span class="pi">:</span> <span class="s">worklogs_moreThan8hours.json</span>
+   
+<span class="nn">---</span>   
+<span class="na">description</span><span class="pi">:</span> <span class="s">Given a worker's username and a day it returns worklogs that sum less than 8 hours</span>
+<span class="na">name</span><span class="pi">:</span> <span class="s">worklogsForWokerAndDay_with_lessThan8hours_worklogs</span>
+<span class="na">request</span><span class="pi">:</span>
+   <span class="na">url</span><span class="pi">:</span> <span class="s">/worklogs/worker/JESSI</span>
+   <span class="na">queryParameters</span><span class="pi">:</span>
+      <span class="na">day</span><span class="pi">:</span> <span class="s2">"</span><span class="s">2020-05-10"</span>
+   <span class="na">method</span><span class="pi">:</span> <span class="s">GET</span>
+   <span class="na">matchers</span><span class="pi">:</span>
+    <span class="na">url</span><span class="pi">:</span>
+      <span class="na">regex</span><span class="pi">:</span> <span class="s">/worklogs/worker/([a-zA-Z]*)</span>    
+<span class="na">response</span><span class="pi">:</span>
+   <span class="na">status</span><span class="pi">:</span> <span class="m">200</span>
+   <span class="na">headers</span><span class="pi">:</span>
+      <span class="na">Content-Type</span><span class="pi">:</span> <span class="s2">"</span><span class="s">application/json"</span>
+   <span class="na">bodyFromFile</span><span class="pi">:</span> <span class="s">worklogs_lessThan8hours.json</span>
+</code></pre></div></div>
+
+<p>En él hemos generado las 3 situaciones que queríamos.<br />
+Con el contrato definido, es hora de generar el stub en el <em>producer</em>. Hacemos <code class="highlighter-rouge">./mvnw clean install</code> y vemos que aunque hemos cambiado el contrato con Spring Cloud Contract se autogeneran los tests, así que todo va según lo previsto y no tenemos que tocar nada del <em>producer</em>.</p>
+
+<p>Como ya tenemos accesible el stub con las casuísticas generadas desde el <em>consumer</em>, ya podríamos borrar nuestros tests unitarios e implementarlos haciendo llamadas al stub directamente. El código quedaría:</p>
+
+<h4 id="consumer--reportsservicetestjava">Consumer | ReportsServiceTest.java</h4>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@ExtendWith</span><span class="o">(</span><span class="nc">SpringExtension</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+<span class="nd">@SpringBootTest</span><span class="o">(</span><span class="n">properties</span> <span class="o">=</span> <span class="o">{</span> <span class="s">"server.url=http://localhost:8083"</span> <span class="o">})</span>
+<span class="nd">@AutoConfigureStubRunner</span><span class="o">(</span><span class="n">ids</span> <span class="o">=</span> <span class="o">{</span> <span class="s">"eu.arima.tr:timeReports-producer:+:stubs:8083"</span> <span class="o">})</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ReportsServiceTest</span> <span class="o">{</span>
+
+  <span class="nd">@Autowired</span>
+  <span class="kd">private</span> <span class="nc">ReportsService</span> <span class="n">reportsService</span><span class="o">;</span>
+
+  <span class="nd">@Test</span>
+  <span class="nd">@DisplayName</span><span class="o">(</span><span class="s">"Given a worklog with 8 hours duration the status is RIGHT_HOURS"</span><span class="o">)</span>
+  <span class="kt">void</span> <span class="nf">when_the_worklog_for_the_resquested_day_is_8_hours_the_status_is_RIGHT_HOURS</span><span class="o">()</span> <span class="kd">throws</span> <span class="nc">InterruptedException</span> <span class="o">{</span>
+    <span class="nc">LocalDate</span> <span class="n">day</span> <span class="o">=</span> <span class="nc">LocalDate</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="mi">2020</span><span class="o">,</span> <span class="mo">05</span><span class="o">,</span> <span class="mo">01</span><span class="o">);</span>
+    <span class="nc">String</span> <span class="n">username</span> <span class="o">=</span> <span class="s">"JESSI"</span><span class="o">;</span>
+
+    <span class="nc">DayStatusSummary</span> <span class="n">result</span> <span class="o">=</span> <span class="n">reportsService</span><span class="o">.</span><span class="na">getDayStatusSummaryForWorkerAndDay</span><span class="o">(</span><span class="n">username</span><span class="o">,</span> <span class="n">day</span><span class="o">);</span>
+
+    <span class="n">assertStatusEquals</span><span class="o">(</span><span class="no">RIGHT_HOURS</span><span class="o">,</span> <span class="n">result</span><span class="o">);</span>
+
+  <span class="o">}</span>
+
+  <span class="nd">@Test</span>
+  <span class="nd">@DisplayName</span><span class="o">(</span><span class="s">"Given a list of worklogs with more than 8 hours duration the status is MISSING_HOURS"</span><span class="o">)</span>
+  <span class="kt">void</span> <span class="nf">when_the_worklogs_for_resquested_day_are_more_than_8_hours_the_status_is_MISSING_HOURS</span><span class="o">()</span>
+      <span class="kd">throws</span> <span class="nc">InterruptedException</span> <span class="o">{</span>
+    <span class="nc">LocalDate</span> <span class="n">day</span> <span class="o">=</span> <span class="nc">LocalDate</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="mi">2020</span><span class="o">,</span> <span class="mo">05</span><span class="o">,</span> <span class="mo">05</span><span class="o">);</span>
+    <span class="nc">String</span> <span class="n">username</span> <span class="o">=</span> <span class="s">"JESSI"</span><span class="o">;</span>
+
+    <span class="nc">DayStatusSummary</span> <span class="n">result</span> <span class="o">=</span> <span class="n">reportsService</span><span class="o">.</span><span class="na">getDayStatusSummaryForWorkerAndDay</span><span class="o">(</span><span class="n">username</span><span class="o">,</span> <span class="n">day</span><span class="o">);</span>
+
+    <span class="n">assertStatusEquals</span><span class="o">(</span><span class="nc">DayStatus</span><span class="o">.</span><span class="na">EXTRA_HOURS</span><span class="o">,</span> <span class="n">result</span><span class="o">);</span>
+
+  <span class="o">}</span>
+
+  <span class="nd">@Test</span>
+  <span class="nd">@DisplayName</span><span class="o">(</span><span class="s">"Given a list of worklogs with less than 8 hours duration the status is MISSING_HOURS"</span><span class="o">)</span>
+  <span class="kt">void</span> <span class="nf">when_the_worklogs_for_resquested_day_are_less_than_8_hours_the_status_is_MISSING_HOURS</span><span class="o">()</span>
+      <span class="kd">throws</span> <span class="nc">InterruptedException</span> <span class="o">{</span>
+    <span class="nc">LocalDate</span> <span class="n">day</span> <span class="o">=</span> <span class="nc">LocalDate</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="mi">2020</span><span class="o">,</span> <span class="mo">05</span><span class="o">,</span> <span class="mi">10</span><span class="o">);</span>
+    <span class="nc">String</span> <span class="n">username</span> <span class="o">=</span> <span class="s">"JESSI"</span><span class="o">;</span>
+
+    <span class="nc">DayStatusSummary</span> <span class="n">result</span> <span class="o">=</span> <span class="n">reportsService</span><span class="o">.</span><span class="na">getDayStatusSummaryForWorkerAndDay</span><span class="o">(</span><span class="n">username</span><span class="o">,</span> <span class="n">day</span><span class="o">);</span>
+
+    <span class="n">assertStatusEquals</span><span class="o">(</span><span class="no">MISSING_HOURS</span><span class="o">,</span> <span class="n">result</span><span class="o">);</span>
+
+  <span class="o">}</span>
+
+  <span class="nd">@Test</span>
+  <span class="nd">@DisplayName</span><span class="o">(</span><span class="s">"Given the username of a worker the status result has that username"</span><span class="o">)</span>
+  <span class="kt">void</span> <span class="nf">the_status_result_belongs_to_the_requested_worker</span><span class="o">()</span> <span class="kd">throws</span> <span class="nc">InterruptedException</span> <span class="o">{</span>
+    <span class="nc">LocalDate</span> <span class="n">day</span> <span class="o">=</span> <span class="nc">LocalDate</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="mi">2020</span><span class="o">,</span> <span class="mo">05</span><span class="o">,</span> <span class="mo">01</span><span class="o">);</span>
+    <span class="nc">String</span> <span class="n">username</span> <span class="o">=</span> <span class="s">"JESSI"</span><span class="o">;</span>
+
+    <span class="nc">DayStatusSummary</span> <span class="n">result</span> <span class="o">=</span> <span class="n">reportsService</span><span class="o">.</span><span class="na">getDayStatusSummaryForWorkerAndDay</span><span class="o">(</span><span class="n">username</span><span class="o">,</span> <span class="n">day</span><span class="o">);</span>
+
+    <span class="n">assertEquals</span><span class="o">(</span><span class="n">username</span><span class="o">,</span> <span class="n">result</span><span class="o">.</span><span class="na">getWorkerUserName</span><span class="o">());</span>
+
+  <span class="o">}</span>
+
+  <span class="nd">@Test</span>
+  <span class="nd">@DisplayName</span><span class="o">(</span><span class="s">"Given a date the status result has that date"</span><span class="o">)</span>
+  <span class="kt">void</span> <span class="nf">the_status_result_belongs_to_the_requested_day</span><span class="o">()</span> <span class="kd">throws</span> <span class="nc">InterruptedException</span> <span class="o">{</span>
+    <span class="nc">LocalDate</span> <span class="n">day</span> <span class="o">=</span> <span class="nc">LocalDate</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="mi">2020</span><span class="o">,</span> <span class="mo">05</span><span class="o">,</span> <span class="mo">01</span><span class="o">);</span>
+    <span class="nc">String</span> <span class="n">username</span> <span class="o">=</span> <span class="s">"JESSI"</span><span class="o">;</span>
+
+    <span class="nc">DayStatusSummary</span> <span class="n">result</span> <span class="o">=</span> <span class="n">reportsService</span><span class="o">.</span><span class="na">getDayStatusSummaryForWorkerAndDay</span><span class="o">(</span><span class="n">username</span><span class="o">,</span> <span class="n">day</span><span class="o">);</span>
+
+    <span class="n">assertEquals</span><span class="o">(</span><span class="n">day</span><span class="o">,</span> <span class="n">result</span><span class="o">.</span><span class="na">getDate</span><span class="o">());</span>
+
+  <span class="o">}</span>
+<span class="o">}</span>
+
+</code></pre></div></div>
+<p>¡Genial! Todo queda mucho más limpio ¿¡Cómo no se me habrá ocurrido antes!?</p>
+
+<p>Pero ¿qué sucedería si modificamos la lógica de nuestro <em>consumer</em>? 
+Por ejemplo, supongamos que contemplamos la casuística del verano, cuando en lugar de jornadas de 8 horas tenemos jornadas de 7 horas.<br />
+Para introducir este cambio, como mínimo tendríamos que:</p>
+
+<ol>
+  <li>Modificar el contrato y añadir más casuísticas para que en función de los parámetros de entrada nos devuelva otros datos</li>
+  <li>Hacer llegar al <em>producer</em> el contrato (por ejemplo PR)</li>
+  <li>Regenerar elementos del <em>producer</em> como los tests y el stub (<code class="highlighter-rouge">./mvnw clean install</code>)</li>
+  <li>Modificar los tests en el <em>consumer</em> para añadir las nuevas casuísticas</li>
+</ol>
+
+<p>Estamos modificando el contrato cuando en realidad no ha habido cambios en el “acuerdo” entre <em>consumer</em> y <em>producer</em>. Estamos utilizando las bondades de Spring Cloud Contract como un método de generación de datos “mock” para nuestra lógica de negocio… Algo no suena bien. Si no hubiésemos hecho el cambio, únicamente tendríamos que hacer el paso 4. Parece que no ha sido tan buena idea ¿no?<br />
+¿Poder se puede? Sí. Sin embargo, un gran poder conlleva una gran responsabilidad… y <strong>que se pueda no quiere decir que se deba</strong>.</p>
+
+<p>Después de sufrirlo en nuestras propias carnes, nos rendimos ante la conclusión que hemos destacado al principio: Contract testing no sustituye ni a los tests unitarios, ni a los de integración, ni otros tests que podamos tener en nuestros proyectos. Contract testing es una herramienta más, un complemento a los anteriores cuyo objetivo NO ES verificar/asegurar el buen funcionamiento de la lógica de negocio (ni de consumidores ni de proveedores) para eso están los test unitarios o de integración de cada uno de ellos. Su objetivo ES asegurar que se cumplen los acuerdos entre <em>consumer</em> y <em>producer</em> que hacen que la interacción entre <em>consumer</em> y <em>producer</em> sea correcta.</p>
+
+<p>La verdad es que somos propensos a descubrir una herramienta y si nos gusta y nos encaja utilizarla de forma indiscriminada. Como hemos visto, cuando estamos aplicándolos podría parecernos que podríamos llegar a prescindir de nuestros test unitarios, pero si seguimos indagando, vemos que lo que nos parecía el descubrimiento del día no es tan buena idea, todo lo contrario.</p>
+
+<h1 id="lecciones-aprendidas">Lecciones aprendidas</h1>
+<p>Bueno pues ya llega el momento del resumen. Vamos a ver qué hemos aprendido a lo largo de estos posts.</p>
+
+<ul>
+  <li>
+    <p>Tenemos una herramienta más que nos sirve para el testeo de aplicaciones de (micro)servicios y que no aplica en aplicaciones monolíticas.</p>
+  </li>
+  <li>
+    <p>Como con el resto de tipos/técnicas de tests, hay que buscar el equilibrio y tener claro el objetivo de los mismos, en este caso: testear el acuerdo (contrato o pacto) entre <em>consumer</em> y <em>producer</em> (ni más ni menos) y no utilizarlos de forma indiscriminada.</p>
+  </li>
+  <li>
+    <p>En proyectos donde el <em>producer</em> sea transversal a varios <em>consumers</em> (cuyo desarrollo no esté acoplado entre sí) y/o público, parece más apropiada la aproximación o el enfoque <em>producer</em> driven, donde es el <em>producer</em> quien define cómo será el acuerdo a cumplir en la comunicación.</p>
+  </li>
+  <li>
+    <p>En proyectos donde el <em>producer</em> no tiene razón de ser sin el <em>consumer</em>, y cuyo desarrollos están más acoplados, parece más apropiado el enfoque de <em>consumer</em> driven, donde será el (o los) <em>consumer(s)</em> quienes indicarán al <em>producer</em> sus necesidades estableciendo el acuerdo a cumplir en la comunicación</p>
+  </li>
+  <li>
+    <p>Cómo implementar/organizar el testing dependerá del enfoque seleccionado y de la naturaleza del proyecto: no existe una receta única y universal para hacer buen testing.</p>
+  </li>
+</ul>
+
+            </div>
+
+            
+          </div>
+        </article>
+      </div>
+    </main>
+
+    <footer>
+    <div class="wrapper">
+        <div class="footer__container">
+            <div class="footer__sello">
+                <img src="/assets/images/arima_sello_white.png" alt="" />
+            </div>
+            <div class="footer__content">
+                <div class="footer__data">
+                    <dl>
+                        <dt>web</dt>
+                        <dd><a itemprop="sameAs" href="https://www.arima.eu/en/">arima.eu</a></dd>
+                    </dl>
+                    <dl>
+                        <dt>social</dt>
+                        <dd>
+                            <a itemprop="sameAs" href="https://github.com/wearearima" class="social"><span class="icon-github"></span></a>
+                            <a itemprop="sameAs" href="https://twitter.com/wearearima" class="social"><span class="icon-twitter"></span></a>
+                            <a itemprop="sameAs" href="https://www.linkedin.com/company/arima-software-design/" class="social"><span class="icon-linkedin"></span></a>
+                            <a itemprop="sameAs" href="/en/feed.xml" class="social"><span class="icon-feed"></span></a>
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt>Privacy</dt>
+                        <dd class="politica-cookies">
+                            <a href="/en/cookies.html">Cookies Policy</a>
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+    <div class="cookies-message" id="cookies-message">
+    <h4>This website uses cookies</h4>
+    <p>This website uses cookies to improve user experience. By continuing to browse this website, you agree to the use of cookies as stated in our Cookies Policy.</p>
+    <div class="buttons">
+        <a class="button" href="/en/cookies.html">Read Cookies Policy</a>
+        <button class="button" id="accept-cookies">Accept</button>
+    </div>
+</div>
+<script>
+    (function() {
+        if(localStorage) {
+            var cookiesAccepted = localStorage.getItem("cookies-accepted");
+            if(cookiesAccepted) {
+                hideCookiesMessage();
+                
+            } else {
+                document.getElementById('accept-cookies').addEventListener("click", function() {
+                    hideCookiesMessage();
+                    localStorage.setItem("cookies-accepted", true);
+                })
+            }
+        }
+        function hideCookiesMessage() {
+            document.getElementById('cookies-message').style.display = "none";
+        }
+    })();
+</script>
+
+  </body>
+
+</html>
