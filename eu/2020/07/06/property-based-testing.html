@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en" itemscope itemtype="http://schema.org/Blog">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Another way of doing tests: property-based testing</title>
+  <meta name="description" content="What is property-based testing?">
+  
+  <meta name="keywords" content="testing,propertybasedtesting,PBT,calidad,softwarequality,QA,junit">
+  
+
+  <!-- Twitter cards -->
+  <meta name="twitter:site"    content="@wearearima">
+  <meta name="twitter:creator" content="@jessica">
+  <meta name="twitter:title"   content="Another way of doing tests: property-based testing">
+
+  
+  <meta name="twitter:description" content="">
+  
+
+  
+  <meta name="twitter:card"  content="summary_large_image">
+  <meta name="twitter:image" content="https://blog.arima.eu/assets/images/post-headers/property-based-testing.jpg">
+  
+  <!-- end of Twitter cards -->
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="https://blog.arima.eu/eu/2020/07/06/property-based-testing.html">
+  <link rel="alternate" type="application/rss+xml" title="ARIMA" href="/eu/feed.xml">
+
+  <!-- SEO Recipes (http://polyglot.untra.io/seo/) -->
+  <meta http-equiv="Content-Language" content="eus">
+  <link rel="alternate"
+      hreflang="es"
+      href="https://blog.arima.eu/eu/2020/07/06/property-based-testing.html" />
+  
+  
+  <link rel="alternate"
+      hreflang="es"
+      href="https://blog.arima.eu/es/2020/07/06/property-based-testing.html" />
+  
+  
+  <link rel="alternate"
+      hreflang="en"
+      href="https://blog.arima.eu/en/2020/07/06/property-based-testing.html" />
+  
+  
+  <link rel="alternate"
+      hreflang="eu"
+      href="https://blog.arima.eu/eu/eus/2020/07/06/property-based-testing.html" />
+  
+
+  
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-120217722-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-120217722-1');
+</script>
+  
+</head>
+
+  <body>
+    <nav class="toolbar">
+    <div class="wrapper">    
+        <a href="/eu/">
+            <div class="toolbar__logo">
+                <svg xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" version="1.1" width="100%" height="100%" viewBox="0 0 33 6">
+    <path id="path24" d="m30.346988508615652,-0.000015174522529526127 l-0.6439224998849951,0 l-2.7763635316117727,6.135695064030662 l0.7050150612484405,0 l2.3859233880279893,-5.335002838884215 l2.3660424189063254,5.335002838884215 l0.739668694925785,0 L30.346988508615652,-0.000015174522529526127 zm-8.274141805179609,3.3681675186951847 l-2.2194202716340565,-3.324608867598761 l-0.6962481061149294,0 l0,6.092136412934239 l0.6700853029999622,0 l0,-4.926062349034439 l2.2194202716340565,3.2553706313868567 l0.034929758248478535,0 l2.2192131782057056,-3.2639304930920168 l0,4.934622210739599 l0.6873430886958508,0 l0,-6.092136412934239 l-0.6961100438293623,0 l-2.2192131782057056,3.324608867598761 zm-9.143036799396208,-1.5057072863948877 c0,-1.0964906719739773 -0.8613705996531913,-1.8189015812038738 -2.201748299081466,-1.8189015812038738 l-2.619662837493104,0 l0,6.092136412934239 l0.6876192132669849,0 l0,-5.456842805897188 l1.8799251114245357,0 c0.9833486289517317,0 1.5576187057681203,0.4525681720889824 1.5576187057681203,1.2097017461390067 c0,0.7919252700129356 -0.7831583148794242,1.2620273523689407 -1.6968545207625496,1.2620273523689407 l0,0.6178287279128115 l1.7665759749739396,2.3672849794764295 l0.8442508762428699,0 l-1.8711581562910244,-2.4891249464894027 c0.9571858258367647,-0.17416557324290774 1.6534339319516944,-0.7659695603263191 1.6534339319516944,-1.7841098852409623 m2.7743616284710493,4.273234831730365 l0.6872050264102838,0 l0,-6.0920673817914555 l-0.6872050264102838,0 l0,6.0920673817914555 zM2.7761571742923965,-0.000015174522529526127 l-2.7761564381834223,6.135695064030662 l0.7048769989628736,0 l2.386061450313556,-5.335002838884215 l2.3658353254779745,5.335002838884215 l0.739668694925785,0 l-2.7761564381834223,-6.135695064030662 l-0.6441295933133457,0 z" stroke-width="0"/>
+</svg>
+
+            </div>
+        </a>
+        <!-- Language selector -->
+        <div class="language-selector">
+            
+              
+                <a class="unselected" href="/es/2020/07/06/property-based-testing.html">ES</a>
+              
+              
+                &nbsp;|&nbsp;
+              
+            
+              
+                <a class="unselected" href="/en/2020/07/06/property-based-testing.html">EN</a>
+              
+              
+                &nbsp;|&nbsp;
+              
+            
+              
+                <b class="selected">EU</b>
+              
+              
+            
+         </div>
+    </div>
+</nav>
+<div id="publisher_id" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Arima 100% Software Design" />
+    <meta itemprop="url" content="https://arima.eu" />
+    <div itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+        <meta itemprop="url" content="https://arima.eu/img/logo.png" />
+    </div>
+</div>
+    <main aria-label="Content">        
+        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting" itemref="publisher_id">
+          <link itemprop="mainEntityOfPage" href="/eu/2020/07/06/property-based-testing.html" />
+
+          <header class="post-header">
+            <div class="post-img" itemprop="image" itemscope itemtype="http://schema.org/ImageObject" style="background-image: url('https://blog.arima.eu/assets/images/post-headers/property-based-testing.jpg');">
+              <meta itemprop="url" content="https://blog.arima.eu/assets/images/post-headers/property-based-testing.jpg" />
+            </div>
+            <div class="wrapper">
+              <div class="post-info__container">
+                <div class="post-info">
+                  <h1 class="post-title" itemprop="name headline">Another way of doing tests: property-based testing</h1>
+                    <div class="post-meta" itemscope itemtype="https://schema.org/Person" itemprop="author">
+                      
+                      <div class="author-photo">
+                        <img itemprop="image" src="/assets/images/authors/jessica.png" alt="">
+                      </div>
+                      <div>
+                        <span class="post-author" itemprop="name">Jessica Aguado</span>
+                      </div>
+                      <div>
+                        <span class="post-date">06 Jul 2020</span>
+                      </div>
+                    </div>
+                    <meta  itemprop="datePublished dateModified" content="06 Jul 2020" />
+                </div>
+              </div>
+            </div>
+          </header>
+          <div class="wrapper">
+            <div class="post-content" itemprop="articleBody">
+              <h2 id="what-is-property-based-testing">What is property-based testing?</h2>
+
+<p><em>Property-based testing</em> (from now on PBT) is another alternative for development tests where the main focus, instead of being a specific example/case, becomes a property of the the use case, understanding that a property becomes something like:</p>
+
+<blockquote>
+  <p>for all input (x,y,….)<br />
+where precondition (x,y…) is met <br />
+the property (z,k….) is true</p>
+</blockquote>
+
+<p>Normally the properties are not too detailed, they only verify some general characteristic that must be met.</p>
+
+<p>For example, to test an addition custom method, if we were doing <em>example-based testing</em>, we could have several tests like these:</p>
+
+<pre>
+<code>- given the numbers 10 and 1 the sum will be 11
+- given the numbers 10 and 20 the sum will be 30
+   . . . . </code></pre>
+
+<p>However, if we were doing PBT, we would formulate a more general test, for example like the one shown below:</p>
+
+<pre>
+<code>for any integer a and b that are between 1 and 20
+the sum of a and b will be greater than a</code></pre>
+
+<p>Let’s look at the implications of a test like this.</p>
+
+<h3 id="for-all-input-a-b">For all input (<em>a, b</em>)</h3>
+
+<blockquote>
+  <pre style="margin-bottom: 0px">
+<code><b>for any integer a and b</b> that are between 1 and 20
+the sum of a and b will be greater than a</code></pre>
+</blockquote>
+
+<p>Several sets of tests will be run with combinations of random values ​​for <code class="highlighter-rouge">a</code> and <code class="highlighter-rouge">b</code> (the exact number of runs depends on the framework/library used and is usually configurable).</p>
+
+<h3 id="where-precondition-is-met-a-and-b-between-1-and-20">Where precondition is met (<em>a and b between 1 and 20</em>)</h3>
+
+<blockquote>
+  <pre style="margin-bottom: 0px">
+<code>for any integer a and b <b>that are between 1 and 20</b>
+the sum of a and b will be greater than a</code></pre>
+</blockquote>
+
+<p>We are indicating a precondition that both <code class="highlighter-rouge">a</code> and <code class="highlighter-rouge">b</code> must be between <code class="highlighter-rouge">1</code> and<code class="highlighter-rouge"> 20</code>. If the random values ​​that are generated for a test (test execution, if we are purists) do not comply, it is discarded as a valid test and continues with other values.</p>
+
+<h3 id="property-ab-a-is-true">Property (<em>a+b&gt; a</em>) is true</h3>
+
+<blockquote>
+  <pre style="margin-bottom: 0px">
+<code>for any integer a and b that are between 1 and 20
+<b>the sum of a and b will be greater than a</b></code></pre>
+</blockquote>
+
+<p>This check is to be executed every time.</p>
+
+<h2 id="from-theory-to-practice">From theory to practice</h2>
+
+<p>Ok and how does this apply to my use case? I review my tests, defined in <a href="https://github.com/jaguado-arima/time-report-pbt/blob/feature/01_tests_jqwik_property_test/src/test/java/eu/arima/tr/reports/reportsServiceImpl/GetDayStatusSummaryForWorkerAndDayTests.java" target="_blank">GetDayStatusSummaryForWorkerAndDayTests.java</a> and I think about whether any of them could be written based on method properties regardless of the “exact” values ​​of the parameters.
+I realize that I have two tests that are actually written in these terms:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Test</span>
+<span class="nd">@Displayname</span> <span class="o">(</span><span class="err">“</span><span class="nc">Given</span> <span class="n">the</span> <span class="n">username</span> <span class="n">of</span> <span class="n">a</span> <span class="n">worker</span> <span class="n">the</span> <span class="n">status</span> <span class="n">result</span> <span class="n">has</span> <span class="n">that</span> <span class="n">username</span><span class="err">”</span><span class="o">)</span>
+<span class="kt">void</span> <span class="nf">the_status_result_belongs_to_the_requested_worker</span><span class="o">()</span> <span class="o">{</span>
+  <span class="nc">DayStatusSummary</span> <span class="n">result</span> <span class="o">=</span> <span class="n">reportsService</span><span class="o">.</span><span class="na">getDayStatusSummaryForWorkerAndDay</span><span class="o">(</span><span class="no">USERNAME</span><span class="o">,</span> <span class="no">DAY</span><span class="o">);</span>
+  <span class="n">assertEquals</span><span class="o">(</span><span class="no">USERNAME</span><span class="o">,</span> <span class="n">result</span><span class="o">.</span><span class="na">getWorkerUserName</span><span class="o">());</span>
+
+<span class="o">}</span>
+
+<span class="nd">@Test</span>
+<span class="nd">@Displayname</span> <span class="o">(</span><span class="err">“</span><span class="nc">Given</span> <span class="n">a</span> <span class="n">date</span> <span class="n">the</span> <span class="n">status</span> <span class="n">result</span> <span class="n">has</span> <span class="n">that</span> <span class="n">date</span><span class="err">”</span><span class="o">)</span>
+<span class="kt">void</span> <span class="nf">the_status_result_belongs_to_the_requested_day</span><span class="o">()</span> <span class="o">{</span>
+ <span class="nc">LocalDate</span> <span class="n">day</span> <span class="o">=</span> <span class="no">DAY</span><span class="o">;</span>
+ <span class="nc">DayStatusSummary</span> <span class="n">result</span> <span class="o">=</span> <span class="n">reportsService</span><span class="o">.</span><span class="na">getDayStatusSummaryForWorkerAndDay</span><span class="o">(</span><span class="no">USERNAME</span><span class="o">,</span> <span class="n">day</span><span class="o">);</span>
+ <span class="n">assertEquals</span><span class="o">(</span><span class="n">day</span><span class="o">,</span> <span class="n">result</span><span class="o">.</span><span class="na">getDate</span><span class="o">());</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>In both I am doing tests based on concrete examples, but actually if we read what is intended to be tested, it is much more generic: perhaps we could apply PBT here?</p>
+
+<p>For Java there are several tools, the most popular are:</p>
+
+<ul>
+  <li><a href="https://pholser.github.io/junit-quickcheck/site/0.9.1/#" target="_blank">junit-quickcheck</a></li>
+  <li><a href="https://jqwik.net/" target="_blank">jqwik</a></li>
+</ul>
+
+<p>It seems that the first one doesn’t support JUnit 5, so we’re going to try it with <strong>jqwik</strong>.</p>
+
+<p>We add the dependency in the pom.xml</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;dependency&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>net.jqwik<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>jqwik<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;version&gt;</span>1.3.1<span class="nt">&lt;/version&gt;</span>
+  <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</code></pre></div></div>
+
+<p>And then we reformulate our tests to PBT “format”:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">GetDayStatusSummaryForWorkerAndDayPropertyTests</span> <span class="o">{</span>
+
+  <span class="nc">ReportsServiceImpl</span> <span class="n">reportsService</span><span class="o">;</span>
+
+  <span class="nd">@BeforeProperty</span>
+  <span class="kt">void</span> <span class="nf">setup</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">reportsService</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ReportsServiceImpl</span><span class="o">(</span><span class="n">mock</span><span class="o">(</span><span class="nc">WorklogRepository</span><span class="o">.</span><span class="na">class</span><span class="o">));</span>
+  <span class="o">}</span>
+
+  <span class="nd">@Property</span>
+  <span class="nd">@Label</span><span class="o">(</span><span class="s">"Given the username of a worker and a date the status result has that username and date"</span><span class="o">)</span>
+  <span class="kt">boolean</span> <span class="nf">the_status_result_belongs_to_the_requested_worker</span><span class="o">(</span><span class="nd">@ForAll</span> <span class="nc">String</span> <span class="n">username</span><span class="o">,</span> <span class="nd">@ForAll</span><span class="o">(</span><span class="s">"localdates"</span><span class="o">)</span> <span class="nc">LocalDate</span> <span class="n">date</span><span class="o">)</span> <span class="o">{</span>
+
+    <span class="nc">DayStatusSummary</span> <span class="n">result</span> <span class="o">=</span> <span class="n">reportsService</span><span class="o">.</span><span class="na">getDayStatusSummaryForWorkerAndDay</span><span class="o">(</span><span class="n">username</span><span class="o">,</span> <span class="n">date</span><span class="o">);</span>
+    
+    <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="na">getDate</span><span class="o">().</span><span class="na">equals</span><span class="o">(</span><span class="n">date</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="n">result</span><span class="o">.</span><span class="na">getWorkerUserName</span><span class="o">().</span><span class="na">equals</span><span class="o">(</span><span class="n">username</span><span class="o">);</span>
+<span class="o">}</span>
+
+  <span class="nd">@Provide</span>
+  <span class="nc">Arbitrary</span><span class="o">&lt;</span><span class="nc">LocalDate</span><span class="o">&gt;</span> <span class="nf">localdates</span><span class="o">()</span> <span class="o">{</span>
+    <span class="nc">Arbitrary</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">years</span> <span class="o">=</span> <span class="nc">Arbitraries</span><span class="o">.</span><span class="na">integers</span><span class="o">().</span><span class="na">between</span><span class="o">(</span><span class="mi">1900</span><span class="o">,</span> <span class="mi">2099</span><span class="o">);</span>
+    <span class="nc">Arbitrary</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">months</span> <span class="o">=</span> <span class="nc">Arbitraries</span><span class="o">.</span><span class="na">integers</span><span class="o">().</span><span class="na">between</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="mi">12</span><span class="o">);</span>
+    <span class="nc">Arbitrary</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">days</span> <span class="o">=</span> <span class="nc">Arbitraries</span><span class="o">.</span><span class="na">integers</span><span class="o">().</span><span class="na">between</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="mi">31</span><span class="o">);</span>
+  
+    <span class="k">return</span> <span class="nc">Combinators</span><span class="o">.</span><span class="na">combine</span><span class="o">(</span><span class="n">years</span><span class="o">,</span> <span class="n">months</span><span class="o">,</span> <span class="n">days</span><span class="o">).</span><span class="na">as</span><span class="o">(</span><span class="nl">LocalDate:</span><span class="o">:</span><span class="n">of</span><span class="o">).</span><span class="na">ignoreException</span><span class="o">(</span><span class="nc">DateTimeException</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+  <span class="o">}</span>
+
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Voila! Our test runs 1,000 times with a different set of input parameters each time (it’s as if we had generated and run 1,000 different tests). If we show both parameters on the console, we will see the 1000 combinations that are executed. The default number of executions varies depending on the selected tool and is normally configurable. If we run it a second time, it will run 1000 times with a different set of parameters.</p>
+
+<p>Note: This full example is available at <a href="https://github.com/jaguado-arima/time-report-pbt/tree/feature/01_tests_jqwik_property_test" target="_blank">Github</a>. To personalize/configure different parameters, consult the <a href="https://jqwik.net/" target="_blank">jqwik documentation</a>.</p>
+
+<h2 id="in-summary">In summary</h2>
+
+<p>So far a very simple case has helped us understand the concept of <em>property-based testing</em>. Reading the documentation and reviewing the state of the art, it seems that in more complex cases, doing PBT is more complicated: both when formulating/identifying the tests and when implementing them.</p>
+
+<p>It is clear that like many other testing tools/trends, there is nothing black or white. There is no one type of test better than another, at least not absolutely: it depends on the context (functionality/project…) to which it applies.</p>
+
+<p>Based on this and the research, the ideas I would stay with are:</p>
+
+<ul>
+  <li>
+    <p>With <em>property-based testing</em>, we can replace several example-based tests with only one, testing the method with multiple combinations of inputs (which will vary with each execution). It is more difficult to identify them given their generic nature.</p>
+  </li>
+  <li>
+    <p>With <em>example-based testing</em> the combinations will be ones chosen by the developer (fixed in all executions) and the tests will be very specific. They are easy to develop and understand. They are not that exhaustive.</p>
+  </li>
+</ul>
+
+<p>At first glance it occurs to me: and why not use <code class="highlighter-rouge">@ParameterizedTests</code> with a method that generates the parameters randomly? What does PBT offer that you cannot achieve with parameterized tests?</p>
+
+<p>Basically, it offers us the possibility of having not only values ​​for random inputs, but also different combinations between them (something that we would otherwise have to implement in some other way).</p>
+
+<p>For example, in <a href="https://github.com/jaguado-arima/time-report-pbt/tree/feature/02_tests_jqwik_combinedValues" target="_blank">Github</a> we have added a <code class="highlighter-rouge">System.out.println</code> for the parameters of the previous test and we have also created a class <code class="highlighter-rouge">JqwikPropertiesTests.java</code> whose sole objective is to look at the combinations:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Property</span><span class="o">(</span><span class="n">edgeCases</span> <span class="o">=</span> <span class="nc">EdgeCasesMode</span><span class="o">.</span><span class="na">FIRST</span><span class="o">,</span> <span class="n">tries</span> <span class="o">=</span> <span class="mi">30</span><span class="o">)</span>
+<span class="kt">void</span> <span class="nf">printCombinedValuesOfTwoParams</span><span class="o">(</span><span class="nd">@ForAll</span> <span class="nd">@IntRange</span><span class="o">(</span><span class="n">min</span> <span class="o">=</span> <span class="mi">0</span><span class="o">,</span> <span class="n">max</span> <span class="o">=</span> <span class="mi">10</span><span class="o">)</span> <span class="kt">int</span> <span class="n">a</span><span class="o">,</span> <span class="nd">@ForAll</span> <span class="nd">@IntRange</span><span class="o">(</span><span class="n">min</span> <span class="o">=</span> <span class="mi">0</span><span class="o">,</span> <span class="n">max</span> <span class="o">=</span> <span class="mi">10</span><span class="o">)</span> <span class="kt">int</span> <span class="n">b</span><span class="o">)</span> <span class="o">{</span>
+  <span class="nc">String</span> <span class="n">parameters</span> <span class="o">=</span> <span class="nc">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"%s, %s"</span><span class="o">,</span> <span class="n">a</span><span class="o">,</span> <span class="n">b</span><span class="o">);</span>
+    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">parameters</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="nd">@Property</span><span class="o">(</span><span class="n">edgeCases</span> <span class="o">=</span> <span class="nc">EdgeCasesMode</span><span class="o">.</span><span class="na">FIRST</span><span class="o">,</span> <span class="n">tries</span> <span class="o">=</span> <span class="mi">30</span><span class="o">)</span>
+<span class="kt">void</span> <span class="nf">printCombinedValuesOfThreParams</span><span class="o">(</span><span class="nd">@ForAll</span> <span class="nd">@IntRange</span><span class="o">(</span><span class="n">min</span> <span class="o">=</span> <span class="mi">0</span><span class="o">,</span> <span class="n">max</span> <span class="o">=</span> <span class="mi">10</span><span class="o">)</span> <span class="kt">int</span> <span class="n">a</span><span class="o">,</span> <span class="nd">@ForAll</span> <span class="nd">@IntRange</span><span class="o">(</span><span class="n">min</span> <span class="o">=</span> <span class="mi">10</span><span class="o">,</span> <span class="n">max</span> <span class="o">=</span> <span class="mi">20</span><span class="o">)</span> <span class="kt">int</span> <span class="n">b</span><span class="o">,</span> <span class="nd">@ForAll</span> <span class="nd">@IntRange</span><span class="o">(</span><span class="n">min</span> <span class="o">=</span> <span class="mi">20</span><span class="o">,</span> <span class="n">max</span> <span class="o">=</span> <span class="mi">30</span><span class="o">)</span> <span class="kt">int</span> <span class="n">c</span><span class="o">)</span> <span class="o">{</span>
+  <span class="nc">String</span> <span class="n">parameters</span> <span class="o">=</span> <span class="nc">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"%s, %s, %s"</span><span class="o">,</span> <span class="n">a</span><span class="o">,</span> <span class="n">b</span><span class="o">,</span> <span class="n">c</span><span class="o">);</span>
+  <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">parameters</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>This code generates an output of combinations, such as:</p>
+
+<table>
+<tr>
+<th>Combination of parameters generated for the first example</th>
+<th>Combination of parameters generated for the second example</th>
+</tr>
+<tr>
+<td>0, 0<br />
+
+0, 2<br />
+0, 1<br />
+0, 10<br />
+2, 0<br />
+2, 2<br />
+2, 1<br />
+2, 10<br />
+1, 0<br />
+1, 2<br />
+1, 1<br />
+1, 10<br />
+10, 0<br />
+10, 2<br />
+10, 1<br />
+10, 10<br />
+8, 0<br />
+1, 5<br />
+7, 2<br />
+10, 4<br />
+9, 3<br />
+1, 3<br />
+8, 4<br />
+10, 6<br />
+4, 10<br />
+5, 9<br />
+2, 0<br />
+0, 5<br />
+6, 8<br />
+3, 5</td>
+<td>0, 10, 20<br />
+0, 10, 30<br />
+0, 20, 20<br />
+0, 20, 30<br />
+2, 10, 20<br />
+2, 10, 30<br />
+2, 20, 20<br />
+2, 20, 30<br />
+1, 10, 20<br />
+1, 10, 30<br />
+1, 20, 20<br />
+1, 20, 30<br />
+10, 10, 20<br />
+10, 10, 30<br />
+10, 20, 20<br />
+10, 20, 30<br />
+0, 12, 21<br />
+1, 11, 29<br />
+9, 17, 24<br />
+1, 10, 27<br />
+4, 20, 29<br />
+0, 19, 23<br />
+0, 10, 27<br />
+7, 11, 20<br />
+2, 10, 22<br />
+4, 10, 23<br />
+7, 14, 28<br />
+8, 20, 25<br />
+7, 20, 22<br />
+10, 17, 30</td>
+</tr>
+</table>
+
+<p>In addition to combinations, it offers us different tools for generating those parameters and configurations for more complex cases.</p>
+
+<p>The price: change the focus of the tests, learn a new framework for their implementation, plus the execution time.</p>
+
+<p>My feeling is that these tests end up being much more complex if you want to get the most out of them, and although I see their benefits, what I’m not sure of is whether there are any real projects that use this type of testing. Is it used intensively throughout or only in some of the functionalities that do not require extra configuration/customization? What should the characteristics of my project be to invest in this type of testing rather than example-based testing?</p>
+
+<hr />
+
+<hr />
+
+<p><br /></p>
+
+<p>Below I’ve added some references that I’ve used and that have helped me understand the concept of <em>property-based testing</em></p>
+
+<ul>
+  <li><a href="https://medium.com/criteo-labs/introduction-to-property-based-testing-f5236229d237">Introduction to Property Based Testing</a> - <em>by Nicolas Dubien</em></li>
+  <li><a href="https://www.erikschierboom.com/2016/02/22/property-based-testing/">Property-based testing</a> - <em>by Erik Schierboom</em></li>
+  <li><a href="https://felginep.github.io/2019-03-20/property-based-testing">Property based testing</a> - <em>by Pierre Felgines</em></li>
+  <li><a href="https://medium.com/@yoan.thirion/improve-your-software-quality-with-property-based-testing-70bd5ad9a09a">Improve your software quality with Property-Based Testing</a> - <em>by Yoan Thirion</em></li>
+  <li><a href="https://blog.ssanj.net/posts/2016-06-26-property-based-testing-patterns.html">Property-based Testing Patterns</a> - <em>by Sanjiv Sahayam</em></li>
+</ul>
+
+            </div>
+
+            
+          </div>
+        </article>
+      </div>
+    </main>
+
+    <footer>
+    <div class="wrapper">
+        <div class="footer__container">
+            <div class="footer__sello">
+                <img src="/assets/images/arima_sello_white.png" alt="" />
+            </div>
+            <div class="footer__content">
+                <div class="footer__data">
+                    <dl>
+                        <dt></dt>
+                        <dd><a itemprop="sameAs" href="">arima.eu</a></dd>
+                    </dl>
+                    <dl>
+                        <dt></dt>
+                        <dd>
+                            <a itemprop="sameAs" href="https://github.com/wearearima" class="social"><span class="icon-github"></span></a>
+                            <a itemprop="sameAs" href="https://twitter.com/wearearima" class="social"><span class="icon-twitter"></span></a>
+                            <a itemprop="sameAs" href="https://www.linkedin.com/company/arima-software-design/" class="social"><span class="icon-linkedin"></span></a>
+                            <a itemprop="sameAs" href="/eu/feed.xml" class="social"><span class="icon-feed"></span></a>
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt></dt>
+                        <dd class="politica-cookies">
+                            <a href="/eu/cookies.html"></a>
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+    <div class="cookies-message" id="cookies-message">
+    <h4></h4>
+    <p></p>
+    <div class="buttons">
+        <a class="button" href="/eu/cookies.html"></a>
+        <button class="button" id="accept-cookies"></button>
+    </div>
+</div>
+<script>
+    (function() {
+        if(localStorage) {
+            var cookiesAccepted = localStorage.getItem("cookies-accepted");
+            if(cookiesAccepted) {
+                hideCookiesMessage();
+                
+            } else {
+                document.getElementById('accept-cookies').addEventListener("click", function() {
+                    hideCookiesMessage();
+                    localStorage.setItem("cookies-accepted", true);
+                })
+            }
+        }
+        function hideCookiesMessage() {
+            document.getElementById('cookies-message').style.display = "none";
+        }
+    })();
+</script>
+
+  </body>
+
+</html>

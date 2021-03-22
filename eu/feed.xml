@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title></title>
+    <description></description>
+    <link>https://blog.arima.eu</link>
+    
+    <post>
+        <title>Lecciones aprendidas sobre Contract Testing</title>
+        <summary>&lt;p&gt;A lo largo de varios posts, hemos ido viendo cómo a consecuencia de la evolución de las arquitecturas de las aplicaciones surgen nuevas necesidades en el ámbito del testing. Nos hemos centrado en una concreta: tan importante como testear las funcionalidades en &lt;em&gt;consumer&lt;/em&gt; y &lt;em&gt;producer&lt;/em&gt; de forma independiente lo es asegurar que &lt;a href=&quot;https://blog.arima.eu/es/2020/09/03/contract-testing.html&quot; target=&quot;_blank&quot;&gt;la interacción entre ambos es correcta&lt;/a&gt;. Hemos visto que tenemos a nuestro alcance &lt;strong&gt;Contract Testing&lt;/strong&gt;, con &lt;a href=&quot;https://blog.arima.eu/es/2020/10/09/contract-testing-approach.html&quot; target=&quot;_blank&quot;&gt;diferentes enfoques y herramientas&lt;/a&gt; que nos permiten abordar esta necesidad en concreto. Además utilizando el enfoque &lt;strong&gt;producer driven&lt;/strong&gt; y &lt;a href=&quot;https://spring.io/projects/spring-cloud-contract&quot; target=&quot;_blank&quot;&gt;&lt;strong&gt;Spring Cloud Contract&lt;/strong&gt;&lt;/a&gt; hemos &lt;a href=&quot;https://blog.arima.eu/2020/10/29/playing-with-spring-cloud-contract.html&quot; target=&quot;_blank&quot;&gt;llevado a la práctica&lt;/a&gt; todo lo aprendido.&lt;/p&gt;
+</summary>
+        <pubDate>Mon, 08 Feb 2021 08:00:00 +0000</pubDate>
+        <link>https://blog.arima.eu/2021/02/08/contract-testing-lessons-learned.html</link>
+        <guid isPermaLink="true">https://blog.arima.eu//2021/02/08/contract-testing-lessons-learned.html</guid>
+        <headerImage>https://blog.arima.eu/assets/images/2021-02-08-contract-testing/header.jpg</headerImage>
+        
+        
+        
+        
+        
+
+      <author>Jessica Aguado</author>
+    </post>
+    
+    <post>
+        <title>Aumentando la calidad de nuestras infraestructuras de Kubernetes: Open Policy Agent</title>
+        <summary>&lt;p&gt;No hay que irse muy lejos para ver que Kubernetes continúa creciendo como la tecnología líder en el ecosistema nativo de la nube. En una reciente encuesta de la &lt;a href=&quot;https://www.cncf.io/blog/2020/05/04/the-state-of-cloud-native-development-a-new-survey-report/&quot; target=&quot;_blank&quot;&gt;CNCF&lt;/a&gt; muestra que el 78% de los participantes están usando Kubernetes en producción. Con este panorama donde hay muchos proyectos con diferentes tecnologías, no hay que perder de vista la calidad de la infraestructura de Kubernetes.&lt;/p&gt;
+</summary>
+        <pubDate>Mon, 01 Feb 2021 09:00:00 +0000</pubDate>
+        <link>https://blog.arima.eu/2021/02/01/opa.html</link>
+        <guid isPermaLink="true">https://blog.arima.eu//2021/02/01/opa.html</guid>
+        <headerImage>https://blog.arima.eu/assets/images/2020-12-10-opa/mountains.jpg</headerImage>
+        
+        
+        
+        
+        
+
+      <author>Fernando Lozano</author>
+    </post>
+    
+    <post>
+        <title>CVE-2020-8554: Man in the Middle - Vulnerabilidad en Kubernetes</title>
+        <summary>&lt;p&gt;Cada día se descubren nuevas vulnerabilidades que afectan a las librerías y productos que utilizamos a diario. Hoy le ha tocado a Kubernetes.&lt;/p&gt;
+</summary>
+        <pubDate>Sat, 12 Dec 2020 09:00:00 +0000</pubDate>
+        <link>https://blog.arima.eu/2020/12/12/CVE-2020-8554-kubernetes.html</link>
+        <guid isPermaLink="true">https://blog.arima.eu//2020/12/12/CVE-2020-8554-kubernetes.html</guid>
+        <headerImage>https://blog.arima.eu/assets/images/2020-12-12-cve-kubernetes/header.jpg</headerImage>
+        
+        
+        
+        
+        
+
+      <author>Fernando Lozano</author>
+    </post>
+    
+  </channel>
+</rss>
