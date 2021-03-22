@@ -4,6 +4,9 @@ en:
 es:
   lang: es
   label: "ES"
+eu:
+  lang: eus
+  label: "EU"
 _: # Default lang
   lang: es
   label: "ES"
