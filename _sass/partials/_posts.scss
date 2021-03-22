@@ -128,16 +128,20 @@ $post-header-height: 300px;
 
   > *:not(.footnotes) {
     li {
-      list-style: none;
       margin-bottom: .75em;
-      &::before {
-        content: '/';
-        margin-left: -25px;
-        padding-right: 14px;
-        position: absolute;
-      }
     }
   }
+  
+  ul li {
+    list-style: none;
+    &::before {
+      content: '/';
+      margin-left: -25px;
+      padding-right: 14px;
+      position: absolute;
+    }
+  }
+  
 
   a {
     font-family: 'gothambook';
