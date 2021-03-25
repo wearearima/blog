@@ -14,7 +14,8 @@
           {{ content }}
 
           <ul id="post-list">
-            {% for post in site.posts %}
+            {% assign filtered-posts = site.posts | where: "lang", site.active_lang %}
+            {% for post in filtered-posts %}
               <li itemprop="blogPosts" itemscope itemtype="http://schema.org/BlogPosting" itemref="publisher_id">
                 <h2>
                   <a class="post-link" href="{{ post.url | relative_url }}"><span itemprop="name headline">{{ post.title | escape }}</span></a>

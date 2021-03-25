@@ -1,0 +1,88 @@
+---
+layout: post
+title:  "Aumentando la calidad de nuestras infraestructuras de Kubernetes: Open Policy Agent"
+date:   2021-02-01 9:00:00
+author: fernando
+lang: es
+categories: opa, kubernetes, docker, microservicios,
+tags: opa, open, policy, agent
+header-image: 2020-12-10-opa/mountains.jpg
+---
+
+No hay que irse muy lejos para ver que Kubernetes continúa creciendo como la tecnología líder en el ecosistema nativo de la nube. En una reciente encuesta de la [CNCF](https://www.cncf.io/blog/2020/05/04/the-state-of-cloud-native-development-a-new-survey-report/){:target="_blank"} muestra que el 78% de los participantes están usando Kubernetes en producción. Con este panorama donde hay muchos proyectos con diferentes tecnologías, no hay que perder de vista la calidad de la infraestructura de Kubernetes.
+
+## Open Policy Agent
+
+Hoy vengo a hablar de [Open Policy Agent (OPA)](https://www.openpolicyagent.org/){:target="_blank"}, un motor de políticas que proporciona un lenguaje declarativo de alto nivel para definir y hacer cumplir políticas con un gran abanico de integraciones con diferentes sistemas: microservicios, Kubernetes, pipelines CI/CD, API gateways, y más. En la imagen inferior podemos ver algunos ejemplos de uso de OPA con diferentes sistemas.
+
+![Integraciones con OPA](/assets/images/2020-12-10-opa/integraciones.png){: .center }
+
+## ¿Qué es una política? ¿Qué aporta OPA?
+
+Una política es un conjunto de reglas que rigen el comportamiento de un servicio de software. Esa política puede describir límites de velocidad, nombres de servidores fiables, los clústeres en los que se debe desplegar una aplicación, rutas de red permitidas o simplemente cuentas de las que un usuario puede retirar dinero.
+
+Hoy en día, la política es a menudo una característica hardcodeada dentro del servicio de software que realmente gobierna. **Lo que nos permite Open Policy Agent es desacoplar la política de ese servicio de software** para que las personas responsables de la política puedan leer, escribir, analizar, versionar, distribuir y, en general, administrar la política por separado del servicio en sí. 
+
+OPA también proporciona un conjunto de herramientas unificado para desacoplar la política de cualquier servicio de software que se desee y escribir políticas sensibles al contexto utilizando cualquier contexto que se desee.
+
+## ¿Cómo funciona?
+
+Como he dicho, OPA permite desacoplar la política del software. Cuando el software necesita tomar decisiones sobre políticas, consulta a OPA proporcionando datos estructurados (por ejemplo, JSON) como entrada. OPA evaluará si permite o deniega realizar acciones con la información proporcionada (data) y tomará una decisión.
+
+![Cómo funciona OPA](/assets/images/2020-12-10-opa/funcionamiento.png){: .center }
+
+
+Para que OPA tome una decisión, son necesarios tres factores:
+
+- **Data:** Información proporcionada en formato JSON para que OPA sea capaz de evaluar si está permitido o denegado realizar acciones.
+- **Query:** Define la pregunta sobre la que OPA tiene que decidir e inicia el proceso de toma de decisión. Debe ser proporcionada en formato JSON.
+- **Policy:** Conjunto de reglas definidas. OPA interpreta las reglas definidas y basándose en los datos proporcionados, _data_, y la pregunta a resolver, _query_, genera una respuesta, _decision_. Las políticas están escritas utilizando Rego.
+
+## Rego
+
+Las políticas de OPA se expresan en un lenguaje declarativo de alto nivel llamado Rego. Rego (pronunciado "ray-go") está diseñado específicamente para expresar políticas sobre estructuras de datos jerárquicas complejas. Para obtener información detallada sobre Rego, puedes consultar [la documentación del lenguaje de políticas](https://www.openpolicyagent.org/docs/latest/policy-language/){:target="_blank"}.
+
+## OPA para Kubernetes
+
+En Kubernetes, los [Admission Controllers](https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/){:target="_blank"} hacen cumplir las políticas sobre los objetos durante las operaciones de creación, actualización y eliminación. El Admission Controller es fundamental para la aplicación de políticas en Kubernetes.
+
+Por ejemplo, al implementar OPA como admission controller, se puede:
+
+- Requerir labels específicos en todos los recursos.
+- Requerir que las imágenes del contenedor provengan del registro de imágenes corporativas.
+- Exigir que todos los pods especifiquen peticiones y límites de recursos.
+- Evitar que se creen objetos de Ingress.
+- ...
+
+Hay dos formas de implementar OPA en Kubernetes.
+
+### OPA con su sidecar kube-mgmt
+
+El servidor de API de Kubernetes está configurado para consultar a OPA sobre decisiones de control de admisión cuando se crean, actualizan o eliminan objetos (p. Ej., Pods, Servicios, etc.).
+
+![OPA](/assets/images/2020-12-10-opa/opa.png){: .center }
+
+El servidor API envía todos los objetos de Kubernetes en la solicitud de webhook a OPA. OPA evalúa las políticas que ha cargado utilizando la revisión de admisión como entrada.
+
+Las políticas que le da a OPA finalmente generan una respuesta de revisión de admisión que se envía de vuelta al servidor API.
+
+Si algún controlador de admisión niega la solicitud, la solicitud es denegada (incluso si uno de los controladores de admisión posteriores permitiera la solicitud).
+
+Las políticas se pueden cargar en OPA dinámicamente a través de objetos ConfigMap utilizando el contenedor adicional kube-mgmt. El contenedor de sidecar kube-mgmt también puede cargar cualquier otro objeto de Kubernetes en OPA como JSON en los datos. 
+
+
+### OPA Gatekeeper
+
+OPA Gatekeeper es un nuevo proyecto que proporciona una integración de primera clase entre OPA y Kubernetes. Para obtener información básica, consulta esta publicación de blog en [kubernetes.io](https://kubernetes.io/blog/2019/08/06/opa-gatekeeper-policy-and-governance-for-kubernetes/){:target="_blank"}.
+
+Lo que nos aporta respecto al OPA con kube-mgmt:
+
+- Una biblioteca de políticas extensible y parametrizada.
+- CRD nativos de Kubernetes para crear instancias de la biblioteca de políticas (también conocidas como "constraints").
+- CRD nativos de Kubernetes para ampliar la biblioteca de políticas (también conocidas como "constraint templates").
+- Funcionalidad de auditoría.
+
+OPA Gatekeeper todavía está en versión beta.
+
+## Conclusión
+Open Policy Agent tiene mucho potencial debido a que permite desacoplar el software de las políticas. Lo que me hubiese gustado es que el propio OPA proporcionase más ejemplos de políticas para los diferentes sistemas ya que personalmente se me hace difícil crear las políticas con Rego.
