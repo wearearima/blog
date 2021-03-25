@@ -13,8 +13,12 @@
 
           {{ content }}
 
+          {% assign active_lang = site.active_lang %}
+          {% if active_lang == site.default_lang %}
+            {% assign active_lang = site.languages[0] %}
+          {% endif %}
           <ul id="post-list">
-            {% assign filtered-posts = site.posts | where: "lang", site.active_lang %}
+            {% assign filtered-posts = site.posts | where: "lang", active_lang %}
             {% for post in filtered-posts %}
               <li itemprop="blogPosts" itemscope itemtype="http://schema.org/BlogPosting" itemref="publisher_id">
                 <h2>
