@@ -32,7 +32,7 @@ Ikastaroa bukatu nuenean azterketarako ikasgai gehiago lantzea falta zitzaizkida
 
 CKA azterketa bi ordutan bete beharreko 17 galderez osaturik dago. Mota guztietako galderak aurkitu daitezke: Batzuk oso oinarrizkoak, adibidez Container anitzekin Pod bat nola hasieratu edo nola sortu Rol bat bere baimenekin. Beste batzuk ordea konplexugoak dira, Pod baten trafikoa mugatzen duen Network Policy bat nola sortu, esaterako. 
 
-Lehen esan bezala, azterketaren benetako erronka erremintak ongi ezagutzea da eta erreztasunarekin solturakin erabiltzea da. Horregatik Fernandok [bere postean]({{ site.baseurl }}/es/2020-04-22-examen-ckad){:target="_blank"} azaltzen dituen aholku batzuk azpimarratzen ditut:
+Lehen esan bezala, azterketaren benetako erronka erremintak ongi ezagutzea eta erreztasunez erabiltzea da. Horregatik Fernandok [bere postean]({{ site.baseurl }}/es/2020-04-22-examen-ckad){:target="_blank"} azaltzen dituen aholku batzuk azpimarratzen ditut:
 
 - Praktikatu `kubectl`-ren subkomandoak erabiltzen. Yaml descriptoreak sortu `run` edo `create <mota> --dry-run=client -o yaml`, edo erabili `explain` errekurtso baten egitura hobeto ulertzeko. Horrela azterketan denbora asko aurreztu dezakezu. 
 - Errekurtsoak `kubectl` bitartez sortu ezin direnean, dokumentazioan zehar azkar nabigatzen jakitea baliagarria izango zaizu, yaml deskriptoreen adibideak bertan aurkituko baitituzu. Horregatik, gehien erabiliko dituzun dokumentazioaren atalen estekak aldez aurretik nabigatzailean gordeta edukitzea gomendarria da. 
@@ -41,7 +41,7 @@ Lehen esan bezala, azterketaren benetako erronka erremintak ongi ezagutzea da et
 
 ### Ondorioak
 
-Egia esan, azterketa ez zait bereziki zaila iruditu. Ikasi beharreko materiaren zati handiena erraz barneratzen da eta aldez aurretik ondo prestatuz gero, oinarrizko ezagutzak dituen edozein erabiltzailek oinarrizko ezagutzarekin azterketa gainditu dezakela ziur nago. 
+Egia esan, azterketa ez zait bereziki zaila iruditu. Ikasi beharreko materiaren zati handiena erraz barneratzen da eta aldez aurretik ondo prestatuz gero, oinarrizko ezagutzak dituen edozein erabiltzailek azterketa gainditu dezakela ziur nago. 
 
 Nik lortutako emaitza 87/100 izan zen. Beraz galdera bat edo bi gaizki erantzun nituela ondorioztatzen dut. Azterketako edozein ariketa ondo erantzuteko gai naizela jakiteak pozten nau, eta niretzako garrantzitsuena hau da: azterketako edukia ondo ulertzea eta ezagutza hori nire egunerokotasunean aplikatzea. 
 
