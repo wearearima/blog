@@ -26,7 +26,7 @@ Hala ere, azterketaren galdera asko oinarrizko kontzeptuei buruzkoa da, beraz oi
 ![Laborategiko ariketen adibide bat](/assets/images/2021-04-01-my-cka-exam-experience/exercise.jpg){: .center }
 <label style="text-align: center; display: block;">Laborategiko ariketen adibide bat</label>
 
-Ikastaroa bukatu nuenean azterketarako ikasgai gehiago lantzea falta zitzaizkidala iruditu zitzaidan. Azterketaren zailtasuna, berez, ez dago menperatu behar den edukian, klustera kudeatzeko trebezian eta azkartasunean baizik. Beraz, gorago aipatutako ikastaroa oso konpletoa dela iruditzen zait eta azterketarako prestatu nahi duen edozeini gomendatuko nioke. 
+Laburbilduz, ikastaroa bukatu nuenean ikasgaiak errazak iruditzen zitzaizkidan. Azterketaren zailtasuna, berez, ez dago menperatu behar den edukian, klustera kudeatzeko trebezian eta azkartasunean baizik. Beraz, gorago aipatutako ikastaroa oso konpletoa dela iruditzen zait eta azterketarako prestatu nahi duen edozeini gomendatuko nioke. 
 
 ### Azterketa
 
@@ -48,5 +48,5 @@ Nik lortutako emaitza 87/100 izan zen. Beraz galdera bat edo bi gaizki erantzun 
 ![Ziurtagiria](/assets/images/2021-04-01-my-cka-exam-experience/certification.png){: .center }
 <label style="text-align: center; display: block;">Ziurtagiria</label>
 
-Ziurtagiri hau klusterrak kudeatzen hasteko aparteko abiapuntua dela iruditzen zait. Aurretik kluster batzuk kudeatu nituen arren, orain erabiltzen ditudan erremintak hobeto ulertzen ditudala eta zuku gehiago atera diezaieketela pentsatzen dut. Kluster kudeaketari buruzko galdera batzuk oraindik argitu ez ditudan arren, lehen baino prestakuntza osoagoa dudala sentitzen dut. 
+Ziurtagiri hau klusterrak kudeatzen hasteko aparteko abiapuntua dela iruditzen zait. Aurretik kluster batzuk kudeatu nituen arren, orain erabiltzen ditudan erremintak hobeto ulertzen ditudala eta zuku gehiago atera diezaieketela pentsatzen dut eta ezagutza berri honekin lehen baino prestakuntza osoagoa dudala sentitzen dut. 
 
