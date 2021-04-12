@@ -1,12 +1,12 @@
 ---
 layout: post
 title:  "My experiencia con el examen CKA"
-date:   2021-04-01 8:00:00
+date:   2021-04-12 8:00:00
 author: urko
 lang: es
 categories: kubernetes, certifications, cloud
 tags: kubernetes, certifications, cloud, exams, CKA
-header-image: 2021-04-01-my-cka-exam-experience/header.jpg
+header-image: 2021-04-12-my-cka-exam-experience/header.jpg
 ---
 
 El pasado Lunes 22 de Marzo me examiné del certificado [CKA](https://training.linuxfoundation.org/certification/certified-kubernetes-administrator-cka/){:target="_blank"} de Linux Foundation, y he venido a contaros mi experiencia sobre cómo lo preparé y lo que podemos esperar en este examen. Os recomiendo encarecidamente que leáis también un [post que hizo mi compañero Fernando hace unos meses sobre el examen CKAD]({{ site.baseurl }}/es/2020-04-22-examen-ckad){:target="_blank"}, que habla mucho más en detalle sobre los aspectos de estos exámenes y sirve de ayuda para aprobarlos. !Leyendo su post aprendí algunos consejos cruciales!
@@ -21,7 +21,7 @@ Pese al conocimiento que ya tenía de los recursos de K8s, del uso de `kubectl` 
 
 Sin embargo, en el examen muchas preguntas son sobre el contenido más básico, así que recomiendo personalmente prestar atención a estas lecciones también. El curso está compuesto por vídeos y laboratorios prácticos, e incluso tiene algunos examenes al final con preguntas muy similares al del examen de verdad.
 
-![Ejemplo de ejercicio de los laboratorios](/assets/images/2021-04-01-my-cka-exam-experience/exercise.jpg){: .center }
+![Ejemplo de ejercicio de los laboratorios](/assets/images/2021-04-12-my-cka-exam-experience/exercise.jpg){: .center }
 <label style="text-align: center; display: block;">Ejemplo de ejercicio de los laboratorios</label>
 
 En resumen, el curso hace las cosas tan bien que da la sensación de que el temario es incluso fácil. En mi opinión, la dificultad examen no radica en su los conocimientos, sino en la soltura a la hora de operar el cluster y en saber gestionar bien el tiempo. Haciendo restrospectiva, diría que el curso es muy completo y lo recomendaría a cualquiera que se quiera sacar la certificación.
@@ -43,7 +43,7 @@ Sinceramente, no me parece un examen particularmente complicado. La mayoría de 
 
 Yo obtuve una puntuación de 87/100, por lo que asumo que fallé en una o dos preguntas. Me quedo satisfecho porque sé que soy capaz de resolver cualquiera de los ejercicios del examen, que para mí acaba siendo lo importante: poder entender la materia y aplicar el conocimiento obtenido a casos en la vida real.
 
-![Certificación](/assets/images/2021-04-01-my-cka-exam-experience/certification.png){: .center }
+![Certificación](/assets/images/2021-04-12-my-cka-exam-experience/certification.png){: .center }
 <label style="text-align: center; display: block;">Certificación</label>
 
 La certificación me parece un punto de partida ideal para empezar a administrar clústeres. Ya había administrado previamente algunos, pero ahora siento que entiendo mucho mejor la herramienta que estoy utilizando y que puedo poner en práctica más de su potencial. Con estos nuevos conocimientos noto que estoy mucho más capacitado para esta tarea que hace solo un par de semanas.

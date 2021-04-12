@@ -1,12 +1,12 @@
 ---
 layout: post
 title:  "Nire esperientzia CKA azterketarekin"
-date:   2021-04-01 8:00:00
+date:   2021-04-12 8:00:00
 author: urko
-lang: eus
+lang: eu
 categories: kubernetes, certifications, cloud
 tags: kubernetes, certifications, cloud, exams, CKA
-header-image: 2021-04-01-my-cka-exam-experience/header.jpg
+header-image: 2021-04-12-my-cka-exam-experience/header.jpg
 ---
 
 Joan zen Martxoaren 22an Linux Foundation-en parte den [CKA](https://training.linuxfoundation.org/certification/certified-kubernetes-administrator-cka/){:target="_blank"} ziurtagiriaren azterketa egin nuen. Post honen bitartez nire esperientzia kontatu nahi dizuet, nola prestatu nuen eta zer espero daitekeen azalduz. Bide batez, orain dela hilabete batzuk [Fernandok, nire lankideak, idatzitako posta]({{ site.baseurl }}/es/2020-04-22-examen-ckad){:target="_blank"} irakurtzea gomendatzen dizuet. Bertan zehaztasun handiarekin azaltzen du azterketa honetan kontutan eduki beharrekoa eta nire ustez, froga gainditzeko benetan lagungarria da. Niri behintzat bere posta irakurtzea baliagarria gertatu zitzaidan!
@@ -23,7 +23,7 @@ Nahiz eta Kubernetes errekurtsoei buruzko ezagutza izan, kubectl komandoetara oh
 
 Hala ere, azterketaren galdera asko oinarrizko kontzeptuei buruzkoa da, beraz oinarrizko ikasgaiak ere arreta handiz jarraitzea gomendagarria iruditzen zait. Aipatutako ikastaroa bideo eta laboratorio praktikoez osaturik dago, eta amaieran norberaren maila neurtzeko froga batzuk ere badaude, hauek benetako azterketako galderen oso antzekoak izanik. 
 
-![Laborategiko ariketen adibide bat](/assets/images/2021-04-01-my-cka-exam-experience/exercise.jpg){: .center }
+![Laborategiko ariketen adibide bat](/assets/images/2021-04-12-my-cka-exam-experience/exercise.jpg){: .center }
 <label style="text-align: center; display: block;">Laborategiko ariketen adibide bat</label>
 
 Laburbilduz, ikastaroa bukatu nuenean ikasgaiak errazak iruditzen zitzaizkidan. Azterketaren zailtasuna, berez, ez dago menperatu behar den edukian, klustera kudeatzeko trebezian eta azkartasunean baizik. Beraz, gorago aipatutako ikastaroa oso konpletoa dela iruditzen zait eta azterketarako prestatu nahi duen edozeini gomendatuko nioke. 
@@ -45,7 +45,7 @@ Egia esan, azterketa ez zait bereziki zaila iruditu. Ikasi beharreko materiaren 
 
 Nik lortutako emaitza 87/100 izan zen. Beraz galdera bat edo bi gaizki erantzun nituela ondorioztatzen dut. Azterketako edozein ariketa ondo erantzuteko gai naizela jakiteak pozten nau, eta niretzako garrantzitsuena hau da: azterketako edukia ondo ulertzea eta ezagutza hori nire egunerokotasunean aplikatzea. 
 
-![Ziurtagiria](/assets/images/2021-04-01-my-cka-exam-experience/certification.png){: .center }
+![Ziurtagiria](/assets/images/2021-04-12-my-cka-exam-experience/certification.png){: .center }
 <label style="text-align: center; display: block;">Ziurtagiria</label>
 
 Ziurtagiri hau klusterrak kudeatzen hasteko aparteko abiapuntua dela iruditzen zait. Aurretik kluster batzuk kudeatu nituen arren, orain erabiltzen ditudan erremintak hobeto ulertzen ditudala eta zuku gehiago atera diezaieketela pentsatzen dut eta ezagutza berri honekin lehen baino prestakuntza osoagoa dudala sentitzen dut. 
