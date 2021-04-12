@@ -24,7 +24,7 @@ Sin embargo, en el examen muchas preguntas son sobre el contenido más básico, 
 ![Ejemplo de ejercicio de los laboratorios](/assets/images/2021-04-01-my-cka-exam-experience/exercise.jpg){: .center }
 <label style="text-align: center; display: block;">Ejemplo de ejercicio de los laboratorios</label>
 
-Sinceramente, yo no me sentía del todo preparado para presentarme al examen al haber acabado el curso. Tenía la sensación de que me tenía que faltar más temario por aprender, como si no me pudiese creer que el contenido era tan básico y me faltase aún parte del temario por aprender. Pero no, la dificultad examen no radica en su los conocimientos, sino en la soltura a la hora de operar el cluster y en saber gestionar bien el tiempo. Haciendo restrospectiva, diría que el curso es muy completo y lo recomendaría a cualquiera que se quiera sacar la certificación.
+En resumen, el curso hace las cosas tan bien que da la sensación de que el temario es incluso fácil. En mi opinión, la dificultad examen no radica en su los conocimientos, sino en la soltura a la hora de operar el cluster y en saber gestionar bien el tiempo. Haciendo restrospectiva, diría que el curso es muy completo y lo recomendaría a cualquiera que se quiera sacar la certificación.
 
 ### El examen
 
@@ -46,4 +46,4 @@ Yo obtuve una puntuación de 87/100, por lo que asumo que fallé en una o dos pr
 ![Certificación](/assets/images/2021-04-01-my-cka-exam-experience/certification.png){: .center }
 <label style="text-align: center; display: block;">Certificación</label>
 
-La certificación me parece un punto de partida ideal para empezar a administrar clústeres. Ya había administrado previamente algunos, pero ahora siento que entiendo mucho mejor la herramienta que estoy utilizando y que puedo poner en práctica más de su potencial. Sigo teniendo preguntas sobre la administración de un cluster que no he sido capaz de resolver, pero noto que estoy mucho más capacitado para esta tarea que hace solo un par de semanas.
+La certificación me parece un punto de partida ideal para empezar a administrar clústeres. Ya había administrado previamente algunos, pero ahora siento que entiendo mucho mejor la herramienta que estoy utilizando y que puedo poner en práctica más de su potencial. Con estos nuevos conocimientos noto que estoy mucho más capacitado para esta tarea que hace solo un par de semanas.
