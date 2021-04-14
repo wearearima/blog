@@ -28,13 +28,18 @@ Como ya hemos comentado, la función se dispara por la llegada de un evento. En 
 
 Para que nuestra aplicación pueda tratar el evento que llega desde AWS, lo primero que hay que hacer es utilizar el SDK que provee Amazon (o una librería compatible con Lambda como [Spring Cloud Function](https://spring.io/projects/spring-cloud-function){:target="_blank"}) para implementar un *handler* que se encargue del evento.
 
-En este post usaré una aplicación Spring Boot y con el SDK de AWS. Se puede ver el código de esta aplicación en [este repositorio](https://github.com/wearearima/serverlessDemoAWSHandler){:target="_blank"}.
-
-Para crear la función en Lambda es necesario subir un zip o jar, o un cubo de s3 que contenga la aplicación en estos formatos. Para las aplicaciones Java, es necesario crear un jar que contenga la función compilada y todas sus dependencias, por lo que utilizo [Apache Maven Shade plugin](https://maven.apache.org/plugins/maven-shade-plugin/){:target="_blank"}. También habrá que elegir entre uno de los entornos de ejecución o utilizar uno propio, y proporcionar el nombre del Handler que se encargará del evento. En mi caso usaré Java 8 como entorno de ejecución y `eu.arima.serverlessDemo.handlers.HandlerReservationMock::handleRequest` como Handler.
+En este post usaré una aplicación Spring Boot y con el SDK de AWS. Se puede ver el código de esta aplicación en [este repositorio](https://github.com/wearearima/serverlessDemoAWSHandler){:target="_blank"}. El repositorio también contiene instrucciones sobre cómo crear la función.
 
 Lambda nos da la opción de configurar en mayor detalle la función, pudiendo elegir la cantidad de memoria que queremos utilizar por instancia, el tiempo máximo de ejecución, definir variables de entorno para nuestra aplicación (desde aquí se pueden configurar propiedades de la JVM, por ejemplo), etc.
 
 Una vez hecho esto, la función está lista para ser usada. Quiero recalcar que no hemos tenido que seleccionar un sistema operativo para la máquina, configurarla para que soporte la ejecución de aplicaciones Java o securizarla de ninguna manera. No me tengo que encargar de monitorizar el estado de ninguna máquina ni de establecer ningún sistema de autoescalado por si fuese necesario. Lambda se encarga de todo esto por nosotros.
+
+En la siguiente imagen podemos observar los resultados de la ejecución de la función. A la izquierda se muestran los resultados de la primera ejecución o inicio en frío (*cold-startup*), y a la derecha los de la segunda ejecución o inicio en caliente (*warm-startup*). Podemos observar que hay una gran diferencia en el tiempo de ejecución, que sería aún más notable si nuestra aplicación tardase más en iniciarse por primera vez (por ejempo, si tuviese que crear un *pool* de conexiones con una base de datos).
+
+![Resultados de las ejecuciones (cold | warm)](/assets/images/2021-04-30-aws-lambda/results.png){: .center }
+<label style="text-align: center; display: block;">Resultados de las ejecuciones (cold | warm)</label>
+
+El problema del *cold-startup* es común en *serverless*, ya que estamos constantemente levantando nuevas instancias. En un futuro post estudiaremos maneras de evitarlo. De momento, mencionaré que Lambda ofrece una opción llamada *provisioned concurrency*, que nos permite mantener activas el número de instancias que elijamos (pagando por ellas, claro).
 
 ### Consideraciones:
 
@@ -46,3 +51,7 @@ Al leer sobre este servicio de AWS me he encontrado con ciertas limitaciones té
 4. El tiempo máximo por ejecución son 15 minutos. Si esto no es suficiente para nuestro negocio o la función está mucho tiempo ejecutándose (tiempo facturable), puede que estemos más interesados en otro tipo de *serverless*.
 
 ### Conclusiones
+
+AWS Lambda es un servicio potente que se integra muy bien con el resto del entorno de AWS. Nos introduce al mundo *serverles* y todas sus ventajas, y hace que el despliegue de una aplicación sea más sencillo y barato que nunca.
+
+Sin embargo, no es la solución a todos los problemas. Como siempre, cada caso en concreto tiene sus detalles y habrá que hacer un estudio para ver si Lambda encaja o si es mejor una solucion más tradicional. Lambda puede resultar muy caro si hay muchas peticiones simultáneas y de manera constante. En cualquier caso, a mí personalmente me ha servido para abrirme los ojos e introducirme a las funciones FaaS y me ha hecho replantearme algunas decisiones que he tomado en el pasado.
