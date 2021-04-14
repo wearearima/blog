@@ -41,12 +41,10 @@ Lehen esan bezala, azterketaren benetako erronka erremintak ongi ezagutzea eta e
 
 ### Ondorioak
 
-Egia esan, azterketa ez zait bereziki zaila iruditu. Ikasi beharreko materiaren zati handiena erraz barneratzen da eta aldez aurretik ondo prestatuz gero, oinarrizko ezagutzak dituen edozein erabiltzailek azterketa gainditu dezakela ziur nago. 
+Pozik nago ziurtagiri hau lortzeagatik, eta CNCFk onartutako erabiltzailea izatera pasa naizelako. Ikasi beharreko materiaren zati handiena erraz barneratzen da eta aldez aurretik ondo prestatuz gero, egunero Kubernetesekin lan egiten duten erabiltzaileek azterketa gainditu dezaketela ziur nago. 
 
 Nik lortutako emaitza 87/100 izan zen. Beraz galdera bat edo bi gaizki erantzun nituela ondorioztatzen dut. Azterketako edozein ariketa ondo erantzuteko gai naizela jakiteak pozten nau, eta niretzako garrantzitsuena hau da: azterketako edukia ondo ulertzea eta ezagutza hori nire egunerokotasunean aplikatzea. 
 
 ![Ziurtagiria](/assets/images/2021-04-12-my-cka-exam-experience/certification.png){: .center }
 <label style="text-align: center; display: block;">Ziurtagiria</label>
-
-Ziurtagiri hau klusterrak kudeatzen hasteko aparteko abiapuntua dela iruditzen zait. Aurretik kluster batzuk kudeatu nituen arren, orain erabiltzen ditudan erremintak hobeto ulertzen ditudala eta zuku gehiago atera diezaieketela pentsatzen dut eta ezagutza berri honekin lehen baino prestakuntza osoagoa dudala sentitzen dut. 
 

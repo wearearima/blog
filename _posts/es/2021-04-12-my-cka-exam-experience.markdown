@@ -39,11 +39,9 @@ Como ya he dicho, la dificultad reside en lo familiarizados que estemos con las 
 
 ### Conclusión
 
-Sinceramente, no me parece un examen particularmente complicado. La mayoría de la materia del temario es sencilla de interiorizar y con una buena preparación estoy seguro de que cualquier usuario medio de K8s podría obtener esta certificación. Es cuestión de práctica.
+Estoy contento de haber podido obtener esta certificación, y de poder pasar a ser un usuario reconocido por la CNCF. La mayoría de la materia del temario es sencilla de interiorizar y con una buena preparación estoy seguro de que los usuarios que trabajen con K8s en su día a día podrán obtener esta certificación. Es cuestión de práctica.
 
 Yo obtuve una puntuación de 87/100, por lo que asumo que fallé en una o dos preguntas. Me quedo satisfecho porque sé que soy capaz de resolver cualquiera de los ejercicios del examen, que para mí acaba siendo lo importante: poder entender la materia y aplicar el conocimiento obtenido a casos en la vida real.
 
 ![Certificación](/assets/images/2021-04-12-my-cka-exam-experience/certification.png){: .center }
 <label style="text-align: center; display: block;">Certificación</label>
-
-La certificación me parece un punto de partida ideal para empezar a administrar clústeres. Ya había administrado previamente algunos, pero ahora siento que entiendo mucho mejor la herramienta que estoy utilizando y que puedo poner en práctica más de su potencial. Con estos nuevos conocimientos noto que estoy mucho más capacitado para esta tarea que hace solo un par de semanas.
