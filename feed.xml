@@ -5,22 +5,8 @@
     <description></description>
     <link>https://blog.arima.eu</link>
     
-    <post>
-        <title>Nire esperientzia CKA azterketarekin</title>
-        <summary>&lt;p&gt;Joan zen Martxoaren 22an Linux Foundation-en parte den &lt;a href=&quot;https://training.linuxfoundation.org/certification/certified-kubernetes-administrator-cka/&quot; target=&quot;_blank&quot;&gt;CKA&lt;/a&gt; ziurtagiriaren azterketa egin nuen. Post honen bitartez nire esperientzia kontatu nahi dizuet, nola prestatu nuen eta zer espero daitekeen azalduz. Bide batez, orain dela hilabete batzuk &lt;a href=&quot;/es/2020-04-22-examen-ckad&quot; target=&quot;_blank&quot;&gt;Fernandok, nire lankideak, idatzitako posta&lt;/a&gt; irakurtzea gomendatzen dizuet. Bertan zehaztasun handiarekin azaltzen du azterketa honetan kontutan eduki beharrekoa eta nire ustez, froga gainditzeko benetan lagungarria da. Niri behintzat bere posta irakurtzea baliagarria gertatu zitzaidan!&lt;/p&gt;
-</summary>
-        <pubDate>Wed, 14 Apr 2021 08:00:00 +0000</pubDate>
-        <link>https://blog.arima.eu/2021/04/14/my-cka-exam-experience.html</link>
-        <guid isPermaLink="true">https://blog.arima.eu//2021/04/14/my-cka-exam-experience.html</guid>
-        <headerImage>https://blog.arima.eu/assets/images/2021-04-14-my-cka-exam-experience/header.jpg</headerImage>
-        
-        
-        
-        
-        
-
-      <author>Urko Lekuona</author>
-    </post>
+    
+    
     
     <post>
         <title>Lecciones aprendidas sobre Contract Testing</title>
@@ -47,6 +33,23 @@
         <link>https://blog.arima.eu/2021/02/01/opa.html</link>
         <guid isPermaLink="true">https://blog.arima.eu//2021/02/01/opa.html</guid>
         <headerImage>https://blog.arima.eu/assets/images/2020-12-10-opa/mountains.jpg</headerImage>
+        
+        
+        
+        
+        
+
+      <author>Fernando Lozano</author>
+    </post>
+    
+    <post>
+        <title>CVE-2020-8554: Man in the Middle - Vulnerabilidad en Kubernetes</title>
+        <summary>&lt;p&gt;Cada día se descubren nuevas vulnerabilidades que afectan a las librerías y productos que utilizamos a diario. Hoy le ha tocado a Kubernetes.&lt;/p&gt;
+</summary>
+        <pubDate>Sat, 12 Dec 2020 09:00:00 +0000</pubDate>
+        <link>https://blog.arima.eu/2020/12/12/CVE-2020-8554-kubernetes.html</link>
+        <guid isPermaLink="true">https://blog.arima.eu//2020/12/12/CVE-2020-8554-kubernetes.html</guid>
+        <headerImage>https://blog.arima.eu/assets/images/2020-12-12-cve-kubernetes/header.jpg</headerImage>
         
         
         

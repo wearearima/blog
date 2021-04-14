@@ -5,6 +5,9 @@
     <description></description>
     <link>https://blog.arima.eu</link>
     
+    
+    
+    
     <post>
         <title>Nire esperientzia CKA azterketarekin</title>
         <summary>&lt;p&gt;Joan zen Martxoaren 22an Linux Foundation-en parte den &lt;a href=&quot;https://training.linuxfoundation.org/certification/certified-kubernetes-administrator-cka/&quot; target=&quot;_blank&quot;&gt;CKA&lt;/a&gt; ziurtagiriaren azterketa egin nuen. Post honen bitartez nire esperientzia kontatu nahi dizuet, nola prestatu nuen eta zer espero daitekeen azalduz. Bide batez, orain dela hilabete batzuk &lt;a href=&quot;/es/2020-04-22-examen-ckad&quot; target=&quot;_blank&quot;&gt;Fernandok, nire lankideak, idatzitako posta&lt;/a&gt; irakurtzea gomendatzen dizuet. Bertan zehaztasun handiarekin azaltzen du azterketa honetan kontutan eduki beharrekoa eta nire ustez, froga gainditzeko benetan lagungarria da. Niri behintzat bere posta irakurtzea baliagarria gertatu zitzaidan!&lt;/p&gt;
@@ -23,37 +26,37 @@
     </post>
     
     <post>
-        <title>Lecciones aprendidas sobre Contract Testing</title>
-        <summary>&lt;p&gt;A lo largo de varios posts, hemos ido viendo cómo a consecuencia de la evolución de las arquitecturas de las aplicaciones surgen nuevas necesidades en el ámbito del testing. Nos hemos centrado en una concreta: tan importante como testear las funcionalidades en &lt;em&gt;consumer&lt;/em&gt; y &lt;em&gt;producer&lt;/em&gt; de forma independiente lo es asegurar que &lt;a href=&quot;https://blog.arima.eu/es/2020/09/03/contract-testing.html&quot; target=&quot;_blank&quot;&gt;la interacción entre ambos es correcta&lt;/a&gt;. Hemos visto que tenemos a nuestro alcance &lt;strong&gt;Contract Testing&lt;/strong&gt;, con &lt;a href=&quot;https://blog.arima.eu/es/2020/10/09/contract-testing-approach.html&quot; target=&quot;_blank&quot;&gt;diferentes enfoques y herramientas&lt;/a&gt; que nos permiten abordar esta necesidad en concreto. Además utilizando el enfoque &lt;strong&gt;producer driven&lt;/strong&gt; y &lt;a href=&quot;https://spring.io/projects/spring-cloud-contract&quot; target=&quot;_blank&quot;&gt;&lt;strong&gt;Spring Cloud Contract&lt;/strong&gt;&lt;/a&gt; hemos &lt;a href=&quot;https://blog.arima.eu/2020/10/29/playing-with-spring-cloud-contract.html&quot; target=&quot;_blank&quot;&gt;llevado a la práctica&lt;/a&gt; todo lo aprendido.&lt;/p&gt;
+        <title>Java Docker edukiontzietan exekutatzea bideragarria al da?</title>
+        <summary>&lt;p&gt;Gure inguruan enpresa asko daude Java erabili izan dutenak beraien aplikazioak garatzeko. Horretarako Spring, Tomcat, Weblogic eta JPA bezelako tresnak erabili ohi dira. Azpiegitura hau nahiko egonkorra izan da beti eta aldaketa gutxi jasan ditu.&lt;/p&gt;
 </summary>
-        <pubDate>Mon, 08 Feb 2021 08:00:00 +0000</pubDate>
-        <link>https://blog.arima.eu/2021/02/08/contract-testing-lessons-learned.html</link>
-        <guid isPermaLink="true">https://blog.arima.eu//2021/02/08/contract-testing-lessons-learned.html</guid>
-        <headerImage>https://blog.arima.eu/assets/images/2021-02-08-contract-testing/header.jpg</headerImage>
+        <pubDate>Tue, 11 Feb 2020 09:00:00 +0000</pubDate>
+        <link>https://blog.arima.eu/2020/02/11/java-en-contenedores-docker.html</link>
+        <guid isPermaLink="true">https://blog.arima.eu//2020/02/11/java-en-contenedores-docker.html</guid>
+        <headerImage>https://blog.arima.eu/assets/images/2020-02-11-java-en-contenedores-docker/fondo-cafe-min.jpg</headerImage>
         
         
         
         
         
 
-      <author>Jessica Aguado</author>
+      <author>Iñigo Telleria</author>
     </post>
     
     <post>
-        <title>Aumentando la calidad de nuestras infraestructuras de Kubernetes: Open Policy Agent</title>
-        <summary>&lt;p&gt;No hay que irse muy lejos para ver que Kubernetes continúa creciendo como la tecnología líder en el ecosistema nativo de la nube. En una reciente encuesta de la &lt;a href=&quot;https://www.cncf.io/blog/2020/05/04/the-state-of-cloud-native-development-a-new-survey-report/&quot; target=&quot;_blank&quot;&gt;CNCF&lt;/a&gt; muestra que el 78% de los participantes están usando Kubernetes en producción. Con este panorama donde hay muchos proyectos con diferentes tecnologías, no hay que perder de vista la calidad de la infraestructura de Kubernetes.&lt;/p&gt;
+        <title>Gure hautaketa prozesua</title>
+        <summary>&lt;p&gt;Orokorrean hautaketa prozesuak nahiko gogaikarriak izaten dira  hautagaientzat. Ohiko urduritasunari, hautagaiak eroso ez egotea bilatzen duten teknikak erabiltzea geroz eta ohikoagoa da. Hau lortzeko, elkarrizketatzaileak galdera arraroak egin edo tentsio handiko egoerak eragiten saiatzen dira askotan. Dagoeneko oso ezagunak diren galdera tipikoez gain: zein da zure bertuterik onena? zein da zure ahulezia handiena? (denek berdina erantzuten dute), geroz eta ohikoagoa da beste galdera desegokiagoak egitea ere.&lt;/p&gt;
 </summary>
-        <pubDate>Mon, 01 Feb 2021 09:00:00 +0000</pubDate>
-        <link>https://blog.arima.eu/2021/02/01/opa.html</link>
-        <guid isPermaLink="true">https://blog.arima.eu//2021/02/01/opa.html</guid>
-        <headerImage>https://blog.arima.eu/assets/images/2020-12-10-opa/mountains.jpg</headerImage>
+        <pubDate>Thu, 24 Oct 2019 09:00:00 +0000</pubDate>
+        <link>https://blog.arima.eu/2019/10/24/arima-proceso-seleccion.html</link>
+        <guid isPermaLink="true">https://blog.arima.eu//2019/10/24/arima-proceso-seleccion.html</guid>
+        <headerImage>https://blog.arima.eu/assets/images/post-headers/hiring-process.jpg</headerImage>
         
         
         
         
         
 
-      <author>Fernando Lozano</author>
+      <author>Aritz Berasarte</author>
     </post>
     
   </channel>

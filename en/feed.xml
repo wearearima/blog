@@ -5,22 +5,8 @@
     <description></description>
     <link>https://blog.arima.eu</link>
     
-    <post>
-        <title>Nire esperientzia CKA azterketarekin</title>
-        <summary>&lt;p&gt;Joan zen Martxoaren 22an Linux Foundation-en parte den &lt;a href=&quot;https://training.linuxfoundation.org/certification/certified-kubernetes-administrator-cka/&quot; target=&quot;_blank&quot;&gt;CKA&lt;/a&gt; ziurtagiriaren azterketa egin nuen. Post honen bitartez nire esperientzia kontatu nahi dizuet, nola prestatu nuen eta zer espero daitekeen azalduz. Bide batez, orain dela hilabete batzuk &lt;a href=&quot;/es/2020-04-22-examen-ckad&quot; target=&quot;_blank&quot;&gt;Fernandok, nire lankideak, idatzitako posta&lt;/a&gt; irakurtzea gomendatzen dizuet. Bertan zehaztasun handiarekin azaltzen du azterketa honetan kontutan eduki beharrekoa eta nire ustez, froga gainditzeko benetan lagungarria da. Niri behintzat bere posta irakurtzea baliagarria gertatu zitzaidan!&lt;/p&gt;
-</summary>
-        <pubDate>Wed, 14 Apr 2021 08:00:00 +0000</pubDate>
-        <link>https://blog.arima.eu/2021/04/14/my-cka-exam-experience.html</link>
-        <guid isPermaLink="true">https://blog.arima.eu//2021/04/14/my-cka-exam-experience.html</guid>
-        <headerImage>https://blog.arima.eu/assets/images/2021-04-14-my-cka-exam-experience/header.jpg</headerImage>
-        
-        
-        
-        
-        
-
-      <author>Urko Lekuona</author>
-    </post>
+    
+    
     
     <post>
         <title>Lessons learned about Contract Testing</title>
@@ -40,20 +26,39 @@
     </post>
     
     <post>
-        <title>Aumentando la calidad de nuestras infraestructuras de Kubernetes: Open Policy Agent</title>
-        <summary>&lt;p&gt;No hay que irse muy lejos para ver que Kubernetes continúa creciendo como la tecnología líder en el ecosistema nativo de la nube. En una reciente encuesta de la &lt;a href=&quot;https://www.cncf.io/blog/2020/05/04/the-state-of-cloud-native-development-a-new-survey-report/&quot; target=&quot;_blank&quot;&gt;CNCF&lt;/a&gt; muestra que el 78% de los participantes están usando Kubernetes en producción. Con este panorama donde hay muchos proyectos con diferentes tecnologías, no hay que perder de vista la calidad de la infraestructura de Kubernetes.&lt;/p&gt;
+        <title>Using Docker inside Kubernetes</title>
+        <summary>&lt;p&gt;In a &lt;a href=&quot;/2020/09/10/deberias-utilizar-contenedores-privilegiados.html&quot; target=&quot;_blank&quot;&gt;previous post&lt;/a&gt; I talked about the problem of granting privileges to a container and the risks that this entails. Today I want to present a specific case in which privileges are granted to a container and give some alternatives.&lt;/p&gt;
 </summary>
-        <pubDate>Mon, 01 Feb 2021 09:00:00 +0000</pubDate>
-        <link>https://blog.arima.eu/2021/02/01/opa.html</link>
-        <guid isPermaLink="true">https://blog.arima.eu//2021/02/01/opa.html</guid>
-        <headerImage>https://blog.arima.eu/assets/images/2020-12-10-opa/mountains.jpg</headerImage>
+        <pubDate>Wed, 11 Nov 2020 09:00:00 +0000</pubDate>
+        <link>https://blog.arima.eu/2020/11/11/docker-en-kubernetes.html</link>
+        <guid isPermaLink="true">https://blog.arima.eu//2020/11/11/docker-en-kubernetes.html</guid>
+        <headerImage>https://blog.arima.eu/assets/images/2020-11-11-docker-en-kubernetes/whale.jpg</headerImage>
         
         
         
         
         
 
-      <author>Fernando Lozano</author>
+      <author>Urko Lekuona</author>
+    </post>
+    
+    <post>
+        <title>Playing with Spring Cloud Contract</title>
+        <summary>&lt;p&gt;In a &lt;a href=&quot;https://blog.arima.eu/en/2020/09/03/contract-testing.html&quot; target=&quot;_blank&quot;&gt;previous post&lt;/a&gt; we saw how new needs arose in the field of testing derived from the evolution of application architectures.&lt;/p&gt;
+
+&lt;p&gt;Through a simple example we established concepts such as &lt;em&gt;consumer&lt;/em&gt;, &lt;em&gt;producer&lt;/em&gt;, &lt;em&gt;service&lt;/em&gt; and showed that just as important as testing the functionalities in &lt;em&gt;consumer&lt;/em&gt; and &lt;em&gt;producer&lt;/em&gt; independently is, so also is ensuring that the interaction between them both is right.&lt;/p&gt;
+</summary>
+        <pubDate>Thu, 29 Oct 2020 08:00:00 +0000</pubDate>
+        <link>https://blog.arima.eu/2020/10/29/playing-with-spring-cloud-contract.html</link>
+        <guid isPermaLink="true">https://blog.arima.eu//2020/10/29/playing-with-spring-cloud-contract.html</guid>
+        <headerImage>https://blog.arima.eu/assets/images/2020-10-15-playing-with-spring-cloud-contract/header.jpg</headerImage>
+        
+        
+        
+        
+        
+
+      <author>Jessica Aguado</author>
     </post>
     
   </channel>
