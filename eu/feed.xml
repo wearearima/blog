@@ -6,6 +6,23 @@
     <link>https://blog.arima.eu</link>
     
     <post>
+        <title>Nire esperientzia CKA azterketarekin</title>
+        <summary>&lt;p&gt;Joan zen Martxoaren 22an Linux Foundation-en parte den &lt;a href=&quot;https://training.linuxfoundation.org/certification/certified-kubernetes-administrator-cka/&quot; target=&quot;_blank&quot;&gt;CKA&lt;/a&gt; ziurtagiriaren azterketa egin nuen. Post honen bitartez nire esperientzia kontatu nahi dizuet, nola prestatu nuen eta zer espero daitekeen azalduz. Bide batez, orain dela hilabete batzuk &lt;a href=&quot;/es/2020-04-22-examen-ckad&quot; target=&quot;_blank&quot;&gt;Fernandok, nire lankideak, idatzitako posta&lt;/a&gt; irakurtzea gomendatzen dizuet. Bertan zehaztasun handiarekin azaltzen du azterketa honetan kontutan eduki beharrekoa eta nire ustez, froga gainditzeko benetan lagungarria da. Niri behintzat bere posta irakurtzea baliagarria gertatu zitzaidan!&lt;/p&gt;
+</summary>
+        <pubDate>Mon, 12 Apr 2021 08:00:00 +0000</pubDate>
+        <link>https://blog.arima.eu/2021/04/12/my-cka-exam-experience.html</link>
+        <guid isPermaLink="true">https://blog.arima.eu//2021/04/12/my-cka-exam-experience.html</guid>
+        <headerImage>https://blog.arima.eu/assets/images/2021-04-12-my-cka-exam-experience/header.jpg</headerImage>
+        
+        
+        
+        
+        
+
+      <author>Urko Lekuona</author>
+    </post>
+    
+    <post>
         <title>Lecciones aprendidas sobre Contract Testing</title>
         <summary>&lt;p&gt;A lo largo de varios posts, hemos ido viendo cómo a consecuencia de la evolución de las arquitecturas de las aplicaciones surgen nuevas necesidades en el ámbito del testing. Nos hemos centrado en una concreta: tan importante como testear las funcionalidades en &lt;em&gt;consumer&lt;/em&gt; y &lt;em&gt;producer&lt;/em&gt; de forma independiente lo es asegurar que &lt;a href=&quot;https://blog.arima.eu/es/2020/09/03/contract-testing.html&quot; target=&quot;_blank&quot;&gt;la interacción entre ambos es correcta&lt;/a&gt;. Hemos visto que tenemos a nuestro alcance &lt;strong&gt;Contract Testing&lt;/strong&gt;, con &lt;a href=&quot;https://blog.arima.eu/es/2020/10/09/contract-testing-approach.html&quot; target=&quot;_blank&quot;&gt;diferentes enfoques y herramientas&lt;/a&gt; que nos permiten abordar esta necesidad en concreto. Además utilizando el enfoque &lt;strong&gt;producer driven&lt;/strong&gt; y &lt;a href=&quot;https://spring.io/projects/spring-cloud-contract&quot; target=&quot;_blank&quot;&gt;&lt;strong&gt;Spring Cloud Contract&lt;/strong&gt;&lt;/a&gt; hemos &lt;a href=&quot;https://blog.arima.eu/2020/10/29/playing-with-spring-cloud-contract.html&quot; target=&quot;_blank&quot;&gt;llevado a la práctica&lt;/a&gt; todo lo aprendido.&lt;/p&gt;
 </summary>
@@ -30,23 +47,6 @@
         <link>https://blog.arima.eu/2021/02/01/opa.html</link>
         <guid isPermaLink="true">https://blog.arima.eu//2021/02/01/opa.html</guid>
         <headerImage>https://blog.arima.eu/assets/images/2020-12-10-opa/mountains.jpg</headerImage>
-        
-        
-        
-        
-        
-
-      <author>Fernando Lozano</author>
-    </post>
-    
-    <post>
-        <title>CVE-2020-8554: Man in the Middle - Vulnerabilidad en Kubernetes</title>
-        <summary>&lt;p&gt;Cada día se descubren nuevas vulnerabilidades que afectan a las librerías y productos que utilizamos a diario. Hoy le ha tocado a Kubernetes.&lt;/p&gt;
-</summary>
-        <pubDate>Sat, 12 Dec 2020 09:00:00 +0000</pubDate>
-        <link>https://blog.arima.eu/2020/12/12/CVE-2020-8554-kubernetes.html</link>
-        <guid isPermaLink="true">https://blog.arima.eu//2020/12/12/CVE-2020-8554-kubernetes.html</guid>
-        <headerImage>https://blog.arima.eu/assets/images/2020-12-12-cve-kubernetes/header.jpg</headerImage>
         
         
         
