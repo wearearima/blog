@@ -2,6 +2,7 @@
 <html lang="{{ page.lang | default: site.lang | default: "en" }}" itemscope itemtype="http://schema.org/Blog">
 
   {% include head.html %}
+  {% assign date_format = site.data[site.active_lang].l10n.date_format %}
 
   <body>
     {% include toolbar.html %}
@@ -26,10 +27,10 @@
                         <span class="post-author" itemprop="name">{{ author.display_name }}</span>
                       </div>
                       <div>
-                        <span class="post-date">{{ page.date | date_to_string }}</span>
+                        <span class="post-date">{{ page.date | date: date_format }}</span>
                       </div>
                     </div>
-                    <meta  itemprop="datePublished dateModified" content="{{ page.date | date_to_string }}" />
+                    <meta  itemprop="datePublished dateModified" content="{{ page.date | date: date_format }}" />
                 </div>
               </div>
             </div>

@@ -14,6 +14,7 @@
           {{ content }}
 
           {% assign active_lang = site.active_lang %}
+          {% assign date_format = site.data[site.active_lang].l10n.date_format %}
           {% if active_lang == site.default_lang %}
             {% assign active_lang = site.languages[0] %}
           {% endif %}
@@ -40,10 +41,10 @@
                     <span itemprop="name" class="post-author">{{ author.display_name }}</span>
                   </div>
                   <div class="post-meta">
-                    <span class="post-date">{{ post.date | date_to_string }}</span>
+                    <span class="post-date">{{ post.date | date: date_format  }}</span>
                   </div>
                 </div>
-                <meta  itemprop="datePublished dateModified" content="{{ post.date | date_to_string }}" />
+                <meta  itemprop="datePublished dateModified" content="{{ post.date | date: date_format  }}" />
               </li>
             {% endfor %}
           </ul>
