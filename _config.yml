@@ -22,7 +22,7 @@ twitter_username: wearearima
 github_username: wearearima
 permalink: /:year/:month/:day/:title:output_ext #Remove categories from urls
 # Polyglot
-languages: ["es", "en"]
+languages: ["es", "en", "eu"]
 default_lang: "_"
 exclude_from_localization: ["_sass", "assets"]
 parallel_localization: true
