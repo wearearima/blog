@@ -9,7 +9,7 @@ tags: kubernetes, certifications, cloud, exams, CKA
 header-image: 2021-04-14-my-cka-exam-experience/header.jpg
 ---
 
-El pasado Lunes 22 de Marzo me examiné del certificado [CKA](https://training.linuxfoundation.org/certification/certified-kubernetes-administrator-cka/){:target="_blank"} de Linux Foundation, y he venido a contaros mi experiencia sobre cómo lo preparé y lo que podemos esperar en este examen. Os recomiendo encarecidamente que leáis también un [post que hizo mi compañero Fernando hace unos meses sobre el examen CKAD]({{ site.baseurl }}/es/2020-04-22-examen-ckad){:target="_blank"}, que habla mucho más en detalle sobre los aspectos de estos exámenes y sirve de ayuda para aprobarlos. !Leyendo su post aprendí algunos consejos cruciales!
+El pasado lunes 22 de marzo me examiné del certificado [CKA](https://training.linuxfoundation.org/certification/certified-kubernetes-administrator-cka/){:target="_blank"} de Linux Foundation, y he venido a contaros mi experiencia sobre cómo lo preparé y lo que podemos esperar en este examen. Os recomiendo encarecidamente que leáis también un [post que hizo mi compañero Fernando hace unos meses sobre el examen CKAD]({{ site.baseurl }}/es/2020/04/28/examen-ckad){:target="_blank"}, que habla mucho más en detalle sobre los aspectos de estos exámenes y sirve de ayuda para aprobarlos. !Leyendo su post aprendí algunos consejos cruciales!
 
 ### Experiencias previas con Kubernetes
 
@@ -30,7 +30,7 @@ En resumen, el curso hace las cosas tan bien que da la sensación de que el tema
 
 La prueba consiste de 17 preguntas que habrá que realizar en 2 horas. La dificultad de las preguntas varía entre algunas muy básicas, como arrancar un Pod con múltiples contenedores o crear un Rol con ciertos permisos, pasando por otras más complicadas, como crear un NetworkPolicy que restrinja el tráfico de un Pod de cierta manera, e incluso hay un par de preguntas que pondrán de verdad a prueba nuestros conocimientos. Un ejemplo de estas preguntas fue un cluster que tenía un nodo caído y tuve que identificar el problema, sin ningún tipo de pista.
 
-Como ya he dicho, la dificultad reside en lo familiarizados que estemos con las herramientas que vamos a utilizar. Por esto mismo, quiero recalcar algunos de los consejos que nos ofrece Fernando en [su post]({{ site.baseurl }}/es/2020-04-22-examen-ckad){:target="_blank"}:
+Como ya he dicho, la dificultad reside en lo familiarizados que estemos con las herramientas que vamos a utilizar. Por esto mismo, quiero recalcar algunos de los consejos que nos ofrece Fernando en [su post]({{ site.baseurl }}/es/2020/04/28/examen-ckad){:target="_blank"}:
 
 * Practica usando los subcomandos de `kubectl`. Crear descriptores a partir de `run` o `create <tipo> --dry-run=client -o yaml`, o utilizar `explain` para entender la estructura de un recurso nos pueden ahorrar mucho tiempo.
 * En caso de no poder crear estos recursos mediante `kubectl`, saber navegar por la documentación y encontrar los ejemplos de los descriptores que necesitamos también es una buena opción. Por esto, crea marcadores en tu navegador que te lleven directamente a las zonas de la documentación que más vayas a utilizar.

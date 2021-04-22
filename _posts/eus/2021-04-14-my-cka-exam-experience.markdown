@@ -9,7 +9,7 @@ tags: kubernetes, certifications, cloud, exams, CKA
 header-image: 2021-04-14-my-cka-exam-experience/header.jpg
 ---
 
-Joan zen Martxoaren 22an Linux Foundation-en parte den [CKA](https://training.linuxfoundation.org/certification/certified-kubernetes-administrator-cka/){:target="_blank"} ziurtagiriaren azterketa egin nuen. Post honen bitartez nire esperientzia kontatu nahi dizuet, nola prestatu nuen eta zer espero daitekeen azalduz. Bide batez, orain dela hilabete batzuk [Fernandok, nire lankideak, idatzitako posta]({{ site.baseurl }}/es/2020-04-22-examen-ckad){:target="_blank"} irakurtzea gomendatzen dizuet. Bertan zehaztasun handiarekin azaltzen du azterketa honetan kontutan eduki beharrekoa eta nire ustez, froga gainditzeko benetan lagungarria da. Niri behintzat bere posta irakurtzea baliagarria gertatu zitzaidan!
+Joan zen martxoaren 22an Linux Foundation-en parte den [CKA](https://training.linuxfoundation.org/certification/certified-kubernetes-administrator-cka/){:target="_blank"} ziurtagiriaren azterketa egin nuen. Post honen bitartez nire esperientzia kontatu nahi dizuet, nola prestatu nuen eta zer espero daitekeen azalduz. Bide batez, orain dela hilabete batzuk [Fernandok, nire lankideak, idatzitako posta]({{ site.baseurl }}/eu/2020/04/28/examen-ckad){:target="_blank"} irakurtzea gomendatzen dizuet. Bertan zehaztasun handiarekin azaltzen du azterketa honetan kontutan eduki beharrekoa eta nire ustez, froga gainditzeko benetan lagungarria da. Niri behintzat bere posta irakurtzea baliagarria gertatu zitzaidan!
 
 ### Aldez aurreko esperientzia Kubernetesekin
 
@@ -32,7 +32,7 @@ Laburbilduz, ikastaroa bukatu nuenean ikasgaiak errazak iruditzen zitzaizkidan. 
 
 CKA azterketa bi ordutan bete beharreko 17 galderez osaturik dago. Mota guztietako galderak aurkitu daitezke: Batzuk oso oinarrizkoak, adibidez Container anitzekin Pod bat nola hasieratu edo nola sortu Rol bat bere baimenekin. Beste batzuk ordea konplexugoak dira, Pod baten trafikoa mugatzen duen Network Policy bat nola sortu, esaterako. 
 
-Lehen esan bezala, azterketaren benetako erronka erremintak ongi ezagutzea eta erreztasunez erabiltzea da. Horregatik Fernandok [bere postean]({{ site.baseurl }}/es/2020-04-22-examen-ckad){:target="_blank"} azaltzen dituen aholku batzuk azpimarratzen ditut:
+Lehen esan bezala, azterketaren benetako erronka erremintak ongi ezagutzea eta erreztasunez erabiltzea da. Horregatik Fernandok [bere postean]({{ site.baseurl }}/eu/2020/04/28/examen-ckad){:target="_blank"} azaltzen dituen aholku batzuk azpimarratzen ditut:
 
 - Praktikatu `kubectl`-ren subkomandoak erabiltzen. Yaml descriptoreak sortu `run` edo `create <mota> --dry-run=client -o yaml`, edo erabili `explain` errekurtso baten egitura hobeto ulertzeko. Horrela azterketan denbora asko aurreztu dezakezu. 
 - Errekurtsoak `kubectl` bitartez sortu ezin direnean, dokumentazioan zehar azkar nabigatzen jakitea baliagarria izango zaizu, yaml deskriptoreen adibideak bertan aurkituko baitituzu. Horregatik, gehien erabiliko dituzun dokumentazioaren atalen estekak aldez aurretik nabigatzailean gordeta edukitzea gomendarria da. 
