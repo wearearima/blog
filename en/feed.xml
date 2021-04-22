@@ -27,7 +27,7 @@
     
     <post>
         <title>Using Docker inside Kubernetes</title>
-        <summary>&lt;p&gt;In a &lt;a href=&quot;/2020/09/10/deberias-utilizar-contenedores-privilegiados.html&quot; target=&quot;_blank&quot;&gt;previous post&lt;/a&gt; I talked about the problem of granting privileges to a container and the risks that this entails. Today I want to present a specific case in which privileges are granted to a container and give some alternatives.&lt;/p&gt;
+        <summary>&lt;p&gt;In a &lt;a href=&quot;/en/2020/09/10/deberias-utilizar-contenedores-privilegiados&quot; target=&quot;_blank&quot;&gt;previous post&lt;/a&gt; I talked about the problem of granting privileges to a container and the risks that this entails. Today I want to present a specific case in which privileges are granted to a container and give some alternatives.&lt;/p&gt;
 </summary>
         <pubDate>Wed, 11 Nov 2020 09:00:00 +0000</pubDate>
         <link>https://blog.arima.eu/2020/11/11/docker-en-kubernetes.html</link>

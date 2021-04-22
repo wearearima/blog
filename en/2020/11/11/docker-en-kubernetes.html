@@ -141,7 +141,7 @@
           </header>
           <div class="wrapper">
             <div class="post-content" itemprop="articleBody">
-              <p>In a <a href="/en/2020/09/10/deberias-utilizar-contenedores-privilegiados.html" target="_blank">previous post</a> I talked about the problem of granting privileges to a container and the risks that this entails. Today I want to present a specific case in which privileges are granted to a container and give some alternatives.</p>
+              <p>In a <a href="/en/2020/09/10/deberias-utilizar-contenedores-privilegiados" target="_blank">previous post</a> I talked about the problem of granting privileges to a container and the risks that this entails. Today I want to present a specific case in which privileges are granted to a container and give some alternatives.</p>
 
 <p>One of the most popular Continuous Integration tools is <a href="https://www.jenkins.io/" target="_blank">Jenkins</a>. It stands out for the amount of <em>plugins</em> that its community makes available to users and the freedom it grants to create <em>pipelines</em>. In addition, it offers us images with which it can be deployed in containers, including in a Kubernetes cluster!</p>
 
@@ -162,7 +162,7 @@
 <ul>
   <li><strong>Storage drivers</strong>: This problem arises from incompatibilities between different container file systems. Without going into detail, the containers use their own file systems (AUFS, BTRFS, Device Mapper, …) and these may not be compatible with each other. Depending on the type of system used by the node’s <em>container runtime</em> and that used by the container’s Docker daemon, problems can occur. These incompatibilities will probably be resolved as new versions of DinD (Docker in Docker) are released, but the risk remains latent.</li>
   <li><strong>Cache</strong>: If you want to use the Docker cache, which you probably will, and you want this cache to be accessible between different replicas, you should mount <code class="highlighter-rouge">/var/lib/docker</code> as a volume in each container. But Docker is intended to have exclusive access to this directory, and having two or more daemons accessing it at the same time can lead to data corruption problems.</li>
-  <li><strong>Security</strong>: In order to run the Docker daemon inside a container, it must be run with privileges (<code class="highlighter-rouge">--privileged</code> in Docker or <code class="highlighter-rouge">securityContext.privileged: true</code> in Kubernetes). <strong>It is a requirement</strong>. This implies serious security risks, which we explain in <a href="/en/2020/09/10/deberias-utilizar-contenedores-privilegiados.html" target="_blank">this post</a>.</li>
+  <li><strong>Security</strong>: In order to run the Docker daemon inside a container, it must be run with privileges (<code class="highlighter-rouge">--privileged</code> in Docker or <code class="highlighter-rouge">securityContext.privileged: true</code> in Kubernetes). <strong>It is a requirement</strong>. This implies serious security risks, which we explain in <a href="/en/2020/09/10/deberias-utilizar-contenedores-privilegiados" target="_blank">this post</a>.</li>
 </ul>
 
 <p align="center">
@@ -201,7 +201,7 @@
 
 <p>The last alternative is to deploy two containers in the same pod, one with Jenkins and Docker CLI (as in Docker out of Docker) and another with Docker Engine, and use the TCP socket, since the network in the same pod is shared.</p>
 
-<p>Although at first it may seem like taking a step backwards, there is an explanation: we are able to modify the Docker daemon options. And what do we want that for? We can install authorization <em>plugins</em> that prevent running privileged containers on that daemon (explained in more detail <a href="/en/2020/09/10/deberias-utilizar-contenedores-privilegiados.html" target="_blank">in the previous post</a>).</p>
+<p>Although at first it may seem like taking a step backwards, there is an explanation: we are able to modify the Docker daemon options. And what do we want that for? We can install authorization <em>plugins</em> that prevent running privileged containers on that daemon (explained in more detail <a href="/es/2020/09/10/deberias-utilizar-contenedores-privilegiados" target="_blank">in the previous post</a>).</p>
 
 <p>Advantages over Docker out of Docker:</p>
 
