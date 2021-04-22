@@ -9,7 +9,7 @@ tags: docker, kubernetes, k8s, jenkins, privileged
 header-image: 2020-11-11-docker-en-kubernetes/whale.jpg
 ---
 
-En un [post anterior]({{ site.baseurl }}{% post_url /es/2020-09-10-deberias-utilizar-contenedores-privilegiados %}){:target="_blank"} hablé sobre el problema de otorgar privilegios a un contenedor y los riesgos que esto supone. Hoy quiero presentaros un caso concreto en el que se otorgan privilegios a un contenedor y algunas alternativas.
+En un [post anterior]({{ site.baseurl }}/es/2020/09/10/deberias-utilizar-contenedores-privilegiados){:target="_blank"} hablé sobre el problema de otorgar privilegios a un contenedor y los riesgos que esto supone. Hoy quiero presentaros un caso concreto en el que se otorgan privilegios a un contenedor y algunas alternativas.
 
 Una de las herramientas de Integración Contínua más populares es [Jenkins](https://www.jenkins.io/){:target="_blank"}. Destaca por la cantidad de *plugins* que su comunidad pone a disposición de los usuarios y la libertad que otorga para crear *pipelines*. Además, nos ofrece imágenes con las que podremos desplegarlo en contenedores, ¡incluso en un cluster Kubernetes!
 
@@ -29,7 +29,7 @@ Esto es posible, lo puedes probar y funciona. Pero tiene ciertas implicaciones q
 
 * **Drivers de almacenamiento**: Este problema surge por las incompatibilidades entre diferentes sistemas de ficheros de contenedores. Sin entrar en detalle, los contenedores utilizan sistemas de ficheros propios (AUFS, BTRFS, Device Mapper, ...) y estos pueden no ser compatibles entre sí. Según el tipo de sistema que utilice el *container runtime* del nodo y el que utilice el Docker daemon del contenedor, pueden ocasionarse problemas. Probablemente estas incompatibilidades se vayan solucionando según se publiquen nuevas versiones de DinD (Docker in Docker), pero el riesgo sigue latente.
 * **Cache**: Si quieres usar la cache de Docker, que seguramente quieras, y quieres que esta caché sea accesible entre diferentes replicas, deberás montar `/var/lib/docker` como un volumen en cada contenedor. Pero Docker está pensado para tener acceso exclusivo a este directorio, y que dos o más daemons accedan a la vez puede acarrear problemas de corrupción de datos.
-* **Seguridad**: Para poder ejecutar el Docker daemon dentro de un contenedor, es necesario ejecutarlo con privilegios (`--privileged` en Docker o `securityContext.privileged: true` en Kubernetes). **Es un requisito**. Eso implica serios riesgos de serguridad, que explicamos en [este post]({{ site.baseurl }}{% post_url /es/2020-09-10-deberias-utilizar-contenedores-privilegiados %}){:target="_blank"}.
+* **Seguridad**: Para poder ejecutar el Docker daemon dentro de un contenedor, es necesario ejecutarlo con privilegios (`--privileged` en Docker o `securityContext.privileged: true` en Kubernetes). **Es un requisito**. Eso implica serios riesgos de serguridad, que explicamos en [este post]({{ site.baseurl }}/es/2020/09/10/deberias-utilizar-contenedores-privilegiados){:target="_blank"}.
 
 <p align="center">
     <img src="/assets/images/2020-11-11-docker-en-kubernetes/dind.png">
@@ -60,7 +60,7 @@ Aún así, también tiene sus problemas:
 
 La última alternativa, consiste en desplegar dos contenedores en el mismo pod, uno con Jenkins y Docker CLI (igual que en Docker out of Docker) y otro con Docker Engine, y utilizar el socket TCP, ya que la red en el mismo pod es compartida.
 
-Aunque en principio parezca que es dar un paso atrás, tiene una explicación: somos capaces de modificar las opciones del Docker daemon. ¿Y para que queremos eso? Podemos instalar *plugins* de autorización que impidan lanzar contenedores privilegiados en ese daemon (se explica en más detalle [en el post anterior]({{ site.baseurl }}{% post_url /es/2020-09-10-deberias-utilizar-contenedores-privilegiados %}){:target="_blank"}).
+Aunque en principio parezca que es dar un paso atrás, tiene una explicación: somos capaces de modificar las opciones del Docker daemon. ¿Y para que queremos eso? Podemos instalar *plugins* de autorización que impidan lanzar contenedores privilegiados en ese daemon (se explica en más detalle [en el post anterior]({{ site.baseurl }}/es/2020/09/10/deberias-utilizar-contenedores-privilegiados){:target="_blank"}).
 
 Ventajas sobre Docker out of Docker:
 
