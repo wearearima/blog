@@ -49,7 +49,7 @@ El problema del *cold-startup* es común en *serverless*, ya que estamos constan
 Al leer sobre este servicio de AWS me he encontrado con ciertas limitaciones técnicas que me parecen importantes para tener en cuenta.
 
 1. La función debe ser paralelizable. Si llega una petición mientras ya hay otra siendo atendida por la instancia de nuestra función, se levanta otra nueva instancia. Esto implica que debemos asegurarnos de que no existen problemas de concurrencias al ejecutar la función simultáneamente. Un ejemplo podría ser una función que actualiza un registro de una base de datos.
-2. Existe un límite de memoria para asignar a la función son 10GB. Además, el número de vCPUs que se asigna es proporcional a la memoria escogida (máximo 6 vCPUs). Esto puede forzar a sobreprovisionar uno de los dos recursos, o incluso que no sean suficientes, ya que no son límites muy altos.
+2. Existe un límite de memoria para asignar a la función de 10GB. Además, el número de vCPUs que se asigna es proporcional a la memoria escogida (máximo 6 vCPUs). Esto puede forzar a sobreprovisionar uno de los dos recursos, o incluso que no sean suficientes, ya que no son límites muy altos.
 3. Amazon nos deja elegir entre varios entornos de ejecución para la mayoría de lenguajes principales. Si estos no nos sirven (porque nuestro lenguaje no está o porque necesitamos una versión específica), es posible configurar uno personalizado o utilizar una imagen para que se lance un contenedor (hablaremos sobre esta opción en otro post).
 4. El tiempo máximo por ejecución son 15 minutos. Si esto no es suficiente para nuestro negocio o la función está mucho tiempo ejecutándose (tiempo facturable), puede que estemos más interesados en otro tipo de *serverless*.
 
