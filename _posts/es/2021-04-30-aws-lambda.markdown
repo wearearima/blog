@@ -6,7 +6,7 @@ author: urko
 lang: es
 categories: aws, serverless, cloud
 tags: aws, serverless, cloud, faas, java
-header-image: 2020-11-11-docker-en-kubernetes/whale.jpg
+header-image: 2021-04-30-aws-lambda/cloud.jpg
 ---
 
 Recientemente, la palabra *serverless* está más y más presente en posts, foros, o cualquier recurso relacionado con el *software*. Por si no sabes lo que es, *serverless* implica despreocuparnos por la máquina donde se ejecuta nuestra aplicación y trivializa su despliegue. Es un concepto que tiene su miga, así que profundizaremos en él en otro post más adelante.
@@ -26,6 +26,9 @@ Como ya hemos comentado, la función se dispara por la llegada de un evento. En 
 * Se haya hecho una petición HTTP.
 * Otros.
 
+![Ejemplo de una función Lambda](/assets/images/2021-04-30-aws-lambda/lambda_example.png){: .center }
+<label style="text-align: center; display: block;">Ejemplo de una función Lambda ([fuente](https://aws.amazon.com/lambda/){:target="_blank"})</label>
+
 Para que nuestra aplicación pueda tratar el evento que llega desde AWS, lo primero que hay que hacer es utilizar el SDK que provee Amazon (o una librería compatible con Lambda como [Spring Cloud Function](https://spring.io/projects/spring-cloud-function){:target="_blank"}) para implementar un *handler* que se encargue del evento.
 
 En este post usaré una aplicación Spring Boot y con el SDK de AWS. Se puede ver el código de esta aplicación en [este repositorio](https://github.com/wearearima/serverlessDemoAWSHandler){:target="_blank"}. El repositorio también contiene instrucciones sobre cómo crear la función.
@@ -36,8 +39,8 @@ Una vez hecho esto, la función está lista para ser usada. Quiero recalcar que 
 
 En la siguiente imagen podemos observar los resultados de la ejecución de la función. A la izquierda se muestran los resultados de la primera ejecución o inicio en frío (*cold-startup*), y a la derecha los de la segunda ejecución o inicio en caliente (*warm-startup*). Podemos observar que hay una gran diferencia en el tiempo de ejecución, que sería aún más notable si nuestra aplicación tardase más en iniciarse por primera vez (por ejempo, si tuviese que crear un *pool* de conexiones con una base de datos).
 
-![Resultados de las ejecuciones (cold | warm)](/assets/images/2021-04-30-aws-lambda/results.png){: .center }
-<label style="text-align: center; display: block;">Resultados de las ejecuciones (cold | warm)</label>
+![Resultados de las ejecuciones (cold / warm)](/assets/images/2021-04-30-aws-lambda/results.png){: .center }
+<label style="text-align: center; display: block;">Resultados de las ejecuciones (cold / warm)</label>
 
 El problema del *cold-startup* es común en *serverless*, ya que estamos constantemente levantando nuevas instancias. En un futuro post estudiaremos maneras de evitarlo. De momento, mencionaré que Lambda ofrece una opción llamada *provisioned concurrency*, que nos permite mantener activas el número de instancias que elijamos (pagando por ellas, claro).
 
