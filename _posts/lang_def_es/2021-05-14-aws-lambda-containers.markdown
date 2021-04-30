@@ -6,7 +6,7 @@ author: urko
 lang: es
 categories: aws, serverless, cloud
 tags: aws, serverless, cloud, faas, java, container
-header-image: 2021-04-30-aws-lambda/cloud.jpg
+header-image: 2021-05-14-aws-lambda-containers/background.jpg
 ---
 
 Anteriormente hemos hablado de AWS Lambda y de cómo nos introduce al mundo *serverless* y de funciones en cloud. En este post, quiero explorar otra manera de crear funciones con AWS Lambda: **usar contenedores**.
