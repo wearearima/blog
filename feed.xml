@@ -9,6 +9,23 @@
     
     
     <post>
+        <title>Funciones con AWS Lambda</title>
+        <summary>&lt;p&gt;Recientemente, la palabra &lt;em&gt;serverless&lt;/em&gt; está más y más presente en posts, foros, o cualquier recurso relacionado con el &lt;em&gt;software&lt;/em&gt;. Por si no sabes lo que es, &lt;em&gt;serverless&lt;/em&gt; implica despreocuparnos por la máquina donde se ejecuta nuestra aplicación y trivializa su despliegue. Es un concepto que tiene su miga, así que profundizaremos en él en otro post más adelante.&lt;/p&gt;
+</summary>
+        <pubDate>Fri, 30 Apr 2021 09:00:00 +0000</pubDate>
+        <link>https://blog.arima.eu/2021/04/30/aws-lambda.html</link>
+        <guid isPermaLink="true">https://blog.arima.eu//2021/04/30/aws-lambda.html</guid>
+        <headerImage>https://blog.arima.eu/assets/images/2021-04-30-aws-lambda/cloud.jpg</headerImage>
+        
+        
+        
+        
+        
+
+      <author>Urko Lekuona</author>
+    </post>
+    
+    <post>
         <title>My experiencia con el examen CKA</title>
         <summary>&lt;p&gt;El pasado lunes 22 de marzo me examiné del certificado &lt;a href=&quot;https://training.linuxfoundation.org/certification/certified-kubernetes-administrator-cka/&quot; target=&quot;_blank&quot;&gt;CKA&lt;/a&gt; de Linux Foundation, y he venido a contaros mi experiencia sobre cómo lo preparé y lo que podemos esperar en este examen. Os recomiendo encarecidamente que leáis también un &lt;a href=&quot;/es/2020/04/28/examen-ckad&quot; target=&quot;_blank&quot;&gt;post que hizo mi compañero Fernando hace unos meses sobre el examen CKAD&lt;/a&gt;, que habla mucho más en detalle sobre los aspectos de estos exámenes y sirve de ayuda para aprobarlos. !Leyendo su post aprendí algunos consejos cruciales!&lt;/p&gt;
 </summary>
@@ -40,23 +57,6 @@
         
 
       <author>Jessica Aguado</author>
-    </post>
-    
-    <post>
-        <title>Aumentando la calidad de nuestras infraestructuras de Kubernetes: Open Policy Agent</title>
-        <summary>&lt;p&gt;No hay que irse muy lejos para ver que Kubernetes continúa creciendo como la tecnología líder en el ecosistema nativo de la nube. En una reciente encuesta de la &lt;a href=&quot;https://www.cncf.io/blog/2020/05/04/the-state-of-cloud-native-development-a-new-survey-report/&quot; target=&quot;_blank&quot;&gt;CNCF&lt;/a&gt; muestra que el 78% de los participantes están usando Kubernetes en producción. Con este panorama donde hay muchos proyectos con diferentes tecnologías, no hay que perder de vista la calidad de la infraestructura de Kubernetes.&lt;/p&gt;
-</summary>
-        <pubDate>Mon, 01 Feb 2021 09:00:00 +0000</pubDate>
-        <link>https://blog.arima.eu/2021/02/01/opa.html</link>
-        <guid isPermaLink="true">https://blog.arima.eu//2021/02/01/opa.html</guid>
-        <headerImage>https://blog.arima.eu/assets/images/2020-12-10-opa/mountains.jpg</headerImage>
-        
-        
-        
-        
-        
-
-      <author>Fernando Lozano</author>
     </post>
     
   </channel>
