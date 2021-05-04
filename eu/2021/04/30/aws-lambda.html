@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="es" itemscope itemtype="http://schema.org/Blog">
+<html lang="eu" itemscope itemtype="http://schema.org/Blog">
 
   <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Funciones con AWS Lambda</title>
-  <meta name="description" content="Recientemente, la palabra serverless está más y más presente en posts, foros, o cualquier recurso relacionado con el software. Por si no sabes lo que es, ser...">
+  <title>AWS Lambda Funtzioak</title>
+  <meta name="description" content="Azken aldian serverless hitza gero eta gehiago agertzen da post, foro edo softwarearekin erlazionatutako edozein baliabidetan. Laburbilduz, gure aplikazioa e...">
   
   <meta name="keywords" content="aws,serverless,cloud,faas,java">
   
@@ -15,7 +15,7 @@
   <!-- Twitter cards -->
   <meta name="twitter:site"    content="@wearearima">
   <meta name="twitter:creator" content="@urko">
-  <meta name="twitter:title"   content="Funciones con AWS Lambda">
+  <meta name="twitter:title"   content="AWS Lambda Funtzioak">
 
   
   <meta name="twitter:description" content="">
@@ -121,7 +121,7 @@
             <div class="wrapper">
               <div class="post-info__container">
                 <div class="post-info">
-                  <h1 class="post-title" itemprop="name headline">Funciones con AWS Lambda</h1>
+                  <h1 class="post-title" itemprop="name headline">AWS Lambda Funtzioak</h1>
                     <div class="post-meta" itemscope itemtype="https://schema.org/Person" itemprop="author">
                       
                       <div class="author-photo">
@@ -141,61 +141,61 @@
           </header>
           <div class="wrapper">
             <div class="post-content" itemprop="articleBody">
-              <p>Recientemente, la palabra <em>serverless</em> está más y más presente en posts, foros, o cualquier recurso relacionado con el <em>software</em>. Por si no sabes lo que es, <em>serverless</em> implica despreocuparnos por la máquina donde se ejecuta nuestra aplicación y trivializa su despliegue. Es un concepto que tiene su miga, así que profundizaremos en él en otro post más adelante.</p>
+              <p>Azken aldian  <em>serverless</em> hitza gero eta gehiago agertzen da post, foro edo softwarearekin erlazionatutako edozein baliabidetan. Laburbilduz, gure aplikazioa exekutatzen den makinaz ez arduratzea eta horren hedapen prozesua arintzea inplikatzen duen kontzeptua da <em>serverless</em>. Ez da ulertzeko kontzeptu oso erraza, eta horregatik aurrerago beste post batean sakonduko dugu.</p>
 
-<p>En este post en concreto quiero hablar de AWS Lambda, la solución <em>serverless</em> en forma de funciones (FaaS) que nos provee AWS. Una función se puede ver como cualquier aplicación que se active mediante un evento y realice cierta tarea.</p>
+<p>Post honetan AWS Lambdari buruz hitz egin nahi dut, AWSek funtzio moduan (FaaS) eskaintzen digun <em>serverless</em> soluzioaz. Funtzio bat gertaera baten bidez aktibatzen den eta eginkizun jakin bat duen edozein aplikazio gisa uler daiteke.</p>
 
-<p>AWS Lambda se encarga de:</p>
+<p>AWS Lambda ondorengoaz arduratzen da:</p>
 <ul>
-  <li>Levantar nuestra aplicación únicamente cuando se dispare el evento, y de matarla al poco tiempo de acabar la ejecución. Esto incluye provisionar una máquina para que se encargue de la ejecución, y lo hace todo en tiempo récord. Más adelante veremos algún ejemplo.</li>
-  <li>Cobrarnos únicamente por el tiempo de ejecución de la función, minimizando al mínimo los costes y optimizando el uso de recursos.</li>
-  <li>Levantar instancias de la aplicación de manera concurrente en caso de que sean necesarias. Con esto conseguiremos que nuestra función se adapte a picos de tráfico y tener la seguridad de que vamos a pagar solo por lo que utilizamos ¡Adiós a las máquinas que no trabajan y a quedarnos sin recursos!</li>
+  <li>Gertaera gertatzen denean soilik abiarazteaz gure aplikazioa, eta exekuzioa amaitzerakoan berehala hiltzeaz. Exekuzioaz arduratuko den makina hornitzeaz ere arduratzen da, dena denbora errekorrean eginez. Aurrerago ikusiko dugu adibideren bat.</li>
+  <li>Funtzioa exekutatzen egon den denbora soilik kobratzeaz. Honen ondorioz, kostuak txikitu eta baliabideen erabilera optimizatzen da.</li>
+  <li>Behar izanez gero, aplikazioaren instantzia gehiago modu konkurrentean abiarazteaz. Honi esker, gure funtzioa trafiko-tontorrera egokitzea lortuko dugu, erabiltzen ditugun baliabideak soilik ordainduz. Agur esan lan egiten ez duten makinei eta baliabiderik gabe geratzeari!</li>
 </ul>
 
-<h3 id="cómo-funciona">Cómo funciona</h3>
+<h3 id="nola-funtzionatzen-du">Nola funtzionatzen du</h3>
 
-<p>Como ya hemos comentado, la función se dispara por la llegada de un evento. En el caso de Lambda, un evento puede venir porque:</p>
+<p>Esan dugun bezala, funtzioa gertaera bat jazotzen denean abiarazten da. Lambdaren kasuan, gertaera bat ondorengo arrazoiengatik gertatu daiteke:</p>
 <ul>
-  <li>Se haya generado desde un recurso de AWS.</li>
-  <li>Se haya generado en un recurso externo a AWS, como una cola Kafka.</li>
-  <li>Se haya hecho una petición HTTP.</li>
-  <li>Otros.</li>
+  <li>AWSeko baliabide batetik sortzea.</li>
+  <li>AWSekoa ez den baliabide batetik sortzea, adibidez, Kafka errenkada bat.</li>
+  <li>HTTP eskaera bat egitea.</li>
+  <li>Beste batzuk.</li>
 </ul>
 
-<p><img src="/assets/images/2021-04-30-aws-lambda/lambda_example.png" alt="Ejemplo de una función Lambda" class="center" />
-<label style="text-align: center; display: block;">Ejemplo de una función Lambda (<a href="https://aws.amazon.com/lambda/" target="_blank">fuente</a>)</label></p>
+<p><img src="/assets/images/2021-04-30-aws-lambda/lambda_example.png" alt="Lambda funtzio baten adibidea" class="center" />
+<label style="text-align: center; display: block;">Lambda funtzio baten adibidea (<a href="https://aws.amazon.com/lambda/" target="_blank">iturria</a>)</label></p>
 
-<p>Para que nuestra aplicación pueda tratar el evento que llega desde AWS, lo primero que hay que hacer es utilizar el SDK que provee Amazon (o una librería compatible con Lambda como <a href="https://spring.io/projects/spring-cloud-function" target="_blank">Spring Cloud Function</a>) para implementar un <em>handler</em> que se encargue del evento.</p>
+<p>Gure aplikazioak AWS sistematik iristen den gertaera tratatu ahal izateko, lehenik eta behin, Amazonek ematen duen SDKa erabili behar da (edo Lambdarekin bateragarria den liburutegi bat, <a href="https://spring.io/projects/spring-cloud-function" target="_blank">Spring Cloud Function</a> bezala) gertaeraz arduratuko den <em>handler</em> bat inplementatzeko.</p>
 
-<p>En este post usaré una aplicación Spring Boot y con el SDK de AWS. Se puede ver el código de esta aplicación en <a href="https://github.com/wearearima/serverlessDemoAWSHandler" target="_blank">este repositorio</a>. El repositorio también contiene instrucciones sobre cómo crear la función.</p>
+<p>Post honetan AWSren SDKrekin eginiko Spring Boot aplikazio bat erabiliko dut. Aplikazio honen kodea <a href="https://github.com/wearearima/serverlessDemoAWSHandler" target="_blank">biltegi honetan</a> ikus daiteke. Biltegiak funtzioa sortzeko jarraibideak ere baditu.</p>
 
-<p>Lambda nos da la opción de configurar en mayor detalle la función, pudiendo elegir la cantidad de memoria que queremos utilizar por instancia, el tiempo máximo de ejecución, definir variables de entorno para nuestra aplicación (desde aquí se pueden configurar propiedades de la JVM, por ejemplo), etc.</p>
+<p>Lambdak funtzioa modu zehatz batean konfiguratzeko aukera ematen digu, ondorengo konfigurazio hauek ditugularik: erabili nahi dugun instantzia bakoitzaren memoria kantitatea, exekuzioaren denbora maximoa, gure aplikaziorako ingurune-aldagaiak definitzea (adibidez, JVMaren propietateak konfiguratu daitezke honen bidez), etab.</p>
 
-<p>Una vez hecho esto, la función está lista para ser usada. Quiero recalcar que no hemos tenido que seleccionar un sistema operativo para la máquina, configurarla para que soporte la ejecución de aplicaciones Java o securizarla de ninguna manera. No me tengo que encargar de monitorizar el estado de ninguna máquina ni de establecer ningún sistema de autoescalado por si fuese necesario. Lambda se encarga de todo esto por nosotros.</p>
+<p>Behin hau eginda, funtzioa erabiltzeko prest dago. Aipatzekoa da ez dugula makinaren sistema eragilerik aukeratu beharrik izan, ezta aplikazioak exekutatu ahal izateko Java konfiguratu beharrik izan edo ezta sekurizatu beharrik izan ere. Ez dut makinaren egoerari buruz kezkatu beharrik izan, edo autoeskalatzeko sistemarik ezarri behar izan ere, beharrezkoa izango balitz. Honetaz guztiaz Lambda arduratzen da.</p>
 
-<p>En la siguiente imagen podemos observar los resultados de la ejecución de la función. A la izquierda se muestran los resultados de la primera ejecución o inicio en frío (<em>cold-startup</em>), y a la derecha los de la segunda ejecución o inicio en caliente (<em>warm-startup</em>). Podemos observar que hay una gran diferencia en el tiempo de ejecución, que sería aún más notable si nuestra aplicación tardase más en iniciarse por primera vez (por ejempo, si tuviese que crear un <em>pool</em> de conexiones con una base de datos).</p>
+<p>Hurrengo irudian, funtzioaren exekuzioaren emaitzak ikus ditzakegu. Ezkerrean, lehen exekuzioaren edo hasiera hotzaren emaitzak daude (<em>cold-startup</em>), eta eskuinean bigarren exekuzioaren edo hasiera beroaren emaitzak (<em>warm-startup</em>). Ikus dezakegu ezberdintasun handia dagoela exekuzio-denboran, eta ezberdintasuna are nabarmenagoa izango litzateke gure aplikazioa lehen aldiz hasteko denbora gehiago beharko balu (adibidez, datu-base batekin konexioen <em>pool</em> bat sortu beharko balu).</p>
 
-<p><img src="/assets/images/2021-04-30-aws-lambda/results.png" alt="Resultados de las ejecuciones (cold / warm)" class="center" />
-<label style="text-align: center; display: block;">Resultados de las ejecuciones (cold / warm)</label></p>
+<p><img src="/assets/images/2021-04-30-aws-lambda/results.png" alt="Exekuzioen emaitzak (cold / warm)" class="center" />
+<label style="text-align: center; display: block;">Exekuzioen emaitzak (cold / warm)</label></p>
 
-<p>El problema del <em>cold-startup</em> es común en <em>serverless</em>, ya que estamos constantemente levantando nuevas instancias. En un futuro post estudiaremos maneras de evitarlo. De momento, mencionaré que Lambda ofrece una opción llamada <em>provisioned concurrency</em>, que nos permite mantener activas el número de instancias que elijamos (pagando por ellas, claro).</p>
+<p><em>Cold-startup</em>aren arazoa ohikoa da <em>serverless</em> kasuan, etengabe ari baikara instantzia berriak sortzen. Hurrengo post batean hori saihesteko moduak aztertuko ditugu. Oraingoz, Lambdak <em>provisioned concurrency</em> izeneko aukera eskaintzen duela aipatuko dut, eta honek aukera ematen digula aukeratzen ditugun instantzien kopurua aktibo mantentzeko (ordainduz gero, noski).</p>
 
-<h3 id="consideraciones">Consideraciones:</h3>
+<h3 id="hausnarketak">Hausnarketak:</h3>
 
-<p>Al leer sobre este servicio de AWS me he encontrado con ciertas limitaciones técnicas que me parecen importantes para tener en cuenta.</p>
+<p>Zerbitzu honi buruz irakurtzean, kontuan hartzeko garrantzitsuak iruditzen zaizkidan muga tekniko batzuk aurkitu ditut.</p>
 
 <ol>
-  <li>La función debe ser paralelizable. Si llega una petición mientras ya hay otra siendo atendida por la instancia de nuestra función, se levanta otra nueva instancia. Esto implica que debemos asegurarnos de que no existen problemas de concurrencias al ejecutar la función simultáneamente. Un ejemplo podría ser una función que actualiza un registro de una base de datos.</li>
-  <li>Existe un límite de memoria para asignar a la función de 10GB. Además, el número de vCPUs que se asigna es proporcional a la memoria escogida (máximo 6 vCPUs). Esto puede forzar a sobreprovisionar uno de los dos recursos, o incluso que no sean suficientes, ya que no son límites muy altos.</li>
-  <li>Amazon nos deja elegir entre varios entornos de ejecución para la mayoría de lenguajes principales. Si estos no nos sirven (porque nuestro lenguaje no está o porque necesitamos una versión específica), es posible configurar uno personalizado o utilizar una imagen para que se lance un contenedor (hablaremos sobre esta opción en otro post).</li>
-  <li>El tiempo máximo por ejecución son 15 minutos. Si esto no es suficiente para nuestro negocio o la función está mucho tiempo ejecutándose (tiempo facturable), puede que estemos más interesados en otro tipo de <em>serverless</em>.</li>
+  <li>Funtzioa paralelizagarria izan behar da. Eskaera bat prozesatzen ari den bitartean beste eskaera bat iristen bada, beste instantzia bat sortuko da. Horrek esan nahi du funtzioa aldi berean exekutatzeko konkurrentzia-arazorik ez dagoela ziurtatu beharko dugula. Adibide bat datu-base batean erregistro bat eguneratzen duen funtzio bat izan daiteke.</li>
+  <li>Funtzioari gehienez 10 GBko memoria esleitu ahal diogu. Gainera, esleitutako vCPUen kopurua aukeratutako memoriarekiko proportzionala da (gehienez 6 vCPU). Honek, bi baliabideetako bat gainhornitzera behartu ahal gaitu, edo baita nahikoak ez izatera ere, ez baitira oso muga altuak.</li>
+  <li>Programazio-lengoai nagusi gehienentzako exekuzio-inguruneak eskaintzen ditu Amazonek. Hauetakoren batek ere ez badigu balio (gure lengoaia ez dagoelako horietakoen artean edo bertsio zehatz bat behar dugulako), ingurune pertsonalizatu bat konfiguratu daiteke, edo bestela, irudi bat erabili daiteke kontenedore bat abiarazteko (honetaz beste post batean hitz egingo dugu).</li>
+  <li>Exekuzio bakoitzaren gehienezko denbora 15 minutu dira. Gure negoziorako nahikoa ez bada edo funtzioa denbora luzez exekutatzen ari bada (denbora fakturagarria), agian beste <em>serverless</em> mota bat aukeratu beharko genuke.</li>
 </ol>
 
-<h3 id="conclusiones">Conclusiones</h3>
+<h3 id="ondorioak">Ondorioak</h3>
 
-<p>AWS Lambda es un servicio potente que se integra muy bien con el resto del entorno de AWS. Nos introduce al mundo <em>serverles</em> y todas sus ventajas, y hace que el despliegue de una aplicación sea más sencillo y barato que nunca.</p>
+<p>AWS Lambda zerbitzu ahaltsua da, oso ondo integratzen dena gainerako AWS ingurunearekin. <em>Serverless</em> munduan sartzen gaitu, bere abaintala guztiekin, eta aplikazio baten hedapena inoiz baino errazagoa eta merkeagoa egiten du.</p>
 
-<p>Sin embargo, no es la solución a todos los problemas. Como siempre, cada caso en concreto tiene sus detalles y habrá que hacer un estudio para ver si Lambda encaja o si es mejor una solucion más tradicional. Lambda puede resultar muy caro si hay muchas peticiones simultáneas y de manera constante. En cualquier caso, a mí personalmente me ha servido para abrirme los ojos e introducirme a las funciones FaaS y me ha hecho replantearme algunas decisiones que he tomado en el pasado.</p>
+<p>Hala ere, ez da arazo guztien soluzioa. Beti bezala, kasu zehatz bakoitzak bere xehetasunak ditu, eta ikerketa bat egin beharko da Lambda egokitzen den edo irtenbide tradizionalago bat hobe den ikusteko kasu bakoitzean. Lambda oso garestia izan daiteke eskaera asko aldi berean eta etengabe egiten badira. Nolanahi ere, niri pertsonalki, begiak irekitzeko eta FaaS funtzioetan barneratzeko balio izan dit, eta iraganean hartutako erabaki batzuk birplantearazi dizkit.</p>
 
             </div>
 

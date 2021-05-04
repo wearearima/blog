@@ -9,6 +9,23 @@
     
     
     <post>
+        <title>AWS Lambda Funtzioak</title>
+        <summary>&lt;p&gt;Azken aldian  &lt;em&gt;serverless&lt;/em&gt; hitza gero eta gehiago agertzen da post, foro edo softwarearekin erlazionatutako edozein baliabidetan. Laburbilduz, gure aplikazioa exekutatzen den makinaz ez arduratzea eta horren hedapen prozesua arintzea inplikatzen duen kontzeptua da &lt;em&gt;serverless&lt;/em&gt;. Ez da ulertzeko kontzeptu oso erraza, eta horregatik aurrerago beste post batean sakonduko dugu.&lt;/p&gt;
+</summary>
+        <pubDate>Fri, 30 Apr 2021 09:00:00 +0000</pubDate>
+        <link>https://blog.arima.eu/2021/04/30/aws-lambda.html</link>
+        <guid isPermaLink="true">https://blog.arima.eu//2021/04/30/aws-lambda.html</guid>
+        <headerImage>https://blog.arima.eu/assets/images/2021-04-30-aws-lambda/cloud.jpg</headerImage>
+        
+        
+        
+        
+        
+
+      <author>Urko Lekuona</author>
+    </post>
+    
+    <post>
         <title>Nire esperientzia CKA azterketarekin</title>
         <summary>&lt;p&gt;Joan zen martxoaren 22an Linux Foundation-en parte den &lt;a href=&quot;https://training.linuxfoundation.org/certification/certified-kubernetes-administrator-cka/&quot; target=&quot;_blank&quot;&gt;CKA&lt;/a&gt; ziurtagiriaren azterketa egin nuen. Post honen bitartez nire esperientzia kontatu nahi dizuet, nola prestatu nuen eta zer espero daitekeen azalduz. Bide batez, orain dela hilabete batzuk &lt;a href=&quot;/eu/2020/04/28/examen-ckad&quot; target=&quot;_blank&quot;&gt;Fernandok, nire lankideak, idatzitako posta&lt;/a&gt; irakurtzea gomendatzen dizuet. Bertan zehaztasun handiarekin azaltzen du azterketa honetan kontutan eduki beharrekoa eta nire ustez, froga gainditzeko benetan lagungarria da. Niri behintzat bere posta irakurtzea baliagarria gertatu zitzaidan!&lt;/p&gt;
 </summary>
@@ -40,23 +57,6 @@
         
 
       <author>Iñigo Telleria</author>
-    </post>
-    
-    <post>
-        <title>Gure hautaketa prozesua</title>
-        <summary>&lt;p&gt;Orokorrean hautaketa prozesuak nahiko gogaikarriak izaten dira  hautagaientzat. Ohiko urduritasunari, hautagaiak eroso ez egotea bilatzen duten teknikak erabiltzea geroz eta ohikoagoa da. Hau lortzeko, elkarrizketatzaileak galdera arraroak egin edo tentsio handiko egoerak eragiten saiatzen dira askotan. Dagoeneko oso ezagunak diren galdera tipikoez gain: zein da zure bertuterik onena? zein da zure ahulezia handiena? (denek berdina erantzuten dute), geroz eta ohikoagoa da beste galdera desegokiagoak egitea ere.&lt;/p&gt;
-</summary>
-        <pubDate>Thu, 24 Oct 2019 09:00:00 +0000</pubDate>
-        <link>https://blog.arima.eu/2019/10/24/arima-proceso-seleccion.html</link>
-        <guid isPermaLink="true">https://blog.arima.eu//2019/10/24/arima-proceso-seleccion.html</guid>
-        <headerImage>https://blog.arima.eu/assets/images/post-headers/hiring-process.jpg</headerImage>
-        
-        
-        
-        
-        
-
-      <author>Aritz Berasarte</author>
     </post>
     
   </channel>
