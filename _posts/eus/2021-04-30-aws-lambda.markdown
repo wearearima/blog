@@ -9,18 +9,18 @@ tags: aws, serverless, cloud, faas, java
 header-image: 2021-04-30-aws-lambda/cloud.jpg
 ---
 
-Azken aldian  *serverless* hitza gero eta gehiago agertzen da post, foro edo softwarearekin erlazionatutako edozein baliabidetan. Laburbilduz, gure aplikazioa exekutatzen den makinaz ez arduratzea eta horren **hedapen prozesua** arintzea inplikatzen duen kontzeptua da *serverless*. Ez da ulertzeko kontzeptu oso erraza, eta horregatik aurrerago beste post batean sakonduko dugu.
+Azken aldian  *serverless* hitza gero eta gehiago agertzen da post, foro edo softwarearekin erlazionatutako edozein baliabidetan. Laburbilduz, gure aplikazioa exekutatzen den makinaz ez arduratzea eta horren hedapen prozesua arintzea inplikatzen duen kontzeptua da *serverless*. Ez da ulertzeko kontzeptu oso erraza, eta horregatik aurrerago beste post batean sakonduko dugu.
 
-Post honetan AWS Lambdari buruz hitz egin nahi dut, AWSek funtzio moduan (FaaS) eskaintzen digun *serverless* soluzioaz. Funtzio bat **gertaera** baten bidez aktibatzen den eta eginkizun jakin bat duen edozein aplikazio gisa uler daiteke.
+Post honetan AWS Lambdari buruz hitz egin nahi dut, AWSek funtzio moduan (FaaS) eskaintzen digun *serverless* soluzioaz. Funtzio bat gertaera baten bidez aktibatzen den eta eginkizun jakin bat duen edozein aplikazio gisa uler daiteke.
 
 AWS Lambda ondorengoaz arduratzen da:
-* **Gertaera** gertatzen denean soilik abiarazteaz gure aplikazioa, eta exekuzioa amaitzerakoan berehala hiltzeaz. Exekuzioaz arduratuko den makina hornitzeaz era arduratzen da, dena denbora errekorrean eginez. Aurrerago ikusiko dugu adibideren bat.
+* Gertaera gertatzen denean soilik abiarazteaz gure aplikazioa, eta exekuzioa amaitzerakoan berehala hiltzeaz. Exekuzioaz arduratuko den makina hornitzeaz ere arduratzen da, dena denbora errekorrean eginez. Aurrerago ikusiko dugu adibideren bat.
 * Funtzioa exekutatzen egon den denbora soilik kobratzeaz. Honen ondorioz, kostuak txikitu eta baliabideen erabilera optimizatzen da.
 * Behar izanez gero, aplikazioaren instantzia gehiago modu konkurrentean abiarazteaz. Honi esker, gure funtzioa trafiko-tontorrera egokitzea lortuko dugu, erabiltzen ditugun baliabideak soilik ordainduz. Agur esan lan egiten ez duten makinei eta baliabiderik gabe geratzeari!
 
 ### Nola funtzionatzen du
 
-Esan dugun bezala, funtzioa **gertaera** bat jazotzen denean abiarazten da. Lambdaren kasuan, **gertaera** bat ondorengo arrazoiengatik gertatu daiteke:
+Esan dugun bezala, funtzioa gertaera bat jazotzen denean abiarazten da. Lambdaren kasuan, gertaera bat ondorengo arrazoiengatik gertatu daiteke:
 * AWSeko baliabide batetik sortzea.
 * AWSekoa ez den baliabide batetik sortzea, adibidez, Kafka errenkada bat.
 * HTTP eskaera bat egitea.
@@ -29,13 +29,13 @@ Esan dugun bezala, funtzioa **gertaera** bat jazotzen denean abiarazten da. Lamb
 ![Lambda funtzio baten adibidea](/assets/images/2021-04-30-aws-lambda/lambda_example.png){: .center }
 <label style="text-align: center; display: block;">Lambda funtzio baten adibidea ([iturria](https://aws.amazon.com/lambda/){:target="_blank"})</label>
 
-Gure aplikazioak AWS sistematik iristen den **gertaera** tratatu ahal izateko, lehenik eta behin, Amazonek ematen duen SDKa erabili behar da (edo Lambdarekin bateragarria den liburutegi bat, [Spring Cloud Function](https://spring.io/projects/spring-cloud-function){:target="_blank"} bezala) gertaeraz arduratuko den *handler* bat inplementatzeko.
+Gure aplikazioak AWS sistematik iristen den gertaera tratatu ahal izateko, lehenik eta behin, Amazonek ematen duen SDKa erabili behar da (edo Lambdarekin bateragarria den liburutegi bat, [Spring Cloud Function](https://spring.io/projects/spring-cloud-function){:target="_blank"} bezala) gertaeraz arduratuko den *handler* bat inplementatzeko.
 
-Post honetan AWSren SDKrekin eginiko Spring Boot aplikazio bat erabiliko dut. Aplikazio honen kodea [biltegi honetan](https://github.com/wearearima/serverlessDemoAWSHandler){:target="_blank"} ikus daiteke. **Biltegiak** funtzioa sortzeko jarraibideak ere baditu.
+Post honetan AWSren SDKrekin eginiko Spring Boot aplikazio bat erabiliko dut. Aplikazio honen kodea [biltegi honetan](https://github.com/wearearima/serverlessDemoAWSHandler){:target="_blank"} ikus daiteke. Biltegiak funtzioa sortzeko jarraibideak ere baditu.
 
 Lambdak funtzioa modu zehatz batean konfiguratzeko aukera ematen digu, ondorengo konfigurazio hauek ditugularik: erabili nahi dugun instantzia bakoitzaren memoria kantitatea, exekuzioaren denbora maximoa, gure aplikaziorako ingurune-aldagaiak definitzea (adibidez, JVMaren propietateak konfiguratu daitezke honen bidez), etab.
 
-Behin hau eginda, funtzioa erabiltzeko prest dago. Aipatzekoa da ez dugulu makinaren sistema eragilerik aukeratu beharrik izan, ezta aplikazioak exekutatu ahal izateko Java konfiguratu beharrik izan edo ezta sekurizatu beharrik izan ere. Ez dut makinaren egoerari buruz kezkatu beharrik izan, edo autoeskalatzeko sistemarik ezarri behar izan ere, beharrezkoa izango balitz. Honetaz guztiaz Lambda arduratzen da.
+Behin hau eginda, funtzioa erabiltzeko prest dago. Aipatzekoa da ez dugula makinaren sistema eragilerik aukeratu beharrik izan, ezta aplikazioak exekutatu ahal izateko Java konfiguratu beharrik izan edo ezta sekurizatu beharrik izan ere. Ez dut makinaren egoerari buruz kezkatu beharrik izan, edo autoeskalatzeko sistemarik ezarri behar izan ere, beharrezkoa izango balitz. Honetaz guztiaz Lambda arduratzen da.
 
 Hurrengo irudian, funtzioaren exekuzioaren emaitzak ikus ditzakegu. Ezkerrean, lehen exekuzioaren edo hasiera hotzaren emaitzak daude (*cold-startup*), eta eskuinean bigarren exekuzioaren edo hasiera beroaren emaitzak (*warm-startup*). Ikus dezakegu ezberdintasun handia dagoela exekuzio-denboran, eta ezberdintasuna are nabarmenagoa izango litzateke gure aplikazioa lehen aldiz hasteko denbora gehiago beharko balu (adibidez, datu-base batekin konexioen *pool* bat sortu beharko balu).
 
