@@ -59,7 +59,7 @@ Lo primero que necesitamos es instalar [Docker Desktop](https://www.docker.com/p
 ## Añadir las dependencias necesarias
 Para empezar con el código, lo primero que tendremos que hacer será añadir las dependencias necesarias al proyecto (en nuestro caso en el pom.xml).
 
-En nuestro caso hemos generado el proyecto utilizando Spring Initializr, desde donde hemos añadido la dependencia
+En nuestro caso hemos generado el proyecto utilizando [Spring Initializr](https://start.spring.io/){:target="_blank"}, desde donde hemos añadido la dependencia
 
 ![Imagen de cómo se añade la depedencia de testscontainer utilizando springinitializr](/assets/images/2021-05-06-testcontainers/spring-initializr.png){: .center }
 
@@ -190,15 +190,12 @@ public abstract class PostgresContainerBaseTest {
 }
 ```
 
-### Testcontainers y Pitest
-Como hemos visto, tampoco esta forma supone a penas esfuerzo. Además de ser la recomendada, tenemos que decir, que tiene una ventaja frente a la anterior si estamos [midiendo la calidad de nuestros tests con PIT](https://blog.arima.eu/es/2020/05/25/mutation-testing.html){:target="_blank"}.
+## Tip sobre Pitest
+¿[PIT](https://pitest.org/){:target="_blank"}? ¿Qué tiene que ver **Testcontainers** con **PIT**? Recordemos que descubrimos que podíamos [medir la calidad de nuestros tests con PIT](https://blog.arima.eu/es/2020/05/25/mutation-testing.html){:target="_blank"}. Es cierto que PIT está directamente orientado a **tests unitarios** (sobre todo por cuestión de tiempos/eficiencia) pero también es cierto, que hasta ahora no nos habíamos encontrado con ningún problema a la hora de poner a prueba nuestros **tests de integración**.
 
-¿[PIT](https://pitest.org/){:target="_blank"}?¿Qué tienen que ver esto con PIT? Bueno pues si bien es cierto que PIT está directamente orientado a **tests unitarios** (sobre todo por cuestión de tiempos/eficiencia) también es cierto, que hasta ahora no nos habíamos encontrado con ningún problema a la hora de poner a prueba nuestros **tests de integración**.
+Sin embargo, si intentáis ejecutar Pitest sobre tests impelementados utilizando `@Testcontainers` os encontraréis con que no pasan. En cambio, si los tests están impelementados utilizando el patrón Singleton, podréis realizar el análisis de cobertura de Pit sin problemas.
 
-Sin embargo, al intentar pasarlo sobre unos tests implementados como en el primer ejemplo, nos encontraremos un error: no hay forma de pasar los tests.
-En su momento [reportamos el error](https://github.com/hcoles/pitest/issues/827){:target="_blank"}. El origen del problema parece estar en el cacheo del contexto de testing de Spring.
-Detectamos que podían ir por ahí los tiros, al ver que utilizando `@DirtiesContext` el error desaparecía. Obviamente, la solución no es utilizar esta anotación ya que estaríamos condicionando nuestros tests por un factor externo a los mismos (al hecho de tener otra herramienta para medir su calidad).
-Dado que la aproximación de utilizar el patrón singleton es la recomendada y además no presenta problemas nos decidimos por asumir dicha solución. Sin embargo, en el hilo hubo quien hizo una [extensión de JUnit para tal propósito](https://github.com/StefanPenndorf/pitTestcontainers/tree/sprint-test-context-cleanup-poc){:target="_blank"} (por si alguien estuviese interesado en utilizarla).
+_Si alguien quiere conocer el por qué de todo esto, además de probar una solución propuesta por un contribuyente, puede hacerlo en la [issue](https://github.com/hcoles/pitest/issues/827){:target="_blank"} que abrimos al detectar el problema._
 
 
 Hasta aquí una pequeña introducción a **Testcontainers**, con un ejemplo de aplicación en el caso de una base de datos. Como hemos mencionado anteriormente, Testcontainers nos ofrece otros muchos módulos. E incluso, en caso de que por nuestras necesidades necesitemos algo más concreto también dispone de soporte para que tengamos nuestro propio `docker-compose.yml` como se explica en la [documentación](https://www.testcontainers.org/modules/docker_compose/). 
