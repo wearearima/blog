@@ -9,6 +9,29 @@
     
     
     <post>
+        <title>Testcontainers: contenedores al servicio del testing</title>
+        <summary>&lt;p&gt;Siempre he sido más fan de los test unitarios que de los tests de integración, sobre todo por un motivo: no necesito nada externo para poder pasarlos. No necesito tener una base de datos arrancada, un servicio externo al que conectarme o un Kafka funcionando para poder pasar los tests y por tanto para poder desarrollar.
+Y eso en el entorno de desarrollo, si hablamos ya del entorno de integración ya ni te cuento.&lt;br /&gt;
+Por ejemplo, en el caso de las bases de datos tenemos la opción de hacer los tests con H2. Pero también es cierto que dependiendo del tipo de proyecto, puede darse la situación de que algo que funciona perfectamente en H2 no lo haga en la base de datos para la que estamos desarrollando: 
+Tan cierto como que frecuentemente hemos caído en el&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;“Venga va… con h2, por no arrancar la bd…”&lt;/p&gt;
+&lt;/blockquote&gt;
+</summary>
+        <pubDate>Thu, 06 May 2021 08:00:00 +0000</pubDate>
+        <link>https://blog.arima.eu/2021/05/06/testcontainers.html</link>
+        <guid isPermaLink="true">https://blog.arima.eu//2021/05/06/testcontainers.html</guid>
+        <headerImage>https://blog.arima.eu/assets/images/2021-05-06-testcontainers/header.jpg</headerImage>
+        
+        
+        
+        
+        
+
+      <author>Jessica Aguado</author>
+    </post>
+    
+    <post>
         <title>Funciones con AWS Lambda</title>
         <summary>&lt;p&gt;Recientemente, la palabra &lt;em&gt;serverless&lt;/em&gt; está más y más presente en posts, foros, o cualquier recurso relacionado con el &lt;em&gt;software&lt;/em&gt;. Por si no sabes lo que es, &lt;em&gt;serverless&lt;/em&gt; implica despreocuparnos por la máquina donde se ejecuta nuestra aplicación y trivializa su despliegue. Es un concepto que tiene su miga, así que profundizaremos en él en otro post más adelante.&lt;/p&gt;
 </summary>
@@ -40,23 +63,6 @@
         
 
       <author>Urko Lekuona</author>
-    </post>
-    
-    <post>
-        <title>Lecciones aprendidas sobre Contract Testing</title>
-        <summary>&lt;p&gt;A lo largo de varios posts, hemos ido viendo cómo a consecuencia de la evolución de las arquitecturas de las aplicaciones surgen nuevas necesidades en el ámbito del testing. Nos hemos centrado en una concreta: tan importante como testear las funcionalidades en &lt;em&gt;consumer&lt;/em&gt; y &lt;em&gt;producer&lt;/em&gt; de forma independiente lo es asegurar que &lt;a href=&quot;https://blog.arima.eu/es/2020/09/03/contract-testing.html&quot; target=&quot;_blank&quot;&gt;la interacción entre ambos es correcta&lt;/a&gt;. Hemos visto que tenemos a nuestro alcance &lt;strong&gt;Contract Testing&lt;/strong&gt;, con &lt;a href=&quot;https://blog.arima.eu/es/2020/10/09/contract-testing-approach.html&quot; target=&quot;_blank&quot;&gt;diferentes enfoques y herramientas&lt;/a&gt; que nos permiten abordar esta necesidad en concreto. Además utilizando el enfoque &lt;strong&gt;producer driven&lt;/strong&gt; y &lt;a href=&quot;https://spring.io/projects/spring-cloud-contract&quot; target=&quot;_blank&quot;&gt;&lt;strong&gt;Spring Cloud Contract&lt;/strong&gt;&lt;/a&gt; hemos &lt;a href=&quot;https://blog.arima.eu/2020/10/29/playing-with-spring-cloud-contract.html&quot; target=&quot;_blank&quot;&gt;llevado a la práctica&lt;/a&gt; todo lo aprendido.&lt;/p&gt;
-</summary>
-        <pubDate>Mon, 08 Feb 2021 08:00:00 +0000</pubDate>
-        <link>https://blog.arima.eu/2021/02/08/contract-testing-lessons-learned.html</link>
-        <guid isPermaLink="true">https://blog.arima.eu//2021/02/08/contract-testing-lessons-learned.html</guid>
-        <headerImage>https://blog.arima.eu/assets/images/2021-02-08-contract-testing/header.jpg</headerImage>
-        
-        
-        
-        
-        
-
-      <author>Jessica Aguado</author>
     </post>
     
   </channel>

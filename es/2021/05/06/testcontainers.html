@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="es" itemscope itemtype="http://schema.org/Blog">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Testcontainers: contenedores al servicio del testing</title>
+  <meta name="description" content="Siempre he sido más fan de los test unitarios que de los tests de integración, sobre todo por un motivo: no necesito nada externo para poder pasarlos. No nec...">
+  
+  <meta name="keywords" content="testing,calidad,softwarequality,QA,testContainers,testintegración">
+  
+
+  <!-- Twitter cards -->
+  <meta name="twitter:site"    content="@wearearima">
+  <meta name="twitter:creator" content="@jessica">
+  <meta name="twitter:title"   content="Testcontainers: contenedores al servicio del testing">
+
+  
+  <meta name="twitter:description" content="">
+  
+
+  
+  <meta name="twitter:card"  content="summary_large_image">
+  <meta name="twitter:image" content="https://blog.arima.eu/assets/images/2021-05-06-testcontainers/header.jpg">
+  
+  <!-- end of Twitter cards -->
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="https://blog.arima.eu/es/2021/05/06/testcontainers.html">
+  <link rel="alternate" type="application/rss+xml" title="ARIMA" href="/es/feed.xml">
+
+  <!-- SEO Recipes (http://polyglot.untra.io/seo/) -->
+  <meta http-equiv="Content-Language" content="es">
+  <link rel="alternate"
+      hreflang="es"
+      href="https://blog.arima.eu/es/2021/05/06/testcontainers.html" />
+  
+  
+  <link rel="alternate"
+      hreflang="es"
+      href="https://blog.arima.eu/es/2021/05/06/testcontainers.html" />
+  
+  
+  <link rel="alternate"
+      hreflang="en"
+      href="https://blog.arima.eu/en/2021/05/06/testcontainers.html" />
+  
+  
+  <link rel="alternate"
+      hreflang="eu"
+      href="https://blog.arima.eu/es/eus/2021/05/06/testcontainers.html" />
+  
+
+  
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-120217722-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-120217722-1');
+</script>
+  
+</head>
+  
+
+  <body>
+    <nav class="toolbar">
+    <div class="wrapper">    
+        <a href="/es/">
+            <div class="toolbar__logo">
+                <svg xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" version="1.1" width="100%" height="100%" viewBox="0 0 33 6">
+    <path id="path24" d="m30.346988508615652,-0.000015174522529526127 l-0.6439224998849951,0 l-2.7763635316117727,6.135695064030662 l0.7050150612484405,0 l2.3859233880279893,-5.335002838884215 l2.3660424189063254,5.335002838884215 l0.739668694925785,0 L30.346988508615652,-0.000015174522529526127 zm-8.274141805179609,3.3681675186951847 l-2.2194202716340565,-3.324608867598761 l-0.6962481061149294,0 l0,6.092136412934239 l0.6700853029999622,0 l0,-4.926062349034439 l2.2194202716340565,3.2553706313868567 l0.034929758248478535,0 l2.2192131782057056,-3.2639304930920168 l0,4.934622210739599 l0.6873430886958508,0 l0,-6.092136412934239 l-0.6961100438293623,0 l-2.2192131782057056,3.324608867598761 zm-9.143036799396208,-1.5057072863948877 c0,-1.0964906719739773 -0.8613705996531913,-1.8189015812038738 -2.201748299081466,-1.8189015812038738 l-2.619662837493104,0 l0,6.092136412934239 l0.6876192132669849,0 l0,-5.456842805897188 l1.8799251114245357,0 c0.9833486289517317,0 1.5576187057681203,0.4525681720889824 1.5576187057681203,1.2097017461390067 c0,0.7919252700129356 -0.7831583148794242,1.2620273523689407 -1.6968545207625496,1.2620273523689407 l0,0.6178287279128115 l1.7665759749739396,2.3672849794764295 l0.8442508762428699,0 l-1.8711581562910244,-2.4891249464894027 c0.9571858258367647,-0.17416557324290774 1.6534339319516944,-0.7659695603263191 1.6534339319516944,-1.7841098852409623 m2.7743616284710493,4.273234831730365 l0.6872050264102838,0 l0,-6.0920673817914555 l-0.6872050264102838,0 l0,6.0920673817914555 zM2.7761571742923965,-0.000015174522529526127 l-2.7761564381834223,6.135695064030662 l0.7048769989628736,0 l2.386061450313556,-5.335002838884215 l2.3658353254779745,5.335002838884215 l0.739668694925785,0 l-2.7761564381834223,-6.135695064030662 l-0.6441295933133457,0 z" stroke-width="0"/>
+</svg>
+
+            </div>
+        </a>
+        <!-- Language selector -->
+        <div class="language-selector">
+            
+              
+                <b class="selected">ES</b>
+              
+              
+                &nbsp;|&nbsp;
+              
+            
+              
+                <a class="unselected" href="/en/2021/05/06/testcontainers.html">EN</a>
+              
+              
+                &nbsp;|&nbsp;
+              
+            
+              
+                <a class="unselected" href="/eu/2021/05/06/testcontainers.html">EU</a>
+              
+              
+            
+         </div>
+    </div>
+</nav>
+<div id="publisher_id" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Arima 100% Software Design" />
+    <meta itemprop="url" content="https://arima.eu" />
+    <div itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+        <meta itemprop="url" content="https://arima.eu/img/logo.png" />
+    </div>
+</div>
+    <main aria-label="Content">        
+        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting" itemref="publisher_id">
+          <link itemprop="mainEntityOfPage" href="/es/2021/05/06/testcontainers.html" />
+
+          <header class="post-header">
+            <div class="post-img" itemprop="image" itemscope itemtype="http://schema.org/ImageObject" style="background-image: url('https://blog.arima.eu/assets/images/2021-05-06-testcontainers/header.jpg');">
+              <meta itemprop="url" content="https://blog.arima.eu/assets/images/2021-05-06-testcontainers/header.jpg" />
+            </div>
+            <div class="wrapper">
+              <div class="post-info__container">
+                <div class="post-info">
+                  <h1 class="post-title" itemprop="name headline">Testcontainers: contenedores al servicio del testing</h1>
+                    <div class="post-meta" itemscope itemtype="https://schema.org/Person" itemprop="author">
+                      
+                      <div class="author-photo">
+                        <img itemprop="image" src="/assets/images/authors/jessica.png" alt="">
+                      </div>
+                      <div>
+                        <span class="post-author" itemprop="name">Jessica Aguado</span>
+                      </div>
+                      <div>
+                        <span class="post-date">06-05-2021</span>
+                      </div>
+                    </div>
+                    <meta  itemprop="datePublished dateModified" content="06-05-2021" />
+                </div>
+              </div>
+            </div>
+          </header>
+          <div class="wrapper">
+            <div class="post-content" itemprop="articleBody">
+              <p>Siempre he sido más fan de los test unitarios que de los tests de integración, sobre todo por un motivo: no necesito nada externo para poder pasarlos. No necesito tener una base de datos arrancada, un servicio externo al que conectarme o un Kafka funcionando para poder pasar los tests y por tanto para poder desarrollar.
+Y eso en el entorno de desarrollo, si hablamos ya del entorno de integración ya ni te cuento.<br />
+Por ejemplo, en el caso de las bases de datos tenemos la opción de hacer los tests con H2. Pero también es cierto que dependiendo del tipo de proyecto, puede darse la situación de que algo que funciona perfectamente en H2 no lo haga en la base de datos para la que estamos desarrollando: 
+Tan cierto como que frecuentemente hemos caído en el</p>
+<blockquote>
+  <p>“Venga va… con h2, por no arrancar la bd…”</p>
+</blockquote>
+
+<p>lo es la situación</p>
+<blockquote>
+  <p>“¡Pero si está testeado! ¿Entonces por qué …? Ups…”</p>
+</blockquote>
+
+<p>Yo siempre he sido de las que necesitaba tener todo instalado: Mysql, Postgres, Kafka,…. todo lo que fuese necesario para ejecutar el proyecto. Así, dependiendo del proyecto me tenía que asegurar de tener todo instalado y unos servicios u otros levantados… hasta que mis compañeros me descubrieron los contenedores, bueno Docker. 
+Nunca he sido muy hábil con estas cosas, pero la verdad es que gracias a ellos, no tengo la necesidad de tener millones de cosas instaladas: tengo las imágenes de los servicios que necesito y no tengo más que poner en marcha los que necesito y ya.<br />
+Bueno al grano. Es cierto que ahora para ejecutar las aplicaciones lo tengo todo mucho más organizado, pero en realidad para desarrollar, sigo estando un poco en las mismas: si quiero pasar tests de integración tengo que acordarme de levantar la base de datos (por ejemplo) así que no termina de ser tan transparente como lo es H2.</p>
+
+<p><small>Como alguno ya habrá imaginado todo esto también tiene aplicación en CI, pero me voy a centrar en el día a día del desarrollador y en cómo nos ayuda esta herramienta en el trabajo diario.</small></p>
+
+<blockquote>
+  <p>“Tiene que haber algo que una ambos mundos y que haga que los tests sean autosuficientes simulando un entorno real”</p>
+</blockquote>
+
+<p>Con esta idea en la cabeza y tras una conversación con un compi descubrí que así era: ¡existía algo llamado <a href="https://www.testcontainers.org/" target="_blank"><strong>TestContainers</strong></a>!</p>
+
+<p>Por ejemplo, imaginemos algunas situaciones del día que nos hacen suspirar (o resoplar más bien): ¡nuevo miembro en el equipo! o ¿si queremos pedir ayuda a algún compi con un caso de uso o bug? o ¿si volvemos a un proyecto en el que hace meses que no trabajamos?<br />
+Ante situaciones como estas (y otras) cuántas veces no habremos pensado: ¿no sería posible descargar todo y poder lanzar los tests y ponerme a desarrollar sin hacer absolutamente nada más? 
+Hace un tiempo, viendo una presentación de <a href="https://twitter.com/kiview" target="_blank">@kiview</a>, me di cuenta que no estaba sola. Al principio de su presentación decía algo así como:</p>
+<blockquote>
+  <p>…una experiencia de onboarding exitosa en un proyecto sería que el desarrollador sólo tuviese que clonar el repositorio, hacer el build y que con eso ya tuviesesmos el build hecho incluyendo los tests unitarios y los tests de integración…</p>
+</blockquote>
+
+<p>Es decir, seguir estos pasos:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt; git clone https://github.com/wearearima/school-library-testcontainers-01.git
+&gt; cd school-library-testcontainers-01
+&gt; ./mvnw install
+</code></pre></div></div>
+<p>¡Y ya!<br />
+Los ojos me hicieron 😍. La charla se titulaba <a href="https://www.youtube.com/watch?v=Lv1evJe2MRI" target="_blank">Integration Testing with Docker and Testcontiners</a>, exacto: <strong>TestContainers</strong>. Bueno, pues ¡good news! Parece que trabajar con <strong>TestContainers</strong> nos facilitan el acercarnos a ese objetivo y nos simplifica el trabajo para que nos podamos centrar en el desarrollo propiamente dicho (obviamente, implícitamente en los tests).</p>
+
+<h1 id="ejemplo-de-database-container-postgres-module">Ejemplo de Database container (Postgres Module)</h1>
+<p>Así contado, todo suena muy bien pero (como bien sabréis quienes me leáis de vez en cuando) para entender los conceptos tengo que ponerlos en práctica, así que hemos preparado un ejemplo en <a href="https://github.com/wearearima/school-library-testcontainers-01" target="_blank">Github</a>. 
+Lo más común probablemente es la situación en la que hacemos tests contra base de datos y Testcontainers nos ofrecen diferentes <em>módulos</em> para diferentes bases de datos. Por ello, hemos preparado un ejemplo sencillo, de una aplicación Spring Boot, que se conecta a una base de datos Postgres.<br />
+Nuestro ejemplo:<br />
+    Supongamos una biblioteca de un cole. Tenemos una funcionalidad que servirá para ir dando de alta los ejemplares que vayamos recibiendo. Uno de los métodos que podríamos tener, podía ser el de “añadir una copia de un libro” (entendiendo “libro” como el concepto y “copia” la representación de cada uno de los ejemplares que podamos tener). 
+<small>En un futuro seguiremos evolucionando este ejemplo e iremos añadiendo código.</small></p>
+
+<p>Como hemos dicho, utilizaremos el módulo que hay para <a href="https://www.testcontainers.org/modules/databases/postgres/" target="_blank">Postgres</a>. La implementación de los tests utilizando este container es muy sencilla, ¡vamos allá!</p>
+
+<h2 id="instalar-docker">Instalar Docker</h2>
+<p>Lo primero que necesitamos es instalar <a href="https://www.docker.com/products/docker-desktop" target="_blank">Docker Desktop</a> (en caso de no tenerlo). A continuación dejo también, la sección de la documentación donde podemos encontrar los requerimientos de Docker: <a href="https://www.testcontainers.org/supported_docker_environment/" target="_blank">General Docker requirements</a>.</p>
+
+<h2 id="añadir-las-dependencias-necesarias">Añadir las dependencias necesarias</h2>
+<p>Para empezar con el código, lo primero que tendremos que hacer será añadir las dependencias necesarias al proyecto (en nuestro caso en el pom.xml).</p>
+
+<p>En nuestro caso hemos generado el proyecto utilizando <a href="https://start.spring.io/" target="_blank">Spring Initializr</a>, desde donde hemos añadido la dependencia</p>
+
+<p><img src="/assets/images/2021-05-06-testcontainers/spring-initializr.png" alt="Imagen de cómo se añade la depedencia de testscontainer utilizando springinitializr" class="center" /></p>
+
+<p>En caso de hacerlo manualmente, en la <a href="https://www.testcontainers.org/quickstart/junit_5_quickstart/#1-add-testcontainers-as-a-test-scoped-dependency" target="_blank">documentación</a> se detalla cómo añadir las dependencias.</p>
+
+<p>Además, como vamos a utilizar el módulo de Postgres añadimos esa dependencia:</p>
+
+<h4 id="pomxml">pom.xml</h4>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>org.testcontainers<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>postgresql<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</code></pre></div></div>
+
+<p>Bueno, y del mismo modo que haríamos si no estuviesemos utilizando Testcontainers, incluiremos la dependencia de Postgres.</p>
+
+<h4 id="pomxml-1">pom.xml</h4>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>org.postgresql<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>postgresql<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;scope&gt;</span>runtime<span class="nt">&lt;/scope&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</code></pre></div></div>
+
+<h2 id="start-coding">Start coding!</h2>
+<p>¡Y listo! Ya podemos implementar nuestro caso de uso. Vamos a implementar más de un test (disponibles en <a href="https://github.com/wearearima/school-library-testcontainers-01/blob/master/src/test/java/eu/arima/schoolLibrary/bookStore/BooksServiceTest.java" target="_blank">Github</a>. ), aquí veremos el código para uno de ellos. Será un test que haremos que comprobará que cuando añadamos una copia a un libro cuyo ISBN ya exista, se añadirá una copia al mismo. ¿Sencillo verdad?</p>
+
+<h4 id="booksservicetestjava">BooksServiceTest.java</h4>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@SpringBootTest</span>
+<span class="nd">@Transactional</span>
+<span class="kd">class</span> <span class="nc">BooksServiceTest</span> <span class="o">{</span>
+
+    <span class="nd">@Autowired</span>
+    <span class="kd">private</span> <span class="nc">BooksService</span> <span class="n">booksService</span><span class="o">;</span>
+    <span class="nd">@Autowired</span>
+    <span class="kd">private</span> <span class="nc">BooksRepository</span> <span class="n">booksRepository</span><span class="o">;</span>
+    <span class="nd">@Autowired</span>
+    <span class="kd">private</span> <span class="nc">CopiesRepository</span> <span class="n">copiesRepository</span><span class="o">;</span>
+
+    <span class="nd">@Test</span>
+    <span class="nd">@DisplayName</span><span class="o">(</span><span class="s">"addCopy for a book that exists with the provided isbn adds a new copy to it"</span><span class="o">)</span>
+    <span class="kt">void</span> <span class="nf">addCopy_if_book_exist_adds_new_copy</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nc">String</span> <span class="n">isbn</span> <span class="o">=</span> <span class="s">"9780745168197"</span><span class="o">;</span>
+        <span class="nc">Book</span> <span class="n">existingBook</span> <span class="o">=</span> <span class="n">booksRepository</span><span class="o">.</span><span class="na">findBookByIsbnEquals</span><span class="o">(</span><span class="n">isbn</span><span class="o">).</span><span class="na">orElseThrow</span><span class="o">();</span>
+        <span class="kt">int</span> <span class="n">existingNumCopies</span> <span class="o">=</span> <span class="n">existingBook</span><span class="o">.</span><span class="na">getCopies</span><span class="o">().</span><span class="na">size</span><span class="o">();</span>
+
+        <span class="nc">Copy</span> <span class="n">createdCopy</span> <span class="o">=</span> <span class="n">booksService</span><span class="o">.</span><span class="na">addCopy</span><span class="o">(</span><span class="n">existingBook</span><span class="o">.</span><span class="na">getTitle</span><span class="o">(),</span> <span class="n">existingBook</span><span class="o">.</span><span class="na">getAuthors</span><span class="o">(),</span> <span class="n">isbn</span><span class="o">);</span>
+
+        <span class="nc">Book</span> <span class="n">updatedBook</span> <span class="o">=</span> <span class="n">booksRepository</span><span class="o">.</span><span class="na">findById</span><span class="o">(</span><span class="n">existingBook</span><span class="o">.</span><span class="na">getId</span><span class="o">()).</span><span class="na">orElseThrow</span><span class="o">();</span>
+        <span class="n">assertAll</span><span class="o">(</span>
+                <span class="o">()</span> <span class="o">-&gt;</span> <span class="n">assertEquals</span><span class="o">(</span><span class="n">existingNumCopies</span> <span class="o">+</span> <span class="mi">1</span><span class="o">,</span> <span class="n">updatedBook</span><span class="o">.</span><span class="na">getCopies</span><span class="o">().</span><span class="na">size</span><span class="o">()),</span>
+                <span class="o">()</span> <span class="o">-&gt;</span> <span class="n">assertRelationBetweenBookAndCopyIsCorrect</span><span class="o">(</span><span class="n">createdCopy</span><span class="o">,</span> <span class="n">updatedBook</span><span class="o">));</span>
+
+    <span class="o">}</span>
+
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Pero si ejecutamos el test sin más, veremos que falla por no poder levantar el contexto: le falta la información de la base de datos.
+Es cierto que podríamos ir a application.properties y setear ahí los valores…. pero eso requeriría que si ese nuevo desarrollador que llegar (o tú que te vas a descargar el ejemplo) levantase la base de datos etc. Ya no sería el “ideal” que buscamos. ¿La solución?</p>
+
+<h3 id="testcontainers">@Testcontainers</h3>
+<p>Efectivamente una anotación <code class="highlighter-rouge">@Testcontainers</code> y unas líneas más y lo tendremos:</p>
+
+<h4 id="booksservicetestjava-1">BooksServiceTest.java</h4>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@SpringBootTest</span>
+<span class="nd">@Transactional</span>
+<span class="nd">@Testcontainers</span>
+<span class="kd">class</span> <span class="nc">BooksServiceTest</span> <span class="o">{</span>
+
+    <span class="nd">@Container</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="kd">static</span> <span class="nc">PostgreSQLContainer</span> <span class="n">postgresContainer</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">PostgreSQLContainer</span><span class="o">(</span><span class="nc">DockerImageName</span>
+            <span class="o">.</span><span class="na">parse</span><span class="o">(</span><span class="s">"postgres:13"</span><span class="o">));</span>
+
+    <span class="nd">@DynamicPropertySource</span>
+    <span class="kd">static</span> <span class="kt">void</span> <span class="nf">databaseProperties</span><span class="o">(</span><span class="nc">DynamicPropertyRegistry</span> <span class="n">registry</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">registry</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">"spring.datasource.url"</span><span class="o">,</span> <span class="nl">postgresContainer:</span><span class="o">:</span><span class="n">getJdbcUrl</span><span class="o">);</span>
+        <span class="n">registry</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">"spring.datasource.username"</span><span class="o">,</span> <span class="nl">postgresContainer:</span><span class="o">:</span><span class="n">getUsername</span><span class="o">);</span>
+        <span class="n">registry</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">"spring.datasource.password"</span><span class="o">,</span> <span class="nl">postgresContainer:</span><span class="o">:</span><span class="n">getPassword</span><span class="o">);</span>
+    <span class="o">}</span>
+
+<span class="o">}</span>
+</code></pre></div></div>
+<p>¿Qué hemos hecho?</p>
+<ul>
+  <li>Hemos añadido la anotación <code class="highlighter-rouge">@Testcontainers</code> a la clase de test.</li>
+  <li>Hemos creado una instancia de un contenedor con Postgres utilizando la anotación <code class="highlighter-rouge">@Container</code> y especificando la versión.</li>
+  <li>Y por último hemos seteado la información del datasource a partir del contenedor creado mediante <code class="highlighter-rouge">@DynamicPropertySource</code>.</li>
+</ul>
+
+<p>Como podéis ver la implementación es muy sencilla, el beneficio es instantáneo: podéis descargaros el ejemplo y ejecutarlo directamente en vuestros equipos sin nada más que tener Docker instalado (¿recordáis los 3 comandos de antes? Podéis probarlo.)</p>
+
+<h3 id="patrón-singleton">Patrón Singleton</h3>
+<p>Hay otra forma de implementar todo esto, más eficiente, que sería utilizando el patrón Singleton. De esta forma utilizaríamos el mismo contenedor en más de una clase. 
+De hecho, en la documentación se recomienda esta aproximación. En este ejemplo donde aún sólamente tenemos un clase de test no parece útil, pero probablemente no será la única funcionalidad de nuestro proyecto ¿verdad? Llegado ese momento, entonces sí, pasaríamos al patrón Singleton, como se explica <a href="https://www.testcontainers.org/test_framework_integration/manual_lifecycle_control/#singleton-containers" target="_blank">aquí</a>.</p>
+
+<p>Veamos cómo sería:</p>
+
+<h4 id="booksservicetestjava-2">BooksServiceTest.java</h4>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@SpringBootTest</span>
+<span class="nd">@Transactional</span>
+<span class="kd">class</span> <span class="nc">BooksServiceTest</span> <span class="kd">extends</span> <span class="nc">PostgresContainerBaseTest</span> <span class="o">{</span>
+    <span class="c1">//Ya no es necesario @Container ni @DynamicPropertySource porque lo gestionaremos en PostgresContainerBaseTest</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h4 id="postgrescontainerbasetestjava">PostgresContainerBaseTest.java</h4>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">abstract</span> <span class="kd">class</span> <span class="nc">PostgresContainerBaseTest</span> <span class="o">{</span>
+
+    <span class="kd">static</span> <span class="kd">final</span> <span class="nc">PostgreSQLContainer</span> <span class="n">postgresContainer</span><span class="o">;</span>
+
+    <span class="kd">static</span> <span class="o">{</span>
+        <span class="n">postgresContainer</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">PostgreSQLContainer</span><span class="o">&lt;&gt;(</span><span class="nc">DockerImageName</span><span class="o">.</span><span class="na">parse</span><span class="o">(</span><span class="s">"postgres:13"</span><span class="o">));</span>
+        <span class="n">postgresContainer</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="nd">@DynamicPropertySource</span>
+    <span class="kd">static</span> <span class="kt">void</span> <span class="nf">databaseProperties</span><span class="o">(</span><span class="nc">DynamicPropertyRegistry</span> <span class="n">registry</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">registry</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">"spring.datasource.url"</span><span class="o">,</span> <span class="nl">postgresContainer:</span><span class="o">:</span><span class="n">getJdbcUrl</span><span class="o">);</span>
+        <span class="n">registry</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">"spring.datasource.username"</span><span class="o">,</span> <span class="nl">postgresContainer:</span><span class="o">:</span><span class="n">getUsername</span><span class="o">);</span>
+        <span class="n">registry</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">"spring.datasource.password"</span><span class="o">,</span> <span class="nl">postgresContainer:</span><span class="o">:</span><span class="n">getPassword</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="tip-sobre-pitest">Tip sobre Pitest</h2>
+<p>¿<a href="https://pitest.org/" target="_blank">PIT</a>? ¿Qué tiene que ver <strong>Testcontainers</strong> con <strong>PIT</strong>? Recordemos que descubrimos que podíamos <a href="https://blog.arima.eu/es/2020/05/25/mutation-testing.html" target="_blank">medir la calidad de nuestros tests con PIT</a>. Es cierto que PIT está directamente orientado a <strong>tests unitarios</strong> (sobre todo por cuestión de tiempos/eficiencia) pero también es cierto, que hasta ahora no nos habíamos encontrado con ningún problema a la hora de poner a prueba nuestros <strong>tests de integración</strong>.</p>
+
+<p>Sin embargo, si intentáis ejecutar Pitest sobre tests impelementados utilizando <code class="highlighter-rouge">@Testcontainers</code> os encontraréis con que no pasan. En cambio, si los tests están impelementados utilizando el patrón Singleton, podréis realizar el análisis de cobertura de Pit sin problemas.</p>
+
+<p><em>Si alguien quiere conocer el por qué de todo esto, además de probar una solución propuesta por un contribuyente, puede hacerlo en la <a href="https://github.com/hcoles/pitest/issues/827" target="_blank">issue</a> que abrimos al detectar el problema.</em></p>
+
+<p>Hasta aquí una pequeña introducción a <strong>Testcontainers</strong>, con un ejemplo de aplicación en el caso de una base de datos. Como hemos mencionado anteriormente, Testcontainers nos ofrece otros muchos módulos. E incluso, en caso de que por nuestras necesidades necesitemos algo más concreto también dispone de soporte para que tengamos nuestro propio <code class="highlighter-rouge">docker-compose.yml</code> como se explica en la <a href="https://www.testcontainers.org/modules/docker_compose/">documentación</a>. 
+En futuros posts, iremos evolucionando nuestra aplciación de forma que podamos introducir algunos ejemplos de otros casos de uso en los que utilizar Testcontainers (para ver de forma práctica su facilidad de uso y sus ventajas).</p>
+
+
+            </div>
+
+            
+          </div>
+        </article>
+      </div>
+    </main>
+
+    <footer>
+    <div class="wrapper">
+        <div class="footer__container">
+            <div class="footer__sello">
+                <img src="/assets/images/arima_sello_white.png" alt="" />
+            </div>
+            <div class="footer__content">
+                <div class="footer__data">
+                    <dl>
+                        <dt>web</dt>
+                        <dd><a itemprop="sameAs" href="https://www.arima.eu/es/">arima.eu</a></dd>
+                    </dl>
+                    <dl>
+                        <dt>social</dt>
+                        <dd>
+                            <a itemprop="sameAs" href="https://github.com/wearearima" class="social"><span class="icon-github"></span></a>
+                            <a itemprop="sameAs" href="https://twitter.com/wearearima" class="social"><span class="icon-twitter"></span></a>
+                            <a itemprop="sameAs" href="https://www.linkedin.com/company/arima-software-design/" class="social"><span class="icon-linkedin"></span></a>
+                            <a itemprop="sameAs" href="/es/feed.xml" class="social"><span class="icon-feed"></span></a>
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt>Privacidad</dt>
+                        <dd class="politica-cookies">
+                            <a href="/es/cookies.html">Política de cookies</a>
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+    <div class="cookies-message" id="cookies-message">
+    <h4>Este sitio web utiliza cookies</h4>
+    <p>Este sitio web utiliza cookies para mejorar la experiencia del usuario. Al utilizar nuestro sitio web, usted acepta todas las cookies de acuerdo con nuestra Política de cookies.</p>
+    <div class="buttons">
+        <a class="button" href="/es/cookies.html">Leer política de cookies</a>
+        <button class="button" id="accept-cookies">Aceptar</button>
+    </div>
+</div>
+<script>
+    (function() {
+        if(localStorage) {
+            var cookiesAccepted = localStorage.getItem("cookies-accepted");
+            if(cookiesAccepted) {
+                hideCookiesMessage();
+                
+            } else {
+                document.getElementById('accept-cookies').addEventListener("click", function() {
+                    hideCookiesMessage();
+                    localStorage.setItem("cookies-accepted", true);
+                })
+            }
+        }
+        function hideCookiesMessage() {
+            document.getElementById('cookies-message').style.display = "none";
+        }
+    })();
+</script>
+
+  </body>
+
+</html>
