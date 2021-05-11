@@ -43,9 +43,9 @@ Begiek 😍 egin zidaten. Hitzaldiaren izenburua [Integration Testing with Docke
 
 # Adibidea: Database container (Postgres Module)
 Horrela esanda, dena oso itxura ona du, baina (noizbehinka irakurtzen nauzuenok jakingo duzuenez) kontzeptuak ulertzeko praktikan jarri behar ditut, beraz adibide bat prestatu dugu [Github](https://github.com/wearearima/school-library-testcontainers-01){:target="_blank"}-en. 
-Ohikoena, seguruenik, datu-baseen aurkako testak egiten ditugun egoera da, eta Testcontainers datu-base desberdinetarako _moduloak_ eskaintzen dizkigute. Horregatik, adibide sinple bat prestatu dugu, Postgres datu-base batera konektatzen den Spring Boot aplikazio batena.
+Ohikoena, seguruenik, datu-baseen aurkako testak egiten ditugun egoera da, eta Testcontainers datu-base desberdinetarako _moduloak_ eskaintzen dizkigute. Horregatik, adibide sinple bat prestatu dugu, Postgres datu-base batera konektatzen den Spring Boot aplikazio batena.  
 Gure adibidea:  
-   Demagun eskola bateko liburutegia. Jasotzen ditugun aleei alta ematen joateko balioko duen funtzionalitate bat dugu. Izan genezakeen metodoetako bat "liburu baten kopia gehitzea" izan zitekeen ("liburua" kontzeptua dela ulertuta, eta "kopia", berriz, izan dezakegun ale bakoitzaren irudikapena). 
+    _Demagun eskola bateko liburutegia. Jasotzen ditugun aleei alta ematen joateko balioko duen funtzionalitate bat dugu. Izan genezakeen metodoetako bat "liburu baten kopia gehitzea" izan zitekeen ("liburua" kontzeptua dela ulertuta, eta "kopia", berriz, izan dezakegun ale bakoitzaren irudikapena)._  
 <small>Etorkizunean ere adibide hau haunditzen eta kodea gehitzen joango gara.</small>
 
 
