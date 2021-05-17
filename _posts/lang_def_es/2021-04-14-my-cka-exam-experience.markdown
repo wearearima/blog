@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "My experiencia con el examen CKA"
+title:  "Mi experiencia con el examen CKA"
 date:   2021-04-14 8:00:00
 author: urko
 lang: es
