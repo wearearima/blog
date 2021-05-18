@@ -1,0 +1,105 @@
+---
+layout: post
+title:  "Pandemia garaian hitzaldi batean izan naiz: Tarugoconf"
+date:   2020-12-01 9:00:00
+author: jessica
+lang: eu
+categories: conferencia, tarugoconf
+tags: conferencia, tarugo, tarugoconf, bonilla
+header-image: 2020-12-01-tarugo20/header.jpeg
+---
+
+> #tarugo5 datorren urriaren 23an ospatuko dela iragarriko dugu gaur  
+<small>Hoy anunciaremos que el próximo 23 de octubre se celebrará la #tarugo5</small>
+
+Hori zen 2020ko martxoaren 1ean jasotako e-mailaren hasiera. Urteak daramatzat [Bonilista](https://www.bonillaware.com/tag/bonilista){:target="_blank"}-n harpidetuta, eta igande horretan [David Bonilla](https://twitter.com/david_bonilla){:target="_blank"}-ren newsletter-a [@tarugoconf](https://twitter.com/tarugoconf){:target="_blank"}-ri buruz zen.
+
+> Koronabirusaren agerraldiaren histeria kolektiboaren erdian, eta mundu osoan ekitaldiak bertan behera uzten ari direnean, seguruenik historiako unerik txarrena izango da konferentzia tekniko bat iragartzeko, baina Tarugoconf ez da konferentzia bat bakarrik, nahiz eta batzuetan ahaztu egiten zaigun. Niri lehena.  
+<small>En medio de la histeria colectiva por el brote de coronavirus, y cuando se están cancelando eventos por todo el mundo, probablemente sea el peor momento de la Historia para anunciar una conferencia técnica, pero la Tarugoconf no es solo una conferencia aunque -a veces- se nos olvide. A mí el primero.</small>
+
+Denok ikusten genuen koronabirusak gure bizitzetan eragina izango zuela, baina ez genekien benetan nolakoa izango zen.  
+Oraindik gogoan dut nire senarrarekin elkarrizketa bat: "_ea 15 egunez dena ixten duten, eta Pazko astean Benidormera joan ahal izateko_".  
+Oker nengoen 😩: 15 egun... Pazko astea... Urriaren 23a...   
+Beste hau ere pentsatu nuen: "_Puf, ez legoke gaizki azkenean Tarugoconf-era joan ahal izatea, baina ea nola antolatzen naizen txikiekin... Prf. Alferkeria. Uste dut aurten ere ez naizela joango_".  
+Bigarren akatsa: aurten bai, Tarugoconf-era JOAN NAIZ 😃. 
+
+Uztailaren 5ean dena aldatu zen. Bonilista jaso nuen eta bertan hurrengo [_teaser_-a ekitaldiatik espero genezakeenari buruz](https://vimeo.com/434728665){: target = "_blank"} agertzen zen. Uztailaren 6an nire _early bird_ sarrera erosita nuen:
+![Tarugoconfeko sarreraren pantailazoa](/assets/images/2020-12-01-tarugo20/entrada.png){: .center}
+Nire itxaropenak ikaragarriak ziren. Twitter-ren ditudan kontaktu gehienak _tarugers_ dira, beraz, aurreko urteetan Tarugoconf-eri buruzko tuits beteta izan nuen nire TL, eta bideo zatia ikusi ondoren... Urriaren 23a iristeko irrikaz nengoen. Online konferentzia bat zenez, zalantzak eta mesfidantzak zeuden. Nolakoa izango zen? Posible izango zen networking-a egitea? Ni hain pozik nengoen bertaratu ahal izan nintzelako, eta banekien beste batzuetan hain arrakasta handia izan zuela, ezen ziur bainengoen guay izango zela. _Spoiler: ez zen horrela izan, oker nenbilen_.
+
+Nire esperientzia uztailaren 6tik azaroaren 28ra arte kontatu nahi nuke. Nire iritzi pertsonala ematea (eta kontuz! Hau, ipurdiak bezala da, bakoitzak berea du). Beraz, etortzerik izan ez dutenentzat eta interesa dutenentzat, eta nire etorkizunarentzat... hementxe dago hitzaldi honetan izan nuen feeling-a.
+
+**Ekitaldi aurreko antolaketa**   
+Sarrera erosi nuenetik azaroaren 27ra arte (orduan egin zen azkenean konferentzia) mezu elektronikoak jasotzen joan naiz noizean behin: konferentzia nola garatuko zen, babesleak zein ziren eta zertan aritzen diren, tresnak benetako gozamena izateko moduari buruzko jarraibide zehatzak... Erabaki jakin batzu hartzeko konferentzian izena eman genuenei galdetzea ideia paregabea iruditzen zait: ekitaldiaren parte sentiarazten zaitu. Hitzik gabe.
+
+**Kit ofiziala**  
+Soy fan de las pegatinas, camisetas, etc de los eventos, al principio pensaba que al ser online no habría... pero ¿qué evento que se precie no tiene su propio kit 😏? La camiseta (que elegimos por votación) está genial y las pegatinas son chulísimas.... bueno y los calcetines (cortesía de [@Deiser](https://twitter.com/deiser){:target="_blank"}).... 
+![Foto de las pegatinas, la camiseta y los calcetines que nos hicieron llegar de la Tarugoconf](/assets/images/2020-12-01-tarugo20/packTarugo.jpeg){: .center }
+
+Todo recibido a tiempo, [en mi caso el 29 de octubre](https://twitter.com/jessi_aguado/status/1321765714181656577){:target="_blank"}. Me ha faltado una libreta 📗 o algo (soy fan de la papelería 😊), pero me "gané" una de unos de los patrocinadores [@StackScale_ES](https://twitter.com/StackScale_ES){:target="_blank"}, así que... ¿Qué más se puede pedir?  
+![Foto de la alfombrilla, la libreta y un guarda-mascarillas cortesía de Stackscale](/assets/images/2020-12-01-tarugo20/stackscale.jpeg){: .center }
+<div align="center">
+<small><i>Actualización del 15/12/2020</i> ¡Regalito recibido!</small>
+</div>
+
+**Networking**  
+Era uno de los objetivos de los organizadores: tener un networking rico, similar al presencial. Por mi parte, es cierto que no he sacado todo el provecho que podría haber sacado del networking, pero porque por mi forma de ser, reconozco que me cuesta "acercarme" a la gente. Esto me sucede igual de forma presencial que online, así que expectativas cumplidas. Por lo que he percibido del resto de asistentes ha sido todo un éxito, así que... creo que ¡objetivo cumplido!
+
+**El evento**  
+Llegó el día y yo estaba hasta nerviosa, con esas cosquillitas en el estómago cuando estás en un evento a punto de empezar.... pues igual. No pude estar en los icebreakers ni en la peli (reunión del consejo rector en la ikastola), pero tenía reservada la tarde del viernes para mí en exclusiva. 
+¿Os cuento un secreto? Pensaba estar en el portátil siguiendo la conferencia hasta las 20:00 o así, y después ya irme a cenar..... Pensaba, pensaba.... ¿Cuál fue la realidad? Puse la conferencia en la tv de la sala, mi marido y yo nos apropiamos del sofá (algo casi imposible cualquier otro viernes) y allí nos pasamos toda la tarde. Y llegó la hora de cenar.... pues no, llego el "pseudo break" sobre las 20:00 y encajamos la cena en ese break, y seguimos con la conferencia hasta que acabó (pasadas las 22:00 si no me equivoco).
+¿Qué fue lo que más me gusto? TODO. Me lo pasé taaan bien, estuve taaaan entretenida...
+
+Voy a intentar poner una frase, algo de lo que me llevo de cada una de las charlas/momentos de la tarde.
+
+### 20 años de desarrollo de software (by [@javisantana](https://twitter.com/javisantana){:target="_blank"})
+Genial repaso. IE6, flash.... me quedo con el testimonio de cómo se actualizaba la web con los resultados de la lotería el día de Navidad... ¡Qué tensión! ¡Ah! y aprendí dos palabros: caraboli y manzanillo.
+
+### CriptoCovid (by [@CarrascosaCris_](https://twitter.com/CarrascosaCris_){:target="_blank"})
+Un mundo que me resulta totalmente desconocido (más allá de Bitcoin). Me quedaría con muchas cosas, pero como tengo que elegir sólo una: si algo parece demasiado bueno para ser verdad es que no lo es. ¡Ojo!
+
+### La bárbara historia de Conan (by [@diegorlosada](https://twitter.com/diegorlosada){:target="_blank"} y [@lasote](https://twitter.com/lasote){:target="_blank"})  
+De esta charla tengo que elegir todo... la historia... cómo la contaron... la pasión y el buen rollo que transmitieron... Toda una inspiración.
+
+### Lo veo todo negro (by [@kastwey](https://twitter.com/kastwey){:target="_blank"})
+Tenía ganas de "desvirtualizar" a Juanjo a quien sigo desde hace tiempo. En una charla super amena, divertida me hizo descubrir qué pocos shortcuts me conozco y me hizo recordar lo importante que es la accesibilidad (y no sólo en la web). Mis hijos vieron parte de la charla y alucinaron (sobre todo cuando se enteraron de los 100 libros leídos al año jjj). Todo un ejemplo.
+
+### La tecnología (y el bisnes) detrás de un empaste (by Christian del Rey)
+Aluciné con la tecnología que existe (tendré que hablar con mi dentista?). Me quedo con el video demo donde recortaba un par de palabras (Arial 2pt) de un papel... Con la boca abierta
+
+### Videoyayadas y hackandemia en los tiempos del cocinamiento (by [@Martixx](https://twitter.com/Martixx){:target="_blank"})
+Ransomware y liadas varias, y no sólo a grandes empresas.... Cuando una empresa pequeña sufre un ataque tiene muchas probabilidades de no poder seguir adelante... Hay que andar con ojito, que hay estafas hasta en Twitter.
+
+### Transparencia e Información durante el COVIDgedón (by [@evabelmonte](https://twitter.com/evabelmonte){:target="_blank"})
+Desde hace algún tiempo la seguía porque con ella podía entender las restricciones de las diferentes "fases" por las que hemos ido pasando y que se publicaban en el BOE. Tiene mérito desayunar a diario con el BOE y velar por la transparencia de las instituciones públicas. 
+
+### Concursote de Lanzarote
+Genial, máxima tensión y momentos en casa de "_shh shh que no oigo! cuál cuál es la respuesta? ay que no me llega que no me llega_". Super divertido.
+
+### Verdad o mentira
+El momentazo previo de _Tarugo o Caballero_ con [@mcaballero](https://twitter.com/mcaballero){:target="_blank"} super emotivo y luego rato super entretenido descubriendo cositas de David, Miguel y Cris. Decir que yo hubiese confundido a Cris más con Leire (la cantante de La Oreja de Van Gogh) pero bueno....
+
+### ¿Cuánto saben los muggles de tecnología?  
+Es responsabilidad de quien sabe enseñar a quienes no saben. Igual que en tecnología en cualquier cosa en la vida. (Qué profundo me ha quedado)
+
+### La Jerocleta
+Fue un momento taaaan.... cercano. Pensé "_jode cómo me identifico_". Superamos los tuits esperados, así que, eso que tiene de positivo. (🤔 Me estoy dando cuenta de que al final no sé quienes ganaron... a ver si lo busco por ahí, jajaja).
+
+**En resumen....**  
+Como he dicho, el formato me pareció genial. Las charlas y las entrevistas estuvieron impresionantes (bravo por los ponentes). Los concursotes de lanzarote, pese al lag, fueron super divertidos...  
+Y es que como decía, estaba convencida de que sería GUAY, pero no fue así, me equivoqué (otra vez). Para mi ha sido 
+<div align="center">
+<p><strong>LA MEJOR CONFERENCIA A LA QUE HE ASISTIDO</strong></p>
+</div>
+Y no me refiero a la mejor en la categoría de "conferencias online", no: la mejor en la categoría absoluta.
+
+Me permitió compaginarlo con el resto de mis quehaceres, con sólo tener que reservar una tarde-noche, y algo de tiempo para el networking. Y me permitió compartirlo con mi familia, algo muy importante. Si algo siento, es haberme perdido el open space.
+
+**¿Qué me llevo?**  
+A parte de la buena tarde que pasé y lo que ya he comentado de cada una de las charlas/momentos que viví tengo que reconocer que terminé el viernes con mucha ilusión. Los ponentes y organizadores transmitían tal pasión y emoción... se percibía tal cantidad de trabajo e ilusión detrás... que me han contagiado. A mí, que me apasiona el desarrollo y tengo la suerte de dedicarme a ello, salí del evento con más energía aún, con más ilusión, con más motivación,... convencida de esa comunidad Taruga que hay detrás no hace sino acompañarme y empujarme en mi camino.
+Así que **GRACIAS** a **todos** los que han hecho posible este pedazo de evento (desde ponentes, patrocinadores, organizadores... ¡todos!).  
+Ojalá una #Tarugo21 con este formato...
+
+
+Bueno al final me ha salido una pedazo de chapa.... Y no se si habré logrado transmitir lo que para mi ha significado... así que si queréis saber más, fotos, videos, etc, podéis echar un ojo a twitter, que estuvo al rojo vivo con el hashtag [#tarugo20](https://twitter.com/search?q=%23tarugo20){:target="_blank"}
+
