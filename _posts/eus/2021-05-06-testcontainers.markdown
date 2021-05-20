@@ -39,7 +39,7 @@ Hau da, ondorengo pauso hauek jarraitzea:
 > cd school-library-testcontainers-01
 > ./mvnw install
 ```
-¡Eta listo!  
+Eta listo!  
 Begiek 😍 egin zidaten. Hitzaldiaren izenburua [Integration Testing with Docker and Testcontiners](https://www.youtube.com/watch?v=Lv1evJe2MRI){:target="_blank"} zen, hau da,  **TestContainers** hain zuzen. Berri onak orduan! Badirudi **TestContainers**ekin lan egiteak helburu horretara hurbiltzea errazten digula eta lana sinplifikatzen digula, garapen propioan zentratu ahal izateko (eta jakina, testetan ere).
 
 # Adibidea: Database container (Postgres Module)
