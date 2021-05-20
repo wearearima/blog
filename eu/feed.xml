@@ -9,6 +9,29 @@
     
     
     <post>
+        <title>Testcontainers: edukiontziak testing-aren zerbitzura</title>
+        <summary>&lt;p&gt;Integrazio-testak baino gustokoago izan ditut beti unitate-testak, batez ere arrazoi honengatik: ez dut kanpoko ezer behar hauek pasa ahal izateko. Ez dut behar datu-base bat, kanpo-zerbitzu bat edo Kafka bat martxan izatea testak pasatu ahal izateko, eta ondorioz, garatu ahal izateko.
+Eta hori garapen-inguruneari dagokionez, zeren eta integrazio-ingurunea hartzen badugu kontutan, hare gehiago.
+Adibidez, datu-baseen kasuan, testak H2rekin egiteko aukera dugu. Baina kontutan eduki behar da proiektu motaren arabera, gerta daitekeela H2n primeran funtzionatzen duen zerbaitek, garatzen ari garen datu-basean ez funtzionatzea. &lt;br /&gt;
+Askotan&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;“Tira… H2rekin egingo dugu, datu-basea martxan ez jartzeagatik…”&lt;/p&gt;
+&lt;/blockquote&gt;
+</summary>
+        <pubDate>Thu, 06 May 2021 08:00:00 +0000</pubDate>
+        <link>https://blog.arima.eu/2021/05/06/testcontainers.html</link>
+        <guid isPermaLink="true">https://blog.arima.eu//2021/05/06/testcontainers.html</guid>
+        <headerImage>https://blog.arima.eu/assets/images/2021-05-06-testcontainers/header.jpg</headerImage>
+        
+        
+        
+        
+        
+
+      <author>Jessica Aguado</author>
+    </post>
+    
+    <post>
         <title>AWS Lambda Funtzioak</title>
         <summary>&lt;p&gt;Azken aldian  &lt;em&gt;serverless&lt;/em&gt; hitza gero eta gehiago agertzen da post, foro edo softwarearekin erlazionatutako edozein baliabidetan. Laburbilduz, gure aplikazioa exekutatzen den makinaz ez arduratzea eta horren hedapen prozesua arintzea inplikatzen duen kontzeptua da &lt;em&gt;serverless&lt;/em&gt;. Ez da ulertzeko kontzeptu oso erraza, eta horregatik aurrerago beste post batean sakonduko dugu.&lt;/p&gt;
 </summary>
@@ -40,23 +63,6 @@
         
 
       <author>Urko Lekuona</author>
-    </post>
-    
-    <post>
-        <title>Java Docker edukiontzietan exekutatzea bideragarria al da?</title>
-        <summary>&lt;p&gt;Gure inguruan enpresa asko daude Java erabili izan dutenak beraien aplikazioak garatzeko. Horretarako Spring, Tomcat, Weblogic eta JPA bezelako tresnak erabili ohi dira. Azpiegitura hau nahiko egonkorra izan da beti eta aldaketa gutxi jasan ditu.&lt;/p&gt;
-</summary>
-        <pubDate>Tue, 11 Feb 2020 09:00:00 +0000</pubDate>
-        <link>https://blog.arima.eu/2020/02/11/java-en-contenedores-docker.html</link>
-        <guid isPermaLink="true">https://blog.arima.eu//2020/02/11/java-en-contenedores-docker.html</guid>
-        <headerImage>https://blog.arima.eu/assets/images/2020-02-11-java-en-contenedores-docker/fondo-cafe-min.jpg</headerImage>
-        
-        
-        
-        
-        
-
-      <author>Iñigo Telleria</author>
     </post>
     
   </channel>

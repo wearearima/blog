@@ -9,6 +9,23 @@
     
     
     <post>
+        <title>My experience with the CKA exam</title>
+        <summary>&lt;p&gt;Last Monday 22 March I took the exam for the &lt;a href=&quot;https://training.linuxfoundation.org/certification/certified-kubernetes-administrator-cka/&quot; target=&quot;_blank&quot;&gt;CKA&lt;/a&gt; certificate from the Linux Foundation, and I’m here to tell you about my experience of how I prepared for it and what to expect in the exam. I highly recommend that you also read a &lt;a href=&quot;/en/2020/04/28/examen-ckad&quot; target=&quot;_blank&quot;&gt;post from my colleague Fernando from a few months ago about the CKAD exam&lt;/a&gt;, which goes into much more detail about the aspects of these exams and helps you to pass them. I got some essential tips from reading his post!&lt;/p&gt;
+</summary>
+        <pubDate>Wed, 14 Apr 2021 08:00:00 +0000</pubDate>
+        <link>https://blog.arima.eu/2021/04/14/my-cka-exam-experience.html</link>
+        <guid isPermaLink="true">https://blog.arima.eu//2021/04/14/my-cka-exam-experience.html</guid>
+        <headerImage>https://blog.arima.eu/assets/images/2021-04-14-my-cka-exam-experience/header.jpg</headerImage>
+        
+        
+        
+        
+        
+
+      <author>Urko Lekuona</author>
+    </post>
+    
+    <post>
         <title>Lessons learned about Contract Testing</title>
         <summary>&lt;p&gt;Over the course of several posts, we have seen how, as a result of the evolution of application architectures, new needs arise in the field of testing. We have focused on a specific one: as important as testing the functionalities in &lt;em&gt;consumer&lt;/em&gt; and &lt;em&gt;producer&lt;/em&gt; independently is, so also is ensuring that &lt;a href=&quot;https://blog.arima.eu/en/2020/09/03/contract-testing.html&quot; target=&quot;_blank&quot;&gt;the interaction between them is correct&lt;/a&gt;. We have seen that we have &lt;strong&gt;Contract Testing&lt;/strong&gt; within our reach, with &lt;a href=&quot;https://blog.arima.eu/en/2020/10/09/contract-testing-approach.html&quot; target=&quot;_blank&quot;&gt;different approaches and tools&lt;/a&gt; that allow us to address this specific need. Also using the &lt;strong&gt;producer driven&lt;/strong&gt; approach and &lt;a href=&quot;https://spring.io/projects/spring-cloud-contract&quot; target=&quot;_blank&quot;&gt;&lt;strong&gt;Spring Cloud Contract&lt;/strong&gt;&lt;/a&gt; we have &lt;a href=&quot;https://blog.arima.eu/en/2020/10/29/playing-with-spring-cloud-contract.html&quot; target=&quot;_blank&quot;&gt;put into practice&lt;/a&gt; everything learned.&lt;/p&gt;
 </summary>
@@ -40,25 +57,6 @@
         
 
       <author>Urko Lekuona</author>
-    </post>
-    
-    <post>
-        <title>Playing with Spring Cloud Contract</title>
-        <summary>&lt;p&gt;In a &lt;a href=&quot;https://blog.arima.eu/en/2020/09/03/contract-testing.html&quot; target=&quot;_blank&quot;&gt;previous post&lt;/a&gt; we saw how new needs arose in the field of testing derived from the evolution of application architectures.&lt;/p&gt;
-
-&lt;p&gt;Through a simple example we established concepts such as &lt;em&gt;consumer&lt;/em&gt;, &lt;em&gt;producer&lt;/em&gt;, &lt;em&gt;service&lt;/em&gt; and showed that just as important as testing the functionalities in &lt;em&gt;consumer&lt;/em&gt; and &lt;em&gt;producer&lt;/em&gt; independently is, so also is ensuring that the interaction between them both is right.&lt;/p&gt;
-</summary>
-        <pubDate>Thu, 29 Oct 2020 08:00:00 +0000</pubDate>
-        <link>https://blog.arima.eu/2020/10/29/playing-with-spring-cloud-contract.html</link>
-        <guid isPermaLink="true">https://blog.arima.eu//2020/10/29/playing-with-spring-cloud-contract.html</guid>
-        <headerImage>https://blog.arima.eu/assets/images/2020-10-15-playing-with-spring-cloud-contract/header.jpg</headerImage>
-        
-        
-        
-        
-        
-
-      <author>Jessica Aguado</author>
     </post>
     
   </channel>

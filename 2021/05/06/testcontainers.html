@@ -170,7 +170,7 @@ Bueno al grano. Es cierto que ahora para ejecutar las aplicaciones lo tengo todo
 Ante situaciones como estas (y otras) cuántas veces no habremos pensado: ¿no sería posible descargar todo y poder lanzar los tests y ponerme a desarrollar sin hacer absolutamente nada más? 
 Hace un tiempo, viendo una presentación de <a href="https://twitter.com/kiview" target="_blank">@kiview</a>, me di cuenta que no estaba sola. Al principio de su presentación decía algo así como:</p>
 <blockquote>
-  <p>…una experiencia de onboarding exitosa en un proyecto sería que el desarrollador sólo tuviese que clonar el repositorio, hacer el build y que con eso ya tuviesesmos el build hecho incluyendo los tests unitarios y los tests de integración…</p>
+  <p>…una experiencia de onboarding exitosa en un proyecto sería que el desarrollador sólo tuviese que clonar el repositorio, hacer el build y que con eso ya tuviésemos el build hecho incluyendo los tests unitarios y los tests de integración…</p>
 </blockquote>
 
 <p>Es decir, seguir estos pasos:</p>
@@ -184,8 +184,8 @@ Los ojos me hicieron 😍. La charla se titulaba <a href="https://www.youtube.co
 <h1 id="ejemplo-de-database-container-postgres-module">Ejemplo de Database container (Postgres Module)</h1>
 <p>Así contado, todo suena muy bien pero (como bien sabréis quienes me leáis de vez en cuando) para entender los conceptos tengo que ponerlos en práctica, así que hemos preparado un ejemplo en <a href="https://github.com/wearearima/school-library-testcontainers-01" target="_blank">Github</a>. 
 Lo más común probablemente es la situación en la que hacemos tests contra base de datos y Testcontainers nos ofrecen diferentes <em>módulos</em> para diferentes bases de datos. Por ello, hemos preparado un ejemplo sencillo, de una aplicación Spring Boot, que se conecta a una base de datos Postgres.<br />
-Nuestro ejemplo:<br />
-    Supongamos una biblioteca de un cole. Tenemos una funcionalidad que servirá para ir dando de alta los ejemplares que vayamos recibiendo. Uno de los métodos que podríamos tener, podía ser el de “añadir una copia de un libro” (entendiendo “libro” como el concepto y “copia” la representación de cada uno de los ejemplares que podamos tener). 
+Nuestro ejemplo: <br />
+    <em>Supongamos una biblioteca de un cole. Tenemos una funcionalidad que servirá para ir dando de alta los ejemplares que vayamos recibiendo. Uno de los métodos que podríamos tener, podía ser el de “añadir una copia de un libro” (entendiendo “libro” como el concepto y “copia” la representación de cada uno de los ejemplares que podamos tener).</em><br />
 <small>En un futuro seguiremos evolucionando este ejemplo e iremos añadiendo código.</small></p>
 
 <p>Como hemos dicho, utilizaremos el módulo que hay para <a href="https://www.testcontainers.org/modules/databases/postgres/" target="_blank">Postgres</a>. La implementación de los tests utilizando este container es muy sencilla, ¡vamos allá!</p>
@@ -212,7 +212,7 @@ Nuestro ejemplo:<br />
 <span class="nt">&lt;/dependency&gt;</span>
 </code></pre></div></div>
 
-<p>Bueno, y del mismo modo que haríamos si no estuviesemos utilizando Testcontainers, incluiremos la dependencia de Postgres.</p>
+<p>Bueno, y del mismo modo que haríamos si no estuviésemos utilizando Testcontainers, incluiremos la dependencia de Postgres.</p>
 
 <h4 id="pomxml-1">pom.xml</h4>
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;dependency&gt;</span>
@@ -292,7 +292,7 @@ Es cierto que podríamos ir a application.properties y setear ahí los valores�
 
 <h3 id="patrón-singleton">Patrón Singleton</h3>
 <p>Hay otra forma de implementar todo esto, más eficiente, que sería utilizando el patrón Singleton. De esta forma utilizaríamos el mismo contenedor en más de una clase. 
-De hecho, en la documentación se recomienda esta aproximación. En este ejemplo donde aún sólamente tenemos un clase de test no parece útil, pero probablemente no será la única funcionalidad de nuestro proyecto ¿verdad? Llegado ese momento, entonces sí, pasaríamos al patrón Singleton, como se explica <a href="https://www.testcontainers.org/test_framework_integration/manual_lifecycle_control/#singleton-containers" target="_blank">aquí</a>.</p>
+De hecho, en la documentación se recomienda esta aproximación. En este ejemplo donde aún solamente tenemos un clase de test no parece útil, pero probablemente no será la única funcionalidad de nuestro proyecto ¿verdad? Llegado ese momento, entonces sí, pasaríamos al patrón Singleton, como se explica <a href="https://www.testcontainers.org/test_framework_integration/manual_lifecycle_control/#singleton-containers" target="_blank">aquí</a>.</p>
 
 <p>Veamos cómo sería:</p>
 
@@ -326,12 +326,12 @@ De hecho, en la documentación se recomienda esta aproximación. En este ejemplo
 <h2 id="tip-sobre-pitest">Tip sobre Pitest</h2>
 <p>¿<a href="https://pitest.org/" target="_blank">PIT</a>? ¿Qué tiene que ver <strong>Testcontainers</strong> con <strong>PIT</strong>? Recordemos que descubrimos que podíamos <a href="https://blog.arima.eu/es/2020/05/25/mutation-testing.html" target="_blank">medir la calidad de nuestros tests con PIT</a>. Es cierto que PIT está directamente orientado a <strong>tests unitarios</strong> (sobre todo por cuestión de tiempos/eficiencia) pero también es cierto, que hasta ahora no nos habíamos encontrado con ningún problema a la hora de poner a prueba nuestros <strong>tests de integración</strong>.</p>
 
-<p>Sin embargo, si intentáis ejecutar Pitest sobre tests impelementados utilizando <code class="highlighter-rouge">@Testcontainers</code> os encontraréis con que no pasan. En cambio, si los tests están impelementados utilizando el patrón Singleton, podréis realizar el análisis de cobertura de Pit sin problemas.</p>
+<p>Sin embargo, si intentáis ejecutar Pitest sobre tests implementados utilizando <code class="highlighter-rouge">@Testcontainers</code> os encontraréis con que no pasan. En cambio, si los tests están implementados utilizando el patrón Singleton, podréis realizar el análisis de cobertura de Pit sin problemas.</p>
 
 <p><em>Si alguien quiere conocer el por qué de todo esto, además de probar una solución propuesta por un contribuyente, puede hacerlo en la <a href="https://github.com/hcoles/pitest/issues/827" target="_blank">issue</a> que abrimos al detectar el problema.</em></p>
 
 <p>Hasta aquí una pequeña introducción a <strong>Testcontainers</strong>, con un ejemplo de aplicación en el caso de una base de datos. Como hemos mencionado anteriormente, Testcontainers nos ofrece otros muchos módulos. E incluso, en caso de que por nuestras necesidades necesitemos algo más concreto también dispone de soporte para que tengamos nuestro propio <code class="highlighter-rouge">docker-compose.yml</code> como se explica en la <a href="https://www.testcontainers.org/modules/docker_compose/">documentación</a>. 
-En futuros posts, iremos evolucionando nuestra aplciación de forma que podamos introducir algunos ejemplos de otros casos de uso en los que utilizar Testcontainers (para ver de forma práctica su facilidad de uso y sus ventajas).</p>
+En futuros posts, iremos evolucionando nuestra aplicación de forma que podamos introducir algunos ejemplos de otros casos de uso en los que utilizar Testcontainers (para ver de forma práctica su facilidad de uso y sus ventajas).</p>
 
 
             </div>
