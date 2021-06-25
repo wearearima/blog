@@ -9,6 +9,23 @@
     
     
     <post>
+        <title>¿Es el fin de la pandemia el fin del trabajo remoto?</title>
+        <summary>&lt;p&gt;Una de las cosas que teníamos claras cuando creamos ARIMA en 2013 era que íbamos a ser una empresa en la que el trabajo remoto iba a estar a la orden del día. No pretendíamos hacer de esto nuestra bandera ni una pose, en el fondo era una decisión egoísta ya que nosotros mismos éramos los primeros a los que nos beneficiaba el poder trabajar en remoto para conciliar nuestra vida laboral con nuestra vida familiar.&lt;/p&gt;
+</summary>
+        <pubDate>Fri, 25 Jun 2021 09:00:00 +0000</pubDate>
+        <link>https://blog.arima.eu/2021/06/25/remote-work.html</link>
+        <guid isPermaLink="true">https://blog.arima.eu//2021/06/25/remote-work.html</guid>
+        <headerImage>https://blog.arima.eu/assets/images/2021-06-25-remote-work/header.jpg</headerImage>
+        
+        
+        
+        
+        
+
+      <author>Aritz Berasarte</author>
+    </post>
+    
+    <post>
         <title>Testcontainers: contenedores al servicio del testing</title>
         <summary>&lt;p&gt;Siempre he sido más fan de los test unitarios que de los tests de integración, sobre todo por un motivo: no necesito nada externo para poder pasarlos. No necesito tener una base de datos arrancada, un servicio externo al que conectarme o un Kafka funcionando para poder pasar los tests y por tanto para poder desarrollar.
 Y eso en el entorno de desarrollo, si hablamos ya del entorno de integración ya ni te cuento.&lt;br /&gt;
@@ -39,23 +56,6 @@ Tan cierto como que frecuentemente hemos caído en el&lt;/p&gt;
         <link>https://blog.arima.eu/2021/04/30/aws-lambda.html</link>
         <guid isPermaLink="true">https://blog.arima.eu//2021/04/30/aws-lambda.html</guid>
         <headerImage>https://blog.arima.eu/assets/images/2021-04-30-aws-lambda/cloud.jpg</headerImage>
-        
-        
-        
-        
-        
-
-      <author>Urko Lekuona</author>
-    </post>
-    
-    <post>
-        <title>Mi experiencia con el examen CKA</title>
-        <summary>&lt;p&gt;El pasado lunes 22 de marzo me examiné del certificado &lt;a href=&quot;https://training.linuxfoundation.org/certification/certified-kubernetes-administrator-cka/&quot; target=&quot;_blank&quot;&gt;CKA&lt;/a&gt; de Linux Foundation, y he venido a contaros mi experiencia sobre cómo lo preparé y lo que podemos esperar en este examen. Os recomiendo encarecidamente que leáis también un &lt;a href=&quot;/es/2020/04/28/examen-ckad&quot; target=&quot;_blank&quot;&gt;post que hizo mi compañero Fernando hace unos meses sobre el examen CKAD&lt;/a&gt;, que habla mucho más en detalle sobre los aspectos de estos exámenes y sirve de ayuda para aprobarlos. !Leyendo su post aprendí algunos consejos cruciales!&lt;/p&gt;
-</summary>
-        <pubDate>Wed, 14 Apr 2021 08:00:00 +0000</pubDate>
-        <link>https://blog.arima.eu/2021/04/14/my-cka-exam-experience.html</link>
-        <guid isPermaLink="true">https://blog.arima.eu//2021/04/14/my-cka-exam-experience.html</guid>
-        <headerImage>https://blog.arima.eu/assets/images/2021-04-14-my-cka-exam-experience/header.jpg</headerImage>
         
         
         
