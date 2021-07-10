@@ -37,7 +37,7 @@ Ekitaldietako pegatinen, kamiseten eta abarren zale amorratua naiz. Online izang
 ![Tarugoconfeko pegatinak, kamiseta eta galtzerdiak](/assets/images/2020-12-01-tarugo20/packTarugo.jpeg){: .center }
 
 Dena garaiz jasoa, [nire kasuan urriaren 29an](https://twitter.com/jessi_aguado/status/1321765714181656577){:target="_blank"}. Libreta 📗 edo zerbait faltan bota dut (papertegien zale naiz 😊), baina babesleetako baten libretatxo bat "irabazi" nuen [@StackScale_ES](https://twitter.com/StackScale_ES){:target="_blank"}, beraz... Zer gehiago eska daiteke?  
-!Argazkia: alfonbratxoa, libreta eta Stackscaleren maskara-gordetzailea](/assets/images/2020-12-01-tarugo20/stackscale.jpeg){: .center }
+![Argazkia: alfonbratxoa, libreta eta Stackscaleren maskara-gordetzailea](/assets/images/2020-12-01-tarugo20/stackscale.jpeg){: .center }
 <div align="center">
 <small><i>2020/12/15eko eguneratzea</i> ¡Oparitxoa jasota!</small>
 </div>
@@ -46,61 +46,61 @@ Dena garaiz jasoa, [nire kasuan urriaren 29an](https://twitter.com/jessi_aguado/
 Antolatzaileen helburuetako bat zen networking aberatsa izatea, aurrez aurrekoaren antzekoa. Nire aldetik, egia da networkingetik atera nezakeen etekin guztia  ez dudala lortu: baina nire izaera da eta onartu behar det jendearengana "hurbiltzea" kostatzen zaidala (aurrez aurre eta berdin berdin online). Gainerako parte-hartzaileengandik nabaritu dudanaren arabera, arrakasta handia izan du, beraz... helburua beteta dagoela uste dut!
 
 **Ekitaldia**  
-Eguna iritsi zen. Urduri nengoen, kilimak sabelean, hastear dagoen ekitaldi batean zaudenearen antzera... berdin berdin. Ezin izan nintzen icebreakers saioetan egon, ezta pelikula ikusi ere (errektore kontseiluko bilera ikastolan), baina ostiral arratsaldea niretzat bakarrik nuen.
+Eguna iritsi zen. Urduri nengoen, kilimak sabelean, hastear dagoen ekitaldi batean zaudenearen antzera... berdin berdin. Ezin izan nintzen _icebreakers_ saioetan egon, ezta pelikula ikusi ere (errektore kontseiluko bilera ikastolan), baina ostiral arratsaldea niretzat bakarrik nuen.
 Sekretu bat kontatuko dizuet? Portatilean egotea pentsatzen nuen 20:00ak arte, edo horrela, eta gero afaltzera joatea... Pentsatu, pentsatu... Nolakoa izan zen nire arratsaldea benetan? Hitzaldia egongelako telebistan jarri nuen, senarrak eta biok sofa hartu genuen (ia ezinezkoa da beste edozein ostiraletan) eta han igaro genuen arratsalde osoa. "Pseudo break" bat 20:00ak aldera iritsi zen, eta momentu hori aprobetxatu genuen afaltzeko, eta hitzaldiarekin jarraitu genuen amaitu zen arte (22:00ak pasata, oker ez banago).
 Zer da gehien gustatu zitzaidana? DENA. Hain ono pasatu nuen, hain atsegingarri izan zen dena...
 
 Hitzaldi/une bakoitzatik zerbaitekin gelditzen naiz. Esaldi batekin bakoitzeko laburbiltzen saiatuko naiz.  
-<small>Hitzaldi bakoitzaren jatorrizko izenburua mantu dut</small>
+<small>Hitzaldi bakoitzaren jatorrizko izenburua mantendu dut</small>
 
 ### 20 años de desarrollo de software (by [@javisantana](https://twitter.com/javisantana){:target="_blank"})
-Genial repaso. IE6, flash.... me quedo con el testimonio de cómo se actualizaba la web con los resultados de la lotería el día de Navidad... ¡Qué tensión! ¡Ah! y aprendí dos palabros: caraboli y manzanillo.
+Errepaso bikaina. IE6, flash... Gabon loteriako egunean loteriaren emaitzak jasotzen zituen webgunea nola (eskuz) eguneratzen zuten istorioarekin gelditzen naiz. Zer nolako tentsioa! Eta bi hitz ikasi nituen: _caraboli_ eta _manzanillo_
 
 ### CriptoCovid (by [@CarrascosaCris_](https://twitter.com/CarrascosaCris_){:target="_blank"})
-Un mundo que me resulta totalmente desconocido (más allá de Bitcoin). Me quedaría con muchas cosas, pero como tengo que elegir sólo una: si algo parece demasiado bueno para ser verdad es que no lo es. ¡Ojo!
+Erabat ezezaguna egiten zaidan mundua (Bitcoinetik haratago). Gauza askorekin geratuko nintzateke, baina bakarra aukeratu behar dudanez: _zerbait egia izateko onegia badirudi, ez da ona_. Kontuz!
 
 ### La bárbara historia de Conan (by [@diegorlosada](https://twitter.com/diegorlosada){:target="_blank"} y [@lasote](https://twitter.com/lasote){:target="_blank"}) 
-De esta charla tengo que elegir todo... la historia... cómo la contaron... la pasión y el buen rollo que transmitieron... Toda una inspiración.
+Solasaldi honetatik ezin naiz gauz bakar batekin gelditu, dena izan zen primerakoa: historia... nola kontatu zuten... transmititu zuten pasio eta giro paregabea... Inspirazio handia izan zen.
 
 ### Lo veo todo negro (by [@kastwey](https://twitter.com/kastwey){:target="_blank"})
-Tenía ganas de "desvirtualizar" a Juanjo a quien sigo desde hace tiempo. En una charla super amena, divertida me hizo descubrir qué pocos shortcuts me conozco y me hizo recordar lo importante que es la accesibilidad (y no sólo en la web). Mis hijos vieron parte de la charla y alucinaron (sobre todo cuando se enteraron de los 100 libros leídos al año jjj). Todo un ejemplo.
+Aspalditik jarraitzen dudan Juanjo "itxuragabetzeko" gogoa nuen. Solasaldia oso atsegin eta dibertigarria izan zen. Oso _shortcut_s gutxi ezagutzen ditudala erakutsi zidan eta irisgarritasuna zein garrantzitsua den gogorarazi zidan (eta ez webgunean bakarrik). Nire seme-alabek hitzaldiaren zati bat ikusi zuten eta txundituta geratu ziren (batez ere urtean zehar irakurritako 100 liburuen berri izan zutenean jjjj). Eredutzat hartzeko modukoa.
 
 ### La tecnología (y el bisnes) detrás de un empaste (by Christian del Rey)
-Aluciné con la tecnología que existe (tendré que hablar con mi dentista?). Me quedo con el video demo donde recortaba un par de palabras (Arial 2pt) de un papel... Con la boca abierta
+Harrituta geratu nintzen dentisten munduan dagoen teknologiarekin (nire dentistarekin hitz egin beharko dut?). Deigarriena iruditu zitzaidana: paper batetik hitz pare bat (Arial 2pt) moztearen bideo erakusketa... Aho zabalik
 
 ### Videoyayadas y hackandemia en los tiempos del cocinamiento (by [@Martixx](https://twitter.com/Martixx){:target="_blank"})
-Ransomware y liadas varias, y no sólo a grandes empresas.... Cuando una empresa pequeña sufre un ataque tiene muchas probabilidades de no poder seguir adelante... Hay que andar con ojito, que hay estafas hasta en Twitter.
+Ransomware eta hainbat kakanahaste, eta ez bakarrik enpresa handiei... Enpresa txiki batek eraso bat jasaten duenean, aurrera ezin egiteko aukera asko ditu... Arreta andiz ibili behar da, iruzurrak edonon daude, baita Twitterren ere.
 
 ### Transparencia e Información durante el COVIDgedón (by [@evabelmonte](https://twitter.com/evabelmonte){:target="_blank"})
-Desde hace algún tiempo la seguía porque con ella podía entender las restricciones de las diferentes "fases" por las que hemos ido pasando y que se publicaban en el BOE. Tiene mérito desayunar a diario con el BOE y velar por la transparencia de las instituciones públicas. 
+Aspaldidanik jarraitzen nuen, harekin uler nitzakeelako  BOEn argitaratzen ziren igaro ditugun  "faseen" murrizketak. Meritua da egunero BOErekin gosaltzea eta erakunde publikoen gardentasuna zaintzea.
 
 ### Concursote de Lanzarote
-Genial, máxima tensión y momentos en casa de "_shh shh que no oigo! cuál cuál es la respuesta? ay que no me llega que no me llega_". Super divertido.
+Bikaina, tentsio handia, eta "_shh shh ez dudala entzuten! Zein da erantzuna, zein? Ai ez zaidala iristen ez zaidala iristen_" momentuak bizi genitun etxean. Super dibertigarria.
 
 ### Verdad o mentira
-El momentazo previo de _Tarugo o Caballero_ con [@mcaballero](https://twitter.com/mcaballero){:target="_blank"} super emotivo y luego rato super entretenido descubriendo cositas de David, Miguel y Cris. Decir que yo hubiese confundido a Cris más con Leire (la cantante de La Oreja de Van Gogh) pero bueno....
+_Tarugo o Caballero_ [@mcaballero](https://twitter.com/mcaballero){:target="_blank"}-rekin aurreko momentu hori, hunkigarria izan zen. Gero oso tarte atsegingarria David, Miguel y Cris-i buruzko gauzak ezagutzen. Esan ere, nik gehiago nahastuko nukeen Cris Leirerekin (La Oreja de Van Gogheko abeslaria), baino bueno...
 
 ### ¿Cuánto saben los muggles de tecnología?  
-Es responsabilidad de quien sabe enseñar a quienes no saben. Igual que en tecnología en cualquier cosa en la vida. (Qué profundo me ha quedado)
+Ez dakitenei irakasten dakienaren erantzukizuna da. Teknologian bezala, bizitzako edozein gauzatan. (Zein sakon geratu zaidan)
 
 ### La Jerocleta
-Fue un momento taaaan.... cercano. Pensé "_jode cómo me identifico_". Superamos los tuits esperados, así que, eso que tiene de positivo. (🤔 Me estoy dando cuenta de que al final no sé quienes ganaron... a ver si lo busco por ahí, jajaja).
+Oso une hubila izan zen. "_nola identifikatzen naizen_" pentsatu nuen. Esero baino gehiago tuiteatu genuen, beraz, oso ondo! Konturatzen ari naiz azkenean ez dakidala nork irabazi zuen🤔... ea hortik zehar bilatzen dudan, jajaja).
 
-**En resumen....**  
-Como he dicho, el formato me pareció genial. Las charlas y las entrevistas estuvieron impresionantes (bravo por los ponentes). Los concursotes de lanzarote, pese al lag, fueron super divertidos...  
-Y es que como decía, estaba convencida de que sería GUAY, pero no fue así, me equivoqué (otra vez). Para mi ha sido 
+**Laburbilduz....**  
+Esan bezala, formatua bikaina iruditu zitzaidan. Hitzaldiak eta elkarrizketak txundigarriak izan ziren (aupa parte hartu duten hizlariak!). Lanzaroteko konkurtsoak, lag-aren gorabeheraz a parte, oso dibertigarriak izan ziren...
+Izan ere, esan bezala, sinetsita nengoen oso ona izango zela, baina ez zen horrela izan, oker nengoen (berriro). Neretzat izan da 
 <div align="center">
-<p><strong>LA MEJOR CONFERENCIA A LA QUE HE ASISTIDO</strong></p>
+<p><strong>JOAN NAIZEN HITZALDIRIK ONENA</strong></p>
 </div>
-Y no me refiero a la mejor en la categoría de "conferencias online", no: la mejor en la categoría absoluta.
+Eta ez naiz onenaz ari "online konferentziak" kategorian, ez: onena kategoria absolutuan.
 
-Me permitió compaginarlo con el resto de mis quehaceres, con sólo tener que reservar una tarde-noche, y algo de tiempo para el networking. Y me permitió compartirlo con mi familia, algo muy importante. Si algo siento, es haberme perdido el open space.
+Nire gainerako zereginekin uztartzeko aukera eman zidan, arratsalde-gau bat eta networking-erako astia besterik ez izatearekin. Eta nire familiarekin partekatzeko aukera eman zidan, oso gauza garrantzitsua. Open space-a galdu izana pena ematen dit.
 
-**¿Qué me llevo?**  
-A parte de la buena tarde que pasé y lo que ya he comentado de cada una de las charlas/momentos que viví tengo que reconocer que terminé el viernes con mucha ilusión. Los ponentes y organizadores transmitían tal pasión y emoción... se percibía tal cantidad de trabajo e ilusión detrás... que me han contagiado. A mí, que me apasiona el desarrollo y tengo la suerte de dedicarme a ello, salí del evento con más energía aún, con más ilusión, con más motivación,... convencida de esa comunidad Taruga que hay detrás no hace sino acompañarme y empujarme en mi camino.
-Así que **GRACIAS** a **todos** los que han hecho posible este pedazo de evento (desde ponentes, patrocinadores, organizadores... ¡todos!).  
-Ojalá una #Tarugo21 con este formato...
+**Zer eramaten dut?**  
+Arratsalde ona pasatzeaz gain, eta bizitako hitzaldi/une bakoitzari buruz esan dudanaz gain, aitortu behar dut ilusio handiz amaitu nuela ostirala. Hizlariek eta antolatzaileek pasio eta emozio hori transmititzen zuten... hainbeste lan eta ilusio sumatzen zen atzean... kutsatu egin nautela. Niri izugarri gustatzen zait garapena, eta zortea dut horretan aritzeko, baina are kementsuago irten nintzen ekitalditik, ilusio handiagoarekin, motibazio handiagoarekin... atzean dagoen Tarugo komunitate nire bidean lagundu eta bultzatu besterik ez duta egiten guztiz sinetsita nago.
+Beraz **ESKERRIK ASKO** ekitaldi hau posible egin duten **GUZTIEI** (hizlariak, babesleak, antolatzaileak... denei!).
+Ea #Tarugo21 bat daukagun formatu honekin...
 
 
-Bueno al final me ha salido una pedazo de chapa.... Y no se si habré logrado transmitir lo que para mi ha significado... así que si queréis saber más, fotos, videos, etc, podéis echar un ojo a twitter, que estuvo al rojo vivo con el hashtag [#tarugo20](https://twitter.com/search?q=%23tarugo20){:target="_blank"}
+Beno, azkenean txapa puska bat atera zait... Eta ez dakit niretzat zer esan nahi izan duen transmititzea lortu dudan... beraz, gehiago jakin nahi baduzue, argazkiak, bideoak, eta abar, Twitterri begiratu diezaiokezue, [#tarugo20](https://twitter.com/search?q=%23tarugo20){:target="_blank"} traolarekin gori-gori egon baitzen.
 
