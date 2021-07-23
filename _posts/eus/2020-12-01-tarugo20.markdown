@@ -12,95 +12,95 @@ header-image: 2020-12-01-tarugo20/header.jpeg
 > #tarugo5 datorren urriaren 23an ospatuko dela iragarriko dugu gaur  
 <small>Hoy anunciaremos que el próximo 23 de octubre se celebrará la #tarugo5</small>
 
-Hori zen 2020ko martxoaren 1ean jasotako e-mailaren hasiera. Urteak daramatzat [Bonilista](https://www.bonillaware.com/tag/bonilista){:target="_blank"}-n harpidetuta, eta igande horretan [David Bonilla](https://twitter.com/david_bonilla){:target="_blank"}-ren newsletter-a [@tarugoconf](https://twitter.com/tarugoconf){:target="_blank"}-ri buruz zen.
+Horrela hasten zen 2020ko martxoaren 1ean jasotako e-maila. Urteak daramatzat [Bonilista](https://www.bonillaware.com/tag/bonilista){:target="_blank"}-n harpidetuta, eta igande horretan [David Bonilla](https://twitter.com/david_bonilla){:target="_blank"}-ren newsletter-a [@tarugoconf](https://twitter.com/tarugoconf){:target="_blank"}-ri buruz zihoan.
 
 > Koronabirusaren agerraldiaren histeria kolektiboaren erdian, eta mundu osoan ekitaldiak bertan behera uzten ari direnean, seguruenik historiako unerik txarrena izango da konferentzia tekniko bat iragartzeko, baina Tarugoconf ez da konferentzia bat bakarrik, nahiz eta batzuetan ahaztu egiten zaigun. Niri lehena.  
 <small>En medio de la histeria colectiva por el brote de coronavirus, y cuando se están cancelando eventos por todo el mundo, probablemente sea el peor momento de la Historia para anunciar una conferencia técnica, pero la Tarugoconf no es solo una conferencia aunque -a veces- se nos olvide. A mí el primero.</small>
 
-Denok ikusten genuen koronabirusak gure bizitzetan eragina izango zuela, baina ez genekien benetan nolakoa izango zen.  
-Oraindik gogoan dut nire senarrarekin elkarrizketa bat: "_ea 15 egunez dena ixten duten, eta Pazko astean Benidormera joan ahal izateko_".  
+Denok ikusten genuen koronabirusak gure bizitzetan eragina izango zuela, baina ez genekien benetan nolako inpaktua izango zuen.  
+Oraindik gogoan dut nire senarrarekin izandako elkarrizketa bat: "_ea 15 egunez dena ixten duten, eta horrela Pazko astean Benidormera joan ahal izango dugun_".  
 Oker nengoen 😩: 15 egun... Pazko astea... Urriaren 23a...   
-Beste hau ere pentsatu nuen: "_Puf, ez legoke gaizki azkenean Tarugoconf-era joan ahal izatea, baina ea nola antolatzen naizen txikiekin... Prf. Alferkeria. Uste dut aurten ere ez naizela joango_".  
-Bigarren akatsa: aurten bai, Tarugoconf-era JOAN NAIZ 😃. 
+Beste hau ere pentsatu nuen: "_Puf, ez legoke gaizki azkenean Tarugoconfera joan ahal izatea, baina ea nola antolatzen naizen txikiekin... Prf. Alferkeria. Uste dut aurten ere ez naizela joango_".  
+Bigarren akatsa: aurten bai, Tarugoconfera JOAN NAIZ 😃. 
 
-Uztailaren 5ean dena aldatu zen. Bonilista jaso nuen eta bertan hurrengo [_teaser_-a ekitaldiatik espero genezakeenari buruz](https://vimeo.com/434728665){: target = "_blank"} agertzen zen. Uztailaren 6an nire _early bird_ sarrera erosita nuen:
+Uztailaren 5ean dena aldatu zen. Bonilista jaso nuen eta bertan hurrengo [_teaser_-a ekitalditik espero genezakeena](https://vimeo.com/434728665){: target = "_blank"} agertzen zen. Uztailaren 6an nire _early bird_ sarrera erosita nuen:
 ![Tarugoconfeko sarreraren pantailazoa](/assets/images/2020-12-01-tarugo20/entrada.png){: .center}
-Nire itxaropenak ikaragarriak ziren. Twitter-ren ditudan kontaktu gehienak _tarugers_ dira, beraz, aurreko urteetan Tarugoconf-eri buruzko tuits beteta izan nuen nire TL, eta bideo zatia ikusi ondoren... Urriaren 23a iristeko irrikaz nengoen. Online konferentzia bat zenez, zalantzak eta mesfidantzak zeuden. Nolakoa izango zen? Posible izango zen networking-a egitea? Ni hain pozik nengoen bertaratu ahal izan nintzelako, eta banekien beste batzuetan hain arrakasta handia izan zuela, ezen ziur bainengoen guay izango zela. _Spoiler: ez zen horrela izan, oker nenbilen_.
+Nire itxaropena ikaragarria zen. Twitterren ditudan kontaktu gehienak _tarugers_ dira, beraz, aurreko urteetan Tarugoconferi buruzko txioez beteta izan nuen nire TLa, eta bideo bat ikusi ondoren... Urriaren 23a iristeko irrikaz nengoen. Online konferentzia bat zenez, zalantzak eta mesfidantzak nituen. Nolakoa izango da? Posible izango al da networkinga egitea? Ni hain pozik nengoen bertaratu ahal izan nintzelako eta banekien beste batzuetan horren arrakasta handia izan zuela, ezen ziur bainengoen guay izango zela. _Spoiler: ez zen horrela izan, oker nenbilen_.
 
-Nire esperientzia uztailaren 6tik azaroaren 28ra arte kontatu nahi nuke. Nire iritzi pertsonala ematea (eta kontuz! Hau, ipurdiak bezala da, bakoitzak berea du). Beraz, etortzerik izan ez dutenentzat eta interesa dutenentzat, eta nire etorkizunarentzat... hementxe dago hitzaldi honetan izan nuen feeling-a.
+Nire esperientzia uztailaren 6tik azaroaren 28ra arte kontatu nahiko nuke. Nire iritzi pertsonala ematea (eta kontuz! hau, ipurdia bezala da, bakoitzak berea du). Beraz, etortzerik izan ez dutenentzat eta interesa dutenentzat, eta nire etorkizunarentzat... hementxe dago hitzaldi honetan izan nuen *feeling*a.
 
 **Ekitaldi aurreko antolaketa**   
-Sarrera erosi nuenetik azaroaren 27ra arte (orduan egin zen azkenean konferentzia) mezu elektronikoak jasotzen joan naiz noizean behin: konferentzia nola garatuko zen, babesleak zein ziren eta zertan aritzen diren, tresnak benetako gozamena izateko moduari buruzko jarraibide zehatzak... Erabaki jakin batzu hartzeko konferentzian izena eman genuenei galdetzea ideia paregabea iruditzen zait: ekitaldiaren parte sentiarazten zaitu. Hitzik gabe.
+Sarrera erosi nuenetik azaroaren 27ra arte (azkenean konferentzia egin zen eguna) mezu elektronikoak jasotzen joan naiz noizean behin: konferentzia nola garatuko zen, zein diren babesleak eta zertan aritzen diren, erremintak erabiltzeko jarraibide zehatzak... zoragarria. Erabaki jakin batzuk hartzeko konferentzian izena eman genuenei galdetzea ideia paregabea iruditzen zait: ekitaldiaren parte sentiarazten zaitu. Hitzik gabe.
 
 **Kit ofiziala**  
-Ekitaldietako pegatinen, kamiseten eta abarren zale amorratua naiz. Online izango zenez, ez genuela betiko merchandising-a jasoko pentsatu nuen hasieran... baina zein behar bezalako ekitaldi ez du bere kit propioa 😏? Kamiseta (bozketa bidez aukeratzen duguna) bikaina da eta pegatinak oso politak dira.... eta galtzerdiak([@Deiser](https://twitter.com/deiser){:target="_blank"}-ren eskaintza) zer esanik ez!
+Ekitaldietako pegatinen, kamiseten eta abarren zale amorratua naiz. Online izango zenez, betiko merchandising-a ez genuela jasoko pentsatu nuen hasieran... baina zein ekitaldik ez du bere kit propioa 😏? Kamiseta (bozketa bidez aukeratzen duguna) bikaina da eta pegatinak oso politak dira.... eta galtzerdiak([@Deiser](https://twitter.com/deiser){:target="_blank"}-ren eskaintza) zer esanik ez!
 ![Tarugoconfeko pegatinak, kamiseta eta galtzerdiak](/assets/images/2020-12-01-tarugo20/packTarugo.jpeg){: .center }
 
-Dena garaiz jasoa, [nire kasuan urriaren 29an](https://twitter.com/jessi_aguado/status/1321765714181656577){:target="_blank"}. Libreta 📗 edo zerbait faltan bota dut (papertegien zale naiz 😊), baina babesleetako baten libretatxo bat "irabazi" nuen [@StackScale_ES](https://twitter.com/StackScale_ES){:target="_blank"}, beraz... Zer gehiago eska daiteke?  
+Dena garaiz iritsi zen, [nire kasuan urriaren 29an](https://twitter.com/jessi_aguado/status/1321765714181656577){:target="_blank"}. Libreta bat 📗 edo faltan bota dut (papertegien zalea naiz 😊), baina babesle baten libretatxo bat "irabazi" nuen [@StackScale_ES](https://twitter.com/StackScale_ES){:target="_blank"}, beraz... Zer gehiago eska nezake?  
 ![Argazkia: alfonbratxoa, libreta eta Stackscaleren maskara-gordetzailea](/assets/images/2020-12-01-tarugo20/stackscale.jpeg){: .center }
 <div align="center">
-<small><i>2020/12/15eko eguneratzea</i> ¡Oparitxoa jasota!</small>
+<small><i>2020/12/15eko eguneratzea:</i> Oparitxoa jasota!</small>
 </div>
 
 **Networking**  
-Antolatzaileen helburuetako bat zen networking aberatsa izatea, aurrez aurrekoaren antzekoa. Nire aldetik, egia da networkingetik atera nezakeen etekin guztia  ez dudala lortu: baina nire izaera da eta onartu behar det jendearengana "hurbiltzea" kostatzen zaidala (aurrez aurre eta berdin berdin online). Gainerako parte-hartzaileengandik nabaritu dudanaren arabera, arrakasta handia izan du, beraz... helburua beteta dagoela uste dut!
+Antolatzaileen helburuetako bat networking aberatsa izatea zen, aurrez aurrekoaren antzekoa. Niri dagokidanez, egia da networkingetik atera nezakeen etekin guztia ez dudala atera: baina nire izaera da eta onartu behar dut jendearengana "hurbiltzea" kosta egiten zaidala (bai aurrez aurre eta baita  online ere). Gainerako parte-hartzaileengandik nabaritu dudanaren arabera, arrakasta handia izan da, beraz... helburua bete dela uste dut!
 
 **Ekitaldia**  
-Eguna iritsi zen. Urduri nengoen, kilimak sabelean, hastear dagoen ekitaldi batean zaudenearen antzera... berdin berdin. Ezin izan nintzen _icebreakers_ saioetan egon, ezta pelikula ikusi ere (errektore kontseiluko bilera ikastolan), baina ostiral arratsaldea niretzat bakarrik nuen.
-Sekretu bat kontatuko dizuet? Portatilean egotea pentsatzen nuen 20:00ak arte, edo horrela, eta gero afaltzera joatea... Pentsatu, pentsatu... Nolakoa izan zen nire arratsaldea benetan? Hitzaldia egongelako telebistan jarri nuen, senarrak eta biok sofa hartu genuen (ia ezinezkoa da beste edozein ostiraletan) eta han igaro genuen arratsalde osoa. "Pseudo break" bat 20:00ak aldera iritsi zen, eta momentu hori aprobetxatu genuen afaltzeko, eta hitzaldiarekin jarraitu genuen amaitu zen arte (22:00ak pasata, oker ez banago).
-Zer da gehien gustatu zitzaidana? DENA. Hain ono pasatu nuen, hain atsegingarri izan zen dena...
+Eguna iritsi zen. Urduri nengoen, kilimak sabelean, hastear dagoen ekitaldi batean izaten direnaren antzera... berdin-berdin. Ezin izan nuen _icebreakers_ saioetan egon, ezta pelikula ikusi ere (errektore-kontseiluko bilera ikastolan), baina ostiral arratsaldea niretzat bakarrik nuen.
+Sekretu bat kontatuko dizuet? 20:00ak arte edo portatilean egotea pentsatzen nuen, eta ondoren afaltzera joatea... Baina... benetan nolakoa izan zen nire arratsaldea? Hitzaldia egongelako telebistan jarri nuen, senarrak eta biok sofa guretzat hartu genuen (ia ezinezkoa da beste edozein ostiraletan) eta han igaro genuen arratsalde osoa. "Pseudo break" moduko bat 20:00ak aldera iritsi zen, eta momentu hori aprobetxatu genuen afaltzeko, eta hitzaldiarekin jarraitu genuen amaitu zen arte (22:00ak pasata, oker ez banago).
+Zer da gehien gustatu zitzaidana? DENA. Hain ono pasatu nuen, hain atsegingarria izan zen dena...
 
-Hitzaldi/une bakoitzatik zerbaitekin gelditzen naiz. Esaldi batekin bakoitzeko laburbiltzen saiatuko naiz.  
+Hitzaldi/une bakoitzetik zerbaitekin gelditzen naiz. Bakoitza esaldi batekin laburbiltzen saiatuko naiz.  
 <small>Hitzaldi bakoitzaren jatorrizko izenburua mantendu dut</small>
 
 ### 20 años de desarrollo de software (by [@javisantana](https://twitter.com/javisantana){:target="_blank"})
-Errepaso bikaina. IE6, flash... Gabon loteriako egunean loteriaren emaitzak jasotzen zituen webgunea nola (eskuz) eguneratzen zuten istorioarekin gelditzen naiz. Zer nolako tentsioa! Eta bi hitz ikasi nituen: _caraboli_ eta _manzanillo_
+Errepaso bikaina. IE6, flash... Eguberri eguneko loteriaren emaitzak jasotzen zituen webgunea nola (eskuz) eguneratzen zuten istorioarekin gelditzen naiz. Zer nolako tentsioa! Eta bi hitz ikasi nituen: _caraboli_ eta _manzanillo_
 
 ### CriptoCovid (by [@CarrascosaCris_](https://twitter.com/CarrascosaCris_){:target="_blank"})
-Erabat ezezaguna egiten zaidan mundua (Bitcoinetik haratago). Gauza askorekin geratuko nintzateke, baina bakarra aukeratu behar dudanez: _zerbait egia izateko onegia badirudi, ez da ona_. Kontuz!
+Erabat ezezaguna egiten zaidan mundua (Bitcoinetik haratago). Gauza askorekin geratuko nintzateke, baina bakarra aukeratu behar dudanez: _zerbaitek egia izateko onegia badirudi, ez da ona_. Kontuz!
 
 ### La bárbara historia de Conan (by [@diegorlosada](https://twitter.com/diegorlosada){:target="_blank"} y [@lasote](https://twitter.com/lasote){:target="_blank"}) 
-Solasaldi honetatik ezin naiz gauz bakar batekin gelditu, dena izan zen primerakoa: historia... nola kontatu zuten... transmititu zuten pasio eta giro paregabea... Inspirazio handia izan zen.
+Solasaldi honetatik ezin naiz gauz bakar batekin gelditu, dena izan zen primerakoa: historia... nola kontatu zuten... transmititu zuten pasio eta giro paregabea... Inspirazio handikoa izan zen.
 
 ### Lo veo todo negro (by [@kastwey](https://twitter.com/kastwey){:target="_blank"})
-Aspalditik jarraitzen dudan Juanjo "itxuragabetzeko" gogoa nuen. Solasaldia oso atsegin eta dibertigarria izan zen. Oso _shortcut_s gutxi ezagutzen ditudala erakutsi zidan eta irisgarritasuna zein garrantzitsua den gogorarazi zidan (eta ez webgunean bakarrik). Nire seme-alabek hitzaldiaren zati bat ikusi zuten eta txundituta geratu ziren (batez ere urtean zehar irakurritako 100 liburuen berri izan zutenean jjjj). Eredutzat hartzeko modukoa.
+Aspalditik jarraitzen dudan Juanjo "itxuragabetzeko" gogoa nuen. Solasaldia oso atsegina eta dibertigarria izan zen. Oso *shortcut* gutxi ezagutzen ditudala erakutsi zidan eta irisgarritasuna zein garrantzitsua den gogorarazi zidan (eta ez webgunean bakarrik). Nire seme-alabek hitzaldiaren zati bat ikusi zuten eta txundituta geratu ziren (batez ere urtean zehar irakurritako 100 libururen berri izan zutenean jjjj). Eredutzat hartzeko modukoa.
 
 ### La tecnología (y el bisnes) detrás de un empaste (by Christian del Rey)
-Harrituta geratu nintzen dentisten munduan dagoen teknologiarekin (nire dentistarekin hitz egin beharko dut?). Deigarriena iruditu zitzaidana: paper batetik hitz pare bat (Arial 2pt) moztearen bideo erakusketa... Aho zabalik
+Harrituta geratu nintzen dentisten munduan dagoen teknologiarekin (nire dentistarekin hitz egin beharko dut?). Deigarriena iruditu zitzaidana: paper batetik hitz pare bat (Arial 2pt) moztearen bideo erakusketa... aho zabalik.
 
 ### Videoyayadas y hackandemia en los tiempos del cocinamiento (by [@Martixx](https://twitter.com/Martixx){:target="_blank"})
-Ransomware eta hainbat kakanahaste, eta ez bakarrik enpresa handiei... Enpresa txiki batek eraso bat jasaten duenean, aurrera ezin egiteko aukera asko ditu... Arreta andiz ibili behar da, iruzurrak edonon daude, baita Twitterren ere.
+*Ransomware* eta hainbat kakanahaste, eta ez enpresa handiei bakarrik... Enpresa txiki batek eraso bat jasaten duenean, aurrera ez egiteko aukera asko ditu... Arreta handiz ibili behar da, iruzurrak edonon daude, baita Twitterren ere.
 
 ### Transparencia e Información durante el COVIDgedón (by [@evabelmonte](https://twitter.com/evabelmonte){:target="_blank"})
-Aspaldidanik jarraitzen nuen, harekin uler nitzakeelako  BOEn argitaratzen ziren igaro ditugun  "faseen" murrizketak. Meritua da egunero BOErekin gosaltzea eta erakunde publikoen gardentasuna zaintzea.
+Aspalditik jarraitzen nuen, harekin uler nitzakeelako BOEn argitaratzen ziren igaro ditugun "faseen" murrizketak. Meritua da egunero BOErekin gosaltzea eta erakunde publikoen gardentasuna zaintzea.
 
 ### Concursote de Lanzarote
 Bikaina, tentsio handia, eta "_shh shh ez dudala entzuten! Zein da erantzuna, zein? Ai ez zaidala iristen ez zaidala iristen_" momentuak bizi genitun etxean. Super dibertigarria.
 
 ### Verdad o mentira
-_Tarugo o Caballero_ [@mcaballero](https://twitter.com/mcaballero){:target="_blank"}-rekin aurreko momentu hori, hunkigarria izan zen. Gero oso tarte atsegingarria David, Miguel y Cris-i buruzko gauzak ezagutzen. Esan ere, nik gehiago nahastuko nukeen Cris Leirerekin (La Oreja de Van Gogheko abeslaria), baino bueno...
+_Tarugo o Caballero_ [@mcaballero](https://twitter.com/mcaballero){:target="_blank"}-rekin aurreko momentu hori, hunkigarria izan zen. Gero oso tarte atsegingarria David, Miguel eta Crisi buruzko gauzak ezagutzen. Nik gehiago nahastuko nuke Cris Leirerekin (La Oreja de Van Gogheko abeslaria), baino bueno...
 
 ### ¿Cuánto saben los muggles de tecnología?  
-Ez dakitenei irakasten dakienaren erantzukizuna da. Teknologian bezala, bizitzako edozein gauzatan. (Zein sakon geratu zaidan)
+Dakietenen erantzukizuna da ez dakitenei irakastea. Teknologian bezala, bizitzako edozein gauzatan. (Zein sakon geratu zaidan)
 
 ### La Jerocleta
-Oso une hubila izan zen. "_nola identifikatzen naizen_" pentsatu nuen. Esero baino gehiago tuiteatu genuen, beraz, oso ondo! Konturatzen ari naiz azkenean ez dakidala nork irabazi zuen🤔... ea hortik zehar bilatzen dudan, jajaja).
+Oso gertuko unea izan zen. "_nola identifikatzen naizen_" pentsatu nuen. Espero baino gehiago txiokatu genuen, beraz, primeran! Konturatzen ari naiz azkenean ez dakidala nork irabazi zuen🤔... ea enteratzen naizen jajaja).
 
 **Laburbilduz....**  
-Esan bezala, formatua bikaina iruditu zitzaidan. Hitzaldiak eta elkarrizketak txundigarriak izan ziren (aupa parte hartu duten hizlariak!). Lanzaroteko konkurtsoak, lag-aren gorabeheraz a parte, oso dibertigarriak izan ziren...
-Izan ere, esan bezala, sinetsita nengoen oso ona izango zela, baina ez zen horrela izan, oker nengoen (berriro). Neretzat izan da 
+Esan bezala, formatua bikaina iruditu zitzaidan. Hitzaldiak eta elkarrizketak txundigarriak izan ziren (aupa parte hartu duten hizlariak!). Lanzaroteko konkurtsoak, *lag*aren gorabeherez gain, oso dibertigarriak izan ziren...
+Izan ere, esan bezala, sinetsita nuen oso ona izango zela, baina ez zen horrela izan, oker nengoen (berriro). Neretzat izan da 
 <div align="center">
-<p><strong>JOAN NAIZEN HITZALDIRIK ONENA</strong></p>
+<p><strong>IZAN NAIZEN HITZALDIRIK ONENA</strong></p>
 </div>
-Eta ez naiz onenaz ari "online konferentziak" kategorian, ez: onena kategoria absolutuan.
+Eta ez "online konferentzia" kategorian, ez: onena kategoria absolutuan.
 
-Nire gainerako zereginekin uztartzeko aukera eman zidan, arratsalde-gau bat eta networking-erako astia besterik ez izatearekin. Eta nire familiarekin partekatzeko aukera eman zidan, oso gauza garrantzitsua. Open space-a galdu izana pena ematen dit.
+Nire gainerako zereginekin uztartzeko aukera eman zidan, arratsalde-gau bat eta *networking*erako astia besterik ez izatearekin. Eta nire familiarekin partekatzeko aukera eman zidan, oso garrantzitsua dena. *Open space*a galdu izanak pena ematen dit.
 
 **Zer eramaten dut?**  
-Arratsalde ona pasatzeaz gain, eta bizitako hitzaldi/une bakoitzari buruz esan dudanaz gain, aitortu behar dut ilusio handiz amaitu nuela ostirala. Hizlariek eta antolatzaileek pasio eta emozio hori transmititzen zuten... hainbeste lan eta ilusio sumatzen zen atzean... kutsatu egin nautela. Niri izugarri gustatzen zait garapena, eta zortea dut horretan aritzeko, baina are kementsuago irten nintzen ekitalditik, ilusio handiagoarekin, motibazio handiagoarekin... atzean dagoen Tarugo komunitate nire bidean lagundu eta bultzatu besterik ez duta egiten guztiz sinetsita nago.
-Beraz **ESKERRIK ASKO** ekitaldi hau posible egin duten **GUZTIEI** (hizlariak, babesleak, antolatzaileak... denei!).
-Ea #Tarugo21 bat daukagun formatu honekin...
+Arratsalde ona pasatzeaz gain, eta bizitako hitzaldi/une bakoitzari buruz esan dudanaz gain, aitortu behar dut ilusio handiz amaitu nuela ostirala. Hizlariek eta antolatzaileek pasio eta emozio hori transmititzen zuten... hainbeste lan eta ilusio sumatzen zen atzean... kutsatu egin nindutela. Niri izugarri gustatzen zait garapena, eta zortea dut horretan aritzeko, baina are kementsuago irten nintzen ekitalditik, ilusio handiagoarekin, motibazio handiagoarekin... atzean dagoen Tarugo komunitateak nire bidean lagundu eta bultzatu besterik ez didala egiten guztiz sinetsita nago.
+Beraz, **ESKERRIK ASKO** ekitaldi hau posible egin duten **GUZTIEI** (hizlariei, babesleei, antolatzaileei... denei!).
+Ea #Tarugo21 formatu honekin daukagun...
 
 
-Beno, azkenean txapa puska bat atera zait... Eta ez dakit niretzat zer esan nahi izan duen transmititzea lortu dudan... beraz, gehiago jakin nahi baduzue, argazkiak, bideoak, eta abar, Twitterri begiratu diezaiokezue, [#tarugo20](https://twitter.com/search?q=%23tarugo20){:target="_blank"} traolarekin gori-gori egon baitzen.
+Beno, azkenean "txapa" puska bat atera zait... Eta ez dakit niretzat konferentzia hau zer izan den transmititzeko gai izan naizen... beraz, gehiago jakin nahi baduzue, argazkiak, bideoak, eta abar, Twitterren begiratu ditzakezue, [#tarugo20](https://twitter.com/search?q=%23tarugo20){:target="_blank"} traolarekin gori-gori egon baitzen.
 
