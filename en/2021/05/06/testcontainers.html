@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="es" itemscope itemtype="http://schema.org/Blog">
+<html lang="en" itemscope itemtype="http://schema.org/Blog">
 
   <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Testcontainers: contenedores al servicio del testing</title>
-  <meta name="description" content="Siempre he sido más fan de los test unitarios que de los tests de integración, sobre todo por un motivo: no necesito nada externo para poder pasarlos. No nec...">
+  <title>Testcontainers: containers for testing</title>
+  <meta name="description" content="I’ve always been more of a fan of unit tests than integration tests, mainly for one reason: I don’t need anything external to be able to run them. I don’t ne...">
   
   <meta name="keywords" content="testing,calidad,softwarequality,QA,testContainers,testintegración">
   
@@ -15,7 +15,7 @@
   <!-- Twitter cards -->
   <meta name="twitter:site"    content="@wearearima">
   <meta name="twitter:creator" content="@jessica">
-  <meta name="twitter:title"   content="Testcontainers: contenedores al servicio del testing">
+  <meta name="twitter:title"   content="Testcontainers: containers for testing">
 
   
   <meta name="twitter:description" content="">
@@ -121,7 +121,7 @@
             <div class="wrapper">
               <div class="post-info__container">
                 <div class="post-info">
-                  <h1 class="post-title" itemprop="name headline">Testcontainers: contenedores al servicio del testing</h1>
+                  <h1 class="post-title" itemprop="name headline">Testcontainers: containers for testing</h1>
                     <div class="post-meta" itemscope itemtype="https://schema.org/Person" itemprop="author">
                       
                       <div class="author-photo">
@@ -141,68 +141,70 @@
           </header>
           <div class="wrapper">
             <div class="post-content" itemprop="articleBody">
-              <p>Siempre he sido más fan de los test unitarios que de los tests de integración, sobre todo por un motivo: no necesito nada externo para poder pasarlos. No necesito tener una base de datos arrancada, un servicio externo al que conectarme o un Kafka funcionando para poder pasar los tests y por tanto para poder desarrollar.
-Y eso en el entorno de desarrollo, si hablamos ya del entorno de integración ya ni te cuento.<br />
-Por ejemplo, en el caso de las bases de datos tenemos la opción de hacer los tests con H2. Pero también es cierto que dependiendo del tipo de proyecto, puede darse la situación de que algo que funciona perfectamente en H2 no lo haga en la base de datos para la que estamos desarrollando: 
-Tan cierto como que frecuentemente hemos caído en el</p>
+              <p>I’ve always been more of a fan of unit tests than integration tests, mainly for one reason: I don’t need anything external to be able to run them. I don’t need to have a database started, an external service to connect to or a Kafka running to be able to run the tests and therefore to be able to develop.
+That’s in the development environment, but if we’re talking about the integration environment, then I won’t even start.
+For example, in the case of databases we have the option of doing the tests with H2. But it is also true that depending on the type of project, it could be that something which works perfectly in H2 does not work in the database for which we are developing:
+As sure as we have often relied on</p>
 <blockquote>
-  <p>“Venga va… con h2, por no arrancar la bd…”</p>
+  <p>“Let’s go … with h2, so as not to start the db …”</p>
 </blockquote>
 
-<p>lo es la situación</p>
+<p>so is the situation</p>
 <blockquote>
-  <p>“¡Pero si está testeado! ¿Entonces por qué …? Ups…”</p>
+  <p>“But it has been tested! Then why …? Oops … “</p>
 </blockquote>
 
-<p>Yo siempre he sido de las que necesitaba tener todo instalado: Mysql, Postgres, Kafka,…. todo lo que fuese necesario para ejecutar el proyecto. Así, dependiendo del proyecto me tenía que asegurar de tener todo instalado y unos servicios u otros levantados… hasta que mis compañeros me descubrieron los contenedores, bueno Docker. 
-Nunca he sido muy hábil con estas cosas, pero la verdad es que gracias a ellos, no tengo la necesidad de tener millones de cosas instaladas: tengo las imágenes de los servicios que necesito y no tengo más que poner en marcha los que necesito y ya.<br />
-Bueno al grano. Es cierto que ahora para ejecutar las aplicaciones lo tengo todo mucho más organizado, pero en realidad para desarrollar, sigo estando un poco en las mismas: si quiero pasar tests de integración tengo que acordarme de levantar la base de datos (por ejemplo) así que no termina de ser tan transparente como lo es H2.</p>
+<p>I have always been one of those who needed to have everything installed: Mysql, Postgres, Kafka, …. everything that was necessary to execute the project. So, depending on the project, I had to make sure I had everything installed and some services or others called up … until through my colleagues, I discovered containers. Well, Docker.
+I have never been very good with these things, but the truth is that thanks to them, I don’t need to have millions of things installed: I have the images of the services I need and I only have to start the ones I need, and that’s all.
+OK up to a point. It’s true that now to run the applications I have everything much more organized, but to actually develop, I’m still in pretty much the same situation: if I want to run integration tests, I have to remember to build the database (for example), so it ends up not being as transparent as H2.</p>
 
-<p><small>Como alguno ya habrá imaginado todo esto también tiene aplicación en CI, pero me voy a centrar en el día a día del desarrollador y en cómo nos ayuda esta herramienta en el trabajo diario.</small></p>
+<p><small>As some may have already been thinking, all this makes sense in CI too, but I am going to focus on the day-to-day of the developer and how this tool helps us in our everyday work.<small></small></small></p>
 
 <blockquote>
-  <p>“Tiene que haber algo que una ambos mundos y que haga que los tests sean autosuficientes simulando un entorno real”</p>
+  <p>“There must be something that unites both worlds and makes the tests self-sufficient by simulating a real environment”</p>
 </blockquote>
 
-<p>Con esta idea en la cabeza y tras una conversación con un compi descubrí que así era: ¡existía algo llamado <a href="https://www.testcontainers.org/" target="_blank"><strong>TestContainers</strong></a>!</p>
+<p>With this idea in mind and after a conversation with a colleague, I discovered that it was so: there was something called <a href="https://www.testcontainers.org/" target="_blank"><strong>TestContainers</strong></a>!</p>
 
-<p>Por ejemplo, imaginemos algunas situaciones del día que nos hacen suspirar (o resoplar más bien): ¡nuevo miembro en el equipo! o ¿si queremos pedir ayuda a algún compi con un caso de uso o bug? o ¿si volvemos a un proyecto en el que hace meses que no trabajamos?<br />
-Ante situaciones como estas (y otras) cuántas veces no habremos pensado: ¿no sería posible descargar todo y poder lanzar los tests y ponerme a desarrollar sin hacer absolutamente nada más? 
-Hace un tiempo, viendo una presentación de <a href="https://twitter.com/kiview" target="_blank">@kiview</a>, me di cuenta que no estaba sola. Al principio de su presentación decía algo así como:</p>
+<p>For example, let’s imagine some situations in the day that make us sigh (or rather huff): a new member on the team! Or if we want to ask a colleague for help with a use case or a bug? Or if we go back to a project that we haven’t worked on for months?
+In situations like these (and others) how many times have we thought: wouldn’t it be possible to download everything and be able to run the tests and start developing without doing absolutely anything else?
+Some time ago, while watching a presentation from <a href="https://twitter.com/kiview" target="_blank">@kiview</a>, I realized that I was not alone. At the beginning of his presentation he said something like:</p>
 <blockquote>
-  <p>…una experiencia de onboarding exitosa en un proyecto sería que el desarrollador sólo tuviese que clonar el repositorio, hacer el build y que con eso ya tuviésemos el build hecho incluyendo los tests unitarios y los tests de integración…</p>
+  <p>… a successful onboarding experience in a project would be that the developer only had to clone the repository, do the build and with that we would already have the build done including unit and integration tests …</p>
 </blockquote>
 
-<p>Es decir, seguir estos pasos:</p>
+<p>In other words, to follow these steps:</p>
+
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt; git clone https://github.com/wearearima/school-library-testcontainers-01.git
 &gt; cd school-library-testcontainers-01
 &gt; ./mvnw install
 </code></pre></div></div>
-<p>¡Y ya!<br />
-Los ojos me hicieron 😍. La charla se titulaba <a href="https://www.youtube.com/watch?v=Lv1evJe2MRI" target="_blank">Integration Testing with Docker and Testcontiners</a>, exacto: <strong>TestContainers</strong>. Bueno, pues ¡good news! Parece que trabajar con <strong>TestContainers</strong> nos facilitan el acercarnos a ese objetivo y nos simplifica el trabajo para que nos podamos centrar en el desarrollo propiamente dicho (obviamente, implícitamente en los tests).</p>
 
-<h1 id="ejemplo-de-database-container-postgres-module">Ejemplo de Database container (Postgres Module)</h1>
-<p>Así contado, todo suena muy bien pero (como bien sabréis quienes me leáis de vez en cuando) para entender los conceptos tengo que ponerlos en práctica, así que hemos preparado un ejemplo en <a href="https://github.com/wearearima/school-library-testcontainers-01" target="_blank">Github</a>. 
-Lo más común probablemente es la situación en la que hacemos tests contra base de datos y Testcontainers nos ofrecen diferentes <em>módulos</em> para diferentes bases de datos. Por ello, hemos preparado un ejemplo sencillo, de una aplicación Spring Boot, que se conecta a una base de datos Postgres.<br />
-Nuestro ejemplo: <br />
-    <em>Supongamos una biblioteca de un cole. Tenemos una funcionalidad que servirá para ir dando de alta los ejemplares que vayamos recibiendo. Uno de los métodos que podríamos tener, podía ser el de “añadir una copia de un libro” (entendiendo “libro” como el concepto y “copia” la representación de cada uno de los ejemplares que podamos tener).</em><br />
-<small>En un futuro seguiremos evolucionando este ejemplo e iremos añadiendo código.</small></p>
+<p>That’s it!
+My eyes were popping 😍. The talk was titled <a href="https://www.youtube.com/watch?v=Lv1evJe2MRI">Integration Testing with Docker and Testcontainers</a>, exactly: <strong>TestContainers</strong>. So, good news! It seems that working with <strong>TestContainers</strong> makes it easier for us to get closer to that goal and simplifies our work so that we can focus on the development itself (implicitly, on the tests).</p>
 
-<p>Como hemos dicho, utilizaremos el módulo que hay para <a href="https://www.testcontainers.org/modules/databases/postgres/" target="_blank">Postgres</a>. La implementación de los tests utilizando este container es muy sencilla, ¡vamos allá!</p>
+<h1 id="database-container-example-postgres-module">Database container example (Postgres Module)</h1>
+<p>Told this way, everything sounds very good, but (as those who read me from time to time will know well) to understand the concepts, I have to put them into practice, so we have prepared an example in <a href="https://github.com/wearearima/school-library-testcontainers-01" target="_blank">Github</a>.
+The most common is probably the situation in which we do tests against databases and Testcontainers offer us different <em>modules</em> for different databases. Therefore, we have prepared a simple example of a Spring Boot application that connects to a Postgres database.<br />
+Our example:<br />
+    <em>Let’s take the case of a school library. We have a functionality that will serve to register the book copies that we receive. One of the methods that we could use, would be to “add a copy of a book” (understanding “book” as the concept and “copy” the representation of each printed copy that we have).</em><br />
+<small>In the future we will continue to develop this example and add code.</small></p>
 
-<h2 id="instalar-docker">Instalar Docker</h2>
-<p>Lo primero que necesitamos es instalar <a href="https://www.docker.com/products/docker-desktop" target="_blank">Docker Desktop</a> (en caso de no tenerlo). A continuación dejo también, la sección de la documentación donde podemos encontrar los requerimientos de Docker: <a href="https://www.testcontainers.org/supported_docker_environment/" target="_blank">General Docker requirements</a>.</p>
+<p>As we have said, we will use the module that exists for <a href="https://www.testcontainers.org/modules/databases/postgres/" target="_blank">Postgres</a>. The implementation of the tests is very simple using this container. Let’s go!</p>
 
-<h2 id="añadir-las-dependencias-necesarias">Añadir las dependencias necesarias</h2>
-<p>Para empezar con el código, lo primero que tendremos que hacer será añadir las dependencias necesarias al proyecto (en nuestro caso en el pom.xml).</p>
+<h2 id="install-docker">Install Docker</h2>
+<p>The first thing we need to do is to install <a href="https://www.docker.com/products/docker-desktop" target="_blank">Docker Desktop</a> (in case we don’t have it). This is the documentation section where we can find the Docker requirements: <a href="https://www.testcontainers.org/supported_docker_environment/" target="_blank">General Docker requirements</a>.</p>
 
-<p>En nuestro caso hemos generado el proyecto utilizando <a href="https://start.spring.io/" target="_blank">Spring Initializr</a>, desde donde hemos añadido la dependencia</p>
+<h2 id="add-the-necessary-dependencies">Add the necessary dependencies</h2>
+<p>To start with the code, the first thing we will have to do is add the necessary dependencies to the project (in our case in the pom.xml).</p>
+
+<p>In our case we have generated the project using <a href="https://start.spring.io/" target="_blank">Spring Initializr</a>, from where we have added the dependency</p>
 
 <p><img src="/assets/images/2021-05-06-testcontainers/spring-initializr.png" alt="Imagen de cómo se añade la depedencia de testscontainer utilizando springinitializr" class="center" /></p>
 
-<p>En caso de hacerlo manualmente, en la <a href="https://www.testcontainers.org/quickstart/junit_5_quickstart/#1-add-testcontainers-as-a-test-scoped-dependency" target="_blank">documentación</a> se detalla cómo añadir las dependencias.</p>
+<p>If doing it manually, in the <a href="https://www.testcontainers.org/quickstart/junit_5_quickstart/#1-add-testcontainers-as-a-test-scoped-dependency" target="_blank">documentation</a> it details how to add the dependencies.</p>
 
-<p>Además, como vamos a utilizar el módulo de Postgres añadimos esa dependencia:</p>
+<p>Also, since we are going to use the Postgres module, we add the dependency:</p>
 
 <h4 id="pomxml">pom.xml</h4>
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;dependency&gt;</span>
@@ -212,7 +214,7 @@ Nuestro ejemplo: <br />
 <span class="nt">&lt;/dependency&gt;</span>
 </code></pre></div></div>
 
-<p>Bueno, y del mismo modo que haríamos si no estuviésemos utilizando Testcontainers, incluiremos la dependencia de Postgres.</p>
+<p>So, in the same way we would if we weren’t using Testcontainers, we will include the Postgres dependency.</p>
 
 <h4 id="pomxml-1">pom.xml</h4>
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;dependency&gt;</span>
@@ -223,7 +225,7 @@ Nuestro ejemplo: <br />
 </code></pre></div></div>
 
 <h2 id="start-coding">Start coding!</h2>
-<p>¡Y listo! Ya podemos implementar nuestro caso de uso. Vamos a implementar más de un test (disponibles en <a href="https://github.com/wearearima/school-library-testcontainers-01/blob/master/src/test/java/eu/arima/schoolLibrary/bookStore/BooksServiceTest.java" target="_blank">Github</a>. ), aquí veremos el código para uno de ellos. Será un test que haremos que comprobará que cuando añadamos una copia a un libro cuyo ISBN ya exista, se añadirá una copia al mismo. ¿Sencillo verdad?</p>
+<p>And we’re ready! We can now implement our use case. We are going to implement more than one test (available in <a href="https://github.com/wearearima/school-library-testcontainers-01/blob/master/src/test/java/eu/arima/schoolLibrary/bookStore/BooksServiceTest.java" target="_blank">Github</a>. ), and here we will see the code for one of them. It’s a test that we will do to verify that when we add a copy to a book whose ISBN already exists, the copy will be added to the same one. Simple right?</p>
 
 <h4 id="booksservicetestjava">BooksServiceTest.java</h4>
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@SpringBootTest</span>
@@ -256,11 +258,11 @@ Nuestro ejemplo: <br />
 <span class="o">}</span>
 </code></pre></div></div>
 
-<p>Pero si ejecutamos el test sin más, veremos que falla por no poder levantar el contexto: le falta la información de la base de datos.
-Es cierto que podríamos ir a application.properties y setear ahí los valores…. pero eso requeriría que si ese nuevo desarrollador que llegar (o tú que te vas a descargar el ejemplo) levantase la base de datos etc. Ya no sería el “ideal” que buscamos. ¿La solución?</p>
+<p>But if we run the test without doing anything else, we will see that it fails due to not being able to raise the context: it is missing the information from the database.
+It is true that we could go to <code class="highlighter-rouge">application.properties</code> and set the values ​​there … but that would require any new developer (or you who is going to download the example) to raise the database etc. It would no longer be the “ideal” we are looking for. The solution?</p>
 
 <h3 id="testcontainers">@Testcontainers</h3>
-<p>Efectivamente una anotación <code class="highlighter-rouge">@Testcontainers</code> y unas líneas más y lo tendremos:</p>
+<p>Effectively an annotation <code class="highlighter-rouge">@Testcontainers</code> and a few more lines and we have it:</p>
 
 <h4 id="booksservicetestjava-1">BooksServiceTest.java</h4>
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@SpringBootTest</span>
@@ -281,20 +283,20 @@ Es cierto que podríamos ir a application.properties y setear ahí los valores�
 
 <span class="o">}</span>
 </code></pre></div></div>
-<p>¿Qué hemos hecho?</p>
+<p>So what have we done?</p>
 <ul>
-  <li>Hemos añadido la anotación <code class="highlighter-rouge">@Testcontainers</code> a la clase de test.</li>
-  <li>Hemos creado una instancia de un contenedor con Postgres utilizando la anotación <code class="highlighter-rouge">@Container</code> y especificando la versión.</li>
-  <li>Y por último hemos seteado la información del datasource a partir del contenedor creado mediante <code class="highlighter-rouge">@DynamicPropertySource</code>.</li>
+  <li>We have added the annotation <code class="highlighter-rouge">@Testcontainers</code> to the test class.</li>
+  <li>We have created a container instance with Postgres using the <code class="highlighter-rouge">@Container</code> annotation and specifying the version.</li>
+  <li>And finally we have set the datasource information from the container created by <code class="highlighter-rouge">@ DynamicPropertySource</code>.</li>
 </ul>
 
-<p>Como podéis ver la implementación es muy sencilla, el beneficio es instantáneo: podéis descargaros el ejemplo y ejecutarlo directamente en vuestros equipos sin nada más que tener Docker instalado (¿recordáis los 3 comandos de antes? Podéis probarlo.)</p>
+<p>As you can see, the implementation is very simple and the benefit is instantaneous: you can download the example and run it directly on your equipment with nothing more than having installed Docker (do you remember the 3 commands from before? You can try it.)</p>
 
-<h3 id="patrón-singleton">Patrón Singleton</h3>
-<p>Hay otra forma de implementar todo esto, más eficiente, que sería utilizando el patrón Singleton. De esta forma utilizaríamos el mismo contenedor en más de una clase. 
-De hecho, en la documentación se recomienda esta aproximación. En este ejemplo donde aún solamente tenemos un clase de test no parece útil, pero probablemente no será la única funcionalidad de nuestro proyecto ¿verdad? Llegado ese momento, entonces sí, pasaríamos al patrón Singleton, como se explica <a href="https://www.testcontainers.org/test_framework_integration/manual_lifecycle_control/#singleton-containers" target="_blank">aquí</a>.</p>
+<h3 id="singleton-pattern">Singleton pattern</h3>
+<p>There is another way to implement all this more efficiently, by using the singleton pattern. In this way we would use the same container in more than one class.
+In fact, the documentation recommends this approach. In this example where we only have one test class, it doesn’t seem useful, but it probably won’t be the only functionality of our project, right? When that moment arrives, then yes, we would move to the singleton pattern, as explained <a href="https://www.testcontainers.org/test_framework_integration/manual_lifecycle_control/#singleton-containers" target="_blank">here</a>.</p>
 
-<p>Veamos cómo sería:</p>
+<p>Let’s see how it would work:</p>
 
 <h4 id="booksservicetestjava-2">BooksServiceTest.java</h4>
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@SpringBootTest</span>
@@ -323,15 +325,16 @@ De hecho, en la documentación se recomienda esta aproximación. En este ejemplo
 <span class="o">}</span>
 </code></pre></div></div>
 
-<h2 id="tip-sobre-pitest">Tip sobre Pitest</h2>
-<p>¿<a href="https://pitest.org/" target="_blank">PIT</a>? ¿Qué tiene que ver <strong>Testcontainers</strong> con <strong>PIT</strong>? Recordemos que descubrimos que podíamos <a href="https://blog.arima.eu/es/2020/05/25/mutation-testing.html" target="_blank">medir la calidad de nuestros tests con PIT</a>. Es cierto que PIT está directamente orientado a <strong>tests unitarios</strong> (sobre todo por cuestión de tiempos/eficiencia) pero también es cierto, que hasta ahora no nos habíamos encontrado con ningún problema a la hora de poner a prueba nuestros <strong>tests de integración</strong>.</p>
+<h2 id="tip-relating-to-pitest">Tip relating to Pitest</h2>
+<p><a href="https://pitest.org/" target="_blank">PIT</a>? What do <strong>Testcontainers</strong> have to do with <strong>PIT</strong>? Let’s remember that we discovered that we could <a href="https://blog.arima.eu/es/2020/05/25/mutation-testing.html" target="_blank">measure the quality of our tests with PIT</a>. It is true that PIT is directly oriented to <strong>unit tests</strong> (mainly due to time/efficiency), but it is also true that until now we had not encountered any problem when testing our <strong>integration tests</strong>.</p>
 
-<p>Sin embargo, si intentáis ejecutar Pitest sobre tests implementados utilizando <code class="highlighter-rouge">@Testcontainers</code> os encontraréis con que no pasan. En cambio, si los tests están implementados utilizando el patrón Singleton, podréis realizar el análisis de cobertura de Pit sin problemas.</p>
+<p>However, if you try to run Pitest on tests implemented using <code class="highlighter-rouge">@Testcontainers</code> you will find that they fail. On the other hand, if the tests are implemented using the singleton pattern, you will be able to perform the Pit coverage analysis without problems.</p>
 
-<p><em>Si alguien quiere conocer el por qué de todo esto, además de probar una solución propuesta por un contribuyente, puede hacerlo en la <a href="https://github.com/hcoles/pitest/issues/827" target="_blank">issue</a> que abrimos al detectar el problema.</em></p>
+<p><em>If anyone wants to know the reason for all this, in addition to testing a solution proposed by a contributor, they can do so in the <a href="https://github.com/hcoles/pitest/issues/827" target="_blank">issue</a> that we opened when detecting the problem.</em></p>
 
-<p>Hasta aquí una pequeña introducción a <strong>Testcontainers</strong>, con un ejemplo de aplicación en el caso de una base de datos. Como hemos mencionado anteriormente, Testcontainers nos ofrece otros muchos módulos. E incluso, en caso de que por nuestras necesidades necesitemos algo más concreto también dispone de soporte para que tengamos nuestro propio <code class="highlighter-rouge">docker-compose.yml</code> como se explica en la <a href="https://www.testcontainers.org/modules/docker_compose/">documentación</a>. 
-En futuros posts, iremos evolucionando nuestra aplicación de forma que podamos introducir algunos ejemplos de otros casos de uso en los que utilizar Testcontainers (para ver de forma práctica su facilidad de uso y sus ventajas).</p>
+<p>So for now, a short introduction to <strong>Testcontainers</strong>, with an application example in the case of a database. As we have mentioned before, Testcontainers offer us many other modules. And even if for our requirements we need something more specific, they also dispose of support for us to have our own <code class="highlighter-rouge">docker-compose.yml</code> as explained in the <a href="https://www.testcontainers.org/modules/docker_compose/">documentation</a>.</p>
+
+<p>In future posts, we will develop our application so that we can introduce some examples of other use cases in which to use Testcontainers (to see in a practical way their ease of use and their advantages).</p>
 
 
             </div>

@@ -9,6 +9,29 @@
     
     
     <post>
+        <title>Testcontainers: containers for testing</title>
+        <summary>&lt;p&gt;I’ve always been more of a fan of unit tests than integration tests, mainly for one reason: I don’t need anything external to be able to run them. I don’t need to have a database started, an external service to connect to or a Kafka running to be able to run the tests and therefore to be able to develop.
+That’s in the development environment, but if we’re talking about the integration environment, then I won’t even start.
+For example, in the case of databases we have the option of doing the tests with H2. But it is also true that depending on the type of project, it could be that something which works perfectly in H2 does not work in the database for which we are developing:
+As sure as we have often relied on&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;“Let’s go … with h2, so as not to start the db …”&lt;/p&gt;
+&lt;/blockquote&gt;
+</summary>
+        <pubDate>Thu, 06 May 2021 08:00:00 +0000</pubDate>
+        <link>https://blog.arima.eu/2021/05/06/testcontainers.html</link>
+        <guid isPermaLink="true">https://blog.arima.eu//2021/05/06/testcontainers.html</guid>
+        <headerImage>https://blog.arima.eu/assets/images/2021-05-06-testcontainers/header.jpg</headerImage>
+        
+        
+        
+        
+        
+
+      <author>Jessica Aguado</author>
+    </post>
+    
+    <post>
         <title>My experience with the CKA exam</title>
         <summary>&lt;p&gt;Last Monday 22 March I took the exam for the &lt;a href=&quot;https://training.linuxfoundation.org/certification/certified-kubernetes-administrator-cka/&quot; target=&quot;_blank&quot;&gt;CKA&lt;/a&gt; certificate from the Linux Foundation, and I’m here to tell you about my experience of how I prepared for it and what to expect in the exam. I highly recommend that you also read a &lt;a href=&quot;/en/2020/04/28/examen-ckad&quot; target=&quot;_blank&quot;&gt;post from my colleague Fernando from a few months ago about the CKAD exam&lt;/a&gt;, which goes into much more detail about the aspects of these exams and helps you to pass them. I got some essential tips from reading his post!&lt;/p&gt;
 </summary>
@@ -40,23 +63,6 @@
         
 
       <author>Jessica Aguado</author>
-    </post>
-    
-    <post>
-        <title>Using Docker inside Kubernetes</title>
-        <summary>&lt;p&gt;In a &lt;a href=&quot;/en/2020/09/10/deberias-utilizar-contenedores-privilegiados&quot; target=&quot;_blank&quot;&gt;previous post&lt;/a&gt; I talked about the problem of granting privileges to a container and the risks that this entails. Today I want to present a specific case in which privileges are granted to a container and give some alternatives.&lt;/p&gt;
-</summary>
-        <pubDate>Wed, 11 Nov 2020 09:00:00 +0000</pubDate>
-        <link>https://blog.arima.eu/2020/11/11/docker-en-kubernetes.html</link>
-        <guid isPermaLink="true">https://blog.arima.eu//2020/11/11/docker-en-kubernetes.html</guid>
-        <headerImage>https://blog.arima.eu/assets/images/2020-11-11-docker-en-kubernetes/whale.jpg</headerImage>
-        
-        
-        
-        
-        
-
-      <author>Urko Lekuona</author>
     </post>
     
   </channel>
