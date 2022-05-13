@@ -1,12 +1,12 @@
 ---
 layout: post
 title:  "¿Deberíamos usar Terraform como herramienta de Despliegue Continuo?"
-date:   2022-05-13 9:00:00
+date:   2022-05-12 9:00:00
 author: urko
 lang: es
 categories: terraform, cd, cicd
 tags: terraform, cd, cicd
-header-image: 2022-05-13-terraform-cd/header.jpg
+header-image: 2022-05-12-terraform-cd/header.jpg
 ---
 
 En ARIMA, desde hace unos años, hemos apostado por Kubernetes y el ecosistema *cloud native* que lo rodea. Nos hemos hecho miembro de la [Cloud Native Computing Foundation](https://www.cncf.io/) y hemos promovido el uso de muchos de sus proyectos en nuestros clientes. Desde Helm y kustomize para gestionar los despliegues de un *cluster*, pasando por ArgoCD o Flux que nos ayudan a automatizar estos despliegues y a seguir el patrón [GitOps](https://www.weave.works/technologies/gitops/), o Prometheus y Grafana para monitorizar las métricas de nuestras aplicaciones. Todos estos son solo algunos ejemplos de los proyectos *open source* que forman parte de un ecosistema cada vez más popular y en constante crecimiento.
