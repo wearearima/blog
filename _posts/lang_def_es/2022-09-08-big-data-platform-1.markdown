@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Construyendo una plataforma Big Data open-source desde cero (I): Persistencia"
-date:   2022-09-01 9:00:00
+date:   2022-09-08 9:00:00
 author: dana
 lang: es
 categories: bigdata
