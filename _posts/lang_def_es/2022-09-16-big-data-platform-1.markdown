@@ -6,7 +6,7 @@ author: dana
 lang: es
 categories: bigdata
 tags: bigdata, minIO, object-storage, kubernetes
-header-image: 2022-09-14-big-data-platform-1/header.jpg 
+header-image: 2022-09-16-big-data-platform-1/header.png
 ---
 
 Hay muchos motivos por los que se puede necesitar una plataforma de Big Data: desde analizar y producir conocimiento a partir de datos procedentes del negocio, hasta crear modelos de inteligencia artificial a partir de textos o imágenes. Los datos que se almacenarán, en cada caso, son distintos. Los flujos de análisis, los procesos de limpieza y preparación, y las herramientas que se utilizarán, también.
@@ -24,7 +24,7 @@ El término Big Data implica cantidades ingentes de datos, muchas veces en el or
 
 Al comienzo de un proyecto de Big Data no siempre está claro cuáles serán las cantidades de datos que se manejarán a corto, medio y largo plazo. Por ello, es importante contar con un sistema fácilmente escalable. 
 
-También es crucial poder encontrar los datos guardados. Aunque pueda parecer obvio, este es, precisamente, uno de los grandes problemas de los *data lakes* en los que se vierte todo tipo de información sin una organización adecuada. Acaban convirtiéndose en *data swamps*, pantanos de los que resulta muy difícil obtener valor porque es imposible de recuperar información útil. En otro post hablaremos de tecnologías de *data governance *y *data discovery*, que nos permitirán aliviar este problema en el caso de los datos estructurados. Pero, ¿qué hay del caso de los datos no estructurados (imágenes, texto), para los cuales este problema es especialmente agudo?
+También es crucial poder encontrar los datos guardados. Aunque pueda parecer obvio, este es, precisamente, uno de los grandes problemas de los *data lakes* en los que se vierte todo tipo de información sin una organización adecuada. Acaban convirtiéndose en *data swamps*, pantanos de los que resulta muy difícil obtener valor porque es imposible de recuperar información útil. En otro post hablaremos de tecnologías de *data governance* y *data discovery*, que nos permitirán aliviar este problema en el caso de los datos estructurados. Pero, ¿qué hay del caso de los datos no estructurados (imágenes, texto), para los cuales este problema es especialmente agudo?
 
 Por último, es imperativo poder garantizar la integridad de los datos. ¿Contaremos con copias de seguridad? ¿Serán eficientes en cuanto al espacio que ocupan? ¿Podremos almacenar distintas versiones de los archivos guardados?
 
@@ -32,7 +32,7 @@ El almacenamiento de objetos es un paradigma de almacenamiento diseñado para el
 
 Un objeto no es más que el archivo que deseamos almacenar acompañado de metadatos -relativos tanto a su contenido como a su uso- y asociado a un identificador único. Una parte importante de los metadatos serán las etiquetas descriptivas, escogidas intencionalmente para facilitar su posterior recuperación. Cuantas más etiquetas asociemos a los archivos, más caminos generaremos para hallarlos en el futuro. 
 
-El exponente más conocido de este tipo de servicio es Amazon S3. MinIO, por su parte, es un software de almacenamiento de objetos de código libre y completamente compatible con la API de S3. Fue diseñado para ser integrarse nativamente con Kubernetes y puede instalarse en la nube pública y la nube privada (y es [más rápido que S3](https://altinity.com/blog/clickhouse-object-storage-performance-minio-vs-aws-s3){:target="_blank"}).
+El exponente más conocido de este tipo de servicio es Amazon S3. Sin embargo, Amazon S3 no es de código libre y es por este motivo, hemos buscado alternativas como MinIO. MinIO es un software de almacenamiento de objetos *open source* y completamente compatible con la API de S3. Fue diseñado para ser integrarse nativamente con Kubernetes y puede instalarse en la nube pública y la nube privada (y es [más rápido que S3](https://altinity.com/blog/clickhouse-object-storage-performance-minio-vs-aws-s3){:target="_blank"}).
 
 En un entorno *on-premise*, aumentar su capacidad de almacenamiento es tan fácil como añadir nodos a Kubernetes. MinIO utiliza [local persistent volumes](https://kubernetes.io/blog/2019/04/04/kubernetes-1.14-local-persistent-volumes-ga/#what-is-a-local-persistent-volume){:target="_blank"} para agilizar la comunicación entre la aplicación y el disco y, gracias a [DirectPV](https://blog.min.io/introducing-directpv/){:target="_blank"}, se encarga de localizar los discos, formatearlos y monitorizarlos. Con MinIO se facilita la gestión del almacenamiento y se elimina la necesidad de utilizar sistemas SAN o NAS.
 
@@ -42,7 +42,7 @@ MinIO, en la línea de otros sistemas de almacenamiento distribuidos como HDFS d
 
 ¿Cómo funciona el *erasure coding?* Cada fichero se divide en M bloques más pequeños, que se almacenarán en servidores distintos. Además, se añaden K bloques de paridad, que son secuencias de bits que permiten recalcular los datos perdidos mediante series complejas de sumas y divisiones. La clave de los bloques de paridad es que funcionan sean cuales sean los bloques que se pierdan, siempre que dispongamos de K bloques (originales o de paridad). Por eso, como mucho, necesitaremos tantos bloques de paridad como bloques de datos. Esto significa que, con MinIO, utilizando menos espacio de disco las garantías de disponibilidad son mucho mayores.
 
-![modelos-de-replica](../../assets/images/2022-09-08-big-data-platform-1/replication_schemes.jpeg)
+![Modelos de réplica](/assets/images/2022-09-16-big-data-platform-1/replication_schemes.jpeg){: .center }
 
 ## Matar una mosca a cañonazos
 
