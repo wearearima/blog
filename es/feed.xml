@@ -9,6 +9,23 @@
     
     
     <post>
+        <title>Construyendo una plataforma Big Data open-source desde cero (I): Persistencia</title>
+        <summary>&lt;p&gt;Hay muchos motivos por los que se puede necesitar una plataforma de Big Data: desde analizar y producir conocimiento a partir de datos procedentes del negocio, hasta crear modelos de inteligencia artificial a partir de textos o imágenes. Los datos que se almacenarán, en cada caso, son distintos. Los flujos de análisis, los procesos de limpieza y preparación, y las herramientas que se utilizarán, también.&lt;/p&gt;
+</summary>
+        <pubDate>Wed, 14 Sep 2022 09:00:00 +0000</pubDate>
+        <link>https://blog.arima.eu/2022/09/14/big-data-platform-1.html</link>
+        <guid isPermaLink="true">https://blog.arima.eu//2022/09/14/big-data-platform-1.html</guid>
+        <headerImage>https://blog.arima.eu/assets/images/2022-09-16-big-data-platform-1/header.png</headerImage>
+        
+        
+        
+        
+        
+
+      <author></author>
+    </post>
+    
+    <post>
         <title>¿Deberíamos usar Terraform como herramienta de Despliegue Continuo?</title>
         <summary>&lt;p&gt;En ARIMA, desde hace unos años, hemos apostado por Kubernetes y el ecosistema &lt;em&gt;cloud native&lt;/em&gt; que lo rodea. Nos hemos hecho miembro de la &lt;a href=&quot;https://www.cncf.io/&quot;&gt;Cloud Native Computing Foundation&lt;/a&gt; y hemos promovido el uso de muchos de sus proyectos en nuestros clientes. Desde Helm y kustomize para gestionar los despliegues de un &lt;em&gt;cluster&lt;/em&gt;, pasando por ArgoCD o Flux que nos ayudan a automatizar estos despliegues y a seguir el patrón &lt;a href=&quot;https://www.weave.works/technologies/gitops/&quot;&gt;GitOps&lt;/a&gt;, o Prometheus y Grafana para monitorizar las métricas de nuestras aplicaciones. Todos estos son solo algunos ejemplos de los proyectos &lt;em&gt;open source&lt;/em&gt; que forman parte de un ecosistema cada vez más popular y en constante crecimiento.&lt;/p&gt;
 </summary>
@@ -40,29 +57,6 @@
         
 
       <author>Aritz Berasarte</author>
-    </post>
-    
-    <post>
-        <title>Testcontainers: contenedores al servicio del testing</title>
-        <summary>&lt;p&gt;Siempre he sido más fan de los test unitarios que de los tests de integración, sobre todo por un motivo: no necesito nada externo para poder pasarlos. No necesito tener una base de datos arrancada, un servicio externo al que conectarme o un Kafka funcionando para poder pasar los tests y por tanto para poder desarrollar.
-Y eso en el entorno de desarrollo, si hablamos ya del entorno de integración ya ni te cuento.&lt;br /&gt;
-Por ejemplo, en el caso de las bases de datos tenemos la opción de hacer los tests con H2. Pero también es cierto que dependiendo del tipo de proyecto, puede darse la situación de que algo que funciona perfectamente en H2 no lo haga en la base de datos para la que estamos desarrollando: 
-Tan cierto como que frecuentemente hemos caído en el&lt;/p&gt;
-&lt;blockquote&gt;
-  &lt;p&gt;“Venga va… con h2, por no arrancar la bd…”&lt;/p&gt;
-&lt;/blockquote&gt;
-</summary>
-        <pubDate>Thu, 06 May 2021 08:00:00 +0000</pubDate>
-        <link>https://blog.arima.eu/2021/05/06/testcontainers.html</link>
-        <guid isPermaLink="true">https://blog.arima.eu//2021/05/06/testcontainers.html</guid>
-        <headerImage>https://blog.arima.eu/assets/images/2021-05-06-testcontainers/header.jpg</headerImage>
-        
-        
-        
-        
-        
-
-      <author>Jessica Aguado</author>
     </post>
     
   </channel>

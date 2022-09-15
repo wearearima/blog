@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="es" itemscope itemtype="http://schema.org/Blog">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Construyendo una plataforma Big Data open-source desde cero (I): Persistencia</title>
+  <meta name="description" content="Hay muchos motivos por los que se puede necesitar una plataforma de Big Data: desde analizar y producir conocimiento a partir de datos procedentes del negoci...">
+  
+  <meta name="keywords" content="bigdata,minIO,object-storage,kubernetes">
+  
+
+  <!-- Twitter cards -->
+  <meta name="twitter:site"    content="@wearearima">
+  <meta name="twitter:creator" content="@dana">
+  <meta name="twitter:title"   content="Construyendo una plataforma Big Data open-source desde cero (I): Persistencia">
+
+  
+  <meta name="twitter:description" content="">
+  
+
+  
+  <meta name="twitter:card"  content="summary_large_image">
+  <meta name="twitter:image" content="https://blog.arima.eu/assets/images/2022-09-16-big-data-platform-1/header.png">
+  
+  <!-- end of Twitter cards -->
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="https://blog.arima.eu/es/2022/09/14/big-data-platform-1.html">
+  <link rel="alternate" type="application/rss+xml" title="ARIMA" href="/es/feed.xml">
+
+  <!-- SEO Recipes (http://polyglot.untra.io/seo/) -->
+  <meta http-equiv="Content-Language" content="es">
+  <link rel="alternate"
+      hreflang="es"
+      href="https://blog.arima.eu/es/2022/09/14/big-data-platform-1.html" />
+  
+  
+  <link rel="alternate"
+      hreflang="es"
+      href="https://blog.arima.eu/es/2022/09/14/big-data-platform-1.html" />
+  
+  
+  <link rel="alternate"
+      hreflang="en"
+      href="https://blog.arima.eu/en/2022/09/14/big-data-platform-1.html" />
+  
+  
+  <link rel="alternate"
+      hreflang="eu"
+      href="https://blog.arima.eu/es/eus/2022/09/14/big-data-platform-1.html" />
+  
+
+  
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-120217722-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-120217722-1');
+</script>
+  
+</head>
+  
+
+  <body>
+    <nav class="toolbar">
+    <div class="wrapper">    
+        <a href="/es/">
+            <div class="toolbar__logo">
+                <svg xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" version="1.1" width="100%" height="100%" viewBox="0 0 33 6">
+    <path id="path24" d="m30.346988508615652,-0.000015174522529526127 l-0.6439224998849951,0 l-2.7763635316117727,6.135695064030662 l0.7050150612484405,0 l2.3859233880279893,-5.335002838884215 l2.3660424189063254,5.335002838884215 l0.739668694925785,0 L30.346988508615652,-0.000015174522529526127 zm-8.274141805179609,3.3681675186951847 l-2.2194202716340565,-3.324608867598761 l-0.6962481061149294,0 l0,6.092136412934239 l0.6700853029999622,0 l0,-4.926062349034439 l2.2194202716340565,3.2553706313868567 l0.034929758248478535,0 l2.2192131782057056,-3.2639304930920168 l0,4.934622210739599 l0.6873430886958508,0 l0,-6.092136412934239 l-0.6961100438293623,0 l-2.2192131782057056,3.324608867598761 zm-9.143036799396208,-1.5057072863948877 c0,-1.0964906719739773 -0.8613705996531913,-1.8189015812038738 -2.201748299081466,-1.8189015812038738 l-2.619662837493104,0 l0,6.092136412934239 l0.6876192132669849,0 l0,-5.456842805897188 l1.8799251114245357,0 c0.9833486289517317,0 1.5576187057681203,0.4525681720889824 1.5576187057681203,1.2097017461390067 c0,0.7919252700129356 -0.7831583148794242,1.2620273523689407 -1.6968545207625496,1.2620273523689407 l0,0.6178287279128115 l1.7665759749739396,2.3672849794764295 l0.8442508762428699,0 l-1.8711581562910244,-2.4891249464894027 c0.9571858258367647,-0.17416557324290774 1.6534339319516944,-0.7659695603263191 1.6534339319516944,-1.7841098852409623 m2.7743616284710493,4.273234831730365 l0.6872050264102838,0 l0,-6.0920673817914555 l-0.6872050264102838,0 l0,6.0920673817914555 zM2.7761571742923965,-0.000015174522529526127 l-2.7761564381834223,6.135695064030662 l0.7048769989628736,0 l2.386061450313556,-5.335002838884215 l2.3658353254779745,5.335002838884215 l0.739668694925785,0 l-2.7761564381834223,-6.135695064030662 l-0.6441295933133457,0 z" stroke-width="0"/>
+</svg>
+
+            </div>
+        </a>
+        <!-- Language selector -->
+        <div class="language-selector">
+            
+              
+                <b class="selected">ES</b>
+              
+              
+                &nbsp;|&nbsp;
+              
+            
+              
+                <a class="unselected" href="/en/2022/09/14/big-data-platform-1.html">EN</a>
+              
+              
+                &nbsp;|&nbsp;
+              
+            
+              
+                <a class="unselected" href="/eu/2022/09/14/big-data-platform-1.html">EU</a>
+              
+              
+            
+         </div>
+    </div>
+</nav>
+<div id="publisher_id" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Arima 100% Software Design" />
+    <meta itemprop="url" content="https://arima.eu" />
+    <div itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+        <meta itemprop="url" content="https://arima.eu/img/logo.png" />
+    </div>
+</div>
+    <main aria-label="Content">        
+        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting" itemref="publisher_id">
+          <link itemprop="mainEntityOfPage" href="/es/2022/09/14/big-data-platform-1.html" />
+
+          <header class="post-header">
+            <div class="post-img" itemprop="image" itemscope itemtype="http://schema.org/ImageObject" style="background-image: url('https://blog.arima.eu/assets/images/2022-09-16-big-data-platform-1/header.png');">
+              <meta itemprop="url" content="https://blog.arima.eu/assets/images/2022-09-16-big-data-platform-1/header.png" />
+            </div>
+            <div class="wrapper">
+              <div class="post-info__container">
+                <div class="post-info">
+                  <h1 class="post-title" itemprop="name headline">Construyendo una plataforma Big Data open-source desde cero (I): Persistencia</h1>
+                    <div class="post-meta" itemscope itemtype="https://schema.org/Person" itemprop="author">
+                      
+                      <div class="author-photo">
+                        <img itemprop="image" src="/assets/images/authors/dana.png" alt="">
+                      </div>
+                      <div>
+                        <span class="post-author" itemprop="name"></span>
+                      </div>
+                      <div>
+                        <span class="post-date">14-09-2022</span>
+                      </div>
+                    </div>
+                    <meta  itemprop="datePublished dateModified" content="14-09-2022" />
+                </div>
+              </div>
+            </div>
+          </header>
+          <div class="wrapper">
+            <div class="post-content" itemprop="articleBody">
+              <p>Hay muchos motivos por los que se puede necesitar una plataforma de Big Data: desde analizar y producir conocimiento a partir de datos procedentes del negocio, hasta crear modelos de inteligencia artificial a partir de textos o imágenes. Los datos que se almacenarán, en cada caso, son distintos. Los flujos de análisis, los procesos de limpieza y preparación, y las herramientas que se utilizarán, también.</p>
+
+<p>En esta serie de entradas al blog nos proponemos construir una plataforma de Big Data de propósito general a partir de soluciones <em>open-source</em>. Sentaremos unos cimientos que podrán ser compartidos por proyectos heterogéneos, y añadiremos algunas herramientas específicas para casos de uso concretos. Además, la plataforma que presentamos podrá desplegarse tanto en infraestructuras <em>cloud</em> como <em>on-premise</em>. A lo largo de estos posts, además de explicar los motivos que nos han llevado a escoger cada una de las herramientas, intentaremos dar algunas nociones básicas sobre ellas: cómo funcionan, qué formatos utilizan, etcétera. Además, en Github tenemos <a href="https://github.com/wearearima/big-data-platform" target="_blank">un repositorio</a> en el que explicamos cómo desplegar la plataforma y damos ejemplos de uso.</p>
+
+<p>Cualquier plataforma de Big Data en la actualidad, debido a sus exigencias en cuanto a capacidad de almacenamiento —en el orden de los petabytes— y de procesamiento —imposibles sin ejecución en paralelo—, requiere de un entorno distribuido. En este sentido, hemos escogido Kubernetes como <em>framework</em> para desplegar sistemas distribuidos de forma robusta y a partir de contenedores. Kubernetes es el estándar de facto en la gestión de contenedores a escala, y todas las grandes plataformas <em>cloud</em> lo ofrecen como servicio.</p>
+
+<p>El hecho de trabajar con Kubernetes guiará algunas de las elecciones que tomemos posteriormente ya que, en igualdad de condiciones, optaremos por soluciones que sean nativas de Kubernetes. Es el caso de las dos primeras herramientas que presentamos en las dos primeras entregas: 
+MinIO como sistema de almacenamiento, y Argo Workflows como gestor de flujos de trabajo.</p>
+
+<h2 id="almacenamiento-a-gran-escala-minio">Almacenamiento a gran escala: MinIO</h2>
+
+<p>El término Big Data implica cantidades ingentes de datos, muchas veces en el orden de los petabytes. Estos datos pueden ser estructurados, como los que tradicionalmente se almacenan en bases de datos, o no estructurados, es decir, imágenes, texto, vídeos, etc. ¿Podemos contar con una única solución de almacenamiento compatible con ambos?</p>
+
+<p>Al comienzo de un proyecto de Big Data no siempre está claro cuáles serán las cantidades de datos que se manejarán a corto, medio y largo plazo. Por ello, es importante contar con un sistema fácilmente escalable.</p>
+
+<p>También es crucial poder encontrar los datos guardados. Aunque pueda parecer obvio, este es, precisamente, uno de los grandes problemas de los <em>data lakes</em> en los que se vierte todo tipo de información sin una organización adecuada. Acaban convirtiéndose en <em>data swamps</em>, pantanos de los que resulta muy difícil obtener valor porque es imposible de recuperar información útil. En otro post hablaremos de tecnologías de <em>data governance</em> y <em>data discovery</em>, que nos permitirán aliviar este problema en el caso de los datos estructurados. Pero, ¿qué hay del caso de los datos no estructurados (imágenes, texto), para los cuales este problema es especialmente agudo?</p>
+
+<p>Por último, es imperativo poder garantizar la integridad de los datos. ¿Contaremos con copias de seguridad? ¿Serán eficientes en cuanto al espacio que ocupan? ¿Podremos almacenar distintas versiones de los archivos guardados?</p>
+
+<p>El almacenamiento de objetos es un paradigma de almacenamiento diseñado para el mundo <em>cloud</em>, es decir, distribuido y escalable, y nos da soluciones a los problemas que acabamos de mencionar.  ¿En qué consiste el almacenamiento de objetos? ¿Qué significa “objeto” en este caso?</p>
+
+<p>Un objeto no es más que el archivo que deseamos almacenar acompañado de metadatos -relativos tanto a su contenido como a su uso- y asociado a un identificador único. Una parte importante de los metadatos serán las etiquetas descriptivas, escogidas intencionalmente para facilitar su posterior recuperación. Cuantas más etiquetas asociemos a los archivos, más caminos generaremos para hallarlos en el futuro.</p>
+
+<p>El exponente más conocido de este tipo de servicio es Amazon S3. Sin embargo, Amazon S3 no está disponible en entornos <em>on-premise</em> y por este motivo hemos buscado alternativas como MinIO. MinIO es un software de almacenamiento de objetos <em>open source</em> y completamente compatible con la API de S3. Fue diseñado para ser integrarse nativamente con Kubernetes y puede instalarse en la nube pública y la nube privada (y es <a href="https://altinity.com/blog/clickhouse-object-storage-performance-minio-vs-aws-s3" target="_blank">más rápido que S3</a>).</p>
+
+<p>En un entorno <em>on-premise</em>, aumentar su capacidad de almacenamiento es tan fácil como añadir nodos a Kubernetes. MinIO utiliza <a href="https://kubernetes.io/blog/2019/04/04/kubernetes-1.14-local-persistent-volumes-ga/#what-is-a-local-persistent-volume" target="_blank">local persistent volumes</a> para agilizar la comunicación entre la aplicación y el disco y, gracias a <a href="https://blog.min.io/introducing-directpv/" target="_blank">DirectPV</a>, se encarga de localizar los discos, formatearlos y monitorizarlos. Con MinIO se facilita la gestión del almacenamiento y se elimina la necesidad de utilizar sistemas SAN o NAS.</p>
+
+<h3 id="un-sistema-de-réplicas-muy-eficiente">Un sistema de réplicas muy eficiente</h3>
+
+<p>MinIO, en la línea de otros sistemas de almacenamiento distribuidos como HDFS de Hadoop, también se encarga de crear réplicas y versiones de todos los ficheros automáticamente. Sin embargo, el sistema de réplica es distinto al de HDFS. Mientras que este último simplemente hace una copia exacta de los datos y los ubica en un servidor distinto, MinIO utiliza una técnica llamada <em>erasure coding</em> para garantizar la recuperabilidad de los datos utilizando menos espacio.</p>
+
+<p>¿Cómo funciona el <em>erasure coding?</em> Cada fichero se divide en M bloques más pequeños, que se almacenarán en servidores distintos. Además, se añaden K bloques de paridad, que son secuencias de bits que permiten recalcular los datos perdidos mediante series complejas de sumas y divisiones. La clave de los bloques de paridad es que funcionan sean cuales sean los bloques que se pierdan, siempre que dispongamos de K bloques (originales o de paridad). Por eso, como mucho, necesitaremos tantos bloques de paridad como bloques de datos. Esto significa que, con MinIO, utilizando menos espacio de disco las garantías de disponibilidad son mucho mayores.</p>
+
+<p><img src="/assets/images/2022-09-16-big-data-platform-1/replication_schemes.jpeg" alt="Modelos de réplica" class="center" /></p>
+
+<h2 id="matar-una-mosca-a-cañonazos">Matar una mosca a cañonazos</h2>
+
+<p>En el panorama actual del Big Data, separar el hardware de almacenamiento de datos del hardware de procesamiento se está convirtiendo en el paradigma más aceptado. Esta división permite aprovechar al máximo los recursos disponibles, utilizando arquitecturas más eficientes y flexibles, así como software especializado para cada función. El almacenamiento de objetos se adapta como un guante a este nuevo paradigma, pero podríamos preguntarnos, ¿es adecuado para almacenar datos estructurados? Al fin y al cabo, no es una base de datos.</p>
+
+<p>S3 o MinIO sí se usan para almacenar datos estructurados gracias a formatos columnares como Orc o Parquet, propios también del ecosistema Hadoop. En conjunción con el formato de tablas Iceberg, se pueden llevar a cabo consultas eficientes sobre petabytes de datos, y con garantías de corrección. En futuros posts profundizaremos en los formatos columnares y en Iceberg, pero lo que ahora nos concierne es el almacenamiento de objetos. ¿En qué casos <strong>no</strong> es recomendable su uso?</p>
+
+<p>El almacenamiento de objetos brilla en la lectura intensiva de datos, pero no en la escritura y, sobre todo, no en la modificación de archivos. Las APIs de S3 o Minio funcionan mediante APIs REST, con verbos sencillos como <code class="highlighter-rouge">list</code>, <code class="highlighter-rouge">put</code>, <code class="highlighter-rouge">get</code> o <code class="highlighter-rouge">delete</code>, pero no proporcionan funcionalidades para modificar los archivos. Esto significa que cada alteración supone la reescritura del archivo completo. Además, tampoco permiten acceder a un subconjunto de los datos de forma directa (hay que leer todo el archivo). Por lo tanto, si nuestra aplicación va a requerir cambios frecuentes en los datos, o se utilizará para consultar filas concretas de una tabla, lo mejor será utilizar una base de datos relacional.</p>
+
+<p>Por ello, además de MinIO como sistema de almacenamiento, nuestra plataforma de Big Data cuenta con una base de datos PostgreSQL. Por una parte, dará soporte a los casos de uso mencionados arriba. Pero, además, conviene tener en cuenta que la solución más sencilla y eficiente para un conjunto de datos de incluso cientos de millones de filas puede ser una base de datos a la antigua usanza.</p>
+
+<h2 id="para-finalizar">Para finalizar</h2>
+
+<p>En esta entrada hemos puesto el primer ladrillo de la plataforma Big Data, sentando las
+bases del almacenamiento de datos estructurados y no estructurados. Si quieres ver
+cómo instalar las herramientas y algunos ejemplos de uso, 
+pásate por nuestro <a href="https://github.com/wearearima/big-data-platform" target="_blank">repositorio de Github</a>.</p>
+
+            </div>
+
+            
+          </div>
+        </article>
+      </div>
+    </main>
+
+    <footer>
+    <div class="wrapper">
+        <div class="footer__container">
+            <div class="footer__sello">
+                <img src="/assets/images/arima_sello_white.png" alt="" />
+            </div>
+            <div class="footer__content">
+                <div class="footer__data">
+                    <dl>
+                        <dt>web</dt>
+                        <dd><a itemprop="sameAs" href="https://www.arima.eu/es/">arima.eu</a></dd>
+                    </dl>
+                    <dl>
+                        <dt>social</dt>
+                        <dd>
+                            <a itemprop="sameAs" href="https://github.com/wearearima" class="social"><span class="icon-github"></span></a>
+                            <a itemprop="sameAs" href="https://twitter.com/wearearima" class="social"><span class="icon-twitter"></span></a>
+                            <a itemprop="sameAs" href="https://www.linkedin.com/company/arima-software-design/" class="social"><span class="icon-linkedin"></span></a>
+                            <a itemprop="sameAs" href="/es/feed.xml" class="social"><span class="icon-feed"></span></a>
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt>Privacidad</dt>
+                        <dd class="politica-cookies">
+                            <a href="/es/cookies.html">Política de cookies</a>
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+    <div class="cookies-message" id="cookies-message">
+    <h4>Este sitio web utiliza cookies</h4>
+    <p>Este sitio web utiliza cookies para mejorar la experiencia del usuario. Al utilizar nuestro sitio web, usted acepta todas las cookies de acuerdo con nuestra Política de cookies.</p>
+    <div class="buttons">
+        <a class="button" href="/es/cookies.html">Leer política de cookies</a>
+        <button class="button" id="accept-cookies">Aceptar</button>
+    </div>
+</div>
+<script>
+    (function() {
+        if(localStorage) {
+            var cookiesAccepted = localStorage.getItem("cookies-accepted");
+            if(cookiesAccepted) {
+                hideCookiesMessage();
+                
+            } else {
+                document.getElementById('accept-cookies').addEventListener("click", function() {
+                    hideCookiesMessage();
+                    localStorage.setItem("cookies-accepted", true);
+                })
+            }
+        }
+        function hideCookiesMessage() {
+            document.getElementById('cookies-message').style.display = "none";
+        }
+    })();
+</script>
+
+  </body>
+
+</html>
