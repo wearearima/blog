@@ -70,6 +70,9 @@ authors:
   juan:
     display_name: Juan Barberio
     bio:
+  dana:
+    display_name: Dana Scarinci
+    bio:
 # Google Analytics
 google_analytics: UA-120217722-1
 plugins:
