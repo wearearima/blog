@@ -9,6 +9,32 @@
     
     
     <post>
+        <title>Curso de IA generativa de Kaggle y Google</title>
+        <summary>&lt;p&gt;Desde Kaggle y Google han lanzado un curso de IA generativa que cubre los siguientes aspectos:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Introducción a Large Language Models (LLMs), los modelos fundacionales&lt;/li&gt;
+  &lt;li&gt;Prompt Engineering&lt;/li&gt;
+  &lt;li&gt;Embeddings&lt;/li&gt;
+  &lt;li&gt;RAG&lt;/li&gt;
+  &lt;li&gt;Agentes&lt;/li&gt;
+  &lt;li&gt;LLMs de ámbito específico (&lt;em&gt;i.e.&lt;/em&gt;, seguridad informática y ámbito médico)&lt;/li&gt;
+  &lt;li&gt;MLOps en el contexto de IA generativa&lt;/li&gt;
+&lt;/ul&gt;
+</summary>
+        <pubDate>Mon, 16 Dec 2024 10:00:00 +0000</pubDate>
+        <link>https://blog.arima.eu/2024/12/16/genai-course.html</link>
+        <guid isPermaLink="true">https://blog.arima.eu//2024/12/16/genai-course.html</guid>
+        <headerImage>https://blog.arima.eu/assets/images/2024-12-16-genai-course/header.png</headerImage>
+        
+        
+        
+        
+        
+
+      <author></author>
+    </post>
+    
+    <post>
         <title>Construyendo una plataforma Big Data open-source desde cero (I): Persistencia</title>
         <summary>&lt;p&gt;Hay muchos motivos por los que se puede necesitar una plataforma de Big Data: desde analizar y producir conocimiento a partir de datos procedentes del negocio, hasta crear modelos de inteligencia artificial a partir de textos o imágenes. Los datos que se almacenarán, en cada caso, son distintos. Los flujos de análisis, los procesos de limpieza y preparación, y las herramientas que se utilizarán, también.&lt;/p&gt;
 </summary>
@@ -40,23 +66,6 @@
         
 
       <author>Urko Lekuona</author>
-    </post>
-    
-    <post>
-        <title>¿Es el fin de la pandemia el fin del trabajo remoto?</title>
-        <summary>&lt;p&gt;Una de las cosas que teníamos claras cuando creamos ARIMA en 2013 era que íbamos a ser una empresa en la que el trabajo remoto iba a estar a la orden del día. No pretendíamos hacer de esto nuestra bandera ni una pose, en el fondo era una decisión egoísta ya que nosotros mismos éramos los primeros a los que nos beneficiaba el poder trabajar en remoto para conciliar nuestra vida laboral con nuestra vida familiar.&lt;/p&gt;
-</summary>
-        <pubDate>Fri, 25 Jun 2021 09:00:00 +0000</pubDate>
-        <link>https://blog.arima.eu/2021/06/25/remote-work.html</link>
-        <guid isPermaLink="true">https://blog.arima.eu//2021/06/25/remote-work.html</guid>
-        <headerImage>https://blog.arima.eu/assets/images/2021-06-25-remote-work/header.jpg</headerImage>
-        
-        
-        
-        
-        
-
-      <author>Aritz Berasarte</author>
     </post>
     
   </channel>
