@@ -30,4 +30,20 @@ docker run --rm -p 4000:4000 --name jekyll --volume="$PWD:/srv/jekyll" --mount s
 
 ## Deployment
 
-The site is published through Google App Engine. The workflow in `.github/workflows/deploy.yml` builds the Jekyll site and deploys the generated `_site` directory using Workload Identity Federation.
+The site is published through Google App Engine. The workflow in `.github/workflows/deploy.yml` builds the Jekyll site, copies the generated `_site` directory, and deploys a lightweight Flask wrapper that serves the static assets. Workload Identity Federation is used for authentication.
+
+Manual deployment steps:
+
+1. `JEKYLL_ENV=production bundle exec jekyll build`
+2. `gcloud app deploy app.yaml`
+
+Ensure your `gcloud` CLI is authenticated and targeting the `blog-arima-eu` project. Keep `_site`, `main.py`, and `requirements.txt` together when running the deployment so App Engine can serve the generated files.
+
+### Required GCP roles
+
+The GitHub Actions service account needs at least:
+
+- `roles/appengine.deployer`
+- `roles/iam.serviceAccountTokenCreator`
+- `roles/storage.objectAdmin` on the `staging.blog-arima-eu.appspot.com` bucket (or broader storage permissions)
+- `roles/iam.serviceAccountUser` on `blog-arima-eu@appspot.gserviceaccount.com`
