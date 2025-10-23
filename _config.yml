@@ -37,6 +37,11 @@ gems:
 exclude:
   - Gemfile
   - Gemfile.lock
+  - app.yaml
+  - main.py
+  - requirements.txt
+  - .gcloudignore
+  - README.md
 sass:
   # Required for Polyglot
   sourcemap: never

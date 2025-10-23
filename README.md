@@ -37,7 +37,7 @@ Manual deployment steps:
 1. `JEKYLL_ENV=production bundle exec jekyll build`
 2. `gcloud app deploy app.yaml`
 
-Ensure your `gcloud` CLI is authenticated and targeting the `blog-arima-eu` project. Keep `_site`, `main.py`, `requirements.txt`, and the committed `.gcloudignore` together when running the deployment so App Engine can serve the generated files. The runtime currently uses Python 3.10 (see `app.yaml`).
+Ensure your `gcloud` CLI is authenticated and targeting the `blog-arima-eu` project. Keep `_site`, `main.py`, `requirements.txt`, and the committed `.gcloudignore` together when running the deployment so App Engine can serve the generated files (note the explicit `!_site/**` rule). The runtime currently uses Python 3.10 (see `app.yaml`).
 
 ### Required GCP roles
 
