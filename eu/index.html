@@ -5,6 +5,11 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com https://www.google-analytics.com https://www.gstatic.com https://platform.twitter.com https://cdn.syndication.twimg.com https://syndication.twitter.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://www.google-analytics.com https://www.googletagmanager.com https://pbs.twimg.com https://ton.twimg.com https://abs.twimg.com; font-src 'self' data:; connect-src 'self' https://www.google-analytics.com https://www.googletagmanager.com https://stats.g.doubleclick.net https://region1.google-analytics.com https://platform.twitter.com https://cdn.syndication.twimg.com https://syndication.twitter.com; frame-src https://platform.twitter.com https://www.youtube.com; frame-ancestors 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; manifest-src 'self'; upgrade-insecure-requests;">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta http-equiv="Permissions-Policy" content="accelerometer=(), camera=(), geolocation=(), gyroscope=(), microphone=(), payment=(), usb=()">
+  <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
 
   <title>ARIMA</title>
   <meta name="description" content="">
@@ -55,15 +60,11 @@
   
   <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-120217722-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+<script defer src="/assets/google-analytics.js"></script>
 
-  gtag('config', 'UA-120217722-1');
-</script>
   
 </head>
+
 
   <body class="body-home">
 
@@ -430,25 +431,8 @@ Hoy anunciaremos que el próximo 23 de octubre se celebrará la #tarugo5
         <button class="button" id="accept-cookies">Onartu</button>
     </div>
 </div>
-<script>
-    (function() {
-        if(localStorage) {
-            var cookiesAccepted = localStorage.getItem("cookies-accepted");
-            if(cookiesAccepted) {
-                hideCookiesMessage();
-                
-            } else {
-                document.getElementById('accept-cookies').addEventListener("click", function() {
-                    hideCookiesMessage();
-                    localStorage.setItem("cookies-accepted", true);
-                })
-            }
-        }
-        function hideCookiesMessage() {
-            document.getElementById('cookies-message').style.display = "none";
-        }
-    })();
-</script>
+<script defer src="/assets/cookies-message.js"></script>
+
     <script src="/assets/toolbar-script.min.js"></script>
   </body>
 </html>
