@@ -1,0 +1,42 @@
+name: Build and Deploy Jekyll site
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      id-token: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "2.7.1"
+          bundler-cache: true
+
+      - name: Build Jekyll site
+        env:
+          JEKYLL_ENV: production
+        run: bundle exec jekyll build --trace
+
+      - id: auth
+        name: Authenticate to Google Cloud
+        uses: google-github-actions/auth@v2
+        with:
+          workload_identity_provider: "projects/150426842195/locations/global/workloadIdentityPools/github-pool/providers/github-provider"
+          service_account: "arima-blog-sa@blog-arima-eu.iam.gserviceaccount.com"
+
+      - name: Deploy to App Engine
+        uses: google-github-actions/deploy-appengine@v2
