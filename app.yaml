@@ -1,4 +1,4 @@
-runtime: python311
+runtime: python310
 entrypoint: gunicorn -b :$PORT main:app
 
 automatic_scaling:
