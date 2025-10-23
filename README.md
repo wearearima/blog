@@ -26,3 +26,8 @@ docker volume create jekyll-ruby-gems
 Each time we want to launch our Jekyll container, run it like this:
 ````
 docker run --rm -p 4000:4000 --name jekyll --volume="$PWD:/srv/jekyll" --mount source=jekyll-ruby-gems,target=/usr/local/bundle -it jekyll/jekyll:3.8 jekyll serve
+````
+
+## Deployment
+
+The site is published through Google App Engine. The workflow in `.github/workflows/deploy.yml` builds the Jekyll site and deploys the generated `_site` directory using Workload Identity Federation.

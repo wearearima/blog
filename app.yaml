@@ -1,0 +1,95 @@
+runtime: python39
+
+handlers:
+  - url: /(.*\..*)
+    static_files: _site/\1
+    upload: _site/(.*)
+    secure: always
+    http_headers:
+      Content-Security-Policy: >-
+        default-src 'self';
+        script-src 'self' https://www.googletagmanager.com https://www.google-analytics.com https://www.gstatic.com https://platform.twitter.com https://cdn.syndication.twimg.com https://syndication.twitter.com;
+        style-src 'self' 'unsafe-inline';
+        img-src 'self' data: https://www.google-analytics.com https://www.googletagmanager.com https://pbs.twimg.com https://ton.twimg.com https://abs.twimg.com;
+        font-src 'self' data:;
+        connect-src 'self' https://www.google-analytics.com https://www.googletagmanager.com https://stats.g.doubleclick.net https://region1.google-analytics.com https://platform.twitter.com https://cdn.syndication.twimg.com https://syndication.twitter.com https://api.twitter.com;
+        frame-src https://platform.twitter.com https://syndication.twitter.com;
+        frame-ancestors 'self';
+        object-src 'none';
+        base-uri 'self';
+        form-action 'self';
+        manifest-src 'self';
+        upgrade-insecure-requests;
+      X-Frame-Options: SAMEORIGIN
+      X-Content-Type-Options: nosniff
+      Referrer-Policy: strict-origin-when-cross-origin
+      Permissions-Policy: >-
+        accelerometer=(),
+        camera=(),
+        geolocation=(),
+        gyroscope=(),
+        microphone=(),
+        payment=(),
+        usb=()
+
+  - url: /(.*)/
+    static_files: _site/\1/index.html
+    upload: _site/(.*)/index.html
+    secure: always
+    http_headers:
+      Content-Security-Policy: >-
+        default-src 'self';
+        script-src 'self' https://www.googletagmanager.com https://www.google-analytics.com https://www.gstatic.com https://platform.twitter.com https://cdn.syndication.twimg.com https://syndication.twitter.com;
+        style-src 'self' 'unsafe-inline';
+        img-src 'self' data: https://www.google-analytics.com https://www.googletagmanager.com https://pbs.twimg.com https://ton.twimg.com https://abs.twimg.com;
+        font-src 'self' data:;
+        connect-src 'self' https://www.google-analytics.com https://www.googletagmanager.com https://stats.g.doubleclick.net https://region1.google-analytics.com https://platform.twitter.com https://cdn.syndication.twimg.com https://syndication.twitter.com https://api.twitter.com;
+        frame-src https://platform.twitter.com https://syndication.twitter.com;
+        frame-ancestors 'self';
+        object-src 'none';
+        base-uri 'self';
+        form-action 'self';
+        manifest-src 'self';
+        upgrade-insecure-requests;
+      X-Frame-Options: SAMEORIGIN
+      X-Content-Type-Options: nosniff
+      Referrer-Policy: strict-origin-when-cross-origin
+      Permissions-Policy: >-
+        accelerometer=(),
+        camera=(),
+        geolocation=(),
+        gyroscope=(),
+        microphone=(),
+        payment=(),
+        usb=()
+
+  - url: /
+    static_files: _site/index.html
+    upload: _site/index.html
+    secure: always
+    http_headers:
+      Content-Security-Policy: >-
+        default-src 'self';
+        script-src 'self' https://www.googletagmanager.com https://www.google-analytics.com https://www.gstatic.com https://platform.twitter.com https://cdn.syndication.twimg.com https://syndication.twitter.com;
+        style-src 'self' 'unsafe-inline';
+        img-src 'self' data: https://www.google-analytics.com https://www.googletagmanager.com https://pbs.twimg.com https://ton.twimg.com https://abs.twimg.com;
+        font-src 'self' data:;
+        connect-src 'self' https://www.google-analytics.com https://www.googletagmanager.com https://stats.g.doubleclick.net https://region1.google-analytics.com https://platform.twitter.com https://cdn.syndication.twimg.com https://syndication.twitter.com https://api.twitter.com;
+        frame-src https://platform.twitter.com https://syndication.twitter.com;
+        frame-ancestors 'self';
+        object-src 'none';
+        base-uri 'self';
+        form-action 'self';
+        manifest-src 'self';
+        upgrade-insecure-requests;
+      X-Frame-Options: SAMEORIGIN
+      X-Content-Type-Options: nosniff
+      Referrer-Policy: strict-origin-when-cross-origin
+      Permissions-Policy: >-
+        accelerometer=(),
+        camera=(),
+        geolocation=(),
+        gyroscope=(),
+        microphone=(),
+        payment=(),
+        usb=()
