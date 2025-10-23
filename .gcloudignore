@@ -1,0 +1,10 @@
+# This file controls which files are uploaded by gcloud.
+# https://cloud.google.com/sdk/gcloud/reference/topic/gcloudignore
+
+.gcloudignore
+.git
+.gitignore
+.github/
+.sass-cache/
+.jekyll-cache/
+.DS_Store
