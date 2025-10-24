@@ -39,10 +39,5 @@ jobs:
         uses: google-github-actions/deploy-appengine@v2
         with:
           deliverables: app.yaml
-          flags: --verbosity=debug --promote
-
-      - name: Troubleshoot App Engine failure
-        if: failure()
-        run: |
-          gcloud app logs read --service=default --limit=100 || true
-          gcloud app versions list --service=default || true
+          promote: true
+          flags: --no-stop-previous-version
